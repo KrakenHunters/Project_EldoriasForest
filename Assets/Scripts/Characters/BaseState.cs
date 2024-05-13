@@ -8,7 +8,7 @@ public abstract class BaseState
     protected float nextDirection;
 
     public CharacterClass character { get; set; }
-    //public InputManager inputManager { get; set; }
+    public InputManager inputManager { get; set; }
 
     protected BaseState currentState;
 
@@ -17,9 +17,9 @@ public abstract class BaseState
     public virtual void StateFixedUpdate() { }
     public virtual void StateUpdate() { }
     public virtual void HandleMovement() { }
-    public virtual void HandleRotation(float rotateAngle) { }
+    public virtual void HandleSpecialAttack() { }
+    public virtual void HandleUltimateAttack() { }
+    public virtual void HandleBaseAttack() { }
     public virtual void HandleInteract() { }
     public virtual void HandleDeath() { }
-    public virtual void StopInteract() { }
-
 }
