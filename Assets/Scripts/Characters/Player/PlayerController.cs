@@ -2,18 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : CharacterClass
 {
-    private BaseState currentState;
+    [HideInInspector]
+    public CharacterController c;
 
-  private void Update() => currentState?.StateUpdate();
-  private void FixedUpdate() => currentState?.StateFixedUpdate();
+    private void Awake()
+    {
+        c = GetComponent<CharacterController>();
+        ChangeState(new pIdleState());
+    }
+
+    private void Update() => currentState?.StateUpdate();
+    private void FixedUpdate() => currentState?.StateFixedUpdate();
 
     #region character Actions
-    public void HandleMove()
+    public void HandleMove(Vector2 dir)
     {
-      currentState?.HandleMovement();
+        Debug.Log("Moving");
+        currentState?.HandleMovement(dir);
     }
     public void HandleInteract()
     {
@@ -21,12 +29,14 @@ public class PlayerController : CharacterClass
     }
    public void HandleBaseAttack()
     {
+        Debug.Log("BaseAttack");
         currentState?.HandleBaseAttack();
     }
     public void HandleSpecialAttack()
     {
         currentState?.HandleSpecialAttack();
-    }  public void HandleUltimateAttack()
+    }  
+    public void HandleUltimateAttack()
     {
         currentState?.HandleUltimateAttack();
     }

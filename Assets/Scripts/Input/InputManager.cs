@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     PlayerInput _action;
- void Awake()
+    PlayerController _player;
+    void Awake()
     {
         _player = GetComponent<PlayerController>();
         _action = new PlayerInput();
+        Debug.Log("Awake iknput");
     }
 
     private void Update()
@@ -31,23 +33,19 @@ public class InputManager : MonoBehaviour
     }
     private void OnEnable()
     {
-     
-            //action.Player.Move.performed += (val) => player.HandleMove();
-           
-       
+
+        _action.Player.Move.performed += (val) => _player.HandleMove( val.ReadValue<Vector2>());
+        _action.Player.BaseAttack.performed += (val) => _player.HandleBaseAttack();
+
         _action.Enable();
     }
 
     private void OnDisable()
     {
-        action.Player.Move.performed -= (val) => player.HandleMove();
-        _action.Disable();
-    }
+        _action.Player.Move.performed -= (val) => _player.HandleMove(val.ReadValue<Vector2>());
+        _action.Player.BaseAttack.performed -= (val) => _player.HandleBaseAttack();
 
-    private void WaitTimer()
-    {
         _action.Disable();
-        OnEnable();
     }
 
 }
