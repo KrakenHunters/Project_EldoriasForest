@@ -4,6 +4,10 @@ public class pAttackState : BaseState
 {
     PlayerController player;
     Vector3 _direction;
+
+    private SpellBook activeSpell;
+
+    LayerMask groundLayer = LayerMask.GetMask("Ground");
     public override void EnterState()
     {
         Debug.Log("Enter Move");
@@ -21,11 +25,12 @@ public class pAttackState : BaseState
     public override void StateFixedUpdate()
     {
         player.c.Move(_direction * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
+        Rotate();
     }
 
     public override void StateUpdate()
     {
-        Rotate();
+     
     }
 
     public override void HandleMovement(Vector2 dir)
@@ -35,13 +40,18 @@ public class pAttackState : BaseState
     private void Rotate()
     {
         Vector3 mousePos = Input.mousePosition;
-       
-        Vector3 mousePositionWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y,Camera.main.transform.position.z));
-        Debug.Log("MousePos" + mousePositionWorld);
-        Vector3 direction = mousePositionWorld - player.transform.position;
-        player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(direction), 0.2f);
-
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit,Mathf.Infinity,groundLayer))
+        {
+            Vector3 target = hit.point;
+            Vector3 direction = target - player.transform.position;
+            direction.y = 0;
+            player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(direction), player.RotationSpeed * Time.fixedDeltaTime);
+        }
     }
+
+
 
     private void CheckAttackType()
     {

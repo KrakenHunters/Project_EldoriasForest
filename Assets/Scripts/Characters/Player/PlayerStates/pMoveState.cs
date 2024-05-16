@@ -5,6 +5,8 @@ public class pMoveState : BaseState
     PlayerController player;
     Vector3 _direction;
     Vector3 _rotation;
+    LayerMask groundLayer = LayerMask.GetMask("Ground");
+
     public override void EnterState()
     {
         Debug.Log("Enter Move");
@@ -37,9 +39,26 @@ public class pMoveState : BaseState
 
     private void Rotate()
     {
-        if (_direction != Vector3.zero)
-            player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), 0.2f);
+        if(player.isInCombat)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            {
+                Vector3 target = hit.point;
+                Vector3 direction = target - player.transform.position;
+                direction.y = 0;
+                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(direction), player.RotationSpeed * Time.fixedDeltaTime);
+            }
 
+
+        }
+        else
+        {
+            if (_direction != Vector3.zero)
+                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), player.RotationSpeed * Time.fixedDeltaTime);
+        }
     }
 
 

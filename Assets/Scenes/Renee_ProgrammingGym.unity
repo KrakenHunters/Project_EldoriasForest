@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 2081128491}
   - component: {fileID: 2081128490}
   - component: {fileID: 2081128489}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,11 +747,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7252651610300568122, guid: 164a884b14f78b74eb82c692066feae9,
-        type: 3}
-      propertyPath: _speedModifier
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

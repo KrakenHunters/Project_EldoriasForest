@@ -9,8 +9,12 @@ public class PlayerController : CharacterClass
     public CharacterController c;
     
     [SerializeField]
-    private float combatCooldown = 5;
+    private float combatCooldown = 5f;
     float combatTimer = 0;
+
+    [SerializeField]
+    protected float _rotationSpeed;
+    public float RotationSpeed { get { return _speed; } }
 
     public AttackType attackType;
 
