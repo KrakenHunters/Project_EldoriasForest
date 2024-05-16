@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterClass : MonoBehaviour
@@ -9,6 +8,13 @@ public class CharacterClass : MonoBehaviour
     [SerializeField]
     protected float _speed;
     public float Speed { get { return _speed; } }
+    [SerializeField]
+    protected float _speedModifier;
+    public float SpeedModifier { get { return _speedModifier; } }
+
+    [HideInInspector]
+    public bool isInCombat = false;
+
 
     [HideInInspector]
     public BaseState currentState;

@@ -7,6 +7,13 @@ public class PlayerController : CharacterClass
 {
     [HideInInspector]
     public CharacterController c;
+    
+    [SerializeField]
+    private float combatCooldown = 5;
+    float combatTimer = 0;
+
+    public AttackType attackType;
+
 
     private void Awake()
     {
@@ -14,14 +21,27 @@ public class PlayerController : CharacterClass
         ChangeState(new pIdleState());
     }
 
-    private void Update() => currentState?.StateUpdate();
+    private void Update()
+    {
+        if (isInCombat)
+        {
+           combatTimer += Time.deltaTime;
+            if (combatTimer >= combatCooldown)
+            {
+                isInCombat = false;
+                combatTimer = 0;
+            }
+        }
+        currentState?.StateUpdate();
+    }
     private void FixedUpdate() => currentState?.StateFixedUpdate();
 
     #region character Actions
     public void HandleMove(Vector2 dir)
     {
         Debug.Log("Moving");
-        currentState?.HandleMovement(dir);
+    
+            currentState?.HandleMovement(dir);
     }
     public void HandleInteract()
     {
@@ -29,18 +49,32 @@ public class PlayerController : CharacterClass
     }
    public void HandleBaseAttack()
     {
-        Debug.Log("BaseAttack");
-        currentState?.HandleBaseAttack();
+        currentState?.HandleAttack();
+        attackType = AttackType.Base;
     }
     public void HandleSpecialAttack()
     {
-        currentState?.HandleSpecialAttack();
+        currentState?.HandleAttack();
+        attackType = AttackType.Special;
     }  
     public void HandleUltimateAttack()
     {
-        currentState?.HandleUltimateAttack();
+        currentState?.HandleAttack();
+        attackType = AttackType.Ultimate;
     }
-   
+
     #endregion
- 
+
+
+  
+
+    public enum AttackType
+    {
+        Base,
+        Special,
+        Ultimate
+    }
+
+   
+
 }

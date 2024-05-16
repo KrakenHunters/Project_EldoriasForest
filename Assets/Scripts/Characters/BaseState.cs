@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseState
@@ -17,9 +15,7 @@ public abstract class BaseState
     public virtual void StateFixedUpdate() { }
     public virtual void StateUpdate() { }
     public virtual void HandleMovement(Vector2 dir) { }
-    public virtual void HandleSpecialAttack() { }
-    public virtual void HandleUltimateAttack() { }
-    public virtual void HandleBaseAttack() { }
+    public virtual void HandleAttack() { }
     public virtual void HandleInteract() { }
     public virtual void HandleDeath() { }
 }
