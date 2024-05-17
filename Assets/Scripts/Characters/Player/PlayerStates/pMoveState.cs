@@ -22,7 +22,7 @@ public class pMoveState : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.Move(_direction*player.Speed*Time.fixedDeltaTime);
+        player.c.Move(_direction.normalized * player.Speed*Time.fixedDeltaTime);
         Rotate();
     }
 
@@ -57,7 +57,7 @@ public class pMoveState : BaseState
         else
         {
             if (_direction != Vector3.zero)
-                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), player.RotationSpeed);
+                player.gameObject.transform.rotation = Quaternion.RotateTowards(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), player.RotationSpeed);
         }
     }
 

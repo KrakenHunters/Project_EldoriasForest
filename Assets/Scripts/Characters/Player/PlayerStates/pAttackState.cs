@@ -13,7 +13,7 @@ public class pAttackState : BaseState
         Debug.Log("Enter Move");
         player = character.GetComponent<PlayerController>();
         CheckAttackType();
-        player.isInCombat = true;
+        player.ResetCombatTimer();
         //Animate ad change to new state and cast spell after animation is done
         player.CastSpell(activeSpell);
         player.ChangeState(new pIdleState());
@@ -26,13 +26,12 @@ public class pAttackState : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.Move(_direction * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
+        player.c.Move(_direction.normalized * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
         Rotate();
     }
 
     public override void StateUpdate()
     {
-     
     }
 
     public override void HandleMovement(Vector2 dir)

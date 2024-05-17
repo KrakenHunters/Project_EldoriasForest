@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class CharacterClass : MonoBehaviour
@@ -19,9 +20,10 @@ public class CharacterClass : MonoBehaviour
     [HideInInspector]
     public BaseState currentState;
 
-    public void ChangeState(BaseState newState)
+    public virtual void ChangeState(BaseState newState)
     {
         StartCoroutine(WaitFixedFrame(newState));
+
     }
 
     public void CastSpell(SpellBook spell)

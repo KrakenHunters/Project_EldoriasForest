@@ -5,6 +5,19 @@ public class InputManager : MonoBehaviour
 {
     PlayerInput _action;
     PlayerController _player;
+
+    Vector2 _movement;
+    public Vector2 Movement
+    {
+        get
+        {
+            return _movement;
+        }
+        private set
+        {
+            _movement = value;
+        }
+    }
     void Awake()
     {
         _player = GetComponent<PlayerController>();
@@ -34,7 +47,7 @@ public class InputManager : MonoBehaviour
     private void OnEnable()
     {
 
-        _action.Player.Move.performed += (val) => _player.HandleMove( val.ReadValue<Vector2>());
+        _action.Player.Move.performed += (val) => Movement = val.ReadValue<Vector2>();
         _action.Player.BaseAttack.performed += (val) => _player.HandleBaseAttack();
 
         _action.Enable();
@@ -42,7 +55,7 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _action.Player.Move.performed -= (val) => _player.HandleMove(val.ReadValue<Vector2>());
+        _action.Player.Move.performed -= (val) => Movement = val.ReadValue<Vector2>();
         _action.Player.BaseAttack.performed -= (val) => _player.HandleBaseAttack();
 
         _action.Disable();

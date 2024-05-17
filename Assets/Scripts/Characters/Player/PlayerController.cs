@@ -20,11 +20,17 @@ public class PlayerController : CharacterClass
 
     public TemporaryDataContainer tempData;
 
+    private InputManager inputManager;
+
+    private bool isMoving;
+
 
     private void Awake()
     {
+        inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new pIdleState());
+
     }
 
     private void Update()
@@ -38,17 +44,33 @@ public class PlayerController : CharacterClass
                 combatTimer = 0;
             }
         }
-        currentState?.StateUpdate();
+
+        if (inputManager.Movement != new Vector2(0f, 0f) || !isMoving)
+        {
+            HandleMove(inputManager.Movement);
+            isMoving = true;
+        }
+
+        if (inputManager.Movement == new Vector2(0f, 0f) && isMoving)
+        {
+            isMoving = false;
+        }
+
+
+            currentState?.StateUpdate();
     }
     private void FixedUpdate() => currentState?.StateFixedUpdate();
+
+
 
     #region character Actions
     public void HandleMove(Vector2 dir)
     {
         Debug.Log("Moving");
-    
-            currentState?.HandleMovement(dir);
+
+        currentState?.HandleMovement(dir);
     }
+    
     public void HandleInteract()
     {
        currentState?.HandleInteract();
@@ -72,7 +94,11 @@ public class PlayerController : CharacterClass
     #endregion
 
 
-  
+    public void ResetCombatTimer()
+    {
+        isInCombat = true;
+        combatTimer = 0f;
+    }
 
     public enum AttackType
     {
