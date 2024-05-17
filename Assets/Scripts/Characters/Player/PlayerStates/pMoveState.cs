@@ -49,7 +49,7 @@ public class pMoveState : BaseState
                 Vector3 target = hit.point;
                 Vector3 direction = target - player.transform.position;
                 direction.y = 0;
-                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(direction), player.RotationSpeed * Time.fixedDeltaTime);
+                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(direction), player.RotationSpeed );
             }
 
 
@@ -57,7 +57,7 @@ public class pMoveState : BaseState
         else
         {
             if (_direction != Vector3.zero)
-                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), player.RotationSpeed * Time.fixedDeltaTime);
+                player.gameObject.transform.rotation = Quaternion.Slerp(player.gameObject.transform.rotation, Quaternion.LookRotation(_direction), player.RotationSpeed);
         }
     }
 
