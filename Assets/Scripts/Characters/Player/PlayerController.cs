@@ -24,6 +24,9 @@ public class PlayerController : CharacterClass
 
     private bool isMoving;
 
+    private float baseAttackTimer;
+    private float specialAttackTimer;
+    private float ultimateAttackTimer;
 
     private void Awake()
     {
@@ -56,8 +59,11 @@ public class PlayerController : CharacterClass
             isMoving = false;
         }
 
+        baseAttackTimer += Time.deltaTime;
+        specialAttackTimer += Time.deltaTime;
+        ultimateAttackTimer += Time.deltaTime;
 
-            currentState?.StateUpdate();
+        currentState?.StateUpdate();
     }
     private void FixedUpdate() => currentState?.StateFixedUpdate();
 
@@ -77,18 +83,32 @@ public class PlayerController : CharacterClass
     }
    public void HandleBaseAttack()
     {
-        currentState?.HandleAttack();
-        attackType = AttackType.Base;
+        if (baseAttackTimer > tempData.baseSpell.cooldown)
+        {
+            currentState?.HandleAttack();
+            attackType = AttackType.Base;
+            baseAttackTimer = 0f;
+        }
     }
     public void HandleSpecialAttack()
     {
-        currentState?.HandleAttack();
-        attackType = AttackType.Special;
-    }  
+        if (specialAttackTimer > tempData.specialSpell.cooldown)
+        {
+            currentState?.HandleAttack();
+            attackType = AttackType.Special;
+            specialAttackTimer = 0f;
+        }
+    }
     public void HandleUltimateAttack()
     {
-        currentState?.HandleAttack();
-        attackType = AttackType.Ultimate;
+        if (ultimateAttackTimer > tempData.ultimateSpell.cooldown)
+        { 
+            currentState?.HandleAttack();
+            attackType = AttackType.Ultimate;
+            ultimateAttackTimer = 0f;
+
+        }
+
     }
 
     #endregion

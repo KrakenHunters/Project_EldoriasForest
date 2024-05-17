@@ -1,3 +1,4 @@
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class pAttackState : BaseState
@@ -7,6 +8,8 @@ public class pAttackState : BaseState
 
     private SpellBook activeSpell;
 
+    private float timer;
+
     LayerMask groundLayer = LayerMask.GetMask("Ground");
     public override void EnterState()
     {
@@ -15,8 +18,6 @@ public class pAttackState : BaseState
         CheckAttackType();
         player.ResetCombatTimer();
         //Animate ad change to new state and cast spell after animation is done
-        player.CastSpell(activeSpell);
-        player.ChangeState(new pIdleState());
 
     }
     public override void ExitState()
@@ -28,6 +29,17 @@ public class pAttackState : BaseState
     {
         player.c.Move(_direction.normalized * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
         Rotate();
+
+        timer += Time.deltaTime;
+        float clipLength = 0.3f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        if (timer >= clipLength)
+        {
+            timer = 0f;
+
+            player.CastSpell(activeSpell);
+            player.ChangeState(new pIdleState());
+        }
+
     }
 
     public override void StateUpdate()

@@ -16,6 +16,9 @@ public class CharacterClass : MonoBehaviour
     [HideInInspector]
     public bool isInCombat = false;
 
+    [SerializeField]
+    protected Transform castPos;
+
 
     [HideInInspector]
     public BaseState currentState;
@@ -28,7 +31,7 @@ public class CharacterClass : MonoBehaviour
 
     public void CastSpell(SpellBook spell)
     {
-        Instantiate(spell, transform.position, transform.rotation);
+        Instantiate(spell, castPos.position, transform.rotation);
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpellBook : MonoBehaviour
 {
     protected int tier = 1;
+    public float cooldown;
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -15,8 +17,18 @@ public class SpellBook : MonoBehaviour
     {
         if (tier < 3)
         {
-            tier += 1;
+            tier++;
         }
+    }
+
+    protected virtual void Start()
+    {
+
+    }
+
+    protected virtual void Update()
+    {
+
     }
 
     protected virtual void CastSpell(int tier)

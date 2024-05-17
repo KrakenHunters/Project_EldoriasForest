@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class BaseFireSpell : BaseSpellBook
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        
+        base.Awake();
+
+    }
+    protected override void UpgradeTier()
+    {
+        base.UpgradeTier();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    protected override void Start()
     {
-        
+        base.Start();
     }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
 }

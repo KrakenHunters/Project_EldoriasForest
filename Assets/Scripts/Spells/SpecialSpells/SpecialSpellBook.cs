@@ -5,11 +5,6 @@ using UnityEngine;
 public class SpecialSpellBook : SpellBook
 {
     public SpecialSpellsTierContainer tierUnlocked;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     protected virtual void SpellCollected()
     {
@@ -20,9 +15,4 @@ public class SpecialSpellBook : SpellBook
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

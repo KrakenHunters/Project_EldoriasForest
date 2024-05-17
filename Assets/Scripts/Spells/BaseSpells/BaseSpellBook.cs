@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BaseSpellBook : SpellBook
 {
+    [SerializeField]
     protected float speed;
+    [SerializeField]
+    protected float range;
+    
+    protected Vector3 startPos;
 
     protected override void Awake()
     {
@@ -19,15 +24,20 @@ public class BaseSpellBook : SpellBook
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        startPos = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
+        Debug.Log("Current Position: " + transform.position);
+        Debug.Log("Distance Traveled: " + Vector3.Distance(transform.position, startPos));
+        if (Vector3.Distance(transform.position, startPos) > range)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

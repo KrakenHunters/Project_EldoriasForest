@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerTempData
   m_EditorClassIdentifier: 
   collectedSouls: 0
-  baseSpell: {fileID: 5908169474795133299, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
+  baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
   specialSpell: {fileID: 0}
   ultimateSpell: {fileID: 0}
