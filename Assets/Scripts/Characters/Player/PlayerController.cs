@@ -18,6 +18,8 @@ public class PlayerController : CharacterClass
 
     public AttackType attackType;
 
+    public TemporaryDataContainer tempData;
+
 
     private void Awake()
     {

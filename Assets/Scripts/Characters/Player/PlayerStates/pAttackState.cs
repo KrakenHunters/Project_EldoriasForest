@@ -14,7 +14,9 @@ public class pAttackState : BaseState
         player = character.GetComponent<PlayerController>();
         CheckAttackType();
         player.isInCombat = true;
-        //Animate
+        //Animate ad change to new state and cast spell after animation is done
+        player.CastSpell(activeSpell);
+        player.ChangeState(new pIdleState());
 
     }
     public override void ExitState()
@@ -59,13 +61,17 @@ public class pAttackState : BaseState
         {
             case PlayerController.AttackType.Base:
                 Debug.Log("Base Attack");
+                activeSpell = player.tempData.baseSpell;
                 break;
             case PlayerController.AttackType.Special:
+                activeSpell = player.tempData.specialSpell;
                 Debug.Log("Special Attack");
                 break;
             case PlayerController.AttackType.Ultimate:
+                activeSpell = player.tempData.ultimateSpell;
                 Debug.Log("Ultimate Attack");
                 break;
         }
     }
+
 }

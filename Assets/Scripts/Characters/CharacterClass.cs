@@ -24,6 +24,11 @@ public class CharacterClass : MonoBehaviour
         StartCoroutine(WaitFixedFrame(newState));
     }
 
+    public void CastSpell(SpellBook spell)
+    {
+        Instantiate(spell, transform.position, transform.rotation);
+    }
+
     private IEnumerator WaitFixedFrame(BaseState newState)
     {
 
