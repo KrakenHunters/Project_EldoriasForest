@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BaseSpellBook : SpellBook
 {
+    protected float speed;
+
     protected override void Awake()
     {
         tier = GameManager.Instance.pdata.baseAttackTier;
         base.Awake();
+
     }
     protected override void UpgradeTier()
     {
@@ -24,6 +27,7 @@ public class BaseSpellBook : SpellBook
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
     }
 }
