@@ -37,6 +37,12 @@ public class pMoveState : BaseState
         //rotate
     }
 
+    public override void HandleInteract()
+    {
+        player.ChangeState(new pInteractState());
+    }
+
+
     private void Rotate()
     {
         if(player.isInCombat)

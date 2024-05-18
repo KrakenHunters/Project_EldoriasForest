@@ -28,6 +28,11 @@ public class PlayerController : CharacterClass
     private float specialAttackTimer;
     private float ultimateAttackTimer;
 
+    [HideInInspector]
+    public bool canInteract;
+
+    [HideInInspector]
+    public Interactable interactableObj;
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
@@ -79,7 +84,8 @@ public class PlayerController : CharacterClass
     
     public void HandleInteract()
     {
-       currentState?.HandleInteract();
+        if (interactableObj != null)
+            currentState?.HandleInteract();
     }
    public void HandleBaseAttack()
     {
@@ -92,23 +98,28 @@ public class PlayerController : CharacterClass
     }
     public void HandleSpecialAttack()
     {
-        if (specialAttackTimer > tempData.specialSpell.cooldown)
+        if (tempData.specialSpell != null)
         {
-            currentState?.HandleAttack();
-            attackType = AttackType.Special;
-            specialAttackTimer = 0f;
+            if (specialAttackTimer > tempData.specialSpell.cooldown)
+            {
+                currentState?.HandleAttack();
+                attackType = AttackType.Special;
+                specialAttackTimer = 0f;
+            }
         }
     }
     public void HandleUltimateAttack()
     {
-        if (ultimateAttackTimer > tempData.ultimateSpell.cooldown)
-        { 
-            currentState?.HandleAttack();
-            attackType = AttackType.Ultimate;
-            ultimateAttackTimer = 0f;
+        if (tempData.ultimateSpell != null)
+        {
+            if (ultimateAttackTimer > tempData.ultimateSpell.cooldown)
+            {
+                currentState?.HandleAttack();
+                attackType = AttackType.Ultimate;
+                ultimateAttackTimer = 0f;
 
+            }
         }
-
     }
 
     #endregion
@@ -127,6 +138,23 @@ public class PlayerController : CharacterClass
         Ultimate
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Interactable>())
+        {
+            if (other.GetComponent<Interactable>().canInteract)
+                interactableObj = other.GetComponent<Interactable>();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Interactable>())
+        {
+            interactableObj = null;
+        }
+    }
+
+
+
 
 }

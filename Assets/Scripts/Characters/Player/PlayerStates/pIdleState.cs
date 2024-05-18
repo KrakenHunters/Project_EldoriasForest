@@ -35,6 +35,11 @@ public class pIdleState : BaseState
     {
         player.ChangeState(new pAttackState());
     }
+    public override void HandleInteract()
+    {
+        player.ChangeState(new pInteractState());
+    }
+
 
 
     private void Rotate()
