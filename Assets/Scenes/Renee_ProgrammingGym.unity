@@ -1175,11 +1175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Village
       objectReference: {fileID: 0}
-    - target: {fileID: 5642612961866236942, guid: fe6e6eb4e0c2934428f99c4dbffa24cd,
-        type: 3}
-      propertyPath: waitTime
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
