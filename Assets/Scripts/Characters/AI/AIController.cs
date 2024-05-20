@@ -38,7 +38,6 @@ public class AIController : CharacterClass
 
     public enum AIBrain
     {
-        Idle,
         Patrol,
         Chase,
         Combat,
@@ -54,9 +53,6 @@ public class AIController : CharacterClass
 
         switch (currentAction)
         {
-            case AIBrain.Idle:
-                Idle();
-                break;
             case AIBrain.Patrol:
                 StartCoroutine(OnPatrol());
                 break;
@@ -64,15 +60,17 @@ public class AIController : CharacterClass
                 StartCoroutine(OnChasing());
                 break;
             case AIBrain.Combat:
-
+                StartCoroutine(OnCombat());
+                break;
             default:
                 break;
         }
     }
 
-    protected virtual void Idle()
+   
+    protected virtual IEnumerator OnCombat()
     {
-
+        yield return null;
     }
     protected virtual IEnumerator OnPatrol()
     {
@@ -80,7 +78,7 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnChasing()
     {
-        yield return null;  
+        yield return null;
     }
     protected virtual IEnumerator OnAttacking()
     {
@@ -92,15 +90,19 @@ public class AIController : CharacterClass
     }
     protected virtual void OnDie()
     {
-
+        ChangeState(new eDie());
     }
+    public void Die()
+    {
 
+        Destroy(this.gameObject, 1f);
+    }
     public override void GetHit(int damageAmount)
     {
         base.GetHit(damageAmount);
         if (health <= 0)
         {
-            Debug.Log("Dead");
+            OnDie();
         }
 
     }
@@ -130,40 +132,22 @@ public class AIController : CharacterClass
         }
     }
 
+    #endregion
 
-    protected virtual void FixedUpdate()
+    #region Check Functions
+    void OnDrawGizmos()
     {
         if (player != null)
         {
+            Gizmos.matrix = Handles.matrix = transform.localToWorldMatrix;
             if (VisionConeCheck(player.position))
-            {
-                SetBrain(AIBrain.Chase);
-            }
-            else if (AreaCheck(player.position))
-            {
-                SetBrain(AIBrain.Chase);
-            }
-            else if (LoseAgro(player.position))
-            {
-                SetBrain(AIBrain.Idle);
-            }
+                Handles.color = Color.red;
+            if (AreaCheck(player.position))
+                Handles.color = Color.blue;
+            if (LoseAgro(player.position))
+                Handles.color = Color.black;
+            Gizmos.color = Handles.color;
         }
-    }
-
-
-    #endregion
-    #region Check Functions
-/*    void OnDrawGizmos()
-    {
-        Gizmos.matrix = Handles.matrix = transform.localToWorldMatrix;
-        if (VisionConeCheck(player.position))
-            Handles.color = Color.red;
-        if (AreaCheck(player.position))
-            Handles.color = Color.blue;
-        if (LoseAgro(player.position))
-            Handles.color = Color.black;
-        Gizmos.color = Handles.color;
-
         Handles.DrawWireDisc(Vector3.zero, Vector3.up, coneRadius);
         Handles.DrawWireDisc(Vector3.zero, Vector3.up, areaRadius);
         Handles.DrawWireDisc(Vector3.zero, Vector3.up, aggroRadius);
@@ -177,7 +161,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-*/
+
     private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
         Vector3 vecToTargetWorld = targetPosition - transform.position;
@@ -222,6 +206,8 @@ public class AIController : CharacterClass
 
     public bool IsPlayerInView()
     {
+        if (player == null)
+            return false;
         return VisionConeCheck(player.position) || AreaCheck(player.position);
     }
 
