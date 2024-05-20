@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: PermanentData
   m_EditorClassIdentifier: 
   totalSouls: 0
-  spellBooksUnlocked:
-  - {fileID: 6479654415160300413, guid: 9088569e7e6692d4a88d8a8b1a39bbee, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spellBooksUnlocked: []
   rune: 0
   cooldownReduction: 0
   healthBonus: 0

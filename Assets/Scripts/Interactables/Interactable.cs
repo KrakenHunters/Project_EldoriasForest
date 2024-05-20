@@ -16,7 +16,12 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
+      //Time.timeScale = 0.0f;
+    }
 
+    public void CloseInteraction()
+    {
+       //Time.timeScale =  1.0f;
     }
 
 

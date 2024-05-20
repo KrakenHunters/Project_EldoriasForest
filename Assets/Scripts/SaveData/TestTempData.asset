@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b3583d290fa41e4ab98d0b959ad6fec, type: 3}
-  m_Name: PlayerTempData
+  m_Name: TestTempData
   m_EditorClassIdentifier: 
   collectedSouls: 0
-  baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
+  baseSpell: {fileID: 370365836938485006, guid: d275522146d238e4882e7347999dc242,
     type: 3}
   specialSpell: {fileID: 0}
   ultimateSpell: {fileID: 0}

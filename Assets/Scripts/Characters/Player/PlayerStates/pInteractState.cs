@@ -31,7 +31,7 @@ public class pInteractState : BaseState
     public override void StateUpdate()
     {
         timer += Time.deltaTime;
-        Debug.Log(timer);
+        //Debug.Log(timer);
         //Show UI loader here!
 
         if (timer >= player.interactableObj.waitTime)

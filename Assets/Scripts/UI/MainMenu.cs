@@ -1,105 +1,93 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : Menu
 {
     [SerializeField]
-    private GameObject _SettingMenu;
+    private GameObject _playMenu;
     [SerializeField]
-    private GameObject _PlayMenu;
+    private GameObject _popupMenu;
 
-    [Header("Player Selection Buttons")]
-    [SerializeField]
-    private Toggle TwoPlayers;
-    [SerializeField]
-    private Toggle ThreePlayers;
-    [SerializeField]
-    private Toggle FourPlayers;
 
-    [Header("Start Game Button")]
+    [Header("Start Buttons")]
     [SerializeField]
-    private Button _startGame;
+    private Button _loadGame;
+    [SerializeField]
+    private Button _newGame;
 
-    int playerCount = 2;
+    [Header("Audio Souce")]
+    [SerializeField, Tooltip("Audio Mixer form the Assets folder")]
+    private AudioMixer _MasterAudioMixer;
+    private float _maxVolume = 1f;
 
-    private void Awake()
+    private void Start()
     {
-        //play settings
-       _startGame.interactable = false;
-
+        if (!SaveManager.Instance.HasSaveData())
+            _loadGame.interactable = false;
 
         //Ui settings
         _startActive = true;
         DisableScreens();
     }
 
-    public void OnToggleSettingMenu() => _SettingMenu.SetActive(!_SettingMenu.activeSelf);
-    public void OnTogglePlayMenu() => _PlayMenu.SetActive(!_PlayMenu.activeSelf);
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+           SaveManager.Instance.DeleteAllSaveData();
+            Debug.Log("Delete Save Data");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+           SaveManager.Instance.SavePermanentData();
+            Debug.Log("Save Game");
+        }
+    }
+    public void OnTogglePlayMenu() => _playMenu.SetActive(!_playMenu.activeSelf);
+    public void OnTogglePopUpMenu() => _popupMenu.SetActive(!_popupMenu.activeSelf);
 
     protected override void DisableScreens()
     {
         base.DisableScreens();
-        _SettingMenu?.SetActive(false);
-        _PlayMenu?.SetActive(false);
+        _playMenu.SetActive(false);
+        _popupMenu.SetActive(false);
     }
 
-
-    public void CheckSelectedPlayers()
+    public void OnLoadGame()
     {
-        _startGame.interactable = true;
-        if (TwoPlayers.isOn)
-        {
-            playerCount = 2;
-        }
-        else if (ThreePlayers.isOn)
-        {
-            playerCount = 3;
-        }
-        else if (FourPlayers.isOn)
-        {
-            playerCount = 4;
-        }
-        else
-        {
-            Debug.Log("No Player Selected");
-            _startGame.interactable = false;
-        }
+        //update Save data
+        SaveManager.Instance.LoadPermanentData();
+        //StartGame();
+        Debug.Log("Load Game");
     }
     public void StartGame()
     {
-            switch (playerCount)
-            {
-                case 2:
-                    Load2PlayerGame();
-                    break;
-                case 3:
-                    Load3PlayerGame();
-                    break;
-                case 4:
-                    Load4PlayerGame();
-                    break;
-            }
+        SceneManager.LoadScene("01_Shop");//change to the  level  name
     }
-
-
-
-    #region LoadGame
-
-    private void Load2PlayerGame()
+    public void OnNewGame()
     {
-        SceneManager.LoadScene(1);
+        if (_loadGame.interactable)
+        {
+            OnTogglePopUpMenu();
+        }
+        else
+        {
+            StartNewGameData();
+        }
     }
-
-    private void Load3PlayerGame()
+    public void StartNewGameData()
     {
-        SceneManager.LoadScene(2);
+        SaveManager.Instance.ResetPermanentData();
+        //reset perma data 
+        Debug.Log("New Game");
+        //StartGame();
     }
-    private void Load4PlayerGame()
+
+    public void OnToggleMute()
     {
-        SceneManager.LoadScene(3);
-
+        _isMusted = !_isMusted;
+        _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(0.1f) * 20 : Mathf.Log10(_maxVolume) * 20);
     }
-
-    #endregion
 }

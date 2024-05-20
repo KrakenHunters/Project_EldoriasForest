@@ -51,8 +51,8 @@ public class SettingsMenu : Menu
 
     public void OnToggleMute()
     {
-        isMusted = !isMusted;
-        _MasterAudioMixer.SetFloat("Master", isMusted ? Mathf.Log10(MasterSlider.minValue) * 20 : Mathf.Log10(MasterSlider.maxValue) * 20);
+        _isMusted = !_isMusted;
+        _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(MasterSlider.minValue) * 20 : Mathf.Log10(MasterSlider.maxValue) * 20);
 
     }
 

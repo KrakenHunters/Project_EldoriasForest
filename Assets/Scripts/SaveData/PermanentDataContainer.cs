@@ -1,7 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu]
+
+[CreateAssetMenu,Serializable]
 
 public class PermanentDataContainer : ScriptableObject
 {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Menu Start Up"),SerializeField]
     protected bool _startActive;
 
     [Header("Menu Game Objects")]
@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
     private GameObject _controlsMenu;
 
 
-    protected bool isMusted;
+    protected bool _isMusted;
 
     private void Awake()
     {
@@ -24,9 +24,9 @@ public class Menu : MonoBehaviour
     //Screen Management
     protected virtual void DisableScreens()
     {
-        _currentMenu?.SetActive(_startActive);
-        _creditsMenu?.SetActive(false);
-        _controlsMenu?.SetActive(false);
+        _currentMenu.SetActive(_startActive);
+        _creditsMenu.SetActive(false);
+        _controlsMenu.SetActive(false);
     }
 
     //Menu Management
