@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class AIController : CharacterClass
@@ -17,20 +16,25 @@ public class AIController : CharacterClass
     private float areaRadius = 3f;
 
     [Header("Agro Check"), SerializeField]
-    private float agroRadius = 7f;
+    private float aggroRadius = 7f;
 
-    public Transform player;
+    private Transform player;
 
     protected AIBrain currentAction;
 
     [SerializeField]
     private float rotationSpeed = 5f;
 
+    private SphereCollider playerCheckCollider;
+
 
     protected virtual void Awake()
     {
-       // player = GameManager.Instance.playerPos;
+        playerCheckCollider = GetComponent<SphereCollider>();
+        playerCheckCollider.radius = aggroRadius;
+
     }
+
     #region AI Brain
 
     public enum AIBrain
@@ -127,10 +131,14 @@ public class AIController : CharacterClass
         }
     }
 
+    public override void GetHit(int damageAmount)
+    {
+        base.GetHit(damageAmount);
+    }
 
     #endregion
     #region Check Functions
-    void OnDrawGizmos()
+/*    void OnDrawGizmos()
     {
         Gizmos.matrix = Handles.matrix = transform.localToWorldMatrix;
         if (VisionConeCheck(player.position))
@@ -154,7 +162,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-
+*/
     public bool AreaCheck(Vector3 position)
     {
         Vector3 vecToTargetWorld = position - transform.position;
@@ -206,7 +214,7 @@ public class AIController : CharacterClass
         float flatDistance = flatDir.magnitude;
 
         //distance check
-        if (flatDistance > agroRadius)
+        if (flatDistance > aggroRadius)
             return true;
 
         return false;
@@ -215,6 +223,14 @@ public class AIController : CharacterClass
     public bool IsPlayerinView()
     {
         return VisionConeCheck(player.position) || AreaCheck(player.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            player = other.GetComponent<PlayerController>().transform;
+        }
     }
 
     #endregion

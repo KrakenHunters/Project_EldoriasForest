@@ -62,8 +62,7 @@ public class SaveManager : Singleton<SaveManager>
         temporaryData.specialSpell = baseTemporaryData.specialSpell;
         temporaryData.ultimateSpell = baseTemporaryData.ultimateSpell;
         temporaryData.collectedSpells = new List<SpellBook>(baseTemporaryData.collectedSpells);
-        temporaryData.maxHealth = baseTemporaryData.maxHealth;
-        temporaryData.currentHealth = baseTemporaryData.currentHealth;
+        temporaryData.startHealth = baseTemporaryData.startHealth;
     }
 
     public void TransferTempToPermaData()
@@ -96,7 +95,8 @@ public class SaveManager : Singleton<SaveManager>
 
     public void SetupTempDataFromPermaData()
     {
-        temporaryData.maxHealth = permanentData.healthBonus + baseTemporaryData.maxHealth;
+        temporaryData.startHealth = permanentData.healthBonus + baseTemporaryData.startHealth;
+
         // Update other boosts from permanent data as necessary.
     }
 }

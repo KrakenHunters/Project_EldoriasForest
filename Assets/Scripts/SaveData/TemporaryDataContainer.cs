@@ -12,8 +12,6 @@ public class TemporaryDataContainer : ScriptableObject
     public UltimateSpellBook ultimateSpell;
     public List<SpellBook> collectedSpells;
 
-    public float maxHealth;
-    public float currentHealth;
-
+    public int startHealth;
 
 }

@@ -35,6 +35,7 @@ public class PlayerController : CharacterClass
     public Interactable interactableObj;
     private void Awake()
     {
+        health = tempData.startHealth;
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new pIdleState());

@@ -31,7 +31,9 @@ public class CharacterClass : MonoBehaviour
 
     public void CastSpell(SpellBook spell)
     {
-        Instantiate(spell, castPos.position, transform.rotation);
+        Debug.Log("Players Forward" + transform.forward);
+        SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
+        spellBook.Shoot(transform.forward);
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)
@@ -43,5 +45,19 @@ public class CharacterClass : MonoBehaviour
         currentState.character = this;
         currentState.EnterState();
 
+    }
+
+    public virtual void GetHit(int damageAmount)
+    {
+        health -= damageAmount;
+        if (health < 0)
+        {
+            Debug.Log("Dead");
+        }
+    }
+
+    public virtual void Heal(int healAmount)
+    {
+        health += healAmount;
     }
 }

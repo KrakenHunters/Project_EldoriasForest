@@ -35,4 +35,9 @@ public class SpellBook : MonoBehaviour
     {
 
     }
+
+    public virtual void Shoot(Vector3 direction)
+    {
+
+    }
 }

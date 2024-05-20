@@ -5,13 +5,13 @@ using UnityEngine;
 public class HealthCollectible : Collectible
 {
     [SerializeField]
-    private float healthAmountMax;
+    private int healthAmountMax;
     [SerializeField]
-    private float healthAmountMin;
+    private int healthAmountMin;
 
     protected override void ItemCollected(PlayerController player)
     {
         base.ItemCollected(player);
-        player.tempData.currentHealth += Random.Range(healthAmountMin, healthAmountMax);
+        player.Heal(Random.Range(healthAmountMin, healthAmountMax));
     }
 }

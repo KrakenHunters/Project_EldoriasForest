@@ -14,9 +14,12 @@ public class BaseSpellBook : SpellBook
     [SerializeField]
     private float aimAngle = 15f; // Cone angle in degrees for auto-aim
 
+    [SerializeField]
+    protected int damage;
+
     protected Vector3 startPos;
 
-    private Transform target;
+    private Vector3 targetDirection;
 
     protected override void Awake()
     {
@@ -33,24 +36,13 @@ public class BaseSpellBook : SpellBook
     // Start is called before the first frame update
     protected override void Start()
     {
-        startPos = transform.position;
-        target = FindClosestEnemyWithinCone();
+
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        if (target != null)
-        {
-            Debug.Log("Aim-Assist");
-            Vector3 direction = (target.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
-        }
-        else
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-
+        //transform.Translate(targetDirection * speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, startPos) > range)
         {
@@ -58,16 +50,25 @@ public class BaseSpellBook : SpellBook
         }
     }
 
-    private Transform FindClosestEnemyWithinCone()
+    public override void Shoot(Vector3 direction)
+    {
+        startPos = transform.position;
+        targetDirection = FindClosestEnemyWithinCone(direction);
+        GetComponent<Rigidbody>().velocity = targetDirection * speed;
+    }
+
+    private Vector3 FindClosestEnemyWithinCone(Vector3 direction)
     {
         Collider[] hitColliders = Physics.OverlapSphere(startPos, aimRange);
         Transform closestEnemy = null;
         float closestDistanceSqr = Mathf.Infinity;
-        Vector3 forward = transform.forward;
+        Vector3 forward = direction;
+        Vector3 returnDirection = forward;
+
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            if (hitCollider.GetComponent<AIController>())
             {
                 Vector3 directionToTarget = hitCollider.transform.position - startPos;
                 float angle = Vector3.Angle(forward, directionToTarget);
@@ -79,18 +80,27 @@ public class BaseSpellBook : SpellBook
                     {
                         closestDistanceSqr = distanceSqr;
                         closestEnemy = hitCollider.transform;
+                        returnDirection = (closestEnemy.transform.position - transform.position).normalized;
                     }
                 }
             }
         }
 
-        return closestEnemy;
+        return returnDirection;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<CharacterClass>())
+        {
+            other.GetComponent<CharacterClass>().GetHit(damage);
+            Debug.Log("Got Hit");
+
+        }
+        Destroy(this.gameObject);
+
         //Check if it is an enemy to call a damage function
         //Call an explosion or the after effect for the destroyed object.
-        Destroy(this.gameObject);
     }
 }
+;
