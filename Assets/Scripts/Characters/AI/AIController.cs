@@ -17,9 +17,11 @@ public class AIController : CharacterClass
     private float areaRadius = 3f;
 
     [Header("Agro Check"), SerializeField]
-    private float agroRadius = 7f;
+    private float aggroRadius = 7f;
 
-    public Transform player;
+    private Transform player;
+
+    private SphereCollider playerCheckCollider;
 
     protected AIBrain currentAction;
 
@@ -29,7 +31,8 @@ public class AIController : CharacterClass
 
     protected virtual void Awake()
     {
-       // player = GameManager.Instance.playerPos;
+        playerCheckCollider = GetComponent<SphereCollider>();
+        playerCheckCollider.radius = aggroRadius;
     }
     #region AI Brain
 
@@ -120,24 +123,27 @@ public class AIController : CharacterClass
 
     protected virtual void FixedUpdate()
     {
-       if(VisionConeCheck(player.position))
+        if (player != null)
         {
-            SetBrain(AIBrain.Chase);
-        }
-        else if (AreaCheck(player.position))
-        {
-            SetBrain(AIBrain.Chase);
-        }
-        else if (LoseAgro(player.position))
-        {
-            SetBrain(AIBrain.Idle);
+            if (VisionConeCheck(player.position))
+            {
+                SetBrain(AIBrain.Chase);
+            }
+            else if (AreaCheck(player.position))
+            {
+                SetBrain(AIBrain.Chase);
+            }
+            else if (LoseAgro(player.position))
+            {
+                SetBrain(AIBrain.Idle);
+            }
         }
     }
 
 
     #endregion
     #region Check Functions
-    void OnDrawGizmos()
+/*    void OnDrawGizmos()
     {
         Gizmos.matrix = Handles.matrix = transform.localToWorldMatrix;
         if (VisionConeCheck(player.position))
@@ -150,7 +156,7 @@ public class AIController : CharacterClass
 
         Handles.DrawWireDisc(Vector3.zero, Vector3.up, coneRadius);
         Handles.DrawWireDisc(Vector3.zero, Vector3.up, areaRadius);
-        Handles.DrawWireDisc(Vector3.zero, Vector3.up, agroRadius);
+        Handles.DrawWireDisc(Vector3.zero, Vector3.up, aggroRadius);
 
         float p = angleth;
         float x = Mathf.Sqrt(1 - p * p);
@@ -161,7 +167,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-
+*/
     private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
         Vector3 vecToTargetWorld = targetPosition - transform.position;
@@ -201,12 +207,20 @@ public class AIController : CharacterClass
         GetFlatDirection(position, out flatDistance);
 
         // Distance check
-        return flatDistance > agroRadius;
+        return flatDistance > aggroRadius;
     }
 
     public bool IsPlayerInView()
     {
         return VisionConeCheck(player.position) || AreaCheck(player.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>())
+        {
+            player = other.GetComponent<PlayerController>().transform;
+        }
     }
     #endregion
 

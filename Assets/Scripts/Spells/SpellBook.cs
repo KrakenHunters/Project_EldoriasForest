@@ -11,6 +11,7 @@ public class SpellBook : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Awake()
     {
+        gameObject.layer = LayerMask.NameToLayer("Spell");
         CastSpell(tier);
     }
     protected virtual void UpgradeTier()
