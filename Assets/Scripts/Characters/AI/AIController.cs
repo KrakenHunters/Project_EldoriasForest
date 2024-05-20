@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class AIController : CharacterClass
@@ -16,25 +17,20 @@ public class AIController : CharacterClass
     private float areaRadius = 3f;
 
     [Header("Agro Check"), SerializeField]
-    private float aggroRadius = 7f;
+    private float agroRadius = 7f;
 
-    private Transform player;
+    public Transform player;
 
     protected AIBrain currentAction;
 
     [SerializeField]
     private float rotationSpeed = 5f;
 
-    private SphereCollider playerCheckCollider;
-
 
     protected virtual void Awake()
     {
-        playerCheckCollider = GetComponent<SphereCollider>();
-        playerCheckCollider.radius = aggroRadius;
-
+       // player = GameManager.Instance.playerPos;
     }
-
     #region AI Brain
 
     public enum AIBrain
@@ -103,17 +99,24 @@ public class AIController : CharacterClass
         // SetBrain((AIBrain)UnityEngine.Random.Range(1, Enum.GetValues(typeof(AIBrain)).Length));
     }
 
-     protected virtual void Update()
+    protected virtual void Update()
     {
-        isInCombat = IsPlayerinView();
+        bool playerInView = IsPlayerInView();
+
+        if (playerInView)
+            isInCombat = true;
+        else if (isInCombat)
+            isInCombat = !LoseAgro(player.position);
+
         if (isInCombat)
         {
             Vector3 target = player.position - transform.position;
             target.y = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target), rotationSpeed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(target);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-
     }
+
 
     protected virtual void FixedUpdate()
     {
@@ -131,14 +134,10 @@ public class AIController : CharacterClass
         }
     }
 
-    public override void GetHit(int damageAmount)
-    {
-        base.GetHit(damageAmount);
-    }
 
     #endregion
     #region Check Functions
-/*    void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         Gizmos.matrix = Handles.matrix = transform.localToWorldMatrix;
         if (VisionConeCheck(player.position))
@@ -162,77 +161,53 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-*/
-    public bool AreaCheck(Vector3 position)
+
+    private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
-        Vector3 vecToTargetWorld = position - transform.position;
-
+        Vector3 vecToTargetWorld = targetPosition - transform.position;
         Vector3 vecToTarget = transform.InverseTransformVector(vecToTargetWorld);
-
         Vector3 flatDir = vecToTarget;
         flatDir.y = 0;
-        float flatDistance = flatDir.magnitude;
+        flatDistance = flatDir.magnitude;
+        return flatDir;
+    }
 
-        //distance check
-        if (flatDistance > areaRadius)
-            return false;
+    public bool AreaCheck(Vector3 position)
+    {
+        float flatDistance;
+        GetFlatDirection(position, out flatDistance);
 
-        return true;
+        // Distance check
+        return flatDistance <= areaRadius;
     }
 
     public bool VisionConeCheck(Vector3 position)
     {
-        Vector3 vecToTargetWorld = position - transform.position;
+        float flatDistance;
+        Vector3 flatDir = GetFlatDirection(position, out flatDistance);
+        flatDir.Normalize();
 
-        Vector3 vecToTarget = transform.InverseTransformVector(vecToTargetWorld);
-
-        Vector3 flatDir = vecToTarget;
-        flatDir.y = 0;
-        float flatDistance = flatDir.magnitude;
-
-        flatDir /= flatDistance;
-        // angle check
+        // Angle check
         if (flatDir.z < angleth)
             return false;
 
-        //distance check
-        if (flatDistance > coneRadius)
-            return false;
-
-
-        return true;
+        // Distance check
+        return flatDistance <= coneRadius;
     }
 
     public bool LoseAgro(Vector3 position)
     {
-        Vector3 vecToTargetWorld = position - transform.position;
+        float flatDistance;
+        GetFlatDirection(position, out flatDistance);
 
-        Vector3 vecToTarget = transform.InverseTransformVector(vecToTargetWorld);
-
-        Vector3 flatDir = vecToTarget;
-        flatDir.y = 0;
-        float flatDistance = flatDir.magnitude;
-
-        //distance check
-        if (flatDistance > aggroRadius)
-            return true;
-
-        return false;
+        // Distance check
+        return flatDistance > agroRadius;
     }
 
-    public bool IsPlayerinView()
+    public bool IsPlayerInView()
     {
         return VisionConeCheck(player.position) || AreaCheck(player.position);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<PlayerController>())
-        {
-            player = other.GetComponent<PlayerController>().transform;
-        }
-    }
-
     #endregion
 
 
