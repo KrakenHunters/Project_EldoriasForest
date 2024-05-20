@@ -125,6 +125,15 @@ public class PlayerController : CharacterClass
 
     #endregion
 
+    public override void GetHit(int damageAmount)
+    {
+        base.GetHit(damageAmount);
+        if (health <= 0)
+        {
+            Debug.Log("Dead");
+        }
+
+    }
 
     public void ResetCombatTimer()
     {

@@ -95,6 +95,16 @@ public class AIController : CharacterClass
 
     }
 
+    public override void GetHit(int damageAmount)
+    {
+        base.GetHit(damageAmount);
+        if (health <= 0)
+        {
+            Debug.Log("Dead");
+        }
+
+    }
+
 
     protected virtual void OnThinking()
     {

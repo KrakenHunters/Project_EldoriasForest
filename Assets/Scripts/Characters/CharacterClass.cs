@@ -50,10 +50,6 @@ public class CharacterClass : MonoBehaviour
     public virtual void GetHit(int damageAmount)
     {
         health -= damageAmount;
-        if (health < 0)
-        {
-            Debug.Log("Dead");
-        }
     }
 
     public virtual void Heal(int healAmount)
