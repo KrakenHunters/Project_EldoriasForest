@@ -35,6 +35,20 @@ public class AIController : CharacterClass
     private float rotationSpeed = 5f;
 
     protected NavMeshAgent agent;
+
+
+    [SerializeField]
+    private HealthCollectible healthDrop;
+
+    [SerializeField]
+    private SoulCollectible soulDrop;
+
+    [SerializeField]
+    protected float healthDropChance;
+
+    [SerializeField]
+    protected int tier;
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -158,6 +172,15 @@ public class AIController : CharacterClass
     }
     protected virtual void OnDie()
     {
+        agent.enabled = false;
+
+        Instantiate(soulDrop, transform.position, Quaternion.identity);
+
+        if (UnityEngine.Random.Range(0f,1f) <= healthDropChance)
+        {
+            Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
+        }
+
         Destroy(this.gameObject, 1f);
     }
     public virtual void AttackPlayer() { }
@@ -172,7 +195,7 @@ public class AIController : CharacterClass
         }
         if (health <= 0)
         {
-            OnDie();
+            SetBrain(AIBrain.Die);
         }
     }
     #endregion

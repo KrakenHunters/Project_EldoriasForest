@@ -5,9 +5,9 @@ using UnityEngine;
 public class SoulCollectible : Collectible
 {
     [SerializeField]
-    private int soulAmountMax;
+    public int soulAmountMax;
     [SerializeField]
-    private int soulAmountMin;
+    public int soulAmountMin;
 
     protected override void ItemCollected(PlayerController player)
     {
