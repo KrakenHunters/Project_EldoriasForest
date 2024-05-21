@@ -7,7 +7,7 @@ public class SpellBook : MonoBehaviour
 {
     protected int tier = 1;
     public float cooldown;
-
+    protected CharacterClass charAttacker;
     // Start is called before the first frame update
     protected virtual void Awake()
     {
@@ -37,8 +37,10 @@ public class SpellBook : MonoBehaviour
 
     }
 
-    public virtual void Shoot(Vector3 direction)
+    public virtual void Shoot(Vector3 direction,CharacterClass attacker)
     {
+
+      charAttacker = attacker;
 
     }
 }

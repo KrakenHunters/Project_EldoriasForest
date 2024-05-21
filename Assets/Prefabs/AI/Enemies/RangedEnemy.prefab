@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1787771507584485558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7852110605117582346}
+  m_Layer: 0
+  m_Name: Castpos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7852110605117582346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787771507584485558}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.372, z: 1.175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3199953021242824415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3121544945526989837
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,9 +126,9 @@ GameObject:
   - component: {fileID: 2600221083997606174}
   - component: {fileID: 2641148910669047322}
   - component: {fileID: 9122830056397933239}
-  - component: {fileID: 7439797000257662282}
+  - component: {fileID: 3242830716933975920}
   m_Layer: 7
-  m_Name: MeleeEnemy
+  m_Name: RangedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,6 +149,7 @@ Transform:
   m_Children:
   - {fileID: 6450123763613388532}
   - {fileID: 7983866460021566706}
+  - {fileID: 7852110605117582346}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2600221083997606174
@@ -186,7 +218,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7439797000257662282
+--- !u!114 &3242830716933975920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,22 +227,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5690890994851115203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820605e3a3fc9ab4eb5583093756a89e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d4b60d2e226cb445b82e3446bb12d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  _speed: 3
+  health: 15
+  _speed: 2.5
   _speedModifier: 0
   isInCombat: 0
-  castPos: {fileID: 0}
+  castPos: {fileID: 7852110605117582346}
   coneRadius: 5
-  angleth: 0.7
+  angleth: 0.718
   areaRadius: 3
   aggroRadius: 7
-  _attackrange: 2
+  _attackrange: 6
   rotationSpeed: 5
-  _damage: 10
-  _cooldown: 2
+  spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
+    type: 3}
 --- !u!1 &9190619781961116417
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a67f1bccd247b1b42bed4f2b4254779c, type: 2}
+  - {fileID: 2100000, guid: 733651322ddcd26438b519e4fc96d30f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

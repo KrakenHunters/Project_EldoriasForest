@@ -78,8 +78,6 @@ public class PlayerController : CharacterClass
     #region character Actions
     public void HandleMove(Vector2 dir)
     {
-        Debug.Log("Moving");
-
         currentState?.HandleMovement(dir);
     }
     
@@ -125,12 +123,13 @@ public class PlayerController : CharacterClass
 
     #endregion
 
-    public override void GetHit(int damageAmount)
+    public override void GetHit(int damageAmount,CharacterClass attacker)
     {
-        base.GetHit(damageAmount);
+        base.GetHit(damageAmount, attacker);
         if (health <= 0)
         {
             Debug.Log("Dead");
+            //Time.timeScale = 0f;
         }
 
     }

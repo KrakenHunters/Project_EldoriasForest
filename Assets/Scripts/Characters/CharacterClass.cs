@@ -33,7 +33,7 @@ public class CharacterClass : MonoBehaviour
     {
         Debug.Log("Players Forward" + transform.forward);
         SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-        spellBook.Shoot(transform.forward);
+        spellBook.Shoot(transform.forward,this);
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)
@@ -47,7 +47,7 @@ public class CharacterClass : MonoBehaviour
 
     }
 
-    public virtual void GetHit(int damageAmount)
+    public virtual void GetHit(int damageAmount, CharacterClass attacker)
     {
         health -= damageAmount;
     }

@@ -18,5 +18,4 @@ MonoBehaviour:
   specialSpell: {fileID: 0}
   ultimateSpell: {fileID: 0}
   collectedSpells: []
-  maxHealth: 0
-  currentHealth: 0
+  startHealth: 100

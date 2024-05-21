@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIController : CharacterClass
 {
@@ -19,7 +20,12 @@ public class AIController : CharacterClass
     [Header("Agro Check"), SerializeField]
     private float aggroRadius = 7f;
 
-    private Transform player;
+    [SerializeField]
+    protected float _attackrange = 2f;
+
+    protected float _attackTimer = 50;
+
+    protected Transform player;
 
     private SphereCollider playerCheckCollider;
 
@@ -28,31 +34,45 @@ public class AIController : CharacterClass
     [SerializeField]
     private float rotationSpeed = 5f;
 
-
+    protected NavMeshAgent agent;
     protected virtual void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = _attackrange;
+
         playerCheckCollider = GetComponent<SphereCollider>();
         playerCheckCollider.radius = aggroRadius;
+
+        SetBrain(AIBrain.Patrol);
+    }
+
+    protected virtual void Update()
+    {
+        _attackTimer += Time.deltaTime;
     }
     #region AI Brain
 
     public enum AIBrain
     {
+        Idle,
         Patrol,
         Chase,
         Combat,
         Die
     }
 
-
-
-    private void SetBrain(AIBrain newState)
+    protected void SetBrain(AIBrain newState)
     {
+        if (currentAction == newState) return;
         currentAction = newState;
         StopAllCoroutines();
-
         switch (currentAction)
         {
+            case AIBrain.Idle:
+                break;
+            case AIBrain.Die:
+                OnDie();
+                break;
             case AIBrain.Patrol:
                 StartCoroutine(OnPatrol());
                 break;
@@ -67,21 +87,69 @@ public class AIController : CharacterClass
         }
     }
 
-   
+
     protected virtual IEnumerator OnCombat()
     {
+        while (AIBrain.Combat == currentAction)
+        {
+            //anim.SetTrigger("Attack");
+
+            Vector3 target = player.position - transform.position;
+            target.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(target);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
+            {
+                SetBrain(AIBrain.Chase);
+            }
+            else
+            {
+                AttackPlayer();
+            }
+            yield return null;
+        }
         yield return null;
     }
     protected virtual IEnumerator OnPatrol()
     {
+        while (AIBrain.Patrol == currentAction)
+        {
+            bool playerInView = IsPlayerInView();
+
+            if (playerInView)
+                SetBrain(AIBrain.Chase);
+
+            yield return null;
+        }
         yield return null;
     }
     protected virtual IEnumerator OnChasing()
     {
-        yield return null;
-    }
-    protected virtual IEnumerator OnAttacking()
-    {
+        while (AIBrain.Chase == currentAction)
+        {
+            Vector3 target = player.position - transform.position;
+            target.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(target);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
+            {
+                agent.SetDestination(player.position);
+            }
+            else
+            {
+                SetBrain(AIBrain.Combat);
+                Debug.Log("Combat");
+            }
+
+            if (LoseAgro(player.position))
+            {
+                SetBrain(AIBrain.Patrol);
+            }
+
+            yield return null;
+        }
         yield return null;
     }
     protected virtual IEnumerator OnGetHit()
@@ -90,48 +158,23 @@ public class AIController : CharacterClass
     }
     protected virtual void OnDie()
     {
-        ChangeState(new eDie());
-    }
-    public void Die()
-    {
-
         Destroy(this.gameObject, 1f);
     }
-    public override void GetHit(int damageAmount)
+    public virtual void AttackPlayer() { }
+
+    public override void GetHit(int damageAmount, CharacterClass attacker)
     {
-        base.GetHit(damageAmount);
+        if (attacker.GetComponent<PlayerController>())
+        {
+            base.GetHit(damageAmount, attacker);
+            player = attacker.transform;
+            SetBrain(AIBrain.Chase);
+        }
         if (health <= 0)
         {
             OnDie();
         }
-
     }
-
-
-    protected virtual void OnThinking()
-    {
-        //Random Brain
-        // SetBrain((AIBrain)UnityEngine.Random.Range(1, Enum.GetValues(typeof(AIBrain)).Length));
-    }
-
-    protected virtual void Update()
-    {
-        bool playerInView = IsPlayerInView();
-
-        if (playerInView)
-            isInCombat = true;
-        else if (isInCombat)
-            isInCombat = !LoseAgro(player.position);
-
-        if (isInCombat)
-        {
-            Vector3 target = player.position - transform.position;
-            target.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(target);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
-
     #endregion
 
     #region Check Functions

@@ -50,10 +50,14 @@ public class BaseSpellBook : SpellBook
         }
     }
 
-    public override void Shoot(Vector3 direction)
+    public override void Shoot(Vector3 direction, CharacterClass attacker)
     {
+        base.Shoot(direction, attacker);
         startPos = transform.position;
-        targetDirection = FindClosestEnemyWithinCone(direction);
+        if (attacker.GetComponent<PlayerController>())
+            targetDirection = FindClosestEnemyWithinCone(direction);
+        else
+            targetDirection = direction;
         GetComponent<Rigidbody>().velocity = targetDirection * speed;
     }
 
@@ -91,9 +95,10 @@ public class BaseSpellBook : SpellBook
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.GetComponent<CharacterClass>())
         {
-            other.GetComponent<CharacterClass>().GetHit(damage);
+            other.GetComponent<CharacterClass>().GetHit(damage, charAttacker);
             Debug.Log("Got Hit");
 
         }
