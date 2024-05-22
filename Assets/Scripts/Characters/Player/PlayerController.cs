@@ -40,6 +40,11 @@ public class PlayerController : CharacterClass
         c = GetComponent<CharacterController>();
         ChangeState(new pIdleState());
 
+
+        baseAttackTimer = 100f;
+        specialAttackTimer = 100f;
+        ultimateAttackTimer = 100f;
+
     }
 
     private void Update()

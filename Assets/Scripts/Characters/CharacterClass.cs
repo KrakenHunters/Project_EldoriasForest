@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterClass : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CharacterClass : MonoBehaviour
     [HideInInspector]
     public BaseState currentState;
 
+
+
     public virtual void ChangeState(BaseState newState)
     {
         StartCoroutine(WaitFixedFrame(newState));
@@ -31,9 +34,51 @@ public class CharacterClass : MonoBehaviour
 
     public void CastSpell(SpellBook spell)
     {
-        Debug.Log("Players Forward" + transform.forward);
-        SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-        spellBook.Shoot(transform.forward,this);
+        if (spell.castOrigin == SpellBook.castType.projectile)
+        {
+            SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
+            spellBook.Shoot(transform.forward, this);
+        }
+        else if (spell.castOrigin == SpellBook.castType.groundPos)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            RaycastHit hit;
+            LayerMask groundLayer = LayerMask.GetMask("Ground");
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            {
+                Vector3 target = hit.point;
+
+                SpellBook spellBook = Instantiate(spell, target, Quaternion.identity);
+                spellBook.Shoot(transform.forward, this);
+
+            }
+
+        }
+        else if (spell.castOrigin == SpellBook.castType.skyToGroundPos)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            RaycastHit hit;
+            LayerMask groundLayer = LayerMask.GetMask("Ground");
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+            {
+                Vector3 target = hit.point;
+
+                SpellBook spellBook = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
+                spellBook.Shoot(target, this);
+
+            }
+
+        }
+        else if(spell.castOrigin == SpellBook.castType.self)
+        {
+            SpellBook spellBook = Instantiate(spell, transform.position, Quaternion.identity, transform);
+            spellBook.Shoot(transform.forward, this);
+
+        }
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)

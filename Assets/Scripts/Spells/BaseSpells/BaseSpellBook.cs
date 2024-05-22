@@ -14,9 +14,6 @@ public class BaseSpellBook : SpellBook
     [SerializeField]
     private float aimAngle = 15f; // Cone angle in degrees for auto-aim
 
-    [SerializeField]
-    protected int damage;
-
     protected Vector3 startPos;
 
     private Vector3 targetDirection;

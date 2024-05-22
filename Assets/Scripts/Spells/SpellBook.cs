@@ -8,6 +8,13 @@ public class SpellBook : MonoBehaviour
     protected int tier = 1;
     public float cooldown;
     protected CharacterClass charAttacker;
+    public castType castOrigin;
+
+    [SerializeField]
+    protected int damage;
+
+    protected float timer;
+
     // Start is called before the first frame update
     protected virtual void Awake()
     {
@@ -29,6 +36,7 @@ public class SpellBook : MonoBehaviour
 
     protected virtual void Update()
     {
+        timer += Time.deltaTime;
 
     }
 
@@ -42,5 +50,13 @@ public class SpellBook : MonoBehaviour
 
       charAttacker = attacker;
 
+    }
+
+    public enum castType
+    {
+        groundPos,
+        skyToGroundPos,
+        self,
+        projectile
     }
 }

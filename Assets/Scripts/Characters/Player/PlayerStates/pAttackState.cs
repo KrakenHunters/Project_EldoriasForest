@@ -31,7 +31,7 @@ public class pAttackState : BaseState
         Rotate();
 
         timer += Time.deltaTime;
-        float clipLength = 0.3f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        float clipLength = 0f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (timer >= clipLength)
         {
             timer = 0f;

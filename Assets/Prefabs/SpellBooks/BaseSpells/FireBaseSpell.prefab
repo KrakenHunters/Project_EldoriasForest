@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
+  castOrigin: 2
   speed: 15
   range: 30
   aimRange: 10
