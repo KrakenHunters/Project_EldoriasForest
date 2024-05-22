@@ -120,12 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  castOrigin: 2
+  castOrigin: 3
+  damage: 50
   speed: 15
   range: 30
   aimRange: 10
   aimAngle: 15
-  damage: 50
 --- !u!54 &-1239753716125547343
 Rigidbody:
   m_ObjectHideFlags: 0

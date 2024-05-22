@@ -7,7 +7,7 @@ public class Collectible : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (other.CompareTag("Player"))
         {
             ItemCollected(other.GetComponent<PlayerController>());
             //Play Collected SFX and VFX

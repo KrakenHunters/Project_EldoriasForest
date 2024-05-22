@@ -21,8 +21,8 @@ public class BaseSpellBook : SpellBook
     protected override void Awake()
     {
         tier = GameManager.Instance.pdata.baseAttackTier;
+        castOrigin = castType.projectile;
         base.Awake();
-
     }
     protected override void UpgradeTier()
     {

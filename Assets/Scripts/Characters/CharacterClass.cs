@@ -34,50 +34,46 @@ public class CharacterClass : MonoBehaviour
 
     public void CastSpell(SpellBook spell)
     {
-        if (spell.castOrigin == SpellBook.castType.projectile)
+        switch (spell.castOrigin)
         {
-            SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-            spellBook.Shoot(transform.forward, this);
-        }
-        else if (spell.castOrigin == SpellBook.castType.groundPos)
-        {
-            Vector3 mousePos = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
-            RaycastHit hit;
-            LayerMask groundLayer = LayerMask.GetMask("Ground");
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-            {
-                Vector3 target = hit.point;
-
-                SpellBook spellBook = Instantiate(spell, target, Quaternion.identity);
+            case SpellBook.castType.projectile:
+                SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
                 spellBook.Shoot(transform.forward, this);
+                break;
+            case SpellBook.castType.groundPos:
+                Vector3 mousePos = Input.mousePosition;
+                Ray ray = Camera.main.ScreenPointToRay(mousePos);
+                RaycastHit hit;
+                LayerMask groundLayer = LayerMask.GetMask("Ground");
 
-            }
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+                {
+                    Vector3 target = hit.point;
 
-        }
-        else if (spell.castOrigin == SpellBook.castType.skyToGroundPos)
-        {
-            Vector3 mousePos = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
-            RaycastHit hit;
-            LayerMask groundLayer = LayerMask.GetMask("Ground");
+                    SpellBook spellBook2 = Instantiate(spell, target, Quaternion.identity);
+                    spellBook2.Shoot(transform.forward, this);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-            {
-                Vector3 target = hit.point;
+                }
+                break;
+            case SpellBook.castType.skyToGroundPos:
+                Vector3 mousePos2 = Input.mousePosition;
+                Ray ray2 = Camera.main.ScreenPointToRay(mousePos2);
+                RaycastHit hit2;
+                LayerMask groundLayer2 = LayerMask.GetMask("Ground");
 
-                SpellBook spellBook = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
-                spellBook.Shoot(target, this);
+                if (Physics.Raycast(ray2, out hit2, Mathf.Infinity, groundLayer2))
+                {
+                    Vector3 target = hit2.point;
 
-            }
+                    SpellBook spellBook3 = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
+                    spellBook3.Shoot(target, this);
 
-        }
-        else if(spell.castOrigin == SpellBook.castType.self)
-        {
-            SpellBook spellBook = Instantiate(spell, transform.position, Quaternion.identity, transform);
-            spellBook.Shoot(transform.forward, this);
-
+                }
+                break;
+            case SpellBook.castType.self:
+                SpellBook spellBook4 = Instantiate(spell, transform.position, Quaternion.identity, transform);
+                spellBook4.Shoot(transform.forward, this);
+                break;
         }
     }
 
