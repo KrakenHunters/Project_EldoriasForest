@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1721829755097235065}
   - component: {fileID: 634136164512254635}
   - component: {fileID: -8368721801276657126}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IceSpikes_SpecialSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5361491353145456367}
   - component: {fileID: 1788714326136050230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7779115374871834908}
   - component: {fileID: 325577961364220659}
   - component: {fileID: 87281695445261334}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 705712721201404701}
   - component: {fileID: 1035221189636051840}
   - component: {fileID: 4044904906332696702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 5150018530148605209}
   - component: {fileID: 8242590649968369155}
   - component: {fileID: 7781443465508877033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1989322795592512768}
   - component: {fileID: 2289075029655493205}
   - component: {fileID: 5114482975682850305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 7697885585247050635}
   - component: {fileID: 8169400430017608196}
   - component: {fileID: 3068052072212018048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

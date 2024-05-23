@@ -17,5 +17,7 @@ public abstract class BaseState
     public virtual void HandleMovement(Vector2 dir) { }
     public virtual void HandleAttack() { }
     public virtual void HandleInteract() { }
+    public virtual void StopInteract() { }
+
     public virtual void HandleDeath() { }
 }

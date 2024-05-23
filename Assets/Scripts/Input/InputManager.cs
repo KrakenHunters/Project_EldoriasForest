@@ -54,6 +54,7 @@ public class InputManager : MonoBehaviour
         _action.Player.UltimateAttack.performed += (val) => _player.HandleUltimateAttack();
 
         _action.Player.Interact.performed += (val) => _player.HandleInteract();
+        _action.Player.Interact.canceled += (val) => _player.CancelInteract();
 
         _action.Enable();
     }
@@ -66,6 +67,8 @@ public class InputManager : MonoBehaviour
         _action.Player.UltimateAttack.performed -= (val) => _player.HandleUltimateAttack();
 
         _action.Player.Interact.performed -= (val) => _player.HandleInteract();
+        _action.Player.Interact.canceled -= (val) => _player.CancelInteract();
+
 
 
         _action.Disable();

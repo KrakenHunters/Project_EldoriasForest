@@ -91,7 +91,13 @@ public class PlayerController : CharacterClass
         if (interactableObj != null)
             currentState?.HandleInteract();
     }
-   public void HandleBaseAttack()
+
+    public void CancelInteract()
+    {
+        currentState?.StopInteract();
+    }
+
+    public void HandleBaseAttack()
     {
         if (baseAttackTimer > tempData.baseSpell.cooldown)
         {
