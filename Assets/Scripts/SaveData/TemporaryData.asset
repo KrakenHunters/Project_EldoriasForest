@@ -17,6 +17,7 @@ MonoBehaviour:
     type: 3}
   specialSpell: {fileID: 634136164512254635, guid: 868cf2c14a01b2e44ba934465fe3c28f,
     type: 3}
-  ultimateSpell: {fileID: 0}
+  ultimateSpell: {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5,
+    type: 3}
   collectedSpells: []
   startHealth: 100

@@ -43,7 +43,6 @@ public class PlayerController : CharacterClass
 
         baseAttackTimer = 100f;
         specialAttackTimer = 100f;
-        ultimateAttackTimer = 100f;
 
     }
 
@@ -72,7 +71,6 @@ public class PlayerController : CharacterClass
 
         baseAttackTimer += Time.deltaTime;
         specialAttackTimer += Time.deltaTime;
-        ultimateAttackTimer += Time.deltaTime;
 
         currentState?.StateUpdate();
     }
@@ -122,13 +120,9 @@ public class PlayerController : CharacterClass
     {
         if (tempData.ultimateSpell != null)
         {
-            if (ultimateAttackTimer > tempData.ultimateSpell.cooldown)
-            {
-                currentState?.HandleAttack();
-                attackType = AttackType.Ultimate;
-                ultimateAttackTimer = 0f;
-
-            }
+            currentState?.HandleAttack();
+            attackType = AttackType.Ultimate;
+            Invoke("RemoveUltimateSpell", 3f);
         }
     }
 
@@ -172,6 +166,12 @@ public class PlayerController : CharacterClass
         {
             interactableObj = null;
         }
+    }
+
+    private void RemoveUltimateSpell()
+    {
+        //Turn it on later
+        //tempData.ultimateSpell = null;
     }
 
 
