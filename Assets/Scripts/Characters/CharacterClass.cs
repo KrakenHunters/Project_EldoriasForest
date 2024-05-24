@@ -1,7 +1,10 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static CharacterClass;
 
 public class CharacterClass : MonoBehaviour
 {
@@ -24,7 +27,16 @@ public class CharacterClass : MonoBehaviour
     [HideInInspector]
     public BaseState currentState;
 
+    private float damageMultiplier = 1.0f;
 
+
+    public enum StatusEffect
+    {
+        LightningEffect,
+        FireEffect,
+        IceEffect,
+        None
+    }
 
     public virtual void ChangeState(BaseState newState)
     {
@@ -88,9 +100,104 @@ public class CharacterClass : MonoBehaviour
 
     }
 
-    public virtual void GetHit(int damageAmount, CharacterClass attacker)
+    public virtual void GetHit(int damageAmount, CharacterClass attacker, SpellBook spellBook)
     {
-        health -= damageAmount;
+        
+        health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
+
+        ApplyStatusEffect(spellBook);
+        
+    }
+
+
+    private void ApplyStatusEffect(SpellBook spellBook)
+    {
+
+        SpellBook newSpellBook = new SpellBook();
+        if (spellBook == null)
+        {
+            newSpellBook.statusEffect = SpellBook.StatusEffect.None;
+        }
+        else
+        {
+            newSpellBook = spellBook;
+        }
+
+        StopCoroutine(OnFrozen(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
+        StopCoroutine(OnBurning(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
+        StopCoroutine(OnStunned(newSpellBook.statusEffectTimer));
+
+        switch (newSpellBook.statusEffect)
+        {
+            case SpellBook.StatusEffect.IceEffect:
+                StartCoroutine(OnFrozen(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
+                break;
+            case SpellBook.StatusEffect.FireEffect:
+                StartCoroutine(OnBurning(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
+                break;
+            case SpellBook.StatusEffect.LightningEffect:
+                StartCoroutine(OnStunned(newSpellBook.statusEffectTimer));
+                break;
+            case SpellBook.StatusEffect.None:
+                break;
+
+
+        }
+    }
+
+    private IEnumerator OnFrozen(float effectTimer,float damageMult)
+    {
+        float timer = 0f;
+
+        while (timer < effectTimer)
+        {
+            timer += 1f;
+
+            damageMultiplier = damageMult;
+            yield return new WaitForSeconds(1f);
+        }
+
+        damageMultiplier = 1f;
+
+
+        yield return null;
+    }
+
+    private IEnumerator OnStunned(float effectTimer)
+    {
+        float timer = 0f;
+        float originalSpeed = _speed;
+
+        while (timer < effectTimer)
+        {
+            timer += 1f;
+
+            _speed = 0f;
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        _speed = originalSpeed;
+
+        yield return null;
+    }
+
+
+    private IEnumerator OnBurning(float effectTimer, float damage)
+    {
+        float timer = 0f;
+
+        while (timer < effectTimer)
+        {
+            yield return new WaitForSeconds(1f);
+
+            timer += 1f;
+            Debug.Log("Burning");
+
+            health -= damage;
+        }
+
+        yield return null;
     }
 
     public virtual void Heal(int healAmount)

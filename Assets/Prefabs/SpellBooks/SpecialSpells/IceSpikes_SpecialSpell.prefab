@@ -48,7 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   castOrigin: 0
-  damage: 10
+  spellData: {fileID: 11400000, guid: 5918f669e201c6e4b80128a9b3aceb48, type: 2}
+  statusEffect: 2
+  statusEffectTimer: 5
+  statusEffectDamage: 2
   tierUnlocked: {fileID: 11400000, guid: 5918f669e201c6e4b80128a9b3aceb48, type: 2}
   spellTimer: 2
   speed: 10

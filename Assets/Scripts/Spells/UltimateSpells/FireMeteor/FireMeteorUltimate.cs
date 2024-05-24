@@ -43,7 +43,7 @@ public class FireMeteorUltimate : UltimateSpellBook
 
         if (other.GetComponent<CharacterClass>())
         {
-            other.GetComponent<CharacterClass>().GetHit(damage, charAttacker);
+            other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             Debug.Log("Got Hit");
 
         }

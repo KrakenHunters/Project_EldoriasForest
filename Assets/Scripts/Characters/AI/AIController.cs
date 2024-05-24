@@ -79,7 +79,9 @@ public class AIController : CharacterClass
     {
         if (currentAction == newState) return;
         currentAction = newState;
-        StopAllCoroutines();
+        StopCoroutine(OnPatrol());
+        StopCoroutine(OnCombat());
+        StopCoroutine(OnChasing());
         switch (currentAction)
         {
             case AIBrain.Idle:
@@ -185,11 +187,11 @@ public class AIController : CharacterClass
     }
     public virtual void AttackPlayer() { }
 
-    public override void GetHit(int damageAmount, CharacterClass attacker)
+    public override void GetHit(int damageAmount, CharacterClass attacker, SpellBook spell)
     {
         if (attacker.GetComponent<PlayerController>())
         {
-            base.GetHit(damageAmount, attacker);
+            base.GetHit(damageAmount, attacker, spell);
             player = attacker.transform;
             SetBrain(AIBrain.Chase);
         }

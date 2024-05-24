@@ -6,19 +6,44 @@ using UnityEngine;
 public class SpellBook : MonoBehaviour
 {
     protected int tier = 1;
+    [HideInInspector]
     public float cooldown;
     protected CharacterClass charAttacker;
     public castType castOrigin;
 
-    [SerializeField]
     protected int damage;
 
     protected float timer;
+
+    [SerializeField]
+    protected SpellStatsContainer spellData;
+
+    #region StatusEffect
+    public StatusEffect statusEffect;
+
+    [HideInInspector]
+    public float statusEffectTimer;
+    [HideInInspector]
+    public float statusEffectDamage;
+
+
+    #endregion
+
+
+    public enum StatusEffect
+    {
+        LightningEffect,
+        FireEffect,
+        IceEffect,
+        None
+    }
+
 
     // Start is called before the first frame update
     protected virtual void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("Spell");
+        SetDataFromSpellContainer();
         CastSpell(tier);
     }
     protected virtual void UpgradeTier()
@@ -50,6 +75,15 @@ public class SpellBook : MonoBehaviour
 
       charAttacker = attacker;
 
+    }
+
+    private void SetDataFromSpellContainer()
+    {
+        spellData.SetTierData(tier);
+        damage = spellData.currentTierData.damage;
+        statusEffectTimer = spellData.currentTierData.statusEffectTimer;
+        statusEffectDamage = spellData.currentTierData.statusEffectDamage;
+        cooldown = spellData.currentTierData.cooldown;
     }
 
     public enum castType

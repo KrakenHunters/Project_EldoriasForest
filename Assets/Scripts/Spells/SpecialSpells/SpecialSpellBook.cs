@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class SpecialSpellBook : SpellBook
 {
-    public SpecialSpellsTierContainer tierUnlocked;
 
     protected virtual void SpellCollected()
     {
-        if (tier > tierUnlocked.tierUnlocked)
+        if (tier > spellData.tierUnlocked)
         {
-            tierUnlocked.tierUnlocked = tier;
+            spellData.tierUnlocked = tier;
         }
     }
 

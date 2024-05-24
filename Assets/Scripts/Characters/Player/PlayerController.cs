@@ -128,9 +128,9 @@ public class PlayerController : CharacterClass
 
     #endregion
 
-    public override void GetHit(int damageAmount,CharacterClass attacker)
+    public override void GetHit(int damageAmount,CharacterClass attacker, SpellBook spell)
     {
-        base.GetHit(damageAmount, attacker);
+        base.GetHit(damageAmount, attacker, spell);
         if (health <= 0)
         {
             Debug.Log("Dead");

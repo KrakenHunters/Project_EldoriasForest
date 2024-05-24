@@ -95,7 +95,7 @@ public class BaseSpellBook : SpellBook
 
         if (other.GetComponent<CharacterClass>())
         {
-            other.GetComponent<CharacterClass>().GetHit(damage, charAttacker);
+            other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             Debug.Log("Got Hit");
 
         }
