@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static CharacterClass;
 
 public class CharacterClass : MonoBehaviour
 {
@@ -102,20 +97,22 @@ public class CharacterClass : MonoBehaviour
 
     public virtual void GetHit(int damageAmount, CharacterClass attacker, SpellBook spellBook)
     {
-        
+
         health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
 
         ApplyStatusEffect(spellBook);
-        
+
     }
 
 
     private void ApplyStatusEffect(SpellBook spellBook)
     {
 
-        SpellBook newSpellBook = new SpellBook();
+        //  SpellBook newSpellBook = new SpellBook();
+        SpellBook newSpellBook;
         if (spellBook == null)
         {
+            newSpellBook = new SpellBook();
             newSpellBook.statusEffect = SpellBook.StatusEffect.None;
         }
         else

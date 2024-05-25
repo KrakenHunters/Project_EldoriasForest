@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class IceSpike_SpecialSpell : SpecialSpellBook
@@ -37,14 +34,14 @@ public class IceSpike_SpecialSpell : SpecialSpellBook
             damageTrigger.enabled = false;
 
             transform.Translate(Vector3.down * speed * Time.deltaTime);
-            if (transform.position.y <= startPosY )
+            if (transform.position.y <= startPosY)
             {
                 Destroy(gameObject);
             }
         }
         //Stop when reaching upper limit
 
-        if(transform.position.y >= limitUp)
+        if (transform.position.y >= limitUp)
         {
             damageTrigger.enabled = false;
         }
