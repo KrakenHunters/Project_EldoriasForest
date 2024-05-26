@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 3242830716933975920}
   m_Layer: 7
   m_Name: RangedEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4b60d2e226cb445b82e3446bb12d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   health: 15
   _speed: 2.5
   _speedModifier: 0
@@ -246,7 +247,6 @@ MonoBehaviour:
   soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
     type: 3}
   healthDropChance: 0.2
-  tier: 1
   spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
     type: 3}
 --- !u!1 &9190619781961116417

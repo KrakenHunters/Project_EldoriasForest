@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CharacterClass : MonoBehaviour
+public class CharacterClass : BaseObject
 {
     [SerializeField]
     protected float health;

@@ -6,9 +6,6 @@ using UnityEngine.AI;
 
 public class AIController : CharacterClass
 {
-
-
-
     [Header("Vision Cone"), SerializeField]
     private float coneRadius = 5f;
     [Range(0, 1)]
@@ -45,9 +42,6 @@ public class AIController : CharacterClass
 
     [SerializeField]
     protected float healthDropChance;
-
-    [SerializeField]
-    protected int tier;
 
     protected virtual void Awake()
     {

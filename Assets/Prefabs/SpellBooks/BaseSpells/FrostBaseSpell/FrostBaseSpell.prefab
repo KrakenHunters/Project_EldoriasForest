@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 2
   castOrigin: 0
-  damage: 5
+  spellData: {fileID: 11400000, guid: 6eeba6846bf2f3b4696ee3fe37e21022, type: 2}
   statusEffect: 2
   statusEffectTimer: 5
   statusEffectDamage: 0

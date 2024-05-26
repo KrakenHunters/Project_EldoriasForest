@@ -121,7 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   castOrigin: 3
-  damage: 2
+  spellData: {fileID: 11400000, guid: ea455c3d8c7ae2b4cada7929634f4ebe, type: 2}
+  statusEffect: 3
+  statusEffectTimer: 0
+  statusEffectDamage: 0
   speed: 15
   range: 30
   aimRange: 10
