@@ -168,7 +168,6 @@ public class AIController : CharacterClass
     }
     protected virtual void OnDie()
     {
-        agent.enabled = false;
 
         Instantiate(soulDrop, transform.position, Quaternion.identity);
 
@@ -176,7 +175,7 @@ public class AIController : CharacterClass
         {
             Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
         }
-
+        
         Destroy(this.gameObject, 1f);
     }
     public virtual void AttackPlayer() { }

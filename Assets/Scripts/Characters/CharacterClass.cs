@@ -47,6 +47,7 @@ public class CharacterClass : BaseObject
                 SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
                 spellBook.Shoot(transform.forward, this);
                 break;
+
             case SpellBook.castType.groundPos:
                 Vector3 mousePos = Input.mousePosition;
                 Ray ray = Camera.main.ScreenPointToRay(mousePos);

@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
     private PlayerController playerPrefab;
 
     [SerializeField]
-    private List<BaseObject> treePrefabs;
+    private List<BaseObject> borderPrefabs;
 
     [SerializeField]
     private List<BaseObject> innerBorderPrefabs;
@@ -42,6 +42,7 @@ public class GridManager : MonoBehaviour
         { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 25 } } },
         { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
     };
+
     [SerializeField]
     private float minDistanceBetweenEnemies = 10f; // Minimum distance between objects
 
@@ -50,9 +51,9 @@ public class GridManager : MonoBehaviour
 
 
     [SerializeField]
-    private float innerBorderSpawnChance = 0.05f; // 10% chance to spawn an object
+    private float innerBorderSpawnChance = 0.05f; // 5% chance to spawn an object
     [SerializeField]
-    private float centerSpawnChance = 0.01f; // 5% chance to spawn an object
+    private float centerSpawnChance = 0.01f; // 1% chance to spawn an object
 
     private int playerSpawnPosY;
     private Vector3 playerSpawnPos;
@@ -154,7 +155,7 @@ public class GridManager : MonoBehaviour
 
     bool IsInnerBorder(int x, int y)
     {
-        return (x <= 20|| y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
+        return (x <= 15|| y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
     }
 
     bool IsCenter(int x, int y)
@@ -186,7 +187,7 @@ public class GridManager : MonoBehaviour
         switch (region)
         {
             case "border":
-                prefabToSpawn = GetRandomPrefab(treePrefabs);
+                prefabToSpawn = GetRandomPrefab(borderPrefabs);
                 break;
             case "inner_border":
                 prefabToSpawn = GetRandomPrefab(innerBorderPrefabs);
@@ -212,7 +213,7 @@ public class GridManager : MonoBehaviour
 
     bool CanSpawnBaseObject(int tier, string objectTag, Vector3 position)
     {
-        if (!objectPositions[tier].ContainsKey(objectTag))
+        if (!objectPositions[tier].ContainsKey(objectTag))//Checking if its a prop
         {
             return true;
         }
@@ -243,6 +244,7 @@ public class GridManager : MonoBehaviour
                 return false;
             }
         }
+
         objectPositions[tier][objectTag].Add(position);
 
 

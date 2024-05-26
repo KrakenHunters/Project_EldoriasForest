@@ -110,6 +110,7 @@ public class PlayerController : CharacterClass
         {
             if (specialAttackTimer > tempData.specialSpell.cooldown)
             {
+                Debug.Log(tempData.specialSpell.cooldown);
                 currentState?.HandleAttack();
                 attackType = AttackType.Special;
                 specialAttackTimer = 0f;
