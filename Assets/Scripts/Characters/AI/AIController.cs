@@ -57,6 +57,7 @@ public class AIController : CharacterClass
     protected virtual void Update()
     {
         _attackTimer += Time.deltaTime;
+        agent.speed = _speed;
     }
     #region AI Brain
 

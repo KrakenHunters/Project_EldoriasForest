@@ -13,3 +13,23 @@ MonoBehaviour:
   m_Name: BaseFireSpellStats
   m_EditorClassIdentifier: 
   tierUnlocked: 1
+  currentTierData:
+    damage: 5
+    cooldown: 5
+    statusEffectTimer: 5
+    statusEffectDamage: 5
+  tier1:
+    damage: 5
+    cooldown: 5
+    statusEffectTimer: 5
+    statusEffectDamage: 5
+  tier2:
+    damage: 5
+    cooldown: 5
+    statusEffectTimer: 5
+    statusEffectDamage: 5
+  tier3:
+    damage: 5
+    cooldown: 5
+    statusEffectTimer: 5
+    statusEffectDamage: 5

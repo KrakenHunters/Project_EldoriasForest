@@ -23,7 +23,7 @@ public class CharacterClass : BaseObject
     public BaseState currentState;
 
     private float damageMultiplier = 1.0f;
-
+    private float originalSpeed;
 
     public enum StatusEffect
     {
@@ -163,9 +163,9 @@ public class CharacterClass : BaseObject
 
     private IEnumerator OnStunned(float effectTimer)
     {
+        if(_speed != 0f)
+        originalSpeed = _speed;
         float timer = 0f;
-        float originalSpeed = _speed;
-
         while (timer < effectTimer)
         {
             timer += 1f;

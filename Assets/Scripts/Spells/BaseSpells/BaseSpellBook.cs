@@ -52,7 +52,10 @@ public class BaseSpellBook : SpellBook
         base.Shoot(direction, attacker);
         startPos = transform.position;
         if (attacker.GetComponent<PlayerController>())
+        {
+            PlayerSpellCastManager.Instance.currentBaseSpellCooldown = cooldown;
             targetDirection = FindClosestEnemyWithinCone(direction);
+        }
         else
             targetDirection = direction;
         GetComponent<Rigidbody>().velocity = targetDirection * speed;

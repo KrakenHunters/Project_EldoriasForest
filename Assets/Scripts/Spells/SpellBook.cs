@@ -72,19 +72,21 @@ public class SpellBook : MonoBehaviour
 
     public virtual void Shoot(Vector3 direction,CharacterClass attacker)
     {
-
-      charAttacker = attacker;
+        charAttacker = attacker;
 
     }
 
-    private void SetDataFromSpellContainer()
+    protected void SetDataFromSpellContainer()
     {
         spellData.SetTierData(tier);
         damage = spellData.currentTierData.damage;
         statusEffectTimer = spellData.currentTierData.statusEffectTimer;
         statusEffectDamage = spellData.currentTierData.statusEffectDamage;
         cooldown = spellData.currentTierData.cooldown;
+
     }
+
+
 
     public enum castType
     {

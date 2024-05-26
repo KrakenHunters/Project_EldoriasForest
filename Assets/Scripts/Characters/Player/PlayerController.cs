@@ -24,9 +24,6 @@ public class PlayerController : CharacterClass
 
     private bool isMoving;
 
-    private float baseAttackTimer;
-    private float specialAttackTimer;
-    private float ultimateAttackTimer;
 
     [HideInInspector]
     public bool canInteract;
@@ -39,10 +36,6 @@ public class PlayerController : CharacterClass
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new pIdleState());
-
-
-        baseAttackTimer = 100f;
-        specialAttackTimer = 100f;
 
     }
 
@@ -69,9 +62,6 @@ public class PlayerController : CharacterClass
             isMoving = false;
         }
 
-        baseAttackTimer += Time.deltaTime;
-        specialAttackTimer += Time.deltaTime;
-
         currentState?.StateUpdate();
     }
     private void FixedUpdate() => currentState?.StateFixedUpdate();
@@ -97,34 +87,19 @@ public class PlayerController : CharacterClass
 
     public void HandleBaseAttack()
     {
-        if (baseAttackTimer > tempData.baseSpell.cooldown)
-        {
-            currentState?.HandleAttack();
-            attackType = AttackType.Base;
-            baseAttackTimer = 0f;
-        }
+        if (tempData.baseSpell != null)
+            PlayerSpellCastManager.Instance.CastBaseSpell();
+
     }
     public void HandleSpecialAttack()
     {
         if (tempData.specialSpell != null)
-        {
-            if (specialAttackTimer > tempData.specialSpell.cooldown)
-            {
-                Debug.Log(tempData.specialSpell.cooldown);
-                currentState?.HandleAttack();
-                attackType = AttackType.Special;
-                specialAttackTimer = 0f;
-            }
-        }
+            PlayerSpellCastManager.Instance.CastSpecialSpell();
     }
     public void HandleUltimateAttack()
     {
         if (tempData.ultimateSpell != null)
-        {
-            currentState?.HandleAttack();
-            attackType = AttackType.Ultimate;
-            Invoke("RemoveUltimateSpell", 3f);
-        }
+            PlayerSpellCastManager.Instance.CastUltimateSpell();
     }
 
     #endregion

@@ -47,7 +47,7 @@ MonoBehaviour:
   gridWidth: 270
   gridHeight: 90
   playerPrefab: {fileID: 0}
-  treePrefabs:
+  borderPrefabs:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
   innerBorderPrefabs:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}

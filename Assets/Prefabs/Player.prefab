@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 2666035536617133056}
   - component: {fileID: 7252651610300568122}
   - component: {fileID: 5066222880727964611}
+  - component: {fileID: 156858833036162555}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -283,6 +284,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c585ea1a1bb3df4fb67f28ffae49743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &156858833036162555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564312052886522217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8fb216c8a98364582f19d0d2fa4ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 38b8629db8d78314ab6b05e2bf50d971, type: 2}
+  onEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 156858833036162555}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6597620483037645168
 GameObject:
   m_ObjectHideFlags: 0
