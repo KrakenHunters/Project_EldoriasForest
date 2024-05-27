@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu]
 public class SpellStatsContainer : ScriptableObject
@@ -18,10 +16,10 @@ public class SpellStatsContainer : ScriptableObject
                 currentTierData = tier1;
                 break;
             case 2:
-                currentTierData = tier2; 
+                currentTierData = tier2;
                 break;
             case 3:
-                currentTierData = tier3; 
+                currentTierData = tier3;
                 break;
             default:
                 break;
@@ -29,17 +27,17 @@ public class SpellStatsContainer : ScriptableObject
         }
     }
 
-    public TierData tier1;
+    public virtual TierData tier1 { get; set; }
 
-    public TierData tier2;
+    public virtual TierData tier2 { get; set; }
 
-    public TierData tier3;
+    public virtual TierData tier3 { get; set; }
 
 
 }
 
 [Serializable]
-public struct TierData
+public class TierData
 {
     public int damage;
     public float cooldown;
