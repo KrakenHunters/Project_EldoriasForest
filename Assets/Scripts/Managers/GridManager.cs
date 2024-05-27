@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager : Singleton<GridManager>
 {
     [SerializeField]
     private int gridWidth = 1200;
@@ -27,6 +27,14 @@ public class GridManager : MonoBehaviour
     public BaseObject enemySpotPrefab;
 
     private BaseObject[,] grid;
+
+    [HideInInspector]
+    public List<AISpot> enemySpotsTier1;
+    [HideInInspector]
+    public List<AISpot> enemySpotsTier2;
+    [HideInInspector]
+    public List<AISpot> enemySpotsTier3;
+
 
     // Dictionary to track positions and counts for each type
     private Dictionary<int, Dictionary<string, List<Vector3>>> objectPositions = new Dictionary<int, Dictionary<string, List<Vector3>>>();
@@ -204,6 +212,25 @@ public class GridManager : MonoBehaviour
             {
                 BaseObject spawnedObject = Instantiate(prefabToSpawn, position, Quaternion.identity);
                 spawnedObject.tier = tier;
+                if (spawnedObject.GetComponent<AISpot>())
+                {
+                    switch (tier)
+                    {
+                        case 1:
+                            enemySpotsTier1.Add(spawnedObject.GetComponent<AISpot>());
+                            break;
+                        case 2:
+                            enemySpotsTier2.Add(spawnedObject.GetComponent <AISpot>());
+                            break;
+                        case 3:
+                            enemySpotsTier3.Add(spawnedObject.GetComponent<AISpot>());
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+
                 return spawnedObject;
             }
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class AIController : CharacterClass
 {
@@ -201,7 +202,6 @@ public class AIController : CharacterClass
 
         while (AIBrain.Patrol == currentAction)
         {
-            Debug.Log(spotList.Count);
             if (spotList.Count > 0)
             {
                 AISpot targetSpot = spotList[UnityEngine.Random.Range(0, spotList.Count)];
@@ -400,18 +400,22 @@ public class AIController : CharacterClass
 
     void FindAISpots()
     {
-        AISpot[] allSpots = FindObjectsOfType<AISpot>();
-
         // Initialize spotList
         spotList = new List<AISpot>();
 
-        // Filter based on tier and add to spotList
-        foreach (AISpot spot in allSpots)
+        switch(tier)
         {
-            if (spot.tier == tier)
-            {
-                spotList.Add(spot);
-            }
+            case 1: 
+                spotList = GridManager.Instance.enemySpotsTier1;
+                break;
+            case 2:
+                spotList = GridManager.Instance.enemySpotsTier2;
+                break;
+            case 3:
+                spotList = GridManager.Instance.enemySpotsTier3;
+                break;
+            default:
+                break;
         }
     }
 
