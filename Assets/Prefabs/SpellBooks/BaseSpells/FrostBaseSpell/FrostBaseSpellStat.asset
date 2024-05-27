@@ -20,7 +20,7 @@ MonoBehaviour:
     statusEffectDamage: 0
   tier1:
     damage: 5
-    cooldown: 3
+    cooldown: 0.5
     statusEffectTimer: 5
     statusEffectDamage: 2
   tier2:

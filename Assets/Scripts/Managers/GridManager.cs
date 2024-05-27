@@ -33,7 +33,7 @@ public class GridManager : MonoBehaviour
     private Dictionary<int, Dictionary<string, int>> maxObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
         { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 20 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 2 }, { "EnemySpot", 5 }, { "Enemy", 30 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 2 }, { "EnemySpot", 6 }, { "Enemy", 30 } } },
         { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 2 }, { "EnemySpot", 7 }, { "Enemy", 45 } } }
     };
     private Dictionary<int, Dictionary<string, int>> minObjectCounts = new Dictionary<int, Dictionary<string, int>>
@@ -155,7 +155,7 @@ public class GridManager : MonoBehaviour
 
     bool IsInnerBorder(int x, int y)
     {
-        return (x <= 15|| y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
+        return (x <= 7|| y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
     }
 
     bool IsCenter(int x, int y)
@@ -213,15 +213,6 @@ public class GridManager : MonoBehaviour
 
     bool CanSpawnBaseObject(int tier, string objectTag, Vector3 position)
     {
-        if (!objectPositions[tier].ContainsKey(objectTag))//Checking if its a prop
-        {
-            return true;
-        }
-
-        if (objectPositions[tier][objectTag].Count >= maxObjectCounts[tier][objectTag])
-        {
-            return false;
-        }
 
         if (tier == 1 && objectTag == "VillageTeleport")
         {
@@ -232,6 +223,17 @@ public class GridManager : MonoBehaviour
         {
             return false;
         }
+
+        if (!objectPositions[tier].ContainsKey(objectTag))//Checking if its a prop
+        {
+            return true;
+        }
+
+        if (objectPositions[tier][objectTag].Count >= maxObjectCounts[tier][objectTag])
+        {
+            return false;
+        }
+
 
         foreach (Vector3 existingPosition in objectPositions[tier][objectTag])
         {

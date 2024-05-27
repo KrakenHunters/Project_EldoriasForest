@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -43,6 +44,24 @@ public class AIController : CharacterClass
     [SerializeField]
     protected float healthDropChance;
 
+    private List<AISpot> spotList;
+
+    [SerializeField]
+    private int maxAmountInGroup;
+
+    [SerializeField]
+    private float minIdleTime;  // Duration for idle state
+
+    [SerializeField]
+    private float minIdleRadius;  // Radius within which the AI can roam while idling
+
+    [Header("Boid Settings")]
+    public float boidNeighborRadius = 5f;
+    public float separationWeight = 1.5f;
+    public float alignmentWeight = 1f;
+    public float cohesionWeight = 1f;
+
+
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -51,13 +70,19 @@ public class AIController : CharacterClass
         playerCheckCollider = GetComponent<SphereCollider>();
         playerCheckCollider.radius = aggroRadius;
 
-        SetBrain(AIBrain.Patrol);
+
+        SetBrain(AIBrain.Idle);
     }
 
     protected virtual void Update()
     {
         _attackTimer += Time.deltaTime;
         agent.speed = _speed;
+
+        if (currentAction == AIBrain.Patrol || currentAction == AIBrain.Idle || currentAction == AIBrain.Chase)
+        {
+            //ApplyBoidBehavior();
+        }
     }
     #region AI Brain
 
@@ -72,14 +97,18 @@ public class AIController : CharacterClass
 
     protected void SetBrain(AIBrain newState)
     {
-        if (currentAction == newState) return;
+        //if (currentAction == newState) return;
         currentAction = newState;
+        StopCoroutine(OnIdle());
         StopCoroutine(OnPatrol());
         StopCoroutine(OnCombat());
         StopCoroutine(OnChasing());
+
+        Debug.Log(currentAction.ToString());
         switch (currentAction)
         {
             case AIBrain.Idle:
+                StartCoroutine(OnIdle());
                 break;
             case AIBrain.Die:
                 OnDie();
@@ -97,7 +126,46 @@ public class AIController : CharacterClass
                 break;
         }
     }
+    protected virtual IEnumerator OnIdle()
+    {
+        float startTime = Time.time;
 
+        float idleTime = UnityEngine.Random.Range(minIdleTime, minIdleTime * 2);
+        float idleRadius = UnityEngine.Random.Range(minIdleRadius, minIdleRadius * 2);
+
+
+        while (AIBrain.Idle == currentAction && Time.time - startTime < idleTime)
+        {
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * idleRadius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomDirection, out hit, idleRadius, 1);
+            Vector3 finalPosition = hit.position;
+
+            agent.SetDestination(finalPosition);
+
+            while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            // Smooth random rotation
+            float randomRotation = UnityEngine.Random.Range(0f, 360f);
+            Quaternion targetRotation = Quaternion.Euler(0, randomRotation, 0);
+            yield return StartCoroutine(SmoothRotate(targetRotation));
+
+            // Random wait time
+            float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
+
+            if (IsPlayerInView())
+                SetBrain(AIBrain.Chase);
+
+            yield return new WaitForSeconds(waitTime);
+
+
+        }
+        SetBrain(AIBrain.Patrol);
+    }
 
     protected virtual IEnumerator OnCombat()
     {
@@ -124,11 +192,44 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnPatrol()
     {
+
+        FindAISpots();
+
         while (AIBrain.Patrol == currentAction)
         {
-            bool playerInView = IsPlayerInView();
+            Debug.Log(spotList.Count);
+            if (spotList.Count > 0)
+            {
+                AISpot targetSpot = spotList[UnityEngine.Random.Range(0, spotList.Count)];
+                Quaternion targetRotation = Quaternion.LookRotation(targetSpot.transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            if (playerInView)
+                agent.SetDestination(targetSpot.transform.position);
+
+                while (Vector3.Distance(transform.position, targetSpot.transform.position) > agent.stoppingDistance)
+                {
+                    yield return null;
+                }
+
+                // Check for nearby AIs
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, areaRadius);
+                int aiCount = 0;
+                foreach (var hitCollider in hitColliders)
+                {
+                    if (hitCollider.GetComponent<AIController>() && hitCollider.GetComponent<AIController>() != this)
+                    {
+                        aiCount++;
+                    }
+                }
+
+                if (aiCount < maxAmountInGroup)
+                {
+                    SetBrain(AIBrain.Idle);
+                }
+            }
+
+
+            if (IsPlayerInView())
                 SetBrain(AIBrain.Chase);
 
             yield return null;
@@ -180,6 +281,23 @@ public class AIController : CharacterClass
         Destroy(this.gameObject, 1f);
     }
     public virtual void AttackPlayer() { }
+
+    private IEnumerator SmoothRotate(Quaternion targetRotation)
+    {
+        float rotationDuration = 0.2f; // Duration of the rotation
+        float time = 0f;
+
+        Quaternion startRotation = transform.rotation;
+
+        while (time < rotationDuration)
+        {
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, time / rotationDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = targetRotation;
+    }
 
     public override void GetHit(int damageAmount, CharacterClass attacker, SpellBook spell)
     {
@@ -273,6 +391,23 @@ public class AIController : CharacterClass
         return VisionConeCheck(player.position) || AreaCheck(player.position);
     }
 
+    void FindAISpots()
+    {
+        AISpot[] allSpots = FindObjectsOfType<AISpot>();
+
+        // Initialize spotList
+        spotList = new List<AISpot>();
+
+        // Filter based on tier and add to spotList
+        foreach (AISpot spot in allSpots)
+        {
+            if (spot.tier == tier)
+            {
+                spotList.Add(spot);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>())
@@ -282,5 +417,57 @@ public class AIController : CharacterClass
     }
     #endregion
 
+    #region Boid Behavior
+    private void ApplyBoidBehavior()
+    {
+        Vector3 separation = Vector3.zero;
+        Vector3 alignment = Vector3.zero;
+        Vector3 cohesion = Vector3.zero;
+
+        int neighborCount = 0;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, boidNeighborRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            AIController neighbor = hitCollider.GetComponent<AIController>();
+            if (neighbor != null && neighbor != this && neighbor.currentAction == currentAction)
+            {
+                // Separation
+                Vector3 toNeighbor = transform.position - neighbor.transform.position;
+                separation += toNeighbor / toNeighbor.sqrMagnitude;
+
+                // Alignment
+                alignment += neighbor.agent.velocity;
+
+                // Cohesion
+                cohesion += neighbor.transform.position;
+
+                neighborCount++;
+            }
+        }
+
+        if (neighborCount > 0)
+        {
+            // Average out values
+            separation /= neighborCount;
+            alignment /= neighborCount;
+            cohesion /= neighborCount;
+
+            // Calculate direction to center of mass of neighbors
+            cohesion = (cohesion - transform.position).normalized;
+
+            // Apply weights
+            Vector3 boidDirection = separation * separationWeight + alignment * alignmentWeight + cohesion * cohesionWeight;
+
+            // Apply the resulting boid direction to the AI
+            if (boidDirection != Vector3.zero)
+            {
+                Quaternion boidRotation = Quaternion.LookRotation(boidDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, boidRotation, rotationSpeed * Time.deltaTime);
+                agent.SetDestination(transform.position + boidDirection);
+            }
+        }
+    }
+    #endregion
 
 }
