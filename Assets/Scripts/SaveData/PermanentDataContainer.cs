@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu,Serializable]
+[CreateAssetMenu(menuName = "Game Data Containers/PermanentData"),Serializable]
 
 public class PermanentDataContainer : ScriptableObject
 {

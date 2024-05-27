@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Game Data Containers/TemporaryData")]
 
 public class TemporaryDataContainer : ScriptableObject
 {
