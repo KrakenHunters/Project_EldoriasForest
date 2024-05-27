@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class UltimateSpellBook : SpellBook
 {
+    protected override void Awake()
+    {
+        tier = 3;
+        base.Awake();
+    }
+
     public override void Shoot(Vector3 direction, CharacterClass attacker)
     {
         base.Shoot(direction, attacker);

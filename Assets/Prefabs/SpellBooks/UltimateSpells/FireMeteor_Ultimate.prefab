@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 15
   castOrigin: 1
-  damage: 80
-  statusEffect: 0
+  spellData: {fileID: 11400000, guid: 529d9a7c83098fe478906c90fcc106ce, type: 2}
+  statusEffect: 1
   statusEffectTimer: 10
   statusEffectDamage: 10
   speed: 10
