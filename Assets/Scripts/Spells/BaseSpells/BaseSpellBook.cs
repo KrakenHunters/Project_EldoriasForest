@@ -101,6 +101,7 @@ public class BaseSpellBook : SpellBook
             other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             Debug.Log("Got Hit");
 
+
         }
         Destroy(this.gameObject);
 

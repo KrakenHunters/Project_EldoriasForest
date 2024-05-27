@@ -475,7 +475,7 @@ public class AIController : CharacterClass
             {
                 Quaternion boidRotation = Quaternion.LookRotation(boidDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, boidRotation, rotationSpeed * Time.deltaTime);
-                agent.SetDestination(transform.position + boidDirection);
+                agent?.SetDestination(transform.position + boidDirection);
             }
         }
     }

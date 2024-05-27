@@ -207,7 +207,7 @@ MonoBehaviour:
   coneRadius: 5
   angleth: 0.7
   areaRadius: 3
-  aggroRadius: 7
+  aggroRadius: 15
   _attackrange: 2
   rotationSpeed: 10
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
