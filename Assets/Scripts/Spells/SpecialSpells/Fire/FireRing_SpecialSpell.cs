@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class FireRing_SpecialSpell : SpecialSpellBook
 {
@@ -12,21 +10,41 @@ public class FireRing_SpecialSpell : SpecialSpellBook
     [SerializeField]
     private float ringRadius = 5f;
 
-    [SerializeField]
-    private int healAmount= 10;
+    private int HealAmount;
 
 
     private SphereCollider damageCollider;
 
     protected override void CastSpell(int tier)
     {
-        damageCollider = GetComponent<SphereCollider>();
+        FireRingSpellStatsContainer f = spellData as FireRingSpellStatsContainer;
+        f.SetTierData(tier);
+        FireRingTierData c = f.currentTierData as FireRingTierData;
+        HealAmount = c.healAmount;
+
+        damageCollider = GetComponentInChildren<SphereCollider>();
         damageCollider.radius = ringRadius;
-        //HealCaster();
-        charAttacker.Heal(healAmount);
+        if(GetComponentInParent<CharacterClass>() != null)
+        {
+            charAttacker = GetComponentInParent<CharacterClass>();
+            StartCoroutine(HealCaster());
+        }
     }
 
 
+    private IEnumerator HealCaster()
+    {
+        int playerHealed = 0;
+
+        while (playerHealed < HealAmount)
+        {
+            playerHealed += 1;
+            charAttacker.Heal(playerHealed);
+
+            yield return new WaitForSeconds(1f);
+        }
+        yield return null;
+    }
     protected override void Update()
     {
         base.Update();
