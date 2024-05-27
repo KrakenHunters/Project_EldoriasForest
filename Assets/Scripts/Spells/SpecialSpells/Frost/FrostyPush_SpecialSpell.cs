@@ -11,8 +11,7 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
     [SerializeField]
     private float _distance;
 
-    [SerializeField]
-    private float pushRadius = 5f;
+    private float pushRadius;
 
     [SerializeField]
     private float pushForce = 10f;
@@ -21,6 +20,13 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
 
     protected override void CastSpell(int tier)
     {
+        FrostyPushSpellStatsContainer Container = spellData as FrostyPushSpellStatsContainer;
+        Container.SetTierData(tier);
+        FrostyPushTierData tierData = Container.currentTierData as FrostyPushTierData;
+
+        pushRadius = tierData.radius;
+
+
         damageCollider = GetComponent<SphereCollider>();
         damageCollider.radius = pushRadius;
         //CastPushSpell();

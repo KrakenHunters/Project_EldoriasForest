@@ -78,3 +78,39 @@ public class FireRingTierData : TierData
     public int healAmount;
 }
 #endregion  
+
+#region Frosty Push Spell Container
+
+[CreateAssetMenu(fileName = "FrostyPushSpell", menuName = "Spells/FrostyPush")]
+public class FrostyPushSpellStatsContainer : SpellStatsContainer
+{
+    public FrostyPushTierData SpellTier1;
+    public FrostyPushTierData SpellTier2;
+    public FrostyPushTierData SpellTier3;
+
+    public override TierData tier1
+    {
+        get { return SpellTier1; }
+        set { SpellTier1 = value as FrostyPushTierData; }
+    }
+
+    public override TierData tier2
+    {
+        get { return SpellTier2; }
+        set { SpellTier2 = value as FrostyPushTierData; }
+    }
+
+    public override TierData tier3
+    {
+        get { return SpellTier3; }
+        set { SpellTier3 = value as FrostyPushTierData; }
+    }
+
+}
+
+[Serializable]
+public class FrostyPushTierData : TierData
+{
+    public int radius;
+}
+#endregion  
