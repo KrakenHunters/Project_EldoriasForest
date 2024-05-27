@@ -144,8 +144,14 @@ public class AIController : CharacterClass
 
             agent.SetDestination(finalPosition);
 
+            if (IsPlayerInView())
+                SetBrain(AIBrain.Chase);
+
             while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance)
             {
+                if (IsPlayerInView())
+                    SetBrain(AIBrain.Chase);
+
                 yield return null;
             }
 
@@ -157,8 +163,6 @@ public class AIController : CharacterClass
             // Random wait time
             float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
 
-            if (IsPlayerInView())
-                SetBrain(AIBrain.Chase);
 
             yield return new WaitForSeconds(waitTime);
 
@@ -208,6 +212,9 @@ public class AIController : CharacterClass
 
                 while (Vector3.Distance(transform.position, targetSpot.transform.position) > agent.stoppingDistance)
                 {
+                    if (IsPlayerInView())
+                        SetBrain(AIBrain.Chase);
+
                     yield return null;
                 }
 
@@ -257,7 +264,7 @@ public class AIController : CharacterClass
 
             if (LoseAgro(player.position))
             {
-                SetBrain(AIBrain.Patrol);
+                SetBrain(AIBrain.Idle);
             }
 
             yield return null;
