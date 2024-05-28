@@ -6,6 +6,19 @@ public class SpecialSpellStatsContainer
     //hi look below
 }
 
+#region Spell Container
+
+[CreateAssetMenu(fileName = "DefaultSpell", menuName = "Spells/DefaultSpell")]
+public class DefaultSpellStatsContainer : SpellStatsContainer
+{
+    public TierData SpellTier1;
+    public TierData SpellTier2;
+    public TierData SpellTier3;
+
+}
+#endregion
+
+
 #region Fire Shotgun Spell Container
 
 [CreateAssetMenu(fileName = "FireShotgunSpell", menuName = "Spells/FireShotgun")]

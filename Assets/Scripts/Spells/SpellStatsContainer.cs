@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-[CreateAssetMenu]
 public class SpellStatsContainer : ScriptableObject
 {
     public int tierUnlocked = 1;
@@ -27,11 +26,24 @@ public class SpellStatsContainer : ScriptableObject
         }
     }
 
-    public virtual TierData tier1 { get; set; }
+    public virtual TierData tier1
+    {
+        get { return tier1; }
+        set { tier1 = value; }
+    }
 
-    public virtual TierData tier2 { get; set; }
+    public virtual TierData tier2
+    {
+        get { return tier2; }
+        set { tier2 = value; }
+    }
 
-    public virtual TierData tier3 { get; set; }
+    public virtual TierData tier3
+    {
+        get { return tier3; }
+        set { tier3 = value; }
+    }
+
 
 
 }
@@ -43,5 +55,6 @@ public class TierData
     public float cooldown;
     public float statusEffectTimer;
     public float statusEffectDamage;
+    public float statusEffectChance;
 
 }

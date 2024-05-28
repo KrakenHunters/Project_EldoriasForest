@@ -125,7 +125,7 @@ MonoBehaviour:
   statusEffect: 1
   statusEffectTimer: 5
   statusEffectDamage: 2
-  speed: 15
+  speed: 20
   range: 30
   aimRange: 10
   aimAngle: 15
