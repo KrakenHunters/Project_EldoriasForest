@@ -28,20 +28,17 @@ public class SpellStatsContainer : ScriptableObject
 
     public virtual TierData tier1
     {
-        get { return tier1; }
-        set { tier1 = value; }
+        get; set;
     }
 
     public virtual TierData tier2
     {
-        get { return tier2; }
-        set { tier2 = value; }
+        get; set;
     }
 
     public virtual TierData tier3
     {
-        get { return tier3; }
-        set { tier3 = value; }
+        get; set;
     }
 
 

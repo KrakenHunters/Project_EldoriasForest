@@ -101,7 +101,11 @@ public class CharacterClass : BaseObject
 
         health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
 
-        ApplyStatusEffect(spellBook);
+        if (spellBook != null)
+        {
+            if (Random.value <= spellBook.statusEffectChance)
+                ApplyStatusEffect(spellBook);
+        }
 
     }
 

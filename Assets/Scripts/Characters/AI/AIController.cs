@@ -28,7 +28,7 @@ public class AIController : CharacterClass
 
     private SphereCollider playerCheckCollider;
 
-    protected AIBrain currentAction;
+    public AIBrain currentAction;
 
     [SerializeField]
     private float rotationSpeed = 5f;
@@ -62,7 +62,6 @@ public class AIController : CharacterClass
     public float alignmentWeight = 1f;
     public float cohesionWeight = 1f;
 
-
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -80,10 +79,6 @@ public class AIController : CharacterClass
         _attackTimer += Time.deltaTime;
         agent.speed = _speed;
 
-        if (currentAction == AIBrain.Patrol || currentAction == AIBrain.Idle || currentAction == AIBrain.Chase)
-        {
-            //ApplyBoidBehavior();
-        }
     }
     #region AI Brain
 
@@ -252,20 +247,20 @@ public class AIController : CharacterClass
             Quaternion targetRotation = Quaternion.LookRotation(target);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
+            agent.SetDestination(player.position);
+
+            while (Vector3.Distance(transform.position, player.position) > _attackrange)
             {
-                agent.SetDestination(player.position);
-            }
-            else
-            {
-                SetBrain(AIBrain.Combat);
-                Debug.Log("Combat");
+                if (LoseAgro(player.position))
+                {
+                    SetBrain(AIBrain.Idle);
+                }
+
+                yield return null;
             }
 
-            if (LoseAgro(player.position))
-            {
-                SetBrain(AIBrain.Idle);
-            }
+            SetBrain(AIBrain.Combat);
+
 
             yield return null;
         }
@@ -457,7 +452,7 @@ public class AIController : CharacterClass
             }
         }
 
-        if (neighborCount > 0)
+        if (neighborCount > 0 && neighborCount <= 3)
         {
             // Average out values
             separation /= neighborCount;
@@ -468,16 +463,25 @@ public class AIController : CharacterClass
             cohesion = (cohesion - transform.position).normalized;
 
             // Apply weights
-            Vector3 boidDirection = separation * separationWeight + alignment * alignmentWeight + cohesion * cohesionWeight;
+            Vector3 boidDirection = (separation * separationWeight) + (alignment.normalized * alignmentWeight) + (cohesion * cohesionWeight);
+
+            // Clamp the boid direction to max speed
+            if (boidDirection.magnitude > Speed)
+            {
+                boidDirection = boidDirection.normalized * Speed;
+            }
 
             // Apply the resulting boid direction to the AI
             if (boidDirection != Vector3.zero)
             {
-                Quaternion boidRotation = Quaternion.LookRotation(boidDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, boidRotation, rotationSpeed * Time.deltaTime);
-                agent?.SetDestination(transform.position + boidDirection);
+                agent.velocity = boidDirection;
             }
         }
+
+        // Debugging lines to visualize the boid behavior
+        Debug.DrawLine(transform.position, transform.position + separation * separationWeight, Color.red);
+        Debug.DrawLine(transform.position, transform.position + alignment.normalized * alignmentWeight, Color.blue);
+        Debug.DrawLine(transform.position, transform.position + cohesion * cohesionWeight, Color.green);
     }
     #endregion
 

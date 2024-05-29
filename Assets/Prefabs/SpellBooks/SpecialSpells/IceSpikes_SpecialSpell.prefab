@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   castOrigin: 0
-  spellData: {fileID: 11400000, guid: 5918f669e201c6e4b80128a9b3aceb48, type: 2}
+  spellData: {fileID: 11400000, guid: 07bcd143a9246f84ebb9f07b7dca518e, type: 2}
   statusEffect: 2
   statusEffectTimer: 5
   statusEffectDamage: 2

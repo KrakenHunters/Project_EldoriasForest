@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: EnemyBaseSpell
+  m_Name: FireMeteorSpell
   m_EditorClassIdentifier: Assembly-CSharp::DefaultSpellStatsContainer
   tierUnlocked: 1
   currentTierData:
@@ -32,8 +32,8 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier3:
-    damage: 0
-    cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    damage: 100
+    cooldown: 8
+    statusEffectTimer: 6
+    statusEffectDamage: 10
+    statusEffectChance: 1

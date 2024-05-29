@@ -25,7 +25,8 @@ public class SpellBook : MonoBehaviour
     public float statusEffectTimer;
     [HideInInspector]
     public float statusEffectDamage;
-
+    [HideInInspector]
+    public float statusEffectChance;
 
     #endregion
 
@@ -82,6 +83,8 @@ public class SpellBook : MonoBehaviour
         damage = spellData.currentTierData.damage;
         statusEffectTimer = spellData.currentTierData.statusEffectTimer;
         statusEffectDamage = spellData.currentTierData.statusEffectDamage;
+        statusEffectChance = spellData.currentTierData.statusEffectChance;
+
         cooldown = spellData.currentTierData.cooldown;
 
     }

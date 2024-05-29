@@ -209,6 +209,7 @@ MonoBehaviour:
   areaRadius: 3
   aggroRadius: 15
   _attackrange: 2
+  currentAction: 0
   rotationSpeed: 10
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
     type: 3}
@@ -218,8 +219,8 @@ MonoBehaviour:
   maxAmountInGroup: 3
   minIdleTime: 5
   minIdleRadius: 5
-  boidNeighborRadius: 3
-  separationWeight: 1.5
+  boidNeighborRadius: 5
+  separationWeight: 2.5
   alignmentWeight: 1
   cohesionWeight: 1
   _damage: 10

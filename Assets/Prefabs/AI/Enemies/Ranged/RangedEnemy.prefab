@@ -241,6 +241,7 @@ MonoBehaviour:
   areaRadius: 3
   aggroRadius: 15
   _attackrange: 6
+  currentAction: 0
   rotationSpeed: 10
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
     type: 3}
@@ -250,10 +251,10 @@ MonoBehaviour:
   maxAmountInGroup: 3
   minIdleTime: 2
   minIdleRadius: 4
-  boidNeighborRadius: 3
+  boidNeighborRadius: 5
   separationWeight: 1.5
-  alignmentWeight: 1
-  cohesionWeight: 1
+  alignmentWeight: 2
+  cohesionWeight: 2
   spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
     type: 3}
 --- !u!1 &9190619781961116417
