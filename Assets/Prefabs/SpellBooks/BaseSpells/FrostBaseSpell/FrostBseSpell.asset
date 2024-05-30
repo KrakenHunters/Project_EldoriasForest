@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: BaseFrostSpell
+  m_Name: FrostBseSpell
   m_EditorClassIdentifier: Assembly-CSharp::DefaultSpellStatsContainer
   tierUnlocked: 1
   currentTierData:
@@ -20,8 +20,8 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier1:
-    damage: 3
-    cooldown: 0.5
+    damage: 0
+    cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
