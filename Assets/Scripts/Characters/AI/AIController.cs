@@ -79,6 +79,10 @@ public class AIController : CharacterClass
         _attackTimer += Time.deltaTime;
         agent.speed = _speed;
 
+        if (currentAction == AIBrain.Patrol || currentAction == AIBrain.Idle)
+        {
+            //ApplyBoidBehavior();
+        }
     }
     #region AI Brain
 
@@ -140,9 +144,6 @@ public class AIController : CharacterClass
 
             agent.SetDestination(finalPosition);
 
-            if (IsPlayerInView())
-                SetBrain(AIBrain.Chase);
-
             while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance)
             {
                 if (IsPlayerInView())
@@ -151,11 +152,11 @@ public class AIController : CharacterClass
                 yield return null;
             }
 
-            // Smooth random rotation
+/*            // Smooth random rotation
             float randomRotation = UnityEngine.Random.Range(0f, 360f);
             Quaternion targetRotation = Quaternion.Euler(0, randomRotation, 0);
             yield return StartCoroutine(SmoothRotate(targetRotation));
-
+*/
             // Random wait time
             float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
 

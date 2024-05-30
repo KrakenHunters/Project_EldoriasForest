@@ -246,7 +246,7 @@ public class GridManager : Singleton<GridManager>
             return false;
         }
 
-        if (position == playerSpawnPos)
+        if (position == playerSpawnPos || position == new Vector3(playerSpawnPos.x - 2, playerSpawnPos.y, playerSpawnPos.z))
         {
             return false;
         }

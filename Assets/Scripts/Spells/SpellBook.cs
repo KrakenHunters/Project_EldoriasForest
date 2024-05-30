@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class SpellBook : MonoBehaviour
 {
-    protected int tier = 1;
+    [HideInInspector]
+    public int tier = 1;
     [HideInInspector]
     public float cooldown;
     protected GameObject charAttacker;

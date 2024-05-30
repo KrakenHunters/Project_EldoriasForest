@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632383be7e903fe4dba8434c11b43670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   cooldown: 0
   castOrigin: 0
   spellData: {fileID: 11400000, guid: e6f7721991560a6489aa444584eca604, type: 2}
@@ -82,7 +83,7 @@ MonoBehaviour:
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
-  spellTimer: 10
+  spellTimer: 25
   speed: 3
   interval: 1.5
   lightningBaseSpell: {fileID: 5214903931515123978, guid: 05c9a10685304c343a108b54ea69c240,

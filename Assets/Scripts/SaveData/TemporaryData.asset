@@ -15,7 +15,7 @@ MonoBehaviour:
   collectedSouls: 156
   baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
-  specialSpell: {fileID: -8831097466877167438, guid: dde5d0c1a4345c64499f5daaa3279477,
+  specialSpell: {fileID: 7433260048738468032, guid: cb81a668636c25941b6385b5e094432c,
     type: 3}
   ultimateSpell: {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5,
     type: 3}

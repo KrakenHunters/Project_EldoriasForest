@@ -207,7 +207,7 @@ MonoBehaviour:
   coneRadius: 5
   angleth: 0.7
   areaRadius: 3
-  aggroRadius: 15
+  aggroRadius: 25
   _attackrange: 2
   currentAction: 0
   rotationSpeed: 10

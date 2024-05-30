@@ -62,7 +62,7 @@ public class TeslaMachine_SpecialSpell : SpecialSpellBook
     void OnTriggerEnter(Collider other)
     {
         // Check if the collider belongs to an enemy
-        if (other.GetComponent<CharacterClass>() && charAttacker != other)
+        if (other.GetComponent<CharacterClass>() && charAttacker != other.gameObject)
         {
             enemiesInRange.Add(other); // Add the enemy to the list
             if (!isFiring)
@@ -83,6 +83,7 @@ public class TeslaMachine_SpecialSpell : SpecialSpellBook
                     Vector3 direction = (enemy.transform.position - transform.position).normalized; // Calculate the direction towards the enemy
 
                     SpellBook lightning = Instantiate(lightningBaseSpell, transform.position, transform.rotation); // Instantiate the projectile
+                    lightning.tier = this.tier;
                     lightning.Shoot(direction, this.gameObject);
 
                 }

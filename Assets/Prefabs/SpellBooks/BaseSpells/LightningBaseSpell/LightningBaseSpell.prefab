@@ -119,12 +119,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d30fde448c07a845bf315ab420def92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   cooldown: 1
   castOrigin: 3
-  spellData: {fileID: 0}
+  spellData: {fileID: 11400000, guid: e81d591663c07454c91cb8daf0b3dfbb, type: 2}
   statusEffect: 1
   statusEffectTimer: 5
   statusEffectDamage: 2
+  statusEffectChance: 0
   speed: 20
   range: 30
   aimRange: 10
