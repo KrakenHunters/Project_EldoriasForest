@@ -47,13 +47,17 @@ public class BaseSpellBook : SpellBook
         }
     }
 
-    public override void Shoot(Vector3 direction, CharacterClass attacker)
+    public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction, attacker);
         startPos = transform.position;
         if (attacker.GetComponent<PlayerController>())
         {
             PlayerSpellCastManager.Instance.currentBaseSpellCooldown = cooldown;
+            targetDirection = FindClosestEnemyWithinCone(direction);
+        }
+        else if (attacker.GetComponent<SpecialSpellBook>())
+        {
             targetDirection = FindClosestEnemyWithinCone(direction);
         }
         else

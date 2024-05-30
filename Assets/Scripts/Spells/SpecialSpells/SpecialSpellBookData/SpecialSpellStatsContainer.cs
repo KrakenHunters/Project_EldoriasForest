@@ -6,7 +6,7 @@ public class SpecialSpellStatsContainer
     //hi look below
 }
 
-#region Spell Container
+#region Default Spell Container
 
 [CreateAssetMenu(fileName = "DefaultSpell", menuName = "Spells/DefaultSpell")]
 public class DefaultSpellStatsContainer : SpellStatsContainer
@@ -127,4 +127,41 @@ public class FrostyPushTierData : TierData
     public int radius;
 }
 #endregion  
+
+#region Tesla Machine Spell Container
+
+[CreateAssetMenu(fileName = "TeslaMachineSpell", menuName = "Spells/TeslaMachine")]
+public class TeslaMachineSpellStatsContainer : SpellStatsContainer
+{
+    public TeslaMachineTierData SpellTier1;
+    public TeslaMachineTierData SpellTier2;
+    public TeslaMachineTierData SpellTier3;
+
+    public override TierData tier1
+    {
+        get { return SpellTier1; }
+        set { SpellTier1 = value as TeslaMachineTierData; }
+    }
+
+    public override TierData tier2
+    {
+        get { return SpellTier2; }
+        set { SpellTier2 = value as TeslaMachineTierData; }
+    }
+
+    public override TierData tier3
+    {
+        get { return SpellTier3; }
+        set { SpellTier3 = value as TeslaMachineTierData; }
+    }
+
+}
+
+[Serializable]
+public class TeslaMachineTierData : TierData
+{
+    public float radius;
+}
+#endregion  
+
 

@@ -301,14 +301,16 @@ public class AIController : CharacterClass
         transform.rotation = targetRotation;
     }
 
-    public override void GetHit(int damageAmount, CharacterClass attacker, SpellBook spell)
+    public override void GetHit(int damageAmount, GameObject attacker, SpellBook spell)
     {
+        base.GetHit(damageAmount, attacker, spell);
+
         if (attacker.GetComponent<PlayerController>())
         {
-            base.GetHit(damageAmount, attacker, spell);
             player = attacker.transform;
             SetBrain(AIBrain.Chase);
         }
+
         if (health <= 0)
         {
             SetBrain(AIBrain.Die);

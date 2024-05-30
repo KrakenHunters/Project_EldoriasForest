@@ -8,7 +8,7 @@ public class SpellBook : MonoBehaviour
     protected int tier = 1;
     [HideInInspector]
     public float cooldown;
-    protected CharacterClass charAttacker;
+    protected GameObject charAttacker;
     public castType castOrigin;
 
     protected int damage;
@@ -71,7 +71,7 @@ public class SpellBook : MonoBehaviour
 
     }
 
-    public virtual void Shoot(Vector3 direction,CharacterClass attacker)
+    public virtual void Shoot(Vector3 direction,GameObject attacker)
     {
         charAttacker = attacker;
 

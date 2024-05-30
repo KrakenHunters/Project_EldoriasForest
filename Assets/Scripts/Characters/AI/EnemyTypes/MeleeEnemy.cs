@@ -10,7 +10,7 @@ public class MeleeEnemy : AIController
     {
         if (_attackTimer >= _cooldown)
         {
-            player.GetComponent<CharacterClass>().GetHit(_damage, this, null);
+            player.GetComponent<CharacterClass>().GetHit(_damage, this.gameObject, null);
             _attackTimer = 0;
         }
     }

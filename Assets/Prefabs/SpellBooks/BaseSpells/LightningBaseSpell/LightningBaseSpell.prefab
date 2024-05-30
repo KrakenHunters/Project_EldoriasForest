@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5214903931515123978}
   - component: {fileID: -1239753716125547343}
   m_Layer: 0
-  m_Name: LightningBaseSpell 1
+  m_Name: LightningBaseSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

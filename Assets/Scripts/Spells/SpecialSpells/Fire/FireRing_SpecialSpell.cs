@@ -26,7 +26,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
         damageCollider.radius = ringRadius;
         if(GetComponentInParent<CharacterClass>() != null)
         {
-            charAttacker = GetComponentInParent<CharacterClass>();
+            charAttacker = GetComponentInParent<CharacterClass>().gameObject;
             StartCoroutine(HealCaster());
         }
     }
@@ -39,7 +39,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
         while (playerHealed < HealAmount)
         {
             playerHealed += 1;
-            charAttacker.Heal(playerHealed);
+            charAttacker.GetComponent<CharacterClass>()?.Heal(playerHealed);
 
             yield return new WaitForSeconds(1f);
         }

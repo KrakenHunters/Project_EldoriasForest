@@ -13,7 +13,7 @@ public class SpecialSpellBook : SpellBook
         }
     }
 
-    public override void Shoot(Vector3 direction, CharacterClass attacker)
+    public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction,attacker);
         if (attacker.GetComponent<PlayerController>())

@@ -45,7 +45,7 @@ public class CharacterClass : BaseObject
         {
             case SpellBook.castType.projectile:
                 SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-                spellBook.Shoot(transform.forward, this);
+                spellBook.Shoot(transform.forward, this.gameObject);
                 break;
 
             case SpellBook.castType.groundPos:
@@ -59,7 +59,7 @@ public class CharacterClass : BaseObject
                     Vector3 target = hit.point;
 
                     SpellBook spellBook2 = Instantiate(spell, target, Quaternion.identity);
-                    spellBook2.Shoot(transform.forward, this);
+                    spellBook2.Shoot(transform.forward, this.gameObject);
 
                 }
                 break;
@@ -74,13 +74,13 @@ public class CharacterClass : BaseObject
                     Vector3 target = hit2.point;
 
                     SpellBook spellBook3 = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
-                    spellBook3.Shoot(target, this);
+                    spellBook3.Shoot(target, this.gameObject);
 
                 }
                 break;
             case SpellBook.castType.self:
                 SpellBook spellBook4 = Instantiate(spell, transform.position, Quaternion.identity, transform);
-                spellBook4.Shoot(transform.forward, this);
+                spellBook4.Shoot(transform.forward, this.gameObject);
                 break;
         }
     }
@@ -96,15 +96,17 @@ public class CharacterClass : BaseObject
 
     }
 
-    public virtual void GetHit(int damageAmount, CharacterClass attacker, SpellBook spellBook)
+    public virtual void GetHit(int damageAmount, GameObject attacker, SpellBook spellBook)
     {
-
-        health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
-
-        if (spellBook != null)
+        if (attacker != this.gameObject)
         {
-            if (Random.value <= spellBook.statusEffectChance)
-                ApplyStatusEffect(spellBook);
+            health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
+
+            if (spellBook != null)
+            {
+                if (Random.value <= spellBook.statusEffectChance)
+                    ApplyStatusEffect(spellBook);
+            }
         }
 
     }

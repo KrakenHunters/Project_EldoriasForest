@@ -19,7 +19,7 @@ public class FireMeteorUltimate : UltimateSpellBook
         startPosY = transform.position.y;
     }
 
-    public override void Shoot(Vector3 direction, CharacterClass attacker)
+    public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction, attacker);
         directionToTarget = (direction - transform.position).normalized;

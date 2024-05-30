@@ -10,7 +10,7 @@ public class UltimateSpellBook : SpellBook
         base.Awake();
     }
 
-    public override void Shoot(Vector3 direction, CharacterClass attacker)
+    public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction, attacker);
         if (attacker.GetComponent<PlayerController>())
