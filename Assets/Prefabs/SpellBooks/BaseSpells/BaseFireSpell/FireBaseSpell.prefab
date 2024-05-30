@@ -122,9 +122,11 @@ MonoBehaviour:
   cooldown: 1
   castOrigin: 3
   spellData: {fileID: 11400000, guid: ed563fbc484f99d438a94f023a0641b0, type: 2}
+  spellIcon: {fileID: 21300000, guid: 46ee6f498e9bca94e88e1ce8c3aa4699, type: 3}
   statusEffect: 1
   statusEffectTimer: 5
   statusEffectDamage: 2
+  statusEffectChance: 0
   speed: 15
   range: 30
   aimRange: 10

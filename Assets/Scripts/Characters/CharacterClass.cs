@@ -98,9 +98,11 @@ public class CharacterClass : BaseObject
 
     public virtual void GetHit(int damageAmount, GameObject attacker, SpellBook spellBook)
     {
+      
         if (attacker != this.gameObject)
         {
-            health -= Mathf.RoundToInt(damageAmount * damageMultiplier);
+            Debug.Log("Attacker " + damageAmount);
+            TakeDamage(damageAmount * damageMultiplier);
 
             if (spellBook != null)
             {
@@ -111,7 +113,10 @@ public class CharacterClass : BaseObject
 
     }
 
-
+   protected virtual void TakeDamage(float damage)
+    {
+     health -= damage;
+    }
     private void ApplyStatusEffect(SpellBook spellBook)
     {
 
@@ -198,13 +203,13 @@ public class CharacterClass : BaseObject
             timer += 1f;
             Debug.Log("Burning");
 
-            health -= damage;
+            TakeDamage(damage);
         }
 
         yield return null;
     }
 
-    public virtual void Heal(int healAmount)
+    public virtual void Heal(float healAmount)
     {
         health += healAmount;
     }

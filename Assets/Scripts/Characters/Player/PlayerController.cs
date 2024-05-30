@@ -33,6 +33,7 @@ public class PlayerController : CharacterClass
     private void Awake()
     {
         health = tempData.startHealth;
+        PlayerGUIManager.Instance.SetHealthValues(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new pIdleState());
@@ -150,7 +151,16 @@ public class PlayerController : CharacterClass
         //tempData.ultimateSpell = null;
     }
 
+    protected override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        PlayerGUIManager.Instance.SetHealthValues(health);
+    }
 
-
+    public override void Heal(float healAmount)
+    {
+        base.Heal(healAmount);
+        PlayerGUIManager.Instance.SetHealthValues(health);
+    }
 
 }

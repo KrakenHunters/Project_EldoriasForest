@@ -12,5 +12,4 @@ public class TemporaryDataContainer : ScriptableObject
     public List<SpellBook> collectedSpells;
 
     public int startHealth;
-
 }

@@ -19,6 +19,8 @@ public class SpellBook : MonoBehaviour
     [SerializeField]
     protected SpellStatsContainer spellData;
 
+    public Sprite spellIcon;
+
     #region StatusEffect
     public StatusEffect statusEffect;
 
