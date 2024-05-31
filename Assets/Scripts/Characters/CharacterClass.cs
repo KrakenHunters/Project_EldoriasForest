@@ -5,6 +5,10 @@ public class CharacterClass : BaseObject
 {
     [SerializeField]
     protected float health;
+    public float Health { get { return health; } }
+
+    protected float maxHealth;
+
     [SerializeField]
     protected float _speed;
     public float Speed { get { return _speed; } }
@@ -211,6 +215,13 @@ public class CharacterClass : BaseObject
 
     public virtual void Heal(float healAmount)
     {
-        health += healAmount;
+        if (healAmount + health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health += healAmount;
+        }
     }
 }

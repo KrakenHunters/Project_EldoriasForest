@@ -35,7 +35,6 @@ public class AIController : CharacterClass
 
     protected NavMeshAgent agent;
 
-
     [SerializeField]
     private HealthCollectible healthDrop;
 
@@ -70,6 +69,7 @@ public class AIController : CharacterClass
         playerCheckCollider = GetComponent<SphereCollider>();
         playerCheckCollider.radius = aggroRadius;
 
+        maxHealth = health;
 
         SetBrain(AIBrain.Idle);
     }

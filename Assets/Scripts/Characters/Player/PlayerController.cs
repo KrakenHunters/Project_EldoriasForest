@@ -33,6 +33,7 @@ public class PlayerController : CharacterClass
     private void Awake()
     {
         health = tempData.startHealth;
+        maxHealth = tempData.startHealth;
         PlayerGUIManager.Instance.SetHealthValues(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();

@@ -9,7 +9,7 @@ public class BaseFireSpell : BaseSpellBook
         base.Awake();
 
     }
-    protected override void UpgradeTier()
+    public override void UpgradeTier()
     {
         base.UpgradeTier();
     }

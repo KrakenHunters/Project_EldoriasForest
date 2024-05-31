@@ -50,7 +50,7 @@ public class SpellBook : MonoBehaviour
         SetDataFromSpellContainer();
         CastSpell(tier);
     }
-    protected virtual void UpgradeTier()
+    public virtual void UpgradeTier()
     {
         if (tier < 3)
         {
