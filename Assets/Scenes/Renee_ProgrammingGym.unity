@@ -1239,6 +1239,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310511808800356957, guid: 55ed4f066f590144cafbaaf18708f478,
         type: 3}
+      propertyPath: pData
+      value: 
+      objectReference: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c,
+        type: 2}
+    - target: {fileID: 4310511808800356957, guid: 55ed4f066f590144cafbaaf18708f478,
+        type: 3}
+      propertyPath: tData
+      value: 
+      objectReference: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9,
+        type: 2}
+    - target: {fileID: 4310511808800356957, guid: 55ed4f066f590144cafbaaf18708f478,
+        type: 3}
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 1115447981}

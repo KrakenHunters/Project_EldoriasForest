@@ -253,8 +253,8 @@ MonoBehaviour:
   minIdleRadius: 4
   boidNeighborRadius: 5
   separationWeight: 3
-  alignmentWeight: 1.5
-  cohesionWeight: 1.5
+  alignmentWeight: 0.2
+  cohesionWeight: 0.2
   spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
     type: 3}
 --- !u!1 &9190619781961116417

@@ -99,10 +99,6 @@ public class AIController : CharacterClass
     {
         //if (currentAction == newState) return;
         currentAction = newState;
-        StopCoroutine(OnIdle());
-        StopCoroutine(OnPatrol());
-        StopCoroutine(OnCombat());
-        StopCoroutine(OnChasing());
 
         Debug.Log(currentAction.ToString());
         switch (currentAction)
@@ -147,16 +143,15 @@ public class AIController : CharacterClass
             while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance)
             {
                 if (IsPlayerInView())
+                {
                     SetBrain(AIBrain.Chase);
+                    StopCoroutine(OnIdle());
+                    yield break;
+                }
 
                 yield return null;
             }
 
-/*            // Smooth random rotation
-            float randomRotation = UnityEngine.Random.Range(0f, 360f);
-            Quaternion targetRotation = Quaternion.Euler(0, randomRotation, 0);
-            yield return StartCoroutine(SmoothRotate(targetRotation));
-*/
             // Random wait time
             float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
 
@@ -182,6 +177,8 @@ public class AIController : CharacterClass
             if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
             {
                 SetBrain(AIBrain.Chase);
+                StopCoroutine(OnCombat());
+                yield break;
             }
             else
             {
@@ -209,7 +206,11 @@ public class AIController : CharacterClass
                 while (Vector3.Distance(transform.position, targetSpot.transform.position) > agent.stoppingDistance)
                 {
                     if (IsPlayerInView())
+                    {
                         SetBrain(AIBrain.Chase);
+                        StopCoroutine(OnPatrol());
+                        yield break;
+                    }
 
                     yield return null;
                 }
@@ -228,12 +229,18 @@ public class AIController : CharacterClass
                 if (aiCount < maxAmountInGroup)
                 {
                     SetBrain(AIBrain.Idle);
+                    StopCoroutine(OnPatrol());
+                    yield break;
                 }
             }
 
 
             if (IsPlayerInView())
+            {
                 SetBrain(AIBrain.Chase);
+                StopCoroutine(OnPatrol());
+                yield break;
+            }
 
             yield return null;
         }
@@ -255,15 +262,17 @@ public class AIController : CharacterClass
                 if (LoseAgro(player.position))
                 {
                     SetBrain(AIBrain.Idle);
+                    StopCoroutine(OnChasing());
+                    yield break;
                 }
 
                 yield return null;
             }
 
             SetBrain(AIBrain.Combat);
+            StopCoroutine(OnChasing());
+            yield break;
 
-
-            yield return null;
         }
         yield return null;
     }
@@ -284,23 +293,6 @@ public class AIController : CharacterClass
         Destroy(this.gameObject, 1f);
     }
     public virtual void AttackPlayer() { }
-
-    private IEnumerator SmoothRotate(Quaternion targetRotation)
-    {
-        float rotationDuration = 0.2f; // Duration of the rotation
-        float time = 0f;
-
-        Quaternion startRotation = transform.rotation;
-
-        while (time < rotationDuration)
-        {
-            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, time / rotationDuration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.rotation = targetRotation;
-    }
 
     public override void GetHit(int damageAmount, GameObject attacker, SpellBook spell)
     {

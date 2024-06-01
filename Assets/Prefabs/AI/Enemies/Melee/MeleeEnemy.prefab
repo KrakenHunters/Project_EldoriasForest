@@ -221,8 +221,8 @@ MonoBehaviour:
   minIdleRadius: 5
   boidNeighborRadius: 5
   separationWeight: 2.5
-  alignmentWeight: 1
-  cohesionWeight: 1
+  alignmentWeight: 0.2
+  cohesionWeight: 0.2
   _damage: 10
   _cooldown: 2
 --- !u!1 &9190619781961116417
