@@ -88,11 +88,17 @@ public class TempleUIManager : Singleton<TempleUIManager>
     public void OnHealthButton()
     {
         player.Heal(templeHealth);
+
+        Time.timeScale = 1.0f;
     }
+
     public void OnSoulsButton()
     {
         GameManager.Instance.tData.collectedSouls += templeSouls;
         StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
+
+        Time.timeScale = 1.0f;
+
     }
 
     public void OnSpellButton()
@@ -123,6 +129,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
         GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
 
         PlayerGUIManager.Instance.SetSpellIcons();
+
+        Time.timeScale = 1.0f;
     }
 
 }
