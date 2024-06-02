@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5979338178593633624}
   - component: {fileID: 7319059061915240303}
   m_Layer: 0
-  m_Name: SoulTier1
+  m_Name: SoulDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,5 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4280a92e5f48a9b4e832b38d147e1413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soulAmountMax: 5
-  soulAmountMin: 12
+  tier: 0
+  soulAmountMaxTier1: 10
+  soulAmountMinTier1: 15
+  soulAmountMaxTier2: 20
+  soulAmountMinTier2: 35
+  soulAmountMaxTier3: 40
+  soulAmountMinTier3: 60

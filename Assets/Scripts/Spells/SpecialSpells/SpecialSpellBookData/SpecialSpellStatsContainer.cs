@@ -182,4 +182,41 @@ public class TeslaMachineTierData : TierData
 }
 #endregion  
 
+#region Lightning Beam Spell Container
+
+[CreateAssetMenu(fileName = "LightningBeamSpell", menuName = "Spells/LightningBeam")]
+public class LightningBeamSpellStatsContainer : SpellStatsContainer
+{
+    public LightningBeamTierData SpellTier1;
+    public LightningBeamTierData SpellTier2;
+    public LightningBeamTierData SpellTier3;
+
+    public override TierData tier1
+    {
+        get { return SpellTier1; }
+        set { SpellTier1 = value as LightningBeamTierData; }
+    }
+
+    public override TierData tier2
+    {
+        get { return SpellTier2; }
+        set { SpellTier2 = value as LightningBeamTierData; }
+    }
+
+    public override TierData tier3
+    {
+        get { return SpellTier3; }
+        set { SpellTier3 = value as LightningBeamTierData; }
+    }
+
+}
+
+[Serializable]
+public class LightningBeamTierData : TierData
+{
+    public float duration;
+}
+#endregion  
+
+
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4449072461488403794}
   - component: {fileID: 5642612961866236942}
   - component: {fileID: 960470660485490276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Village
   m_TagString: VillageTeleport
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5014875784622155496}
   - component: {fileID: 1664738405116719305}
   m_Layer: 0
-  m_Name: HealthTier1
+  m_Name: HealthPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,5 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d9f9a75fead1d489d8ac7976d8cde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 2
-  healthAmountMin: 15
+  tier: 0
+  healthAmountMaxTier1: 5
+  healthAmountMinTier1: 10
+  healthAmountMaxTier2: 20
+  healthAmountMinTier2: 30
+  healthAmountMaxTier3: 40
+  healthAmountMinTier3: 60

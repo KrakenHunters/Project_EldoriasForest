@@ -55,6 +55,8 @@ public class AIController : CharacterClass
     [SerializeField]
     private float minIdleRadius;  // Radius within which the AI can roam while idling
 
+    private bool checkAISpot;
+
     [Header("Boid Settings")]
     public float boidNeighborRadius = 5f;
     public float separationWeight = 1.5f;
@@ -77,12 +79,7 @@ public class AIController : CharacterClass
     protected virtual void Update()
     {
         _attackTimer += Time.deltaTime;
-        agent.speed = _speed;
 
-        if (currentAction == AIBrain.Patrol || currentAction == AIBrain.Idle)
-        {
-            //ApplyBoidBehavior();
-        }
     }
     #region AI Brain
 
@@ -100,7 +97,11 @@ public class AIController : CharacterClass
         //if (currentAction == newState) return;
         currentAction = newState;
 
-        Debug.Log(currentAction.ToString());
+        StopCoroutine(OnIdle());
+        StopCoroutine(OnPatrol());
+        StopCoroutine(OnCombat());
+        StopCoroutine(OnChasing());
+
         switch (currentAction)
         {
             case AIBrain.Idle:
@@ -145,7 +146,6 @@ public class AIController : CharacterClass
                 if (IsPlayerInView())
                 {
                     SetBrain(AIBrain.Chase);
-                    StopCoroutine(OnIdle());
                     yield break;
                 }
 
@@ -171,17 +171,18 @@ public class AIController : CharacterClass
 
             Vector3 target = player.position - transform.position;
             target.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(target);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
+            agent.speed = _speed * SpeedModifier;
             if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
             {
+
                 SetBrain(AIBrain.Chase);
-                StopCoroutine(OnCombat());
                 yield break;
             }
             else
             {
+                Quaternion targetRotation = Quaternion.LookRotation(target);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
                 AttackPlayer();
             }
             yield return null;
@@ -192,7 +193,7 @@ public class AIController : CharacterClass
     {
 
         FindAISpots();
-
+        agent.speed = _speed * SpeedModifier;
         while (AIBrain.Patrol == currentAction)
         {
             if (spotList.Count > 0)
@@ -208,7 +209,6 @@ public class AIController : CharacterClass
                     if (IsPlayerInView())
                     {
                         SetBrain(AIBrain.Chase);
-                        StopCoroutine(OnPatrol());
                         yield break;
                     }
 
@@ -229,7 +229,6 @@ public class AIController : CharacterClass
                 if (aiCount < maxAmountInGroup)
                 {
                     SetBrain(AIBrain.Idle);
-                    StopCoroutine(OnPatrol());
                     yield break;
                 }
             }
@@ -238,7 +237,6 @@ public class AIController : CharacterClass
             if (IsPlayerInView())
             {
                 SetBrain(AIBrain.Chase);
-                StopCoroutine(OnPatrol());
                 yield break;
             }
 
@@ -248,21 +246,23 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnChasing()
     {
+        agent.speed = _speed * 1.5f;
+
         while (AIBrain.Chase == currentAction)
         {
-            Vector3 target = player.position - transform.position;
-            target.y = 0;
-            Quaternion targetRotation = Quaternion.LookRotation(target);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            agent.SetDestination(player.position);
-
             while (Vector3.Distance(transform.position, player.position) > _attackrange)
             {
+                Vector3 target = player.position - transform.position;
+                target.y = 0;
+
+                Quaternion targetRotation = Quaternion.LookRotation(target);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+                agent.SetDestination(player.position);
+
                 if (LoseAgro(player.position))
                 {
                     SetBrain(AIBrain.Idle);
-                    StopCoroutine(OnChasing());
                     yield break;
                 }
 
@@ -270,7 +270,6 @@ public class AIController : CharacterClass
             }
 
             SetBrain(AIBrain.Combat);
-            StopCoroutine(OnChasing());
             yield break;
 
         }
@@ -283,18 +282,20 @@ public class AIController : CharacterClass
     protected virtual void OnDie()
     {
 
-        Instantiate(soulDrop, transform.position, Quaternion.identity);
+        SoulCollectible soul = Instantiate(soulDrop, transform.position, Quaternion.identity);
+        soul.tier = tier;
 
         if (UnityEngine.Random.Range(0f,1f) <= healthDropChance)
         {
-            Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
+            HealthCollectible health = Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
+            health.tier = tier;
         }
         
         Destroy(this.gameObject, 1f);
     }
     public virtual void AttackPlayer() { }
 
-    public override void GetHit(int damageAmount, GameObject attacker, SpellBook spell)
+    public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
     {
         base.GetHit(damageAmount, attacker, spell);
 
@@ -304,10 +305,20 @@ public class AIController : CharacterClass
             SetBrain(AIBrain.Chase);
         }
 
-        if (health <= 0)
+    }
+
+    protected override void TakeDamage(float damage)
+    {
+        if (isAlive)
         {
+            health -= damage;
+        }
+        if (health <= 0 && isAlive)
+        {
+            isAlive = false;
             SetBrain(AIBrain.Die);
         }
+
     }
     #endregion
 
@@ -376,7 +387,6 @@ public class AIController : CharacterClass
     {
         float flatDistance;
         GetFlatDirection(position, out flatDistance);
-
         // Distance check
         return flatDistance > aggroRadius;
     }
@@ -390,6 +400,7 @@ public class AIController : CharacterClass
 
     void FindAISpots()
     {
+        if (spotList == GridManager.Instance.enemySpotsTier1)
         // Initialize spotList
         spotList = new List<AISpot>();
 
