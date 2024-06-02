@@ -1,10 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using static AIController;
 
 public class CharacterClass : BaseObject
 {
     [SerializeField]
     protected float health;
+    public float Health { get { return health; } }
+
+    protected float maxHealth;
+
     [SerializeField]
     protected float _speed;
     public float Speed { get { return _speed; } }
@@ -24,6 +29,8 @@ public class CharacterClass : BaseObject
 
     private float damageMultiplier = 1.0f;
     private float originalSpeed;
+
+    protected bool isAlive = true;
 
     public enum StatusEffect
     {
@@ -96,12 +103,11 @@ public class CharacterClass : BaseObject
 
     }
 
-    public virtual void GetHit(int damageAmount, GameObject attacker, SpellBook spellBook)
+    public virtual void GetHit(float damageAmount, GameObject attacker, SpellBook spellBook)
     {
       
         if (attacker != this.gameObject)
         {
-            Debug.Log("Attacker " + damageAmount);
             TakeDamage(damageAmount * damageMultiplier);
 
             if (spellBook != null)
@@ -115,7 +121,15 @@ public class CharacterClass : BaseObject
 
    protected virtual void TakeDamage(float damage)
     {
-     health -= damage;
+        if (isAlive)
+        {
+            health -= damage;
+        }
+        if (health <= 0 && isAlive)
+        {
+            isAlive = false;
+        }
+
     }
     private void ApplyStatusEffect(SpellBook spellBook)
     {
@@ -211,6 +225,16 @@ public class CharacterClass : BaseObject
 
     public virtual void Heal(float healAmount)
     {
-        health += healAmount;
+        if (isAlive)
+        {
+            if (healAmount + health > maxHealth)
+            {
+                health = maxHealth;
+            }
+            else
+            {
+                health += healAmount;
+            }
+        }
     }
 }

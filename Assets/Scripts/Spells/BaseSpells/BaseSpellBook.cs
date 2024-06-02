@@ -20,14 +20,13 @@ public class BaseSpellBook : SpellBook
 
     protected override void Awake()
     {
-        tier = GameManager.Instance.pdata.baseAttackTier;
         castOrigin = castType.projectile;
         base.Awake();
     }
-    protected override void UpgradeTier()
+    public override void UpgradeTier()
     {
         base.UpgradeTier();
-        GameManager.Instance.pdata.baseAttackTier = tier;
+        GameManager.Instance.pData.baseAttackTier = tier;
     }
 
     // Start is called before the first frame update
@@ -55,13 +54,21 @@ public class BaseSpellBook : SpellBook
         {
             PlayerSpellCastManager.Instance.currentBaseSpellCooldown = cooldown;
             targetDirection = FindClosestEnemyWithinCone(direction);
+            tier = GameManager.Instance.pData.baseAttackTier;
+
         }
         else if (attacker.GetComponent<SpecialSpellBook>())
         {
             targetDirection = FindClosestEnemyWithinCone(direction);
+            tier = charAttacker.gameObject.GetComponent<SpellBook>().tier;
+
         }
         else
+        {
+            tier = charAttacker.gameObject.GetComponent<CharacterClass>().tier;
             targetDirection = direction;
+        }
+
         GetComponent<Rigidbody>().velocity = targetDirection * speed;
     }
 

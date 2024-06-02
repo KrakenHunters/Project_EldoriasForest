@@ -33,6 +33,7 @@ public class PlayerController : CharacterClass
     private void Awake()
     {
         health = tempData.startHealth;
+        maxHealth = tempData.startHealth;
         PlayerGUIManager.Instance.SetHealthValues(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
@@ -105,7 +106,7 @@ public class PlayerController : CharacterClass
 
     #endregion
 
-    public override void GetHit(int damageAmount,GameObject attacker, SpellBook spell)
+    public override void GetHit(float damageAmount,GameObject attacker, SpellBook spell)
     {
         base.GetHit(damageAmount, attacker, spell);
         if (health <= 0)

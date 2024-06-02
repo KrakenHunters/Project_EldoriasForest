@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public PermanentDataContainer pdata;
+    public PermanentDataContainer pData;
+    public TemporaryDataContainer tData;
 
     public Transform playerPos;
 
-    // Start is called before the first frame update
-    void Start()
+    public IEnumerator CountToTarget(int cost)
     {
-          
-    }
+        int currentSouls = pData.totalSouls + cost;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int increment = (pData.totalSouls > currentSouls) ? 1 : -1;
+
+       float countingSpeed = Mathf.Abs(cost);
+
+        while (currentSouls != pData.totalSouls)
+        {
+            currentSouls += increment * Mathf.CeilToInt(countingSpeed * Time.deltaTime);
+            // Ensure that we don't overshoot the target
+            if ((increment == 1 && currentSouls > pData.totalSouls) || (increment == -1 && currentSouls < pData.totalSouls))
+                currentSouls = pData.totalSouls;
+
+            PlayerGUIManager.Instance.soulCountText.text = currentSouls.ToString();
+
+            yield return null;
+        }
     }
 }

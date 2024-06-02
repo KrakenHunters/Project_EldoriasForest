@@ -16,13 +16,7 @@ public class Interactable : BaseObject
 
     public virtual void Interact()
     {
-      //Time.timeScale = 0.0f;
+      Time.timeScale = 0.0f;
     }
-
-    public void CloseInteraction()
-    {
-       //Time.timeScale =  1.0f;
-    }
-
 
 }

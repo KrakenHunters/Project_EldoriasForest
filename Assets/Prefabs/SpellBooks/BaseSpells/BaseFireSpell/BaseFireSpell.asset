@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DefaultSpellStatsContainer
   tierUnlocked: 1
   currentTierData:
-    damage: 0
-    cooldown: 0
+    damage: 7
+    cooldown: 1
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier1:
-    damage: 5
-    cooldown: 0.5
+    damage: 7
+    cooldown: 1
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0

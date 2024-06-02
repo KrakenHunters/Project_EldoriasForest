@@ -11,8 +11,7 @@ public class PlayerGUIManager : Singleton<PlayerGUIManager>
     [SerializeField]
     private Image currentUltimateSpell;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI soulCountText;
+    public TMPro.TextMeshProUGUI soulCountText;
 
     [SerializeField]
     private Slider healthBar;
@@ -26,7 +25,7 @@ public class PlayerGUIManager : Singleton<PlayerGUIManager>
         SetSoulCount();
     }
 
-    private void SetSpellIcons()
+    public void SetSpellIcons()
     {
         currentBaseSpell.sprite = tempData.baseSpell.spellIcon;
         currentSpecialSpell.sprite = tempData.specialSpell.spellIcon;

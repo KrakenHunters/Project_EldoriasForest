@@ -10,30 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: EnemyBaseSpell
-  m_EditorClassIdentifier: Assembly-CSharp::DefaultSpellStatsContainer
+  m_Name: FireRingSpell
+  m_EditorClassIdentifier: Assembly-CSharp::FireRingSpellStatsContainer
   tierUnlocked: 1
   currentTierData:
-    damage: 5
-    cooldown: 1
+    damage: 0
+    cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier1:
     damage: 5
-    cooldown: 1
+    cooldown: 3
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
+    healAmount: 2
   SpellTier2:
     damage: 0
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
+    healAmount: 0
   SpellTier3:
     damage: 0
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
+    healAmount: 0

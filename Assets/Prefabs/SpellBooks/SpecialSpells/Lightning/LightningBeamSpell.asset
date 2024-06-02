@@ -10,29 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: FrostyPushSpell
-  m_EditorClassIdentifier: Assembly-CSharp::FrostyPushSpellStatsContainer
+  m_Name: LightningBeamSpell
+  m_EditorClassIdentifier: Assembly-CSharp::LightningBeamSpellStatsContainer
   tierUnlocked: 1
   currentTierData:
-    damage: 0
-    cooldown: 2
-    statusEffectTimer: 2
-    statusEffectDamage: 2
+    damage: 3
+    cooldown: 10
+    statusEffectTimer: 0
+    statusEffectDamage: 0
+    statusEffectChance: 0
   SpellTier1:
-    damage: 0
-    cooldown: 2
-    statusEffectTimer: 2
-    statusEffectDamage: 2
-    radius: 5
+    damage: 3
+    cooldown: 10
+    statusEffectTimer: 0
+    statusEffectDamage: 0
+    statusEffectChance: 0
+    duration: 5
   SpellTier2:
     damage: 0
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
-    radius: 0
+    statusEffectChance: 0
+    duration: 0
   SpellTier3:
     damage: 0
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
-    radius: 0
+    statusEffectChance: 0
+    duration: 0

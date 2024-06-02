@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4238408705992866525}
   - component: {fileID: 3144495609232599651}
   - component: {fileID: 4843563999982706595}
-  - component: {fileID: 5214903931515123978}
   - component: {fileID: -1239753716125547343}
+  - component: {fileID: 5174980907974982790}
   m_Layer: 0
   m_Name: LightningBaseSpell
   m_TagString: Untagged
@@ -107,30 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5214903931515123978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698177402369331709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d30fde448c07a845bf315ab420def92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tier: 1
-  cooldown: 1
-  castOrigin: 3
-  spellData: {fileID: 11400000, guid: e81d591663c07454c91cb8daf0b3dfbb, type: 2}
-  statusEffect: 1
-  statusEffectTimer: 5
-  statusEffectDamage: 2
-  statusEffectChance: 0
-  speed: 20
-  range: 30
-  aimRange: 10
-  aimAngle: 15
 --- !u!54 &-1239753716125547343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,3 +134,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &5174980907974982790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698177402369331709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f5366e83a29544984ead51545aaf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tier: 1
+  cooldown: 0
+  castOrigin: 0
+  spellData: {fileID: 11400000, guid: f19a8099d223ffc41ad08259d3ad6759, type: 2}
+  spellIcon: {fileID: 21300000, guid: c7ca49be313a3a640909d048918e61d5, type: 3}
+  statusEffect: 0
+  statusEffectTimer: 0
+  statusEffectDamage: 0
+  statusEffectChance: 0
+  speed: 0
+  range: 0
+  aimRange: 10
+  aimAngle: 15
