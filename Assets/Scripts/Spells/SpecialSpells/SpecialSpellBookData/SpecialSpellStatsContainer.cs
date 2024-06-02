@@ -218,5 +218,40 @@ public class LightningBeamTierData : TierData
 }
 #endregion  
 
+#region FireTrail Spell Container
+
+[CreateAssetMenu(fileName = "FireTrailSpell", menuName = "Spells/FireTrail")]
+public class FireTrailSpellStatsContainer : SpellStatsContainer
+{
+    public FireTrailTierData SpellTier1;
+    public FireTrailTierData SpellTier2;
+    public FireTrailTierData SpellTier3;
+
+    public override TierData tier1
+    {
+        get { return SpellTier1; }
+        set { SpellTier1 = value as FireTrailTierData; }
+    }
+
+    public override TierData tier2
+    {
+        get { return SpellTier2; }
+        set { SpellTier2 = value as FireTrailTierData; }
+    }
+
+    public override TierData tier3
+    {
+        get { return SpellTier3; }
+        set { SpellTier3 = value as FireTrailTierData; }
+    }
+
+}
+
+[Serializable]
+public class FireTrailTierData : TierData
+{
+    public float duration;
+}
+#endregion  
 
 
