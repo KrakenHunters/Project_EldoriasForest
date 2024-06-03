@@ -188,7 +188,6 @@ public class CharacterClass : BaseObject
 
     private IEnumerator OnStunned(float effectTimer)
     {
-        if(_speed != 0f)
         originalSpeed = _speed;
         float timer = 0f;
         while (timer < effectTimer)
@@ -199,7 +198,7 @@ public class CharacterClass : BaseObject
 
             yield return new WaitForSeconds(1f);
         }
-
+        Debug.Log("Exit Stun");
         _speed = originalSpeed;
 
         yield return null;

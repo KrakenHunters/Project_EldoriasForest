@@ -281,7 +281,9 @@ public class AIController : CharacterClass
     }
     protected virtual void OnDie()
     {
-
+        StopAllCoroutines();
+        agent.speed = 0f;
+        agent.SetDestination(transform.position);
         SoulCollectible soul = Instantiate(soulDrop, transform.position, Quaternion.identity);
         soul.tier = tier;
 
