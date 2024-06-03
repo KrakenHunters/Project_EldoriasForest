@@ -107,7 +107,7 @@ public class BaseSpellBook : SpellBook
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.GetComponent<CharacterClass>())
+        if (other.GetComponent<CharacterClass>() && other.gameObject != charAttacker)
         {
             other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             Debug.Log("Got Hit");
