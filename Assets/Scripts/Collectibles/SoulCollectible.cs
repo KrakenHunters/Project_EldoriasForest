@@ -22,6 +22,7 @@ public class SoulCollectible : Collectible
     protected override void ItemCollected(PlayerController player)
     {
         base.ItemCollected(player);
+
         switch (tier)
         {
             case 0:
@@ -38,5 +39,6 @@ public class SoulCollectible : Collectible
                 break;
 
         }
+        PlayerGUIManager.Instance.SetSoulCount();
     }
 }
