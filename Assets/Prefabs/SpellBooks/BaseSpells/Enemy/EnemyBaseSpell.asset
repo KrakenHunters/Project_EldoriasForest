@@ -36,7 +36,7 @@ MonoBehaviour:
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 0
+    speed: 15
   tier2:
     damage: 7
     cooldown: 0.5

@@ -40,9 +40,9 @@ MonoBehaviour:
   tier2:
     damage: 10
     cooldown: 0.5
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    statusEffectTimer: 3
+    statusEffectDamage: 2
+    statusEffectChance: 0.3
     range: 10
     angle: 0
     healAmount: 0
@@ -52,9 +52,9 @@ MonoBehaviour:
   tier3:
     damage: 15
     cooldown: 0.5
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    statusEffectTimer: 5
+    statusEffectDamage: 4
+    statusEffectChance: 0.5
     range: 10
     angle: 0
     healAmount: 0
