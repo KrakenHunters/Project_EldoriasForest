@@ -47,13 +47,13 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 3
-  spellData: {fileID: 11400000, guid: 81a07b1c38afedc4b99a78f4282f1b84, type: 2}
+  spellData: {fileID: 11400000, guid: 18797ccf70567044b9efadb5f769553b, type: 2}
   spellIcon: {fileID: 0}
-  statusEffect: 0
+  statusEffect: 1
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
   firePatchPrefab: {fileID: 8949095429421698815, guid: 47ce48fd519a67241b8caf56799fef9c,
     type: 3}
   firePatchInterval: 0.5
-  trailRange: 10
+  trailRange: 15
