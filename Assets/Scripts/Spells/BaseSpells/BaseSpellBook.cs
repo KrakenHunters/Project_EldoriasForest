@@ -5,14 +5,9 @@ using UnityEngine;
 public class BaseSpellBook : SpellBook
 {
     [SerializeField]
-    protected float speed;
+    private float autoAimRange = 10f; // Range within which the auto-aim checks for enemies
     [SerializeField]
-    protected float range;
-
-    [SerializeField]
-    private float aimRange = 10f; // Range within which the auto-aim checks for enemies
-    [SerializeField]
-    private float aimAngle = 15f; // Cone angle in degrees for auto-aim
+    private float autoAimAngle = 15f; // Cone angle in degrees for auto-aim
 
     protected Vector3 startPos;
 
@@ -69,12 +64,12 @@ public class BaseSpellBook : SpellBook
             targetDirection = direction;
         }
 
-        GetComponent<Rigidbody>().velocity = targetDirection * speed;
+        GetComponent<Rigidbody>().velocity = targetDirection * projectileSpeed;
     }
 
     private Vector3 FindClosestEnemyWithinCone(Vector3 direction)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(startPos, aimRange);
+        Collider[] hitColliders = Physics.OverlapSphere(startPos, autoAimRange);
         Transform closestEnemy = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 forward = direction;
@@ -88,7 +83,7 @@ public class BaseSpellBook : SpellBook
                 Vector3 directionToTarget = hitCollider.transform.position - startPos;
                 float angle = Vector3.Angle(forward, directionToTarget);
 
-                if (angle < aimAngle / 2)
+                if (angle < autoAimAngle / 2)
                 {
                     float distanceSqr = directionToTarget.sqrMagnitude;
                     if (distanceSqr < closestDistanceSqr)

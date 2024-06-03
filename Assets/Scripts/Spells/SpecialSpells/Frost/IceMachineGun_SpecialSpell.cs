@@ -5,8 +5,6 @@ using UnityEngine.UIElements;
 
 public class IceMachineGun_SpecialSpell : SpecialSpellBook
 {
-    private float spellTimer;
-
     [SerializeField]
     private float interval;
 
@@ -18,11 +16,6 @@ public class IceMachineGun_SpecialSpell : SpecialSpellBook
     protected override void CastSpell(int tier)
     {
 
-        LightningBeamSpellStatsContainer container = spellData as LightningBeamSpellStatsContainer;
-        container.SetTierData(tier);
-        LightningBeamTierData iceMachineGunContainer = container.currentTierData as LightningBeamTierData;
-
-        spellTimer = iceMachineGunContainer.duration;
 
     }
 
@@ -31,13 +24,13 @@ public class IceMachineGun_SpecialSpell : SpecialSpellBook
         base.Shoot(direction, attacker);
         transform.SetParent(charAttacker.transform);
         StartCoroutine(FireProjectiles());
-        Destroy(gameObject, spellTimer);
+        Destroy(gameObject, duration);
 
     }
 
     IEnumerator FireProjectiles()
     {
-        float endTime = Time.time + spellTimer;
+        float endTime = Time.time + duration;
 
         while (Time.time < endTime)
         {

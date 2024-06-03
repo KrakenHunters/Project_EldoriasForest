@@ -12,9 +12,15 @@ public class SpellBook : MonoBehaviour
     protected GameObject charAttacker;
     public castType castOrigin;
 
-    protected int damage;
+    protected float damage;
 
     protected float timer;
+
+    protected float range;
+
+    protected float duration;
+
+    protected float projectileSpeed;
 
     [SerializeField]
     protected SpellStatsContainer spellData;
@@ -88,8 +94,10 @@ public class SpellBook : MonoBehaviour
         statusEffectDamage = spellData.currentTierData.statusEffectDamage;
         statusEffectChance = spellData.currentTierData.statusEffectChance;
 
+        range = spellData.currentTierData.range;
+        duration = spellData.currentTierData.duration;
         cooldown = spellData.currentTierData.cooldown;
-
+        projectileSpeed = spellData.currentTierData.speed;
     }
 
 

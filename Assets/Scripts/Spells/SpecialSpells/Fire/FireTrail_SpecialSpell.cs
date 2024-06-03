@@ -8,22 +8,14 @@ public class FireTrail_SpecialSpell : SpecialSpellBook
     private GameObject firePatchPrefab;  // Prefab of the fire patch with collider
     [SerializeField]
     private float firePatchInterval = 0.5f; // Interval between fire patches
-    [SerializeField]
-    private float trailRange = 10f;      // Range of the fire trail
 
     private float patchLifetime;    // Lifetime of each fire patch
-    private float damagePerSecond;
     private bool isCasting = false;
     private Vector3 castDirection;
 
     protected override void CastSpell(int tier)
     {
-        FireTrailSpellStatsContainer container = spellData as FireTrailSpellStatsContainer;
-        container.SetTierData(tier);
-        FireTrailTierData trailContainer = container.currentTierData as FireTrailTierData;
-
-        damagePerSecond = trailContainer.damage;
-        patchLifetime = trailContainer.duration;
+        patchLifetime = spellData.currentTierData.duration;
 
     }
 
@@ -34,7 +26,7 @@ public class FireTrail_SpecialSpell : SpecialSpellBook
         Vector3 startPosition = new Vector3 (transform.position.x, -0.7f, transform.position.z);
         Vector3 forwardDirection = castDirection;
 
-        int numberOfPatches = Mathf.CeilToInt(trailRange / firePatchInterval);
+        int numberOfPatches = Mathf.CeilToInt(range / firePatchInterval);
 
         for (int i = 0; i < numberOfPatches; i++)
         {
@@ -62,6 +54,6 @@ public class FireTrail_SpecialSpell : SpecialSpellBook
     {
         GameObject firePatch = Instantiate(firePatchPrefab, position, Quaternion.identity);
         FirePatch_SpecialSpell firePatchScript = firePatch.GetComponent<FirePatch_SpecialSpell>();
-        firePatchScript.Initialize(damagePerSecond, patchLifetime, charAttacker, this);
+        firePatchScript.Initialize(damage, patchLifetime, charAttacker, this);
     }
 }

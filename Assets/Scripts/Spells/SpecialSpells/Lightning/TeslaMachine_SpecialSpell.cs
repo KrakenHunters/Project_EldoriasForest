@@ -29,12 +29,8 @@ public class TeslaMachine_SpecialSpell : SpecialSpellBook
     protected override void CastSpell(int tier)
     {
 
-        TeslaMachineSpellStatsContainer container = spellData as TeslaMachineSpellStatsContainer;
-        container.SetTierData(tier);
-        TeslaMachineTierData teslaContainer = container.currentTierData as TeslaMachineTierData;
-
         radiusCollider = GetComponent<SphereCollider>();
-        radiusCollider.radius = teslaContainer.radius;
+        radiusCollider.radius = spellData.currentTierData.radius;
         limitUp = 1f;
         startPosY = transform.position.y;
     }

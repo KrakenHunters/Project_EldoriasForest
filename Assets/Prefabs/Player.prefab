@@ -242,7 +242,7 @@ MonoBehaviour:
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
   c: {fileID: 2666035536617133056}
-  combatCooldown: 5
+  combatCooldown: 8
   _rotationSpeed: 3000
   attackType: 0
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
