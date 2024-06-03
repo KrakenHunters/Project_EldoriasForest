@@ -49,14 +49,13 @@ MonoBehaviour:
   tier: 1
   cooldown: 5
   castOrigin: 0
-  spellData: {fileID: 11400000, guid: 53f143daef4eedc47b9fa6ed96a336df, type: 2}
+  spellData: {fileID: 11400000, guid: db39e15e1e0cd204aa224c52414f95b5, type: 2}
   spellIcon: {fileID: 0}
   statusEffect: 2
   statusEffectTimer: 5
   statusEffectDamage: 2
   statusEffectChance: 0
   spellTimer: 2
-  speed: 10
 --- !u!54 &-8368721801276657126
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,7 +75,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -135,7 +134,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
