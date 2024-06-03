@@ -251,6 +251,8 @@ MonoBehaviour:
   maxAmountInGroup: 3
   minIdleTime: 2
   minIdleRadius: 4
+  playerInteractionInformation: {fileID: 11400000, guid: 2801e7035c2976c4299ddc5e9e7b1080,
+    type: 2}
   boidNeighborRadius: 5
   separationWeight: 3
   alignmentWeight: 0.2

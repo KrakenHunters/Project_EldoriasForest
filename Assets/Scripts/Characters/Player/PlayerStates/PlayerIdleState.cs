@@ -17,8 +17,9 @@ public class PlayerIdleState : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.Move(_direction.normalized * player.Speed*Time.fixedDeltaTime);
-        RotateToTarget();
+        player.c.SimpleMove(_direction.normalized * player.Speed);
+        player.RotateToTarget();
+        player.PlayerInteraction.PlayerLocationChanged(player.transform.position);
     }
 
     public override void StateUpdate()

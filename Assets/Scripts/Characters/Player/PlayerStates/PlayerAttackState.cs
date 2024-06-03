@@ -18,6 +18,12 @@ public class PlayerAttackState : BaseState
         //Animate ad change to new state and cast spell after animation is done
 
     }
+
+    private void Attack()
+    {
+        player.CastSpell(activeSpell); //you should cast the spell as soon as you enter the state
+        player.ResetCombatTimer();
+    }
     public override void ExitState()
     {
 
@@ -25,17 +31,17 @@ public class PlayerAttackState : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.Move(_direction.normalized * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
-        RotateToTarget();
+        player.c.SimpleMove(_direction.normalized * player.Speed * player.SpeedModifier);
+        player.RotateToTarget();
 
         timer += Time.deltaTime;
-        float clipLength = 0f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        float clipLength = 0.2f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (timer >= clipLength)
         {
             timer = 0f;
+            Attack();
 
-            
-            player.ChangeState(new PlayerIdleState());
+            //player.ChangeState(new PlayerIdleState());
         }
 
     }
@@ -47,6 +53,11 @@ public class PlayerAttackState : BaseState
     public override void HandleMovement(Vector2 dir)
     {
         _direction = new Vector3(dir.x, 0, dir.y);
+    }
+
+    public override void HandleAttackCancel()
+    {
+        player.ChangeState(new PlayerIdleState());
     }
     private void Rotate()
     {

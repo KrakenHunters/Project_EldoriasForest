@@ -57,6 +57,8 @@ public class AIController : CharacterClass
 
     private bool checkAISpot;
 
+    [SerializeField] protected PlayerInteractionInformationSO playerInteractionInformation;
+    
     [Header("Boid Settings")]
     public float boidNeighborRadius = 5f;
     public float separationWeight = 1.5f;

@@ -48,8 +48,10 @@ public class InputManager : MonoBehaviour
     {
 
         _action.Player.Move.performed += (val) => Movement = val.ReadValue<Vector2>();
-
+        
+        _action.Player.PointerMove.performed += (val) => _player.HandlePointerDirection(val.ReadValue<Vector2>());
         _action.Player.BaseAttack.performed += (val) => _player.HandleBaseAttack();
+        _action.Player.BaseAttack.canceled += (val)=>_player.HandleCancelBaseAttack(); 
         _action.Player.SpecialAttack.performed += (val) => _player.HandleSpecialAttack();
         _action.Player.UltimateAttack.performed += (val) => _player.HandleUltimateAttack();
 

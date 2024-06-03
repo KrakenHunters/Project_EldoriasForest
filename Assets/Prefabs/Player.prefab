@@ -244,6 +244,8 @@ MonoBehaviour:
   c: {fileID: 2666035536617133056}
   combatCooldown: 5
   _rotationSpeed: 3000
+  <PlayerInteraction>k__BackingField: {fileID: 11400000, guid: 2801e7035c2976c4299ddc5e9e7b1080,
+    type: 2}
   attackType: 0
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   canInteract: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : CharacterClass
 {
+    
+    protected LayerMask groundLayer;
     [HideInInspector]
     public CharacterController c;
     
@@ -15,11 +17,13 @@ public class PlayerController : CharacterClass
     [SerializeField]
     protected float _rotationSpeed;
     
-
+    [field: SerializeField]
+    public PlayerInteractionInformationSO PlayerInteraction { get; private set; }
     public AttackType attackType;
-
+    
     public TemporaryDataContainer tempData;
-
+    public Vector3 MouseWorldPosition { get; private set; }
+    public Quaternion PlayerRotation { get; private set; }
     private InputManager inputManager;
 
     private bool isMoving;
@@ -32,8 +36,10 @@ public class PlayerController : CharacterClass
     public Interactable interactableObj;
     private void Awake()
     {
+        groundLayer = LayerMask.GetMask("Ground");
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
+        
         PlayerGUIManager.Instance.SetHealthValues(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
@@ -75,6 +81,26 @@ public class PlayerController : CharacterClass
     {
         currentState?.HandleMovement(dir);
     }
+
+    public void HandlePointerDirection(Vector2 mousePos)
+    {
+        Vector3 newMousePos = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(newMousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        {
+            MouseWorldPosition = hit.point;
+        }
+        Vector3 target = MouseWorldPosition;
+        Vector3 direction = target - transform.position;
+        direction.y = 0;
+        PlayerRotation = Quaternion.LookRotation(direction);
+    }
+
+    public void HandleControllerDirection(Vector2 move)
+    {
+        //calculate the PlayerRotation based on the movement of the joystick
+    }
     
     public void HandleInteract()
     {
@@ -93,6 +119,7 @@ public class PlayerController : CharacterClass
             PlayerSpellCastManager.Instance.CastBaseSpell();
 
     }
+    
     public void HandleSpecialAttack()
     {
         if (tempData.specialSpell != null)
@@ -129,7 +156,10 @@ public class PlayerController : CharacterClass
         Special,
         Ultimate
     }
-
+    public void RotateToTarget()
+    {
+        transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, PlayerRotation, RotationSpeed);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Interactable>())
@@ -164,4 +194,9 @@ public class PlayerController : CharacterClass
         PlayerGUIManager.Instance.SetHealthValues(health);
     }
 
+    public void HandleCancelBaseAttack()
+    {
+        currentState?.HandleAttackCancel();
+        //throw new NotImplementedException();
+    }
 }

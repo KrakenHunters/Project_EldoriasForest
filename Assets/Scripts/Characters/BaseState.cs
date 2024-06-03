@@ -16,23 +16,21 @@ public abstract class BaseState
     public virtual void StateFixedUpdate() { }
     public virtual void StateUpdate() { }
     public virtual void HandleMovement(Vector2 dir) { }
+    public virtual void HandleMousePosition(Vector2 mousePos){ }
     public virtual void HandleAttack() { }
+
+    public virtual void HandleAttackCancel()
+    {
+    }
+
     public virtual void HandleInteract() { }
     public virtual void StopInteract() { }
 
     public virtual void HandleDeath() { }
+    
 
-    protected virtual void RotateToTarget()
+    protected virtual void RotateWithMove()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-        {
-            Vector3 target = hit.point;
-            Vector3 direction = target - character.transform.position;
-            direction.y = 0;
-            character.gameObject.transform.rotation = Quaternion.Slerp(character.gameObject.transform.rotation, Quaternion.LookRotation(direction), character.RotationSpeed);
-        }
+        
     }
 }
