@@ -128,6 +128,6 @@ MonoBehaviour:
   statusEffectDamage: 0
   statusEffectChance: 0
   speed: 15
-  range: 15
+  range: 20
   aimRange: 10
   aimAngle: 15

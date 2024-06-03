@@ -105,7 +105,7 @@ MonoBehaviour:
   statusEffectDamage: 0
   statusEffectChance: 0
   speed: 25
-  range: 20
+  range: 15
   aimRange: 10
   aimAngle: 15
 --- !u!1001 &1418509222548407617
