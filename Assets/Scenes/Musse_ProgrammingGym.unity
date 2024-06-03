@@ -1179,7 +1179,7 @@ PrefabInstance:
     - target: {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
       propertyPath: waitTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8273967322944376059, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
@@ -1695,7 +1695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   templeUI: {fileID: 399023396}
-  InteractTemple: {fileID: 11400000, guid: 2b04fbe329248e641a6628b2427c032a, type: 2}
   Hearts: {fileID: 935729563}
   Souls: {fileID: 799980477}
   SpecialSpell: {fileID: 34553934}
@@ -2169,7 +2168,7 @@ PrefabInstance:
     - target: {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
       propertyPath: waitTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8273967322944376059, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
@@ -2247,7 +2246,7 @@ PrefabInstance:
     - target: {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
       propertyPath: waitTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8273967322944376059, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
@@ -2325,7 +2324,7 @@ PrefabInstance:
     - target: {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}
       propertyPath: waitTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8273967322944376059, guid: b2d6b10f4a004ee4b817620c6286d1e9,
         type: 3}

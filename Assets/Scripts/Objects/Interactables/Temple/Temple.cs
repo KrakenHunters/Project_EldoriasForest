@@ -15,7 +15,7 @@ public class Temple : Interactable
 
     public override void Interact()
     {
-        base.Interact();
+       
         //Code to pop up Menu to select the reward here, als randomizing the values and the objects fr the menu
         TempleUIManager.Instance.SetTempleOptions(tier);
 

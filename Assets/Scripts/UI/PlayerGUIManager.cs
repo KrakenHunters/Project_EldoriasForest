@@ -34,8 +34,8 @@ public class PlayerGUIManager : Singleton<PlayerGUIManager>
 
     public void SetSoulCount()
     {
-        string formatedCount = String.Format("{0:N0}", tempData.collectedSouls);
-        soulCountText.text = formatedCount;
+        //string formatedCount = String.Format("{0:N0}", tempData.collectedSouls;
+        soulCountText.text = tempData.collectedSouls.ToString(); 
     }
 
     public void SetHealthValues(float health)

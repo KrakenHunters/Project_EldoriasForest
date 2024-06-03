@@ -7,7 +7,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 {
     [SerializeField] private GameObject templeUI;
 
-    [SerializeField] private GameEvent InteractTemple;
+   // [SerializeField] private GameEvent InteractTemple;
 
     [Header("Temple UI")]
     [SerializeField] private Image Hearts;
@@ -49,7 +49,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void Start()
     {
-        player = gameObject.CompareTag("Player") ? GetComponent<PlayerController>() : null;
+        player = FindAnyObjectByType<PlayerController>();
     }
     public void SetTempleOptions(int tier)
     {
@@ -81,6 +81,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
         }
        
         templeUI.SetActive(true);
+
        // Time.timeScale = 0.0f;
         //Randomize the values and the objects for the menu
         //Set the values and the objects for the menu
@@ -89,7 +90,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
     public void OnHealthButton()
     {
         Time.timeScale = 1.0f;
-        player?.Heal(templeHealth);
+        player.Heal(templeHealth);
         templeUI.SetActive(false);
     }
 
@@ -97,8 +98,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
     {
         Time.timeScale = 1.0f;
         GameManager.Instance.tData.collectedSouls += templeSouls;
-        PlayerGUIManager.Instance.SetSoulCount();
         //StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
+        PlayerGUIManager.Instance.SetSoulCount();
         templeUI.SetActive(false);
 
     }
