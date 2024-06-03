@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3583d290fa41e4ab98d0b959ad6fec, type: 3}
   m_Name: TemporaryData
   m_EditorClassIdentifier: 
-  collectedSouls: 489
+  collectedSouls: 516
   baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
-  specialSpell: {fileID: 1183470640323938929, guid: 045f4f4b009aaa24291114fd07dbf328,
+  specialSpell: {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a,
     type: 3}
   ultimateSpell: {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5,
     type: 3}
