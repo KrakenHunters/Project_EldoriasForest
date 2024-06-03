@@ -22,19 +22,19 @@ MonoBehaviour:
   SpellTier1:
     damage: 0
     cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
+    statusEffectTimer: 2
+    statusEffectDamage: 5
     statusEffectChance: 0
-    healAmount: 0
+    healAmount: 4
   SpellTier2:
-    damage: 0
+    damage: 2
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
     healAmount: 0
   SpellTier3:
-    damage: 0
+    damage: 5
     cooldown: 0
     statusEffectTimer: 0
     statusEffectDamage: 0

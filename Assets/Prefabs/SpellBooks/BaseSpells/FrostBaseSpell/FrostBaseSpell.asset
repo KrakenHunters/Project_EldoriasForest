@@ -20,20 +20,20 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier1:
-    damage: 0
-    cooldown: 0
+    damage: 5
+    cooldown: 0.5
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
   SpellTier2:
-    damage: 0
-    cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    damage: 7
+    cooldown: 0.5
+    statusEffectTimer: 5
+    statusEffectDamage: 1.3
+    statusEffectChance: 0.3
   SpellTier3:
-    damage: 0
-    cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    damage: 12
+    cooldown: 0.5
+    statusEffectTimer: 5
+    statusEffectDamage: 1.8
+    statusEffectChance: 0.5

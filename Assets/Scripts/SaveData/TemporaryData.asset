@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3583d290fa41e4ab98d0b959ad6fec, type: 3}
   m_Name: TemporaryData
   m_EditorClassIdentifier: 
-  collectedSouls: 516
-  baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
+  collectedSouls: 531
+  baseSpell: {fileID: 5174980907974982790, guid: 05c9a10685304c343a108b54ea69c240,
     type: 3}
   specialSpell: {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a,
     type: 3}
