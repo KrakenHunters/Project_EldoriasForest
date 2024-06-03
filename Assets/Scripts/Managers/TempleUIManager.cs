@@ -15,9 +15,9 @@ public class TempleUIManager : Singleton<TempleUIManager>
     [SerializeField] private Image SpecialSpell;
 
     [Header("Temple UI Text")]
-    [SerializeField] private TMPro.TextMeshPro templeHealthText;
-    [SerializeField] private TMPro.TextMeshPro templeSoulsText;
-    [SerializeField] private TMPro.TextMeshPro templeSpecialSpellText;
+    [SerializeField] private TMPro.TextMeshProUGUI templeHealthText;
+    [SerializeField] private TMPro.TextMeshProUGUI templeSoulsText;
+    [SerializeField] private TMPro.TextMeshProUGUI templeSpecialSpellText;
 
     [Header("Temple Tier 1")]
     [SerializeField] private int minTempleTier1Health;
@@ -49,7 +49,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void Start()
     {
-        player = GetComponent<PlayerController>();
+        player = gameObject.CompareTag("Player") ? GetComponent<PlayerController>() : null;
     }
     public void SetTempleOptions(int tier)
     {
@@ -79,30 +79,34 @@ public class TempleUIManager : Singleton<TempleUIManager>
                 templeSpecialSpellText.text = "Tier 3";
                 break;
         }
-
-
+       
+        templeUI.SetActive(true);
+       // Time.timeScale = 0.0f;
         //Randomize the values and the objects for the menu
         //Set the values and the objects for the menu
     }
 
     public void OnHealthButton()
     {
-        player.Heal(templeHealth);
-
         Time.timeScale = 1.0f;
+        player?.Heal(templeHealth);
+        templeUI.SetActive(false);
     }
 
     public void OnSoulsButton()
     {
-        GameManager.Instance.tData.collectedSouls += templeSouls;
-        StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
-
         Time.timeScale = 1.0f;
+        GameManager.Instance.tData.collectedSouls += templeSouls;
+        PlayerGUIManager.Instance.SetSoulCount();
+        //StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
+        templeUI.SetActive(false);
 
     }
 
     public void OnSpellButton()
     {
+        Time.timeScale = 1.0f;
+
         if (templeTier == 3)
         {
             currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
@@ -129,8 +133,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
         GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
 
         PlayerGUIManager.Instance.SetSpellIcons();
-
-        Time.timeScale = 1.0f;
+        templeUI.SetActive(false);
     }
 
 }

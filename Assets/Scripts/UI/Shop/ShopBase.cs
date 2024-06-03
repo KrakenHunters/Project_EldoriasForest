@@ -10,7 +10,9 @@ public class ShopBase : MonoBehaviour
 
     [Header("Upgrade Cost")]
     [SerializeField] private int upgradeCost = 100;
+    [SerializeField] private int costMultiplyer = 50;
     [SerializeField] private Button upgradeButton;
+    [SerializeField] private TMPro.TextMeshProUGUI upgradeCostText;
 
     [Header("Base Shop Items")]
     [SerializeField] private BaseFireSpell fireSpell;
@@ -22,7 +24,10 @@ public class ShopBase : MonoBehaviour
     private void Start()
     {
         ConvertSpellToType(ShopManager.Instance.permData.prefBaseSpell);
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell(), 0);
+        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell(),0);
+        upgradeCostText.text = upgradeCost.ToString();
+        if (ShopManager.Instance.permData.baseAttackTier == 3)
+            upgradeCostText.text = "Max";
     }
 
     private void Update()
@@ -101,6 +106,11 @@ public class ShopBase : MonoBehaviour
     {
         ShopManager.Instance.permData.baseAttackTier++;
         ShopManager.Instance.permData.totalSouls -= upgradeCost;
+        upgradeCost *= costMultiplyer;
+        upgradeCostText.text = upgradeCost.ToString();
+        if (ShopManager.Instance.permData.baseAttackTier == 3)
+            upgradeCostText.text = "Max";
+
         ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell(), upgradeCost);
 
     }
