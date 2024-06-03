@@ -98,7 +98,7 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 3
-  spellData: {fileID: 11400000, guid: f19a8099d223ffc41ad08259d3ad6759, type: 2}
+  spellData: {fileID: 11400000, guid: 77d6db44178d15a4b92eceb4ad70c333, type: 2}
   spellIcon: {fileID: 21300000, guid: c7ca49be313a3a640909d048918e61d5, type: 3}
   statusEffect: 0
   statusEffectTimer: 0

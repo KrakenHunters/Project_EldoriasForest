@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: PermanentData
   m_EditorClassIdentifier: 
-  totalSouls: 3000
+  totalSouls: 2600
   spellBooksUnlocked: []
   rune: 0
   cooldownReduction: 0

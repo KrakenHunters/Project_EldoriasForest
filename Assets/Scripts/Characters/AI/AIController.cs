@@ -299,7 +299,7 @@ public class AIController : CharacterClass
     {
         base.GetHit(damageAmount, attacker, spell);
 
-        if (attacker.GetComponent<PlayerController>())
+        if (attacker.GetComponent<PlayerController>() && isAlive)
         {
             player = attacker.transform;
             SetBrain(AIBrain.Chase);
@@ -323,7 +323,7 @@ public class AIController : CharacterClass
     #endregion
 
     #region Check Functions
-    void OnDrawGizmos()
+/*    void OnDrawGizmos()
     {
         if (player != null)
         {
@@ -349,7 +349,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-
+*/
     private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
         Vector3 vecToTargetWorld = targetPosition - transform.position;
