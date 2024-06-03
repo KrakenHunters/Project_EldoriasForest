@@ -1,21 +1,19 @@
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class pAttackState : BaseState
+public class PlayerAttackState : BaseState
 {
     PlayerController player;
-    Vector3 _direction;
 
     private SpellBook activeSpell;
 
     private float timer;
-
-    LayerMask groundLayer = LayerMask.GetMask("Ground");
+    
     public override void EnterState()
     {
-        Debug.Log("Enter Move");
         player = character.GetComponent<PlayerController>();
         CheckAttackType();
+        player.CastSpell(activeSpell); //you should cast the spell as soon as you enter the state
         player.ResetCombatTimer();
         //Animate ad change to new state and cast spell after animation is done
 
@@ -28,7 +26,7 @@ public class pAttackState : BaseState
     public override void StateFixedUpdate()
     {
         player.c.Move(_direction.normalized * player.Speed * player.SpeedModifier * Time.fixedDeltaTime);
-        Rotate();
+        RotateToTarget();
 
         timer += Time.deltaTime;
         float clipLength = 0f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
@@ -36,8 +34,8 @@ public class pAttackState : BaseState
         {
             timer = 0f;
 
-            player.CastSpell(activeSpell);
-            player.ChangeState(new pIdleState());
+            
+            player.ChangeState(new PlayerIdleState());
         }
 
     }

@@ -12,6 +12,7 @@ public class CharacterClass : BaseObject
 
     [SerializeField]
     protected float _speed;
+    public float RotationSpeed { get { return _speed; } }
     public float Speed { get { return _speed; } }
     [SerializeField]
     protected float _speedModifier;

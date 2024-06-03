@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class pInteractState : BaseState
+public class PlayerInteractState : BaseState
 {
     PlayerController player;
 
@@ -39,13 +39,13 @@ public class pInteractState : BaseState
             Debug.Log("Interacting with " + player.interactableObj.name);
 
             player.interactableObj.Interact(); //Call interaction with the interactable obj
-            player.ChangeState(new pIdleState());
+            player.ChangeState(new PlayerIdleState());
         }
     }
 
     public override void StopInteract()
     {
-        player.ChangeState(new pIdleState());
+        player.ChangeState(new PlayerIdleState());
     }
 
 }

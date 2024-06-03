@@ -4,7 +4,8 @@ public abstract class BaseState
 {
 
     protected float nextDirection;
-
+    protected Vector3 _direction;
+    protected LayerMask groundLayer = LayerMask.GetMask("Ground");
     public CharacterClass character { get; set; }
     public InputManager inputManager { get; set; }
 
@@ -20,4 +21,18 @@ public abstract class BaseState
     public virtual void StopInteract() { }
 
     public virtual void HandleDeath() { }
+
+    protected virtual void RotateToTarget()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        {
+            Vector3 target = hit.point;
+            Vector3 direction = target - character.transform.position;
+            direction.y = 0;
+            character.gameObject.transform.rotation = Quaternion.Slerp(character.gameObject.transform.rotation, Quaternion.LookRotation(direction), character.RotationSpeed);
+        }
+    }
 }

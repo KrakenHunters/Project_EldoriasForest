@@ -14,7 +14,7 @@ public class PlayerController : CharacterClass
 
     [SerializeField]
     protected float _rotationSpeed;
-    public float RotationSpeed { get { return _speed; } }
+    
 
     public AttackType attackType;
 
@@ -37,7 +37,7 @@ public class PlayerController : CharacterClass
         PlayerGUIManager.Instance.SetHealthValues(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
-        ChangeState(new pIdleState());
+        ChangeState(new PlayerIdleState());
 
     }
 
