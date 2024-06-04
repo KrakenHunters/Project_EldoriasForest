@@ -40,15 +40,15 @@ public class GridManager : Singleton<GridManager>
     private Dictionary<int, Dictionary<string, List<Vector3>>> objectPositions = new Dictionary<int, Dictionary<string, List<Vector3>>>();
     private Dictionary<int, Dictionary<string, int>> maxObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 20 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 2 }, { "EnemySpot", 6 }, { "Enemy", 30 } } },
-        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 2 }, { "EnemySpot", 7 }, { "Enemy", 45 } } }
+        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 45 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 60 } } },
+        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 7 }, { "Enemy", 65 } } }
     };
     private Dictionary<int, Dictionary<string, int>> minObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 15 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 25 } } },
-        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
+        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 50 } } },
+        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 55 } } },
     };
 
     [SerializeField]

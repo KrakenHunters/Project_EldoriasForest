@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class pInteractState : BaseState
+public class PlayerInteractState : BaseState
 {
-    PlayerController player;
-
-    private float timer;
 
     public override void EnterState()
     {
-        player = character.GetComponent<PlayerController>();
-
+        base.EnterState();
         //Animate
 
         timer = 0f;
@@ -39,13 +35,24 @@ public class pInteractState : BaseState
             Debug.Log("Interacting with " + player.interactableObj.name);
 
             player.interactableObj.Interact(); //Call interaction with the interactable obj
-            player.ChangeState(new pIdleState());
+            player.ChangeState(new PlayerMoveState());
         }
     }
 
+    public override void HandleSpecialAttack()
+    {
+
+    }
+
+    public override void HandleAttack()
+    {
+
+    }
+
+
     public override void StopInteract()
     {
-        player.ChangeState(new pIdleState());
+        player.ChangeState(new PlayerMoveState());
     }
 
 }

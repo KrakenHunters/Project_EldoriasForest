@@ -8,8 +8,7 @@ public class PlayerController : CharacterClass
     [HideInInspector]
     public CharacterController c;
     
-    [SerializeField]
-    private float combatCooldown = 5f;
+    public float combatCooldown = 5f;
     float combatTimer = 0;
 
     [SerializeField]
@@ -24,20 +23,30 @@ public class PlayerController : CharacterClass
 
     private bool isMoving;
 
+    private PlayerSpellCastManager spellCastManager;
+
+    public Vector3 MouseWorldPosition { get; private set; }
+    public Quaternion PlayerRotation { get; private set; }
+
+    private LayerMask groundLayer;
 
     [HideInInspector]
     public bool canInteract;
 
     [HideInInspector]
     public Interactable interactableObj;
+
+
     private void Awake()
     {
+        groundLayer = LayerMask.GetMask("Ground");
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
         PlayerGUIManager.Instance.SetHealthValues(health);
+        spellCastManager = GetComponent<PlayerSpellCastManager>();
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
-        ChangeState(new pIdleState());
+        ChangeState(new PlayerMoveState());
 
     }
 
@@ -90,18 +99,18 @@ public class PlayerController : CharacterClass
     public void HandleBaseAttack()
     {
         if (tempData.baseSpell != null)
-            PlayerSpellCastManager.Instance.CastBaseSpell();
+            spellCastManager.CastBaseSpell();
 
     }
     public void HandleSpecialAttack()
     {
         if (tempData.specialSpell != null)
-            PlayerSpellCastManager.Instance.CastSpecialSpell();
+            spellCastManager.CastSpecialSpell();
     }
     public void HandleUltimateAttack()
     {
         if (tempData.ultimateSpell != null)
-            PlayerSpellCastManager.Instance.CastUltimateSpell();
+            spellCastManager.CastUltimateSpell();
     }
 
     #endregion
@@ -115,12 +124,6 @@ public class PlayerController : CharacterClass
             //Time.timeScale = 0f;
         }
 
-    }
-
-    public void ResetCombatTimer()
-    {
-        isInCombat = true;
-        combatTimer = 0f;
     }
 
     public enum AttackType
@@ -151,6 +154,38 @@ public class PlayerController : CharacterClass
         //Turn it on later
         //tempData.ultimateSpell = null;
     }
+
+    public void HandlePointerDirection(Vector2 mousePos)
+    {
+        Vector3 newMousePos = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(newMousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        {
+            MouseWorldPosition = hit.point;
+        }
+        Vector3 target = MouseWorldPosition;
+        Vector3 direction = target - transform.position;
+        direction.y = 0;
+        PlayerRotation = Quaternion.LookRotation(direction);
+    }
+
+    public void RotateToTarget()
+    {
+        transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, PlayerRotation, RotationSpeed);
+    }
+
+
+    public void HandleControllerDirection(Vector2 move)
+    {
+        //calculate the PlayerRotation based on the movement of the joystick
+    }
+
+    public void HandleCancelBaseAttack()
+    {
+        currentState?.HandleAttackCancel();
+    }
+
 
     protected override void TakeDamage(float damage)
     {

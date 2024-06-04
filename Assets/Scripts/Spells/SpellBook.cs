@@ -37,6 +37,8 @@ public class SpellBook : MonoBehaviour
     [HideInInspector]
     public float statusEffectChance;
 
+    public bool canUseBaseSpell = true;
+
     #endregion
 
 
@@ -99,7 +101,10 @@ public class SpellBook : MonoBehaviour
         cooldown = spellData.currentTierData.cooldown;
         projectileSpeed = spellData.currentTierData.speed;
     }
-
+    public float ReturnDuration()
+    {
+        return duration;
+    }
 
 
     public enum castType

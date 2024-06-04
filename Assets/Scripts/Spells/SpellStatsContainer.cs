@@ -46,7 +46,6 @@ public class TierData
     public float statusEffectDamage;
     public float statusEffectChance;
     public float range;
-    public float angle;
     public float healAmount;
     public float radius;
     public float duration;

@@ -45,9 +45,10 @@ public class BaseSpellBook : SpellBook
     {
         base.Shoot(direction, attacker);
         startPos = transform.position;
+
         if (attacker.GetComponent<PlayerController>())
         {
-            PlayerSpellCastManager.Instance.currentBaseSpellCooldown = cooldown;
+            attacker.GetComponent<PlayerSpellCastManager>().currentBaseSpellCooldown = cooldown;
             targetDirection = FindClosestEnemyWithinCone(direction);
             tier = GameManager.Instance.pData.baseAttackTier;
 

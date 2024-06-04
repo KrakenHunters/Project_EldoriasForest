@@ -55,8 +55,6 @@ public class AIController : CharacterClass
     [SerializeField]
     private float minIdleRadius;  // Radius within which the AI can roam while idling
 
-    private bool checkAISpot;
-
     [Header("Boid Settings")]
     public float boidNeighborRadius = 5f;
     public float separationWeight = 1.5f;

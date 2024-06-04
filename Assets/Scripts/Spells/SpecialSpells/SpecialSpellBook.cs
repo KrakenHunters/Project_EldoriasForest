@@ -18,7 +18,7 @@ public class SpecialSpellBook : SpellBook
         base.Shoot(direction,attacker);
         if (attacker.GetComponent<PlayerController>())
         {
-            PlayerSpellCastManager.Instance.currentSpecialSpellCooldown = cooldown;
+            attacker.GetComponent<PlayerSpellCastManager>().currentSpecialSpellCooldown = cooldown;
         }
 
     }
