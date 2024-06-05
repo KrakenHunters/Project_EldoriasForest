@@ -17,6 +17,8 @@ public class SoulCollectible : Collectible
     [SerializeField]
     public int soulAmountMinTier3;
 
+    [SerializeField]
+    private GameEvent OnSoulCollected;
 
 
     protected override void ItemCollected(PlayerController player)
@@ -39,6 +41,7 @@ public class SoulCollectible : Collectible
                 break;
 
         }
-        PlayerGUIManager.Instance.SetSoulCount();
+
+        OnSoulCollected.Raise();
     }
 }

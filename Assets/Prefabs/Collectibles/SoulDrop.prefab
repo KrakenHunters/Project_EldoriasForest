@@ -125,3 +125,4 @@ MonoBehaviour:
   soulAmountMinTier2: 35
   soulAmountMaxTier3: 40
   soulAmountMinTier3: 60
+  OnSoulCollected: {fileID: 11400000, guid: 801dfd5f275123948baf1618715ff62f, type: 2}

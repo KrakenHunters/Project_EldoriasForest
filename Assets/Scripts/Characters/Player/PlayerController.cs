@@ -24,6 +24,8 @@ public class PlayerController : CharacterClass
     private bool isMoving;
 
     private PlayerSpellCastManager spellCastManager;
+    [SerializeField]
+    private GameEvent onHealthChanged;
 
     public Vector3 MouseWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
@@ -42,8 +44,8 @@ public class PlayerController : CharacterClass
         groundLayer = LayerMask.GetMask("Ground");
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
-        PlayerGUIManager.Instance.SetHealthValues(health);
         spellCastManager = GetComponent<PlayerSpellCastManager>();
+        onHealthChanged.Raise(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new PlayerMoveState());
@@ -190,13 +192,13 @@ public class PlayerController : CharacterClass
     protected override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        PlayerGUIManager.Instance.SetHealthValues(health);
+       onHealthChanged.Raise(health);
     }
 
     public override void Heal(float healAmount)
     {
         base.Heal(healAmount);
-        PlayerGUIManager.Instance.SetHealthValues(health);
+        onHealthChanged.Raise(health);
     }
 
 }

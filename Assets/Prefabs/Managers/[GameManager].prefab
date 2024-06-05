@@ -47,3 +47,4 @@ MonoBehaviour:
   pData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   tData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   playerPos: {fileID: 0}
+  OnSoulChange: {fileID: 11400000, guid: 801dfd5f275123948baf1618715ff62f, type: 2}

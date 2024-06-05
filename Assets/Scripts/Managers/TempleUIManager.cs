@@ -99,7 +99,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
         Time.timeScale = 1.0f;
         GameManager.Instance.tData.collectedSouls += templeSouls;
         //StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
-        PlayerGUIManager.Instance.SetSoulCount();
+        //PlayerGUIManager.Instance.SetSoulCount();
         templeUI.SetActive(false);
 
     }
@@ -133,7 +133,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
         GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
 
-        PlayerGUIManager.Instance.SetSpellIcons();
+       // PlayerGUIManager.Instance.SetSpellIcons();
         templeUI.SetActive(false);
     }
 

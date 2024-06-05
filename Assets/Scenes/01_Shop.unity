@@ -215,6 +215,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592656472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5662967641390201943, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 1841978188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &828239472
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +533,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6bbb16dc5eb2f49a1268df647d2690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1610444049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6804538822781866615, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 1841978188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1615172733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3293822189598643195, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 1841978188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1841978188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -736,6 +772,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4221791624652354313, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: Spell_1_Image
+      value: 
+      objectReference: {fileID: 1615172733}
+    - target: {fileID: 4221791624652354313, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: Spell_2_Image
+      value: 
+      objectReference: {fileID: 1610444049}
+    - target: {fileID: 4221791624652354313, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: Spell_3_Image
+      value: 
+      objectReference: {fileID: 592656472}
     - target: {fileID: 5593543859634544671, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchorMax.y

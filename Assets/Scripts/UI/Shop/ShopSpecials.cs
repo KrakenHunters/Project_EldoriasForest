@@ -19,6 +19,10 @@ public class ShopSpecials : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI reRollCostText;
 
     [Header("Spell Shop Images")]
+    [SerializeField] private Button Spell_1_Button;
+    [SerializeField] private Button Spell_2_Button;
+    [SerializeField] private Button Spell_3_Button;
+
     [SerializeField] private Image Spell_1_Image;
     [SerializeField] private Image Spell_2_Image;
     [SerializeField] private Image Spell_3_Image;
@@ -32,16 +36,21 @@ public class ShopSpecials : MonoBehaviour
 
     private void Start()
     {
+        Spell_1_Image = GetComponentInChildren<Image>();
+        Spell_2_Image = GetComponentInChildren<Image>();
+        Spell_3_Image = GetComponentInChildren<Image>();
         ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeSpecialSpell(), 0);
         ShopManager.Instance.CheckButtonInteraction(reRollButton, CanReRollSpells(), 0);
+        upgradeCostText.text = upgradeCost.ToString();
+        reRollCostText.text = reRollCost.ToString();
         SelectRandomSpecialSpells();
     }
 
     private void SelectRandomSpecialSpells()
     {
         int spellBookCount = ShopManager.Instance.permData.spellBooksUnlocked.Count;
-        if(spellBookCount == 0)
-        {  
+        if (spellBookCount == 0)
+        {
             Debug.Log("No special spells unlocked");
             return;
         }
@@ -68,15 +77,23 @@ public class ShopSpecials : MonoBehaviour
             } while (!used.Contains(spell));
             return spell;
         }
+        if (specialSpells.Count > -1)
+        {
+            spell_1 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
+            Spell_1_Image.sprite = spell_1.spellIcon;
+        }
+        if (specialSpells.Count > 0)
+        {
+            spell_2 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
+            Spell_2_Image.sprite = spell_2.spellIcon;
 
-        spell_1 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-        Spell_1_Image.sprite = spell_1.spellIcon;
+        }
+        if (specialSpells.Count > 1)
+        {
+            spell_3 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
+            Spell_3_Image.sprite = spell_3.spellIcon;
 
-        spell_2 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-        Spell_2_Image.sprite = spell_2.spellIcon;
-
-        spell_3 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-        Spell_3_Image.sprite = spell_3.spellIcon;
+        }
     }
 
     public void UpgradeTier(SpecialSpellBook spell)
@@ -92,7 +109,7 @@ public class ShopSpecials : MonoBehaviour
         reRollMax--;
         ShopManager.Instance.permData.totalSouls -= reRollCost;
         reRollCost *= reRollMultiplyer;
-        upgradeCostText.text = upgradeCost.ToString();
+        reRollCostText.text = reRollCost.ToString();
         ShopManager.Instance.CheckButtonInteraction(reRollButton, CanReRollSpells(), reRollCost);
         SelectRandomSpecialSpells();
     }
@@ -103,7 +120,7 @@ public class ShopSpecials : MonoBehaviour
 
     public void OnPlayerChooseSpell(int spellnum)
     {
-
+        Debug.Log("Player chose spell " + spellnum);
         switch (spellnum)
         {
             case 1:
