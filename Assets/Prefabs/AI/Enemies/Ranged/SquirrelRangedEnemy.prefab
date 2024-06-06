@@ -167,6 +167,12 @@ MonoBehaviour:
   maxAmountInGroup: 3
   minIdleTime: 2
   minIdleRadius: 4
+  soulAmountMaxTier1: 6
+  soulAmountMinTier1: 4
+  soulAmountMaxTier2: 9
+  soulAmountMinTier2: 7
+  soulAmountMaxTier3: 12
+  soulAmountMinTier3: 8
   boidNeighborRadius: 5
   separationWeight: 3
   alignmentWeight: 0.2

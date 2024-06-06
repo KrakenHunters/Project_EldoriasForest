@@ -246,6 +246,7 @@ MonoBehaviour:
   _rotationSpeed: 3000
   attackType: 0
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
+  onHealthChanged: {fileID: 11400000, guid: 538cd54a25cce90448c8ab4f68989857, type: 2}
   canInteract: 0
   interactableObj: {fileID: 0}
 --- !u!114 &5066222880727964611
@@ -272,12 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8fb216c8a98364582f19d0d2fa4ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpellTimer: 0
-  specialSpellTimer: 0
-  ultimateSpellTimer: 0
   currentBaseSpellCooldown: 0
   currentSpecialSpellCooldown: 0
-  currentUltimateSpellCooldown: 0
 --- !u!1 &6597620483037645168
 GameObject:
   m_ObjectHideFlags: 0

@@ -1306,12 +1306,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7252651610300568122, guid: 164a884b14f78b74eb82c692066feae9,
-        type: 3}
-      propertyPath: onHealthChanged
-      value: 
-      objectReference: {fileID: 11400000, guid: 538cd54a25cce90448c8ab4f68989857,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

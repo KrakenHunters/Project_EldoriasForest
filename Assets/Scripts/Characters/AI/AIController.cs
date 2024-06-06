@@ -55,6 +55,21 @@ public class AIController : CharacterClass
     [SerializeField]
     private float minIdleRadius;  // Radius within which the AI can roam while idling
 
+    [Header("Soul Drop")]
+    [SerializeField]
+    private int soulAmountMaxTier1;
+    [SerializeField]
+    private int soulAmountMinTier1;
+    [SerializeField]
+    private int soulAmountMaxTier2;
+    [SerializeField]
+    private int soulAmountMinTier2;
+    [SerializeField]
+    private int soulAmountMaxTier3;
+    [SerializeField]
+    private int soulAmountMinTier3;
+
+
     [Header("Boid Settings")]
     public float boidNeighborRadius = 5f;
     public float separationWeight = 1.5f;
@@ -282,9 +297,8 @@ public class AIController : CharacterClass
         StopAllCoroutines();
         agent.speed = 0f;
         agent.SetDestination(transform.position);
-        SoulCollectible soul = Instantiate(soulDrop, transform.position, Quaternion.identity);
-        soul.tier = tier;
 
+        DropSouls();
         if (UnityEngine.Random.Range(0f,1f) <= healthDropChance)
         {
             HealthCollectible health = Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
@@ -293,6 +307,33 @@ public class AIController : CharacterClass
         
         Destroy(this.gameObject, 1f);
     }
+    protected virtual void DropSouls()
+    {
+        int nSoulDrops = 0;
+        switch (tier)
+        {
+            case 1:
+                nSoulDrops = UnityEngine.Random.Range(soulAmountMinTier1, soulAmountMaxTier1);
+                break;
+            case 2:
+                nSoulDrops = UnityEngine.Random.Range(soulAmountMinTier2, soulAmountMaxTier2);
+                break;
+            case 3:
+                nSoulDrops = UnityEngine.Random.Range(soulAmountMinTier3, soulAmountMaxTier3);
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0;  i < nSoulDrops; i++)
+        {
+            SoulCollectible soul = Instantiate(soulDrop, transform.position, Quaternion.identity);
+            soul.tier = tier;
+        }
+
+
+    }
+
     public virtual void AttackPlayer() { }
 
     public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
