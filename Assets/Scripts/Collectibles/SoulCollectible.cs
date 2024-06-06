@@ -6,7 +6,7 @@ public class SoulCollectible : Collectible
 {
 
     [SerializeField]
-    private GameEvent OnSoulCollected;
+    private GameEvent<Empty> OnSoulCollected;
 
     [SerializeField]
     private int soulAmountTier1;
@@ -35,6 +35,6 @@ public class SoulCollectible : Collectible
 
         }
 
-        OnSoulCollected.Raise();
+        OnSoulCollected.Raise(new Empty());
     }
 }

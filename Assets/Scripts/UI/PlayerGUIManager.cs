@@ -21,20 +21,6 @@ public class PlayerGUIManager : MonoBehaviour
     [SerializeField]
     private TemporaryDataContainer tempData;
 
-    [SerializeField]
-    private GameEventListener OnSoulsChangedEvent;
-    [SerializeField]
-    private GameEventListener OnHealthChangedEvent;
-    private void OnEnable()
-    {
-        OnSoulsChangedEvent.Response.AddListener(SetSoulCount);
-        OnHealthChangedEvent.FloatResponse.AddListener(SetHealthValues);
-    }
-    private void OnDisable()
-    {
-        OnSoulsChangedEvent.Response.RemoveListener(SetSoulCount);
-        OnHealthChangedEvent.FloatResponse.RemoveListener(SetHealthValues);
-    }
     private void Start()
     {
         SetSpellIcons();
