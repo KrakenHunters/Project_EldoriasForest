@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
 
     public Transform playerPos;
 
-    public GameEvent OnSoulChange;
+    public GameEvent<Empty> OnSoulChange;
 
     public IEnumerator CountToTarget(int cost)
     {
@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
                 currentSouls = pData.totalSouls;
 
             //PlayerGUIManager.Instance.soulCountText.text = currentSouls.ToString();
-            OnSoulChange.Raise();
+            OnSoulChange.Raise(new Empty());
             yield return null;
         }
     }

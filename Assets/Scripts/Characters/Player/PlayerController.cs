@@ -25,7 +25,7 @@ public class PlayerController : CharacterClass
 
     private PlayerSpellCastManager spellCastManager;
     [SerializeField]
-    private GameEvent onHealthChanged;
+    private GameEvent<float> onHealthChanged;
 
     public Vector3 MouseWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }

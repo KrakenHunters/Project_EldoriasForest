@@ -38,19 +38,17 @@ public class TempleUIManager : Singleton<TempleUIManager>
     [Header("All SpellBooks")]
     [SerializeField] private List<SpellBook> templeSpecialSpellList;
 
+    [SerializeField]
+    private FloatGameEvent OnHealPlayer;
+
 
     private int templeHealth;
     private int templeSouls;
     private SpellBook currentTempleSpell;
 
-    public PlayerController player;
 
     private int templeTier;
 
-    public void Start()
-    {
-        player = FindAnyObjectByType<PlayerController>();
-    }
     public void SetTempleOptions(int tier)
     {
         templeTier = tier;
@@ -90,16 +88,14 @@ public class TempleUIManager : Singleton<TempleUIManager>
     public void OnHealthButton()
     {
         Time.timeScale = 1.0f;
-        player.Heal(templeHealth);
-        templeUI.SetActive(false);
+        OnHealPlayer.Raise(templeHealth);
+        templeUI.SetActive(false);   
     }
 
     public void OnSoulsButton()
     {
         Time.timeScale = 1.0f;
         GameManager.Instance.tData.collectedSouls += templeSouls;
-        //StartCoroutine(GameManager.Instance.CountToTarget(templeSouls));
-        //PlayerGUIManager.Instance.SetSoulCount();
         templeUI.SetActive(false);
 
     }
