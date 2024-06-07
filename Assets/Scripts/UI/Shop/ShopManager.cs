@@ -8,6 +8,7 @@ public class ShopManager : Singleton<ShopManager>
     public TemporaryDataContainer tempData;
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
+
     private float countingSpeed = 50f;
 
     private void Start()

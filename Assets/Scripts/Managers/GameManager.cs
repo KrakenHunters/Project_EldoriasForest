@@ -7,8 +7,6 @@ public class GameManager : Singleton<GameManager>
     public PermanentDataContainer pData;
     public TemporaryDataContainer tData;
 
-    public Transform playerPos;
-
     public GameEvent<Empty> OnSoulChange;
 
     public IEnumerator CountToTarget(int cost)

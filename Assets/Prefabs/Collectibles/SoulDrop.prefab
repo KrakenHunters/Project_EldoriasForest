@@ -123,7 +123,7 @@ MonoBehaviour:
   tier: 0
   followSpeed: 20
   curveStrength: 2
-  OnSoulCollected: {fileID: 11400000, guid: eec52b851c5278c4c926360b22f8d503, type: 2}
+  OnSoulCollected: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
   soulAmountTier1: 1
   soulAmountTier2: 3
   soulAmountTier3: 5

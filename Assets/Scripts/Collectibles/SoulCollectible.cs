@@ -35,6 +35,6 @@ public class SoulCollectible : Collectible
 
         }
 
-        //OnSoulCollected.Raise(new Empty());
+        OnSoulCollected.Raise(new Empty());
     }
 }

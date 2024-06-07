@@ -40,6 +40,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     [SerializeField]
     private FloatGameEvent OnHealPlayer;
+    [SerializeField]
+    private EmptyGameEvent OnSoulCollect;
 
 
     private int templeHealth;
@@ -96,6 +98,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
     {
         Time.timeScale = 1.0f;
         GameManager.Instance.tData.collectedSouls += templeSouls;
+        OnSoulCollect.Raise(new Empty());
         templeUI.SetActive(false);
 
     }
