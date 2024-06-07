@@ -160,17 +160,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeCost: 100
-  upgradeCostMultiplyer: 2
+  upgradeCostMultiplier: 2
   reRollMax: 3
   reRollCost: 100
-  reRollMultiplyer: 2
+  reRollMultiplier: 2
   upgradeButton: {fileID: 2345924390897391942}
   reRollButton: {fileID: 321929423343012659}
   upgradeCostText: {fileID: 4127032951078223149}
   reRollCostText: {fileID: 6398210555011060709}
-  Spell_1_Image: {fileID: 8696143878058840326}
-  Spell_2_Image: {fileID: 2096996198157096910}
-  Spell_3_Image: {fileID: 2260442977128054811}
+  spell1Button: {fileID: 3293822189598643195}
+  spell2Button: {fileID: 6804538822781866615}
+  spell3Button: {fileID: 5662967641390201943}
+  spell1Image: {fileID: 8696143878058840326}
+  spell2Image: {fileID: 2096996198157096910}
+  spell3Image: {fileID: 2260442977128054811}
 --- !u!1 &1341269732195030325
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 07771fa44e20ca5488a545e3aa5cb478, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2725,7 +2728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 07771fa44e20ca5488a545e3aa5cb478, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2839,7 +2842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 07771fa44e20ca5488a545e3aa5cb478, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

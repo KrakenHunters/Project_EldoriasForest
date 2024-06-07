@@ -30,12 +30,6 @@ public class ShopBase : MonoBehaviour
             upgradeCostText.text = "Max";
     }
 
-    private void Update()
-    {
-        
-    }
-
-
     public void OnSelectBaseSpell()
     {
         switch (currentbasespell)
@@ -119,6 +113,7 @@ public class ShopBase : MonoBehaviour
     {
         return ShopManager.Instance.permData.baseAttackTier <= 2 && ShopManager.Instance.permData.totalSouls >= upgradeCost;
     }
+
     public enum BaseShopItems
     {
         Fire,

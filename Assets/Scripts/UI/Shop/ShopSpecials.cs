@@ -6,148 +6,198 @@ public class ShopSpecials : MonoBehaviour
 {
     [Header("Special Spell Upgrades")]
     [SerializeField] private int upgradeCost = 100;
-    [SerializeField] private int upgradeCostMultiplyer = 2;
+    [SerializeField] private int upgradeCostMultiplier = 2;
 
+    [Header("Re-Rolling Spells")]
     [SerializeField] private int reRollMax = 3;
     [SerializeField] private int reRollCost = 100;
-    [SerializeField] private int reRollMultiplyer = 2;
+    [SerializeField] private int reRollMultiplier = 2;
 
+    [Header("UI Elements")]
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Button reRollButton;
-
     [SerializeField] private TMPro.TextMeshProUGUI upgradeCostText;
     [SerializeField] private TMPro.TextMeshProUGUI reRollCostText;
 
-    [Header("Spell Shop Images")]
-    [SerializeField] private Button Spell_1_Button;
-    [SerializeField] private Button Spell_2_Button;
-    [SerializeField] private Button Spell_3_Button;
+    [Header("Spell Selection")]
+    [SerializeField] private Button spell1Button;
+    [SerializeField] private Button spell2Button;
+    [SerializeField] private Button spell3Button;
+    [SerializeField] private Image spell1Image;
+    [SerializeField] private Image spell2Image;
+    [SerializeField] private Image spell3Image;
 
-    [SerializeField] private Image Spell_1_Image;
-    [SerializeField] private Image Spell_2_Image;
-    [SerializeField] private Image Spell_3_Image;
+    private SpecialSpellBook spell1;
+    private SpecialSpellBook spell2;
+    private SpecialSpellBook spell3;
 
-    private SpecialSpellBook spell_1;
-    private SpecialSpellBook spell_2;
-    private SpecialSpellBook spell_3;
-
-    private List<SpecialSpellBook> specialSpells = new();
-    private List<SpecialSpellBook> usedSpecialSpells = new();
+    private List<SpecialSpellBook> availableSpells = new List<SpecialSpellBook>();
+    private List<SpecialSpellBook> usedSpells = new List<SpecialSpellBook>();
 
     private void Start()
     {
-        Spell_1_Image = GetComponentInChildren<Image>();
-        Spell_2_Image = GetComponentInChildren<Image>();
-        Spell_3_Image = GetComponentInChildren<Image>();
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeSpecialSpell(), 0);
-        ShopManager.Instance.CheckButtonInteraction(reRollButton, CanReRollSpells(), 0);
+        // Add button listeners
+        spell1Button.onClick.AddListener(() => OnPlayerChooseSpell(1));
+        spell2Button.onClick.AddListener(() => OnPlayerChooseSpell(2));
+        spell3Button.onClick.AddListener(() => OnPlayerChooseSpell(3));
+        upgradeButton.onClick.AddListener(OnSpecialSpellUpgrade);
+        reRollButton.onClick.AddListener(OnReRollSpells);
+
+        // Initialize costs
         upgradeCostText.text = upgradeCost.ToString();
         reRollCostText.text = reRollCost.ToString();
+
+        // Load and display initial set of spells
+        LoadAvailableSpells();
         SelectRandomSpecialSpells();
+        UpdateButtonInteractivity();
+    }
+
+    private void LoadAvailableSpells()
+    {
+        availableSpells.Clear();
+        var spellBooks = ShopManager.Instance.permData.spellBooksUnlocked;
+        foreach (var spellBook in spellBooks)
+        {
+            if (spellBook is SpecialSpellBook specialSpell)
+            {
+                availableSpells.Add(specialSpell);
+            }
+        }
     }
 
     private void SelectRandomSpecialSpells()
     {
-        int spellBookCount = ShopManager.Instance.permData.spellBooksUnlocked.Count;
-        if (spellBookCount == 0)
+        usedSpells.Clear();
+        spell1 = null;
+        spell2 = null;
+        spell3 = null;
+
+        if (availableSpells.Count == 0)
         {
             Debug.Log("No special spells unlocked");
             return;
         }
-        for (int i = 0; i < spellBookCount; i++)
+
+        if (availableSpells.Count > 0)
         {
-            if (ShopManager.Instance.permData.spellBooksUnlocked[i] is SpecialSpellBook)
-            {
-                specialSpells.Add((SpecialSpellBook)ShopManager.Instance.permData.spellBooksUnlocked[i]);
-                Debug.Log("count is " + specialSpells.Count);
-            }
+            spell1 = GetRandomSpecialSpell();
+            spell1Image.sprite = spell1.spellIcon;
         }
 
-        SpecialSpellBook GetRandomSpecialSpell(List<SpecialSpellBook> spells, List<SpecialSpellBook> used)
+        if (availableSpells.Count > 0)
         {
-            SpecialSpellBook spell = spells[Random.Range(0, spells.Count)];
-            do
-            {
-                spell = spells[Random.Range(0, spells.Count)];
-                if (!used.Contains(spell))
-                {
-                    used.Add(spell);
-                    specialSpells.Remove(spell);
-                }
-            } while (!used.Contains(spell));
-            return spell;
+            spell2 = GetRandomSpecialSpell();
+            spell2Image.sprite = spell2.spellIcon;
         }
-        if (specialSpells.Count > -1)
-        {
-            spell_1 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-            Spell_1_Image.sprite = spell_1.spellIcon;
-        }
-        if (specialSpells.Count > 0)
-        {
-            spell_2 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-            Spell_2_Image.sprite = spell_2.spellIcon;
 
-        }
-        if (specialSpells.Count > 1)
+        if (availableSpells.Count > 0)
         {
-            spell_3 = GetRandomSpecialSpell(specialSpells, usedSpecialSpells);
-            Spell_3_Image.sprite = spell_3.spellIcon;
+            spell3 = GetRandomSpecialSpell();
+            spell3Image.sprite = spell3.spellIcon;
+        }
 
+        UpdateButtonInteractivity();
+    }
+
+    private SpecialSpellBook GetRandomSpecialSpell()
+    {
+        int index = Random.Range(0, availableSpells.Count);
+        SpecialSpellBook spell = availableSpells[index];
+        availableSpells.RemoveAt(index);
+        usedSpells.Add(spell);
+        return spell;
+    }
+
+    public void OnSpecialSpellUpgrade()
+    {
+        if (ShopManager.Instance.tempData.specialSpell != null)
+        {
+            UpgradeTier(ShopManager.Instance.tempData.specialSpell);
         }
     }
 
-    public void UpgradeTier(SpecialSpellBook spell)
+    private void UpgradeTier(SpecialSpellBook spell)
     {
-        upgradeCost *= upgradeCostMultiplyer;
-        upgradeCostText.text = upgradeCost.ToString();
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeSpecialSpell(), upgradeCost);
-        ShopManager.Instance.tempData.specialSpell.tier++;
+        if (spell.tier < 3 && ShopManager.Instance.permData.totalSouls >= upgradeCost)
+        {
+            spell.tier++;
+            ShopManager.Instance.permData.totalSouls -= upgradeCost;
+            upgradeCost *= upgradeCostMultiplier;
+            upgradeCostText.text = upgradeCost.ToString();
+            UpdateButtonInteractivity();
+        }
     }
 
     public void OnReRollSpells()
     {
-        reRollMax--;
-        ShopManager.Instance.permData.totalSouls -= reRollCost;
-        reRollCost *= reRollMultiplyer;
-        reRollCostText.text = reRollCost.ToString();
-        ShopManager.Instance.CheckButtonInteraction(reRollButton, CanReRollSpells(), reRollCost);
-        SelectRandomSpecialSpells();
-    }
-    public void OnSpecialSpellUpgrade()
-    {
-        UpgradeTier(ShopManager.Instance.tempData.specialSpell);
+        if (reRollMax > 0 && ShopManager.Instance.permData.totalSouls >= reRollCost)
+        {
+            reRollMax--;
+            ShopManager.Instance.permData.totalSouls -= reRollCost;
+            reRollCost *= reRollMultiplier;
+            reRollCostText.text = reRollCost.ToString();
+
+            LoadAvailableSpells();
+
+            if (spell1 != null && availableSpells.Count > 0)
+            {
+                spell1 = GetRandomSpecialSpell();
+                spell1Image.sprite = spell1.spellIcon;
+            }
+
+            if (spell2 != null && availableSpells.Count > 0)
+            {
+                spell2 = GetRandomSpecialSpell();
+                spell2Image.sprite = spell2.spellIcon;
+            }
+
+            if (spell3 != null && availableSpells.Count > 0)
+            {
+                spell3 = GetRandomSpecialSpell();
+                spell3Image.sprite = spell3.spellIcon;
+            }
+
+            UpdateButtonInteractivity();
+        }
     }
 
-    public void OnPlayerChooseSpell(int spellnum)
+    public void OnPlayerChooseSpell(int spellNum)
     {
-        Debug.Log("Player chose spell " + spellnum);
-        switch (spellnum)
+        switch (spellNum)
         {
             case 1:
-                ShopManager.Instance.tempData.specialSpell = spell_1;
+                ShopManager.Instance.tempData.specialSpell = spell1;
                 break;
             case 2:
-                ShopManager.Instance.tempData.specialSpell = spell_2;
+                ShopManager.Instance.tempData.specialSpell = spell2;
                 break;
             case 3:
-                ShopManager.Instance.tempData.specialSpell = spell_3;
+                ShopManager.Instance.tempData.specialSpell = spell3;
                 break;
         }
-
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeSpecialSpell(), 0);
+        UpdateButtonInteractivity();
     }
 
-    public bool CanUpgradeSpecialSpell()
+    private void UpdateButtonInteractivity()
     {
+        upgradeButton.interactable = CanUpgradeSpecialSpell();
+        reRollButton.interactable = CanReRollSpells();
 
-        //check if the tier for that spell is unlocked 
-        return ShopManager.Instance.tempData.specialSpell != null && ShopManager.Instance.tempData.specialSpell.tier <= 2 && ShopManager.Instance.permData.totalSouls >= upgradeCost;
+        spell1Button.interactable = spell1 != null;
+        spell2Button.interactable = spell2 != null;
+        spell3Button.interactable = spell3 != null;
     }
 
-    public bool CanReRollSpells()
+    private bool CanUpgradeSpecialSpell()
     {
-        return ShopManager.Instance.permData.totalSouls >= reRollCost && reRollMax > 0;
+        return ShopManager.Instance.tempData.specialSpell != null &&
+               ShopManager.Instance.tempData.specialSpell.tier < 3 &&
+               ShopManager.Instance.permData.totalSouls >= upgradeCost;
     }
 
-
+    private bool CanReRollSpells()
+    {
+        return reRollMax > 0 && ShopManager.Instance.permData.totalSouls >= reRollCost && (spell1 != null || spell2 != null || spell3 != null) && availableSpells.Count > 0;
+    }
 }
