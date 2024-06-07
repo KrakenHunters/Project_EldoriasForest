@@ -10,26 +10,12 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
     [SerializeField]
     private LayerMask enemyLayer;
 
-    private float damagePerSecond;
     private LineRenderer lineRenderer;
     private Vector3 castDirection;
 
-    private float duration;
-
     private Vector3 startPos;
-
-    [SerializeField]
-    private float maxDistance;
-
     protected override void CastSpell(int tier)
     {
-        LightningBeamSpellStatsContainer container = spellData as LightningBeamSpellStatsContainer;
-        container.SetTierData(tier);
-        LightningBeamTierData beamContainer = container.currentTierData as LightningBeamTierData;
-
-        damagePerSecond = beamContainer.damage;
-        duration = beamContainer.duration;
-
         lineRenderer = GetComponent<LineRenderer>();
     }
 
@@ -47,7 +33,6 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
         base.Shoot(direction, attacker);
         transform.SetParent(charAttacker.transform);
         startPos = transform.position;
-        //castDirection = direction;
         StartCoroutine(LightningCoroutine());
     }
 
@@ -57,8 +42,8 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
 
         while (elapsedTime < duration)
         {
-            Vector3 end = startPos + castDirection * maxDistance;
-            if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, maxDistance, obstacleLayer))
+            Vector3 end = startPos + castDirection * range;
+            if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, range, obstacleLayer))
             {
                 end = hit.point;
             }
@@ -74,7 +59,7 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
                 CharacterClass enemy = enemyHit.collider.GetComponent<CharacterClass>();
                 if (enemy != null)
                 {
-                    enemy.GetHit(damagePerSecond * Time.deltaTime, charAttacker, this);
+                    enemy.GetHit(damage * Time.deltaTime, charAttacker, this);
                 }
             }
 

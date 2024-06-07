@@ -20,7 +20,6 @@ public class SaveManager : Singleton<SaveManager>
         }
         DontDestroyOnLoad(this.gameObject);
         permanentDataFilePath = Application.persistentDataPath + "/GameData.save";
-        //LoadPermanentData();
     }
 
     public void SavePermanentData()
@@ -36,10 +35,6 @@ public class SaveManager : Singleton<SaveManager>
             string jsonData = File.ReadAllText(permanentDataFilePath);
             JsonUtility.FromJsonOverwrite(jsonData, permanentData);
         }
-       /* else
-        {
-            ResetPermanentData();
-        }*/
     }
 
     public void ResetPermanentData()
@@ -52,7 +47,7 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.baseAttackTier = basePermanentData.baseAttackTier;
         permanentData.prefBaseSpell = basePermanentData.prefBaseSpell;
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
-        //SavePermanentData();
+        SavePermanentData();
     }
 
     public void ResetTemporaryData()
@@ -68,10 +63,17 @@ public class SaveManager : Singleton<SaveManager>
     public void TransferTempToPermaData()
     {
         permanentData.totalSouls += temporaryData.collectedSouls;
-        foreach (var spell in temporaryData.collectedSpells)
+        foreach (SpellBook spell in temporaryData.collectedSpells)
         {
-            if (!permanentData.spellBooksUnlocked.Contains(spell))
+            SpellBook existingSpell = permanentData.spellBooksUnlocked.Find(x => x.tier == spell.tier);
+
+            if (existingSpell == null)
             {
+                permanentData.spellBooksUnlocked.Add(spell);
+            }
+            else if (spell.tier > existingSpell.tier)
+            {
+                permanentData.spellBooksUnlocked.Remove(existingSpell);
                 permanentData.spellBooksUnlocked.Add(spell);
             }
         }
@@ -84,8 +86,8 @@ public class SaveManager : Singleton<SaveManager>
         {
             File.Delete(permanentDataFilePath);
         }
-       /* ResetPermanentData();
-        ResetTemporaryData();*/
+        ResetPermanentData();
+        ResetTemporaryData();
     }
 
     public bool HasSaveData()
@@ -93,10 +95,4 @@ public class SaveManager : Singleton<SaveManager>
         return File.Exists(permanentDataFilePath);
     }
 
-    public void SetupTempDataFromPermaData()
-    {
-        temporaryData.startHealth = permanentData.healthBonus + baseTemporaryData.startHealth;
-
-        // Update other boosts from permanent data as necessary.
-    }
 }

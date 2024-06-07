@@ -10,9 +10,6 @@ public class IceSpike_SpecialSpell : SpecialSpellBook
 
     private float limitUp;
 
-    [SerializeField]
-    private float speed;
-
     private float startPosY;
 
     protected override void CastSpell(int tier)
@@ -27,13 +24,13 @@ public class IceSpike_SpecialSpell : SpecialSpellBook
         base.Update();
         if (transform.position.y < limitUp && timer < spellTimer)
         {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);
         }
         else if (timer >= spellTimer)
         {
             damageTrigger.enabled = false;
 
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            transform.Translate(Vector3.down * projectileSpeed * Time.deltaTime);
             if (transform.position.y <= startPosY)
             {
                 Destroy(gameObject);

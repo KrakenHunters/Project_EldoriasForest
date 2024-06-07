@@ -5,23 +5,16 @@ public class FireRing_SpecialSpell : SpecialSpellBook
 {
 
     [SerializeField]
-    private float spellTimer;
-
-    [SerializeField]
     private float ringRadius = 5f;
 
-    private int HealAmount;
-
+    private float healAmount;
 
     private SphereCollider damageCollider;
 
     protected override void CastSpell(int tier)
     {
-        FireRingSpellStatsContainer f = spellData as FireRingSpellStatsContainer;
-        f.SetTierData(tier);
-        FireRingTierData c = f.currentTierData as FireRingTierData;
-        HealAmount = c.healAmount;
 
+        healAmount = spellData.currentTierData.healAmount;
         damageCollider = GetComponentInChildren<SphereCollider>();
         damageCollider.radius = ringRadius;
         if(GetComponentInParent<CharacterClass>() != null)
@@ -36,7 +29,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
     {
         int playerHealed = 0;
 
-        while (playerHealed < HealAmount)
+        while (playerHealed < healAmount)
         {
             playerHealed += 1;
             charAttacker.GetComponent<CharacterClass>()?.Heal(playerHealed);
@@ -48,11 +41,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
     protected override void Update()
     {
         base.Update();
-
-        if (timer >= spellTimer)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, duration);
     }
 
 

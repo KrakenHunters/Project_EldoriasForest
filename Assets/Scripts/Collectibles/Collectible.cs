@@ -4,14 +4,61 @@ using UnityEngine;
 
 public class Collectible : BaseObject
 {
+    [SerializeField]
+    private float followSpeed = 5f; // Speed at which the collectible follows the player
+    [SerializeField]
+    private float curveStrength = 2f; // Strength of the lateral force to create the curve
 
-    protected virtual void OnTriggerEnter(Collider other)
+
+    private Rigidbody rb;
+    private PlayerController player;
+    private bool isFollowingPlayer = false;
+
+    private void Start()
     {
-        if (other.CompareTag("Player"))
+        rb = GetComponent<Rigidbody>();
+        // Apply an initial random force
+        Vector3 randomForce = new Vector3(Random.Range(-3f, 3f), Random.Range(1f, 4f), Random.Range(-3f, 3f));
+        Debug.Log(randomForce);
+        rb.AddForce(randomForce, ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerController>() && !isFollowingPlayer)
         {
-            ItemCollected(other.GetComponent<PlayerController>());
-            //Play Collected SFX and VFX
-            Invoke("DestroyGameObj", 0.5f); //Destroy game object after VFX and SFX are done
+            player = other.GetComponent<PlayerController>();
+            isFollowingPlayer = true;
+            StartCoroutine(FollowPlayerCoroutine());
+        }
+    }
+
+    private IEnumerator FollowPlayerCoroutine()
+    {
+        while (isFollowingPlayer && player != null)
+        {
+            // Calculate direction towards the player
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+
+            // Apply force towards the player
+            rb.AddForce(directionToPlayer * followSpeed);
+
+            if (Vector3.Distance(transform.position, player.transform.position) >= 10f)
+            {
+                // Apply a random lateral force to create a curving motion
+                Vector3 lateralForce = new Vector3(Random.Range(-curveStrength, curveStrength), 0, Random.Range(-curveStrength, curveStrength));
+                rb.AddForce(lateralForce);
+            }
+
+
+            if (Vector3.Distance(transform.position, player.transform.position) < 1f)
+            {
+                ItemCollected(player);
+                // Play Collected SFX and VFX
+                Invoke("DestroyGameObj", 0.2f); // Destroy game object after VFX and SFX are done
+            }
+
+            yield return new WaitForFixedUpdate(); // Wait for next physics update
         }
     }
 

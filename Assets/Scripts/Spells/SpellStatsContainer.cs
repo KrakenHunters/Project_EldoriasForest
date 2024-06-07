@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+[CreateAssetMenu(fileName = "SpellStatContainer")]
 public class SpellStatsContainer : ScriptableObject
 {
     public int tierUnlocked = 1;
@@ -26,20 +27,11 @@ public class SpellStatsContainer : ScriptableObject
         }
     }
 
-    public virtual TierData tier1
-    {
-        get; set;
-    }
+    public TierData tier1;
 
-    public virtual TierData tier2
-    {
-        get; set;
-    }
+    public TierData tier2;
 
-    public virtual TierData tier3
-    {
-        get; set;
-    }
+    public TierData tier3;
 
 
 
@@ -48,10 +40,14 @@ public class SpellStatsContainer : ScriptableObject
 [Serializable]
 public class TierData
 {
-    public int damage;
+    public float damage;
     public float cooldown;
     public float statusEffectTimer;
     public float statusEffectDamage;
     public float statusEffectChance;
-
+    public float range;
+    public float healAmount;
+    public float radius;
+    public float duration;
+    public float speed; 
 }

@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
     public PermanentDataContainer pData;
     public TemporaryDataContainer tData;
 
-    public Transform playerPos;
+    public GameEvent<Empty> OnSoulChange;
 
     public IEnumerator CountToTarget(int cost)
     {
@@ -24,8 +24,8 @@ public class GameManager : Singleton<GameManager>
             if ((increment == 1 && currentSouls > pData.totalSouls) || (increment == -1 && currentSouls < pData.totalSouls))
                 currentSouls = pData.totalSouls;
 
-            PlayerGUIManager.Instance.soulCountText.text = currentSouls.ToString();
-
+            //PlayerGUIManager.Instance.soulCountText.text = currentSouls.ToString();
+            OnSoulChange.Raise(new Empty());
             yield return null;
         }
     }

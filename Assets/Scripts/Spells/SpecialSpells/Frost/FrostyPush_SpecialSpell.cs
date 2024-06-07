@@ -20,11 +20,7 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
 
     protected override void CastSpell(int tier)
     {
-        FrostyPushSpellStatsContainer Container = spellData as FrostyPushSpellStatsContainer;
-        Container.SetTierData(tier);
-        FrostyPushTierData tierData = Container.currentTierData as FrostyPushTierData;
-
-        pushRadius = tierData.radius;
+        pushRadius = spellData.currentTierData.radius;
 
 
         damageCollider = GetComponent<SphereCollider>();

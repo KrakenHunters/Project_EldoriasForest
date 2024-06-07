@@ -13,10 +13,6 @@ public class UltimateSpellBook : SpellBook
     public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction, attacker);
-        if (attacker.GetComponent<PlayerController>())
-        {
-            PlayerSpellCastManager.Instance.currentUltimateSpellCooldown = cooldown;
-        }
 
     }
 }

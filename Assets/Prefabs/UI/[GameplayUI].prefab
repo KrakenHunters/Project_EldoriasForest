@@ -147,6 +147,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5310507938661584113}
   - component: {fileID: 7067083177338812560}
+  - component: {fileID: 414588075176845299}
+  - component: {fileID: 3657166124231656583}
   m_Layer: 5
   m_Name: '[GameplayUI]'
   m_TagString: Untagged
@@ -196,6 +198,62 @@ MonoBehaviour:
   soulCountText: {fileID: 2470602719497226076}
   healthBar: {fileID: 8268646843579812311}
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
+--- !u!114 &414588075176845299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712017882030959831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f0f303568bdd249a4cf2fa63f616ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d89ea8f87bae895408a71bac99a31fae, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7067083177338812560}
+        m_TargetAssemblyTypeName: PlayerGUIManager, Assembly-CSharp
+        m_MethodName: SetHealthValues
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3657166124231656583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712017882030959831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7407bafecc764c849b571e57a01e1a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7067083177338812560}
+        m_TargetAssemblyTypeName: PlayerGUIManager, Assembly-CSharp
+        m_MethodName: SetSoulCount
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1090022873000510944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1256,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1530908132706231433}
   m_HandleRect: {fileID: 0}
@@ -1590,11 +1648,11 @@ RectTransform:
   - {fileID: 849588954406102482}
   m_Father: {fileID: 5310507938661584113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: 250}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -210}
   m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &8591866873109301811
 CanvasRenderer:
   m_ObjectHideFlags: 0

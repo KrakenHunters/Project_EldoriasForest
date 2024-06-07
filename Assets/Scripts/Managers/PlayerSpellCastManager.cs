@@ -1,16 +1,14 @@
 using UnityEngine;
 using static PlayerController;
 
-public class PlayerSpellCastManager : Singleton<PlayerSpellCastManager>
+public class PlayerSpellCastManager : MonoBehaviour
 {
     PlayerController player;
-    public float baseSpellTimer;
-    public float specialSpellTimer;
-    public float ultimateSpellTimer;
+    private float baseSpellTimer;
+    private float specialSpellTimer;
 
     public float currentBaseSpellCooldown;
     public float currentSpecialSpellCooldown;
-    public float currentUltimateSpellCooldown;
 
     void Start()
     {
@@ -22,7 +20,6 @@ public class PlayerSpellCastManager : Singleton<PlayerSpellCastManager>
     {
         baseSpellTimer += Time.deltaTime;
         specialSpellTimer += Time.deltaTime;
-        ultimateSpellTimer += Time.deltaTime;
     }
 
 
@@ -35,6 +32,8 @@ public class PlayerSpellCastManager : Singleton<PlayerSpellCastManager>
         return false;
     }
 
+
+
     private bool CanSpawnSpecialSpell()
     {
         if (specialSpellTimer > currentSpecialSpellCooldown)
@@ -43,16 +42,6 @@ public class PlayerSpellCastManager : Singleton<PlayerSpellCastManager>
         }
         return false;
     }
-
-    private bool CanSpawnUltimateSpell()
-    {
-        if (ultimateSpellTimer > currentUltimateSpellCooldown)
-        {
-            return true;
-        }
-        return false;
-    }
-
 
     public void CastBaseSpell()
     {
@@ -69,20 +58,16 @@ public class PlayerSpellCastManager : Singleton<PlayerSpellCastManager>
         if (CanSpawnSpecialSpell())
         {
             player.attackType = AttackType.Special;
-            player.currentState?.HandleAttack();
+            player.currentState?.HandleSpecialAttack();
             specialSpellTimer = 0f;
         }
     }
 
     public void CastUltimateSpell()
     {
-        if (CanSpawnUltimateSpell())
-        {
-            player.attackType = AttackType.Ultimate;
-            player.currentState?.HandleAttack();
-            ultimateSpellTimer = 0f;
-            player.Invoke("RemoveUltimateSpell", 3f);
-        }
+        player.attackType = AttackType.Ultimate;
+        player.currentState?.HandleSpecialAttack();
+        player.Invoke("RemoveUltimateSpell", 3f);
     }
 
 }

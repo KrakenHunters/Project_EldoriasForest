@@ -118,13 +118,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17730ce0a23d1634fbc2ac282ee1c7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   cooldown: 2
   castOrigin: 0
-  spellData: {fileID: 11400000, guid: 6eeba6846bf2f3b4696ee3fe37e21022, type: 2}
+  spellData: {fileID: 11400000, guid: db1c9880282731047ab42ce2ed444020, type: 2}
+  spellIcon: {fileID: 0}
   statusEffect: 2
   statusEffectTimer: 5
   statusEffectDamage: 0
-  speed: 15
-  range: 15
-  aimRange: 10
-  aimAngle: 15
+  statusEffectChance: 0
+  autoAimRange: 10
+  autoAimAngle: 15

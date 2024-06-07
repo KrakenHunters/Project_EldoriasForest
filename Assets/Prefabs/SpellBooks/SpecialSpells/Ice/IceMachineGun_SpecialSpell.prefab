@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1698177402369331709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721829755097235065}
+  - component: {fileID: 2173658814602363057}
+  m_Layer: 6
+  m_Name: IceMachineGun_SpecialSpell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721829755097235065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698177402369331709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2173658814602363057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698177402369331709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823d40bfd35e050429b7176cc7f7a2e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tier: 1
+  cooldown: 0
+  castOrigin: 3
+  spellData: {fileID: 11400000, guid: 482a7bd278d66ae4cacd773cc3564a36, type: 2}
+  spellIcon: {fileID: 0}
+  statusEffect: 3
+  statusEffectTimer: 0
+  statusEffectDamage: 0
+  statusEffectChance: 0
+  interval: 0.3
+  iceBullet: {fileID: 370365836938485006, guid: 218aaeb1a24354440a7e4a3baf4326ae,
+    type: 3}

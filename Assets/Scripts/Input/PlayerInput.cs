@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PointerMove"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5a2ad6e0-4273-4768-93fd-101f552ad482"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3e6c47d-5667-4706-8df1-31052deedd00"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PointerMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_UltimateAttack = m_Player.FindAction("UltimateAttack", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_PointerMove = m_Player.FindAction("PointerMove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_UltimateAttack;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_PointerMove;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @UltimateAttack => m_Wrapper.m_Player_UltimateAttack;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @PointerMove => m_Wrapper.m_Player_PointerMove;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @PointerMove.started += instance.OnPointerMove;
+            @PointerMove.performed += instance.OnPointerMove;
+            @PointerMove.canceled += instance.OnPointerMove;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @PointerMove.started -= instance.OnPointerMove;
+            @PointerMove.performed -= instance.OnPointerMove;
+            @PointerMove.canceled -= instance.OnPointerMove;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnUltimateAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPointerMove(InputAction.CallbackContext context);
     }
 }

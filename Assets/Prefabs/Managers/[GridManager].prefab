@@ -49,25 +49,33 @@ MonoBehaviour:
   playerPrefab: {fileID: 0}
   borderPrefabs:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
+  - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
   innerBorderPrefabs:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
+  - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
   centerPrefabs:
-  - {fileID: 3242830716933975920, guid: 7ea58cdeb8ddf134b8275abe1d26706d, type: 3}
-  - {fileID: 7439797000257662282, guid: 304a20d8598fa0b43b0e7d2781f11770, type: 3}
+  - {fileID: 7439797000257662282, guid: 1ce2d036b1e7fd242a525594e98da9fb, type: 3}
+  - {fileID: 7439797000257662282, guid: 59c3a5cd5fb3ee24387a23031ded63ca, type: 3}
+  - {fileID: 3242830716933975920, guid: e70b2e4fdb36c994e8059637b2adc977, type: 3}
   - {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9, type: 3}
   - {fileID: 5642612961866236942, guid: fe6e6eb4e0c2934428f99c4dbffa24cd, type: 3}
   - {fileID: 4165503215034726028, guid: 51f499caba5a8794193cffbd61548163, type: 3}
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
+  - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
   templePrefabs:
   - {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9, type: 3}
   villageTeleportPrefabs:
   - {fileID: 5642612961866236942, guid: fe6e6eb4e0c2934428f99c4dbffa24cd, type: 3}
   enemyPrefabs:
-  - {fileID: 7439797000257662282, guid: 304a20d8598fa0b43b0e7d2781f11770, type: 3}
-  - {fileID: 3242830716933975920, guid: 7ea58cdeb8ddf134b8275abe1d26706d, type: 3}
+  - {fileID: 7439797000257662282, guid: 1ce2d036b1e7fd242a525594e98da9fb, type: 3}
+  - {fileID: 3242830716933975920, guid: e70b2e4fdb36c994e8059637b2adc977, type: 3}
+  - {fileID: 7439797000257662282, guid: 59c3a5cd5fb3ee24387a23031ded63ca, type: 3}
   enemySpotPrefab: {fileID: 4165503215034726028, guid: 51f499caba5a8794193cffbd61548163,
     type: 3}
+  enemySpotsTier1: []
+  enemySpotsTier2: []
+  enemySpotsTier3: []
   minDistanceBetweenEnemies: 10
-  minDistanceBetweenObjects: 50
+  minDistanceBetweenObjects: 40
   innerBorderSpawnChance: 0.2
   centerSpawnChance: 0.03

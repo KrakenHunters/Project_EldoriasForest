@@ -5,25 +5,15 @@ using UnityEngine.AI;
 
 public class FireShotgun_SpecialSpells : SpecialSpellBook
 {
-    private float maxRange = 10f; // Maximum range of the spell
+    [SerializeField]
     private float angle = 45f; // Angle of the cone
 
-    [SerializeField]
-    private float spellTimer;
-
-    private Collider damageCollider;
+    private SphereCollider damageCollider;
 
     protected override void CastSpell(int tier)
     {
-        FireShotgunSpellStatsContainer fireShotgunContainer = spellData as FireShotgunSpellStatsContainer;
-        fireShotgunContainer.SetTierData(tier);
-        FireShotgunTierData fireShotgunTierData = fireShotgunContainer.currentTierData as FireShotgunTierData;
-
-        maxRange = fireShotgunTierData.range;
-        angle = fireShotgunTierData.angle;
-
-        damageCollider = GetComponent<Collider>();
-
+        damageCollider = GetComponent<SphereCollider>();
+        damageCollider.radius = range;
     }
 
 
@@ -31,16 +21,13 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
     {
         base.Update();
 
-        if (timer >= spellTimer)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, duration);
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // Ensure only enemies are affected
+        if (other.GetComponent<CharacterClass>()) // Ensure only enemies are affected
         {
             Vector3 directionToEnemy = (other.transform.position - transform.position).normalized;
             float angleToEnemy = Vector3.Angle(transform.forward, directionToEnemy);

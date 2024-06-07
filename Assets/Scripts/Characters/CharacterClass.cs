@@ -46,13 +46,17 @@ public class CharacterClass : BaseObject
 
     }
 
-    public void CastSpell(SpellBook spell)
+    public void CastSpell(SpellBook spell, out float duration)
     {
+        SpellBook spellBook;
+        duration = 1f;
         switch (spell.castOrigin)
         {
             case SpellBook.castType.projectile:
-                SpellBook spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
+                spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
                 spellBook.Shoot(transform.forward, this.gameObject);
+                duration = spellBook.ReturnDuration();
+
                 break;
 
             case SpellBook.castType.groundPos:
@@ -65,8 +69,10 @@ public class CharacterClass : BaseObject
                 {
                     Vector3 target = hit.point;
 
-                    SpellBook spellBook2 = Instantiate(spell, target, Quaternion.identity);
-                    spellBook2.Shoot(transform.forward, this.gameObject);
+                    spellBook = Instantiate(spell, target, Quaternion.identity);
+                    spellBook.Shoot(transform.forward, this.gameObject);
+                    duration = spellBook.ReturnDuration();
+
 
                 }
                 break;
@@ -80,16 +86,21 @@ public class CharacterClass : BaseObject
                 {
                     Vector3 target = hit2.point;
 
-                    SpellBook spellBook3 = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
-                    spellBook3.Shoot(target, this.gameObject);
+                    spellBook = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
+                    spellBook.Shoot(target, this.gameObject);
+                    duration = spellBook.ReturnDuration();
+
 
                 }
                 break;
             case SpellBook.castType.self:
-                SpellBook spellBook4 = Instantiate(spell, transform.position, Quaternion.identity, transform);
-                spellBook4.Shoot(transform.forward, this.gameObject);
+                spellBook = Instantiate(spell, transform.position, Quaternion.identity, transform);
+                spellBook.Shoot(transform.forward, this.gameObject);
+                duration = spellBook.ReturnDuration();
+
                 break;
         }
+
     }
 
     private IEnumerator WaitFixedFrame(BaseState newState)
@@ -188,7 +199,6 @@ public class CharacterClass : BaseObject
 
     private IEnumerator OnStunned(float effectTimer)
     {
-        if(_speed != 0f)
         originalSpeed = _speed;
         float timer = 0f;
         while (timer < effectTimer)
@@ -199,7 +209,7 @@ public class CharacterClass : BaseObject
 
             yield return new WaitForSeconds(1f);
         }
-
+        Debug.Log("Exit Stun");
         _speed = originalSpeed;
 
         yield return null;
