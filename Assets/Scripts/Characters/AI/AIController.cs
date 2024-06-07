@@ -154,7 +154,7 @@ public class AIController : CharacterClass
 
             agent.SetDestination(finalPosition);
 
-            while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance)
+            while (Vector3.Distance(transform.position, finalPosition) > agent.stoppingDistance + 2f)
             {
                 if (IsPlayerInView())
                 {
@@ -164,6 +164,24 @@ public class AIController : CharacterClass
 
                 yield return null;
             }
+
+            // Check for nearby AIs when AI gets to ai spot
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, areaRadius);
+            int aiCount = 0;
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.GetComponent<AIController>())
+                {
+                    aiCount++;
+                }
+            }
+
+            if (aiCount < maxAmountInGroup)
+            {
+                SetBrain(AIBrain.Patrol);
+            }
+
+
 
             // Random wait time
             float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
@@ -184,7 +202,7 @@ public class AIController : CharacterClass
 
             Vector3 target = player.position - transform.position;
             target.y = 0;
-            agent.speed = _speed * SpeedModifier;
+            agent.speed = _speed;
             if (Vector3.Distance(this.transform.position, player.position) > _attackrange)
             {
 
@@ -204,9 +222,9 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnPatrol()
     {
-
         FindAISpots();
-        agent.speed = _speed * SpeedModifier;
+
+        agent.speed = _speed;
         while (AIBrain.Patrol == currentAction)
         {
             if (spotList.Count > 0)
@@ -219,6 +237,8 @@ public class AIController : CharacterClass
 
                 while (Vector3.Distance(transform.position, targetSpot.transform.position) > agent.stoppingDistance)
                 {
+                    Debug.Log("Patrolling");
+
                     if (IsPlayerInView())
                     {
                         SetBrain(AIBrain.Chase);
@@ -228,29 +248,10 @@ public class AIController : CharacterClass
                     yield return null;
                 }
 
-                // Check for nearby AIs
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, areaRadius);
-                int aiCount = 0;
-                foreach (var hitCollider in hitColliders)
-                {
-                    if (hitCollider.GetComponent<AIController>() && hitCollider.GetComponent<AIController>() != this)
-                    {
-                        aiCount++;
-                    }
-                }
-
-                if (aiCount < maxAmountInGroup)
-                {
-                    SetBrain(AIBrain.Idle);
-                    yield break;
-                }
-            }
-
-
-            if (IsPlayerInView())
-            {
-                SetBrain(AIBrain.Chase);
+                SetBrain(AIBrain.Idle);
                 yield break;
+
+
             }
 
             yield return null;
@@ -259,7 +260,7 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnChasing()
     {
-        agent.speed = _speed * 1.5f;
+        agent.speed = _speed * SpeedModifier;
 
         while (AIBrain.Chase == currentAction)
         {
@@ -307,6 +308,7 @@ public class AIController : CharacterClass
         
         Destroy(this.gameObject, 1f);
     }
+
     protected virtual void DropSouls()
     {
         int nSoulDrops = 0;
@@ -364,7 +366,7 @@ public class AIController : CharacterClass
     #endregion
 
     #region Check Functions
-/*    void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         if (player != null)
         {
@@ -390,7 +392,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-*/
+
     private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
         Vector3 vecToTargetWorld = targetPosition - transform.position;
@@ -441,23 +443,14 @@ public class AIController : CharacterClass
 
     void FindAISpots()
     {
-        if (spotList == GridManager.Instance.enemySpotsTier1)
-        // Initialize spotList
-        spotList = new List<AISpot>();
-
-        switch(tier)
+        if (Time.time > 2f)
         {
-            case 1: 
-                spotList = GridManager.Instance.enemySpotsTier1;
-                break;
-            case 2:
-                spotList = GridManager.Instance.enemySpotsTier2;
-                break;
-            case 3:
-                spotList = GridManager.Instance.enemySpotsTier3;
-                break;
-            default:
-                break;
+            spotList = new List<AISpot>();
+            spotList = GridManager.Instance.enemySpots[tier];
+        }
+        else
+        {
+            SetBrain(AIBrain.Die);
         }
     }
 

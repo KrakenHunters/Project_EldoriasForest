@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GridManager : Singleton<GridManager>
 {
@@ -29,12 +30,7 @@ public class GridManager : Singleton<GridManager>
     private BaseObject[,] grid;
 
     [HideInInspector]
-    public List<AISpot> enemySpotsTier1;
-    [HideInInspector]
-    public List<AISpot> enemySpotsTier2;
-    [HideInInspector]
-    public List<AISpot> enemySpotsTier3;
-
+    public Dictionary<int, List<AISpot>> enemySpots = new Dictionary<int, List<AISpot>>();
 
     // Dictionary to track positions and counts for each type
     private Dictionary<int, Dictionary<string, List<Vector3>>> objectPositions = new Dictionary<int, Dictionary<string, List<Vector3>>>();
@@ -214,21 +210,19 @@ public class GridManager : Singleton<GridManager>
                 spawnedObject.tier = tier;
                 if (spawnedObject.GetComponent<AISpot>())
                 {
-                    switch (tier)
+                    // Check if the dictionary contains the key
+                    if (enemySpots.ContainsKey(tier))
                     {
-                        case 1:
-                            enemySpotsTier1.Add(spawnedObject.GetComponent<AISpot>());
-                            break;
-                        case 2:
-                            enemySpotsTier2.Add(spawnedObject.GetComponent <AISpot>());
-                            break;
-                        case 3:
-                            enemySpotsTier3.Add(spawnedObject.GetComponent<AISpot>());
-                            break;
-                        default:
-                            break;
-
+                        // If the key exists, add the new spot to the existing list
+                        enemySpots[tier].Add(spawnedObject.GetComponent<AISpot>());
                     }
+                    else
+                    {
+                        // If the key does not exist, create a new list, add the spot, and add the list to the dictionary
+                        List<AISpot> newList = new List<AISpot> { spawnedObject.GetComponent<AISpot>() };
+                        enemySpots.Add(tier, newList);
+                    }
+                    
                 }
 
                 return spawnedObject;

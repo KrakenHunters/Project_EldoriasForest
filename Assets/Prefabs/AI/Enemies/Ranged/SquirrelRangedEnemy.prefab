@@ -149,12 +149,12 @@ MonoBehaviour:
   tier: 1
   health: 15
   _speed: 2.5
-  _speedModifier: 0
+  _speedModifier: 1.5
   isInCombat: 0
   castPos: {fileID: 7852110605117582346}
   coneRadius: 5
-  angleth: 0.718
-  areaRadius: 3
+  angleth: 0.85
+  areaRadius: 1
   aggroRadius: 25
   _attackrange: 8
   currentAction: 0
@@ -164,9 +164,9 @@ MonoBehaviour:
   soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
     type: 3}
   healthDropChance: 0.2
-  maxAmountInGroup: 3
-  minIdleTime: 2
-  minIdleRadius: 4
+  maxAmountInGroup: 5
+  minIdleTime: 10
+  minIdleRadius: 5
   soulAmountMaxTier1: 6
   soulAmountMinTier1: 4
   soulAmountMaxTier2: 9
