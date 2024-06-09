@@ -156,6 +156,7 @@ public class AIController : CharacterClass
             {
                 if (IsPlayerInView())
                 {
+                    agent.ResetPath();
                     SetBrain(AIBrain.Chase);
                     yield break;
                 }
@@ -195,11 +196,20 @@ public class AIController : CharacterClass
                 Quaternion targetRotation = Quaternion.LookRotation(target);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-                AttackPlayer();
+                if (IsLookingAtTarget(target.normalized))
+                {
+                    AttackPlayer();
+                }
             }
             yield return null;
         }
         yield return null;
+    }
+
+    bool IsLookingAtTarget(Vector3 directionToTarget)
+    {
+        float dotProduct = Vector3.Dot(transform.forward, directionToTarget);
+        return dotProduct >= 0.95f;
     }
     protected virtual IEnumerator OnPatrol()
     {
@@ -223,6 +233,7 @@ public class AIController : CharacterClass
                 {
                     if (IsPlayerInView())
                     {
+                        agent.ResetPath();
                         SetBrain(AIBrain.Chase);
                         yield break;
                     }
@@ -245,9 +256,11 @@ public class AIController : CharacterClass
 
         while (AIBrain.Chase == currentAction)
         {
-            while (Vector3.Distance(transform.position, player.position) > _attackrange)
+            while (Vector3.Distance(transform.position, player.position) >= _attackrange)
             {
                 agent.speed = _speed * SpeedModifier;
+                agent.SetDestination(player.position);
+
 
                 Vector3 target = player.position - transform.position;
                 target.y = 0;
@@ -255,10 +268,10 @@ public class AIController : CharacterClass
                 Quaternion targetRotation = Quaternion.LookRotation(target);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-                agent.SetDestination(player.position);
 
                 if (LoseAgro(player.position))
                 {
+                    agent.ResetPath();
                     SetBrain(AIBrain.Idle);
                     yield break;
                 }
