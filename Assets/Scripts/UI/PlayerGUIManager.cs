@@ -18,6 +18,11 @@ public class PlayerGUIManager : MonoBehaviour
     [SerializeField]
     private Slider healthBar;
 
+    [SerializeField] 
+    private TMPro.TextMeshProUGUI specialSpellCooldownText;
+    [SerializeField]
+    private Image specialSpellCooldownGreyImage;
+
     [SerializeField]
     private TemporaryDataContainer tempData;
 
@@ -45,4 +50,25 @@ public class PlayerGUIManager : MonoBehaviour
         healthBar.maxValue = tempData.startHealth;
         healthBar.value = health;
     }
+
+    public void SetCooldown(float cooldown)
+    {
+        specialSpellCooldownGreyImage.enabled = true;
+        specialSpellCooldownText.enabled = true;
+
+        if (cooldown < 0)
+        {
+            specialSpellCooldownText.text = "Active";
+        }
+        else if (cooldown > 0)
+        {
+            specialSpellCooldownText.text = Mathf.RoundToInt(cooldown).ToString();
+        }
+        else
+        {
+            specialSpellCooldownGreyImage.enabled = false;
+            specialSpellCooldownText.enabled = false;
+        }
+    }
+
 }

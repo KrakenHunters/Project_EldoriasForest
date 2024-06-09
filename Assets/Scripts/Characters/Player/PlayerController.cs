@@ -44,6 +44,8 @@ public class PlayerController : CharacterClass
         groundLayer = LayerMask.GetMask("Ground");
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
+        initialSpeed = _speed;
+
         spellCastManager = GetComponent<PlayerSpellCastManager>();
         onHealthChanged.Raise(health);
         inputManager = GetComponent<InputManager>();

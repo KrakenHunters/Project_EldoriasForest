@@ -62,6 +62,8 @@ public class GridManager : Singleton<GridManager>
     private int playerSpawnPosY;
     private Vector3 playerSpawnPos;
 
+    public bool gridDone = false;
+
     void Start()
     {
         playerSpawnPosY = Mathf.RoundToInt(Random.Range(7, gridHeight - 8));
@@ -69,6 +71,7 @@ public class GridManager : Singleton<GridManager>
         InitializeObjectPositions();
         PopulateGrid();
         EnsureMinimumObjects();
+        gridDone = true;
     }
 
     void InitializeObjectPositions()

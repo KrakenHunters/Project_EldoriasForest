@@ -45,6 +45,7 @@ public class AIController : CharacterClass
     protected float healthDropChance;
 
     private List<AISpot> spotList;
+    private bool foundSpots = false;
 
     [SerializeField]
     private int maxAmountInGroup;
@@ -80,13 +81,14 @@ public class AIController : CharacterClass
     {
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = _attackrange;
+        initialSpeed = _speed;
 
         playerCheckCollider = GetComponent<SphereCollider>();
         playerCheckCollider.radius = aggroRadius;
 
         maxHealth = health;
 
-        SetBrain(AIBrain.Idle);
+        StartCoroutine(OnIdle());
     }
 
     protected virtual void Update()
@@ -107,7 +109,7 @@ public class AIController : CharacterClass
 
     protected void SetBrain(AIBrain newState)
     {
-        //if (currentAction == newState) return;
+        if (currentAction == newState) return;
         currentAction = newState;
 
         StopCoroutine(OnIdle());
@@ -146,11 +148,7 @@ public class AIController : CharacterClass
 
         while (AIBrain.Idle == currentAction && Time.time - startTime < idleTime)
         {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * idleRadius;
-            randomDirection += transform.position;
-            NavMeshHit hit;
-            NavMesh.SamplePosition(randomDirection, out hit, idleRadius, 1);
-            Vector3 finalPosition = hit.position;
+            Vector3 finalPosition = this.transform.position + new Vector3(UnityEngine.Random.Range(0, idleRadius), 0f, UnityEngine.Random.Range(0, idleRadius));
 
             agent.SetDestination(finalPosition);
 
@@ -165,24 +163,6 @@ public class AIController : CharacterClass
                 yield return null;
             }
 
-            // Check for nearby AIs when AI gets to ai spot
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, areaRadius);
-            int aiCount = 0;
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.GetComponent<AIController>())
-                {
-                    aiCount++;
-                }
-            }
-
-            if (aiCount < maxAmountInGroup)
-            {
-                SetBrain(AIBrain.Patrol);
-            }
-
-
-
             // Random wait time
             float waitTime = UnityEngine.Random.Range(0.5f, 1.5f);
 
@@ -191,6 +171,7 @@ public class AIController : CharacterClass
 
 
         }
+
         SetBrain(AIBrain.Patrol);
     }
 
@@ -222,13 +203,16 @@ public class AIController : CharacterClass
     }
     protected virtual IEnumerator OnPatrol()
     {
-        FindAISpots();
+        if (!foundSpots)
+            FindAISpots();
 
-        agent.speed = _speed;
+
         while (AIBrain.Patrol == currentAction)
         {
             if (spotList.Count > 0)
             {
+                agent.speed = _speed;
+
                 AISpot targetSpot = spotList[UnityEngine.Random.Range(0, spotList.Count)];
                 Quaternion targetRotation = Quaternion.LookRotation(targetSpot.transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -237,8 +221,6 @@ public class AIController : CharacterClass
 
                 while (Vector3.Distance(transform.position, targetSpot.transform.position) > agent.stoppingDistance)
                 {
-                    Debug.Log("Patrolling");
-
                     if (IsPlayerInView())
                     {
                         SetBrain(AIBrain.Chase);
@@ -251,21 +233,22 @@ public class AIController : CharacterClass
                 SetBrain(AIBrain.Idle);
                 yield break;
 
-
             }
-
-            yield return null;
         }
-        yield return null;
+
+        SetBrain(AIBrain.Idle);
+        yield break;
+
     }
     protected virtual IEnumerator OnChasing()
     {
-        agent.speed = _speed * SpeedModifier;
 
         while (AIBrain.Chase == currentAction)
         {
             while (Vector3.Distance(transform.position, player.position) > _attackrange)
             {
+                agent.speed = _speed * SpeedModifier;
+
                 Vector3 target = player.position - transform.position;
                 target.y = 0;
 
@@ -342,9 +325,11 @@ public class AIController : CharacterClass
     {
         base.GetHit(damageAmount, attacker, spell);
 
-        if (attacker.GetComponent<PlayerController>() && isAlive)
+        if (attacker.GetComponent<PlayerController>() && isAlive && (currentAction == AIBrain.Idle || currentAction == AIBrain.Patrol))
         {
             player = attacker.transform;
+            StopCoroutine(OnPatrol());
+            StopCoroutine(OnIdle());
             SetBrain(AIBrain.Chase);
         }
 
@@ -443,14 +428,15 @@ public class AIController : CharacterClass
 
     void FindAISpots()
     {
-        if (Time.time > 2f)
+        if (GridManager.Instance.gridDone)
         {
             spotList = new List<AISpot>();
             spotList = GridManager.Instance.enemySpots[tier];
+            foundSpots = true;
         }
         else
         {
-            SetBrain(AIBrain.Die);
+            SetBrain(AIBrain.Idle);
         }
     }
 

@@ -12,6 +12,7 @@ public class CharacterClass : BaseObject
 
     [SerializeField]
     protected float _speed;
+    protected float initialSpeed;
     public float Speed { get { return _speed; } }
     [SerializeField]
     protected float _speedModifier;
@@ -32,6 +33,14 @@ public class CharacterClass : BaseObject
 
     protected bool isAlive = true;
 
+    [SerializeField]
+    private ParticleSystem fireStatusParticle;
+    [SerializeField]
+    private ParticleSystem iceStatusParticle;
+    [SerializeField]
+    private ParticleSystem lightningStatusParticle;
+
+
     public enum StatusEffect
     {
         LightningEffect,
@@ -43,7 +52,6 @@ public class CharacterClass : BaseObject
     public virtual void ChangeState(BaseState newState)
     {
         StartCoroutine(WaitFixedFrame(newState));
-
     }
 
     public void CastSpell(SpellBook spell, out float duration)
@@ -183,6 +191,8 @@ public class CharacterClass : BaseObject
     {
         float timer = 0f;
 
+        iceStatusParticle.Play();
+
         while (timer < effectTimer)
         {
             timer += 1f;
@@ -190,7 +200,7 @@ public class CharacterClass : BaseObject
             damageMultiplier = damageMult;
             yield return new WaitForSeconds(1f);
         }
-
+        iceStatusParticle.Stop();
         damageMultiplier = 1f;
 
 
@@ -199,8 +209,9 @@ public class CharacterClass : BaseObject
 
     private IEnumerator OnStunned(float effectTimer)
     {
-        originalSpeed = _speed;
         float timer = 0f;
+
+        lightningStatusParticle.Play();
         while (timer < effectTimer)
         {
             timer += 1f;
@@ -209,8 +220,9 @@ public class CharacterClass : BaseObject
 
             yield return new WaitForSeconds(1f);
         }
-        Debug.Log("Exit Stun");
-        _speed = originalSpeed;
+        lightningStatusParticle.Stop();
+
+        _speed = initialSpeed;
 
         yield return null;
     }
@@ -219,6 +231,7 @@ public class CharacterClass : BaseObject
     private IEnumerator OnBurning(float effectTimer, float damage)
     {
         float timer = 0f;
+        fireStatusParticle.Play();
 
         while (timer < effectTimer)
         {
@@ -229,6 +242,7 @@ public class CharacterClass : BaseObject
 
             TakeDamage(damage);
         }
+        fireStatusParticle.Stop();
 
         yield return null;
     }

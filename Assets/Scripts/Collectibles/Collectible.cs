@@ -19,7 +19,6 @@ public class Collectible : BaseObject
         rb = GetComponent<Rigidbody>();
         // Apply an initial random force
         Vector3 randomForce = new Vector3(Random.Range(-3f, 3f), Random.Range(1f, 4f), Random.Range(-3f, 3f));
-        Debug.Log(randomForce);
         rb.AddForce(randomForce, ForceMode.Impulse);
     }
 
@@ -64,7 +63,7 @@ public class Collectible : BaseObject
 
     protected virtual void ItemCollected(PlayerController player)
     {
-
+        StopAllCoroutines();
     }
 
     private void DestroyGameObj()

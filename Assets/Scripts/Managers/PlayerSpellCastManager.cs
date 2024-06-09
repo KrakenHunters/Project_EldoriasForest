@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static PlayerController;
 
@@ -10,9 +11,17 @@ public class PlayerSpellCastManager : MonoBehaviour
     public float currentBaseSpellCooldown;
     public float currentSpecialSpellCooldown;
 
+    public float currentSpecialSpellDuration;
+
+    [SerializeField]
+    private GameEvent<float> onCooldownChange;
+
+
     void Start()
     {
         player = GetComponent<PlayerController>();
+        specialSpellTimer = 100f;
+
     }
 
 
@@ -20,6 +29,7 @@ public class PlayerSpellCastManager : MonoBehaviour
     {
         baseSpellTimer += Time.deltaTime;
         specialSpellTimer += Time.deltaTime;
+
     }
 
 
@@ -59,7 +69,32 @@ public class PlayerSpellCastManager : MonoBehaviour
         {
             player.attackType = AttackType.Special;
             player.currentState?.HandleSpecialAttack();
-            specialSpellTimer = 0f;
+        }
+    }
+
+    public IEnumerator SpecialSpellCooldownTimer()
+    {
+        specialSpellTimer = 0f;
+
+        while (true)
+        {
+            float totalTimer = currentSpecialSpellCooldown + currentSpecialSpellDuration;
+
+            if (specialSpellTimer < currentSpecialSpellDuration)
+            {
+                onCooldownChange.Raise(-1f);
+            }
+            else if (specialSpellTimer < totalTimer)
+            {
+                onCooldownChange.Raise(totalTimer - specialSpellTimer);
+            }
+            else
+            {
+                onCooldownChange.Raise(0f);
+                break;
+            }
+            yield return null;
+
         }
     }
 

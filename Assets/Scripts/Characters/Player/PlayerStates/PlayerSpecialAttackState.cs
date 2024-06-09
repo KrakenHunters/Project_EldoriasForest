@@ -46,7 +46,7 @@ public class PlayerSpecialAttack : BaseState
                 player.CastSpell(activeSpell, out spellDuration);
                 if (timer >= spellDuration)
                 {
-
+                    player.ChangeState(new PlayerMoveInCombatState());
                 }
 
             }

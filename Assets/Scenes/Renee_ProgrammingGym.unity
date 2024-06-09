@@ -889,6 +889,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2789559563601663307, guid: 6c3229ed31816b645894559f594cb0e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5310507938661584113, guid: 6c3229ed31816b645894559f594cb0e0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -998,6 +1003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnHealthChangedEvent
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8462514957348291841, guid: 6c3229ed31816b645894559f594cb0e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1313,12 +1323,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2730505649946599395, guid: 164a884b14f78b74eb82c692066feae9,
-        type: 3}
-      propertyPath: Event
-      value: 
-      objectReference: {fileID: 11400000, guid: 46cd8e36d33f3e54b809d9dd9bab0345,
-        type: 2}
     - target: {fileID: 6564312052886522217, guid: 164a884b14f78b74eb82c692066feae9,
         type: 3}
       propertyPath: m_Name
