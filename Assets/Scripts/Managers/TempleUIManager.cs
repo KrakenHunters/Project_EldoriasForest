@@ -42,6 +42,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
     private FloatGameEvent OnHealPlayer;
     [SerializeField]
     private EmptyGameEvent OnSoulCollect;
+    [SerializeField]
+    private EmptyGameEvent OnPlayerPickSpell;
 
 
     private int templeHealth;
@@ -132,7 +134,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
         GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
 
-       // PlayerGUIManager.Instance.SetSpellIcons();
+        OnPlayerPickSpell.Raise(new Empty());
         templeUI.SetActive(false);
     }
 

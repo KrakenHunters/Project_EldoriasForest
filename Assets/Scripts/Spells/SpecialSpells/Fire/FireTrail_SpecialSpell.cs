@@ -33,7 +33,7 @@ public class FireTrail_SpecialSpell : SpecialSpellBook
             Vector3 firePatchPosition = startPosition + forwardDirection * (i * firePatchInterval);
             CreateFirePatch(firePatchPosition);
 
-            yield return new WaitForSeconds(firePatchInterval);
+            yield return new WaitForSeconds((1/projectileSpeed));
         }
 
         isCasting = false;

@@ -76,3 +76,4 @@ MonoBehaviour:
   - {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5, type: 3}
   OnHealPlayer: {fileID: 11400000, guid: 46cd8e36d33f3e54b809d9dd9bab0345, type: 2}
   OnSoulCollect: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
+  OnPlayerPickSpell: {fileID: 11400000, guid: 5087cb3198c08bd4ab8d3eb3e592c7fb, type: 2}

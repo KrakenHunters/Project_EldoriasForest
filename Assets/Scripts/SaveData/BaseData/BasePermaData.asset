@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: BasePermaData
   m_EditorClassIdentifier: 
-  totalSouls: 300
-  spellBooksUnlocked:
-  - {fileID: 370365836938485006, guid: d275522146d238e4882e7347999dc242, type: 3}
-  - {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee, type: 3}
-  rune: 0
-  cooldownReduction: 0
-  healthBonus: 0
+  totalSouls: 1000
+  spellBooksUnlocked: []
   baseAttackTier: 1
   prefBaseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
   templeSoulsDropRate: 0
+  rune: 0
+  cooldownReduction: 0
+  healthBonus: 0
+  IsUltimateSpellSlotUnlocked: 0
+  InitializeData: 0

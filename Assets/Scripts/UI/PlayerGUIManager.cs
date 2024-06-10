@@ -60,11 +60,12 @@ public class PlayerGUIManager : MonoBehaviour
 
         if (cooldown <= 0)
         {
-            specialSpellCooldownGreyImage.enabled = false;
+            specialSpellCooldownGreyImage.fillAmount = 1;
             specialSpellCooldownText.text = "";
         }
         else if (cooldown > 0)
         {
+            specialSpellCooldownGreyImage.fillAmount = 1/ cooldown;
             specialSpellCooldownText.text = Mathf.RoundToInt(cooldown).ToString();
         }
         else
