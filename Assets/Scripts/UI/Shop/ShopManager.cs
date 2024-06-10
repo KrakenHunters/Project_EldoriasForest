@@ -9,6 +9,7 @@ public class ShopManager : Singleton<ShopManager>
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
 
+
     private float countingSpeed = 50f;
 
     private void Start()
@@ -18,6 +19,7 @@ public class ShopManager : Singleton<ShopManager>
             StartCoroutine(CountToTarget(-permData.totalSouls));
         else
             soulAmountText.text = permData.totalSouls.ToString();
+
     }
 
     public void PlayGame()
