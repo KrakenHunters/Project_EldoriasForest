@@ -14,16 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 20
+    damage: 55
     cooldown: 5
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    statusEffectTimer: 3
+    statusEffectDamage: 1.2
+    statusEffectChance: 0.3
     range: 0
     healAmount: 0
     radius: 0
-    duration: 0.2
+    duration: 0.1
     speed: 5
+  shortDescription: Ice spikes that grow from the floor to hit enemies
   tier1:
     damage: 55
     cooldown: 5

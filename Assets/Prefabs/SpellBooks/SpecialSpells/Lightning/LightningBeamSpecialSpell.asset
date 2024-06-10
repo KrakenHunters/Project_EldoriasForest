@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 100
+    damage: 60
     cooldown: 10
     statusEffectTimer: 3
     statusEffectDamage: 0
@@ -24,6 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 8
     speed: 0
+  shortDescription: A beam of lightning cast in a straight line hitting all enemies
+    that touch it.
   tier1:
     damage: 60
     cooldown: 10

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: BasePermaData
   m_EditorClassIdentifier: 
-  totalSouls: 1000
+  totalSouls: 0
   spellBooksUnlocked: []
   baseAttackTier: 1
   prefBaseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,

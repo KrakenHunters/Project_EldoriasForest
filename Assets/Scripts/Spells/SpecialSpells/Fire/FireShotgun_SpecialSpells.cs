@@ -27,16 +27,25 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CharacterClass>()) // Ensure only enemies are affected
+        if (other.GetComponent<CharacterClass>() && other.gameObject != charAttacker) // Ensure only enemies are affected
         {
-            Vector3 directionToEnemy = (other.transform.position - transform.position).normalized;
-            float angleToEnemy = Vector3.Angle(transform.forward, directionToEnemy);
+
+            Vector3 directionToEnemy = (other.transform.position - charAttacker.transform.position).normalized;
+            float angleToEnemy = Vector3.Angle(charAttacker.transform.forward, directionToEnemy);
+            Debug.Log(angleToEnemy);
 
             if (angleToEnemy < angle / 2) // Check if the enemy is within the cone angle
             {
+                Debug.Log("EnemyGot Hit");
                 other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             }
         }
+
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(this.transform.position, range);
 
     }
 }

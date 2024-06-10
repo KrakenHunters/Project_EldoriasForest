@@ -73,7 +73,6 @@ public class PlayerGUIManager : MonoBehaviour
         if (cooldown < 0)
         {
             specialSpellCooldownGreyImage.enabled = true;
-            specialSpellCooldownText.enabled = false;
         }
         else if (cooldown > 0)
         {

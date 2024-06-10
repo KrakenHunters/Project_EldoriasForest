@@ -15,15 +15,16 @@ MonoBehaviour:
   tierUnlocked: 1
   currentTierData:
     damage: 0
-    cooldown: 0
+    cooldown: 8
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 0
     healAmount: 0
     radius: 0
-    duration: 0
+    duration: 8
     speed: 0
+  shortDescription: Sequential shots of ice shards for a certain duration
   tier1:
     damage: 0
     cooldown: 8

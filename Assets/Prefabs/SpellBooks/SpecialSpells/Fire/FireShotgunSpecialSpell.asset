@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 0
-    cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
-    range: 0
+    damage: 60
+    cooldown: 5
+    statusEffectTimer: 3
+    statusEffectDamage: 5
+    statusEffectChance: 0.3
+    range: 5
     healAmount: 0
     radius: 0
-    duration: 0
+    duration: 0.5
     speed: 0
+  shortDescription: 'A fire attack in an angle, affecting every enemy with a certain
+    angle of attack from the caster '
   tier1:
     damage: 60
     cooldown: 5
@@ -33,7 +35,7 @@ MonoBehaviour:
     range: 5
     healAmount: 0
     radius: 0
-    duration: 0.1
+    duration: 0.5
     speed: 0
   tier2:
     damage: 75
@@ -44,7 +46,7 @@ MonoBehaviour:
     range: 10
     healAmount: 0
     radius: 0
-    duration: 0.1
+    duration: 0.5
     speed: 0
   tier3:
     damage: 110
@@ -55,5 +57,5 @@ MonoBehaviour:
     range: 15
     healAmount: 0
     radius: 0
-    duration: 0.1
+    duration: 0.5
     speed: 0

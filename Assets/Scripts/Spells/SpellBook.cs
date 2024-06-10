@@ -18,6 +18,8 @@ public class SpellBook : MonoBehaviour
 
     protected float range;
 
+    protected float radius;
+
     protected float duration;
 
     protected float projectileSpeed;
@@ -100,6 +102,7 @@ public class SpellBook : MonoBehaviour
         duration = spellData.currentTierData.duration;
         cooldown = spellData.currentTierData.cooldown;
         projectileSpeed = spellData.currentTierData.speed;
+        radius = spellData.currentTierData.radius;
     }
     public float ReturnDuration()
     {

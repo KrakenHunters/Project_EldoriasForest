@@ -35,7 +35,7 @@ public class PlayerSpellCastManager : MonoBehaviour
 
     private bool CanSpawnBaseSpell()
     {
-        if (baseSpellTimer > currentBaseSpellCooldown)
+        if (baseSpellTimer > currentSpecialSpellCooldown + currentSpecialSpellDuration)
         {
             return true;
         }
@@ -46,7 +46,7 @@ public class PlayerSpellCastManager : MonoBehaviour
 
     private bool CanSpawnSpecialSpell()
     {
-        if (specialSpellTimer > currentSpecialSpellCooldown)
+        if (specialSpellTimer > currentSpecialSpellCooldown + currentSpecialSpellDuration)
         {
             return true;
         }
@@ -69,13 +69,13 @@ public class PlayerSpellCastManager : MonoBehaviour
         {
             player.attackType = AttackType.Special;
             player.currentState?.HandleSpecialAttack();
-            specialSpellTimer = 0f;
 
         }
     }
 
     public IEnumerator SpecialSpellCooldownTimer()
     {
+        specialSpellTimer = 0f;
 
         while (true)
         {
@@ -87,7 +87,7 @@ public class PlayerSpellCastManager : MonoBehaviour
             }
             else if (specialSpellTimer < totalTimer)
             {
-                onCooldownChange.Raise((currentSpecialSpellCooldown - specialSpellTimer), currentSpecialSpellCooldown);
+                onCooldownChange.Raise((totalTimer - specialSpellTimer), currentSpecialSpellCooldown);
             }
             else if (specialSpellTimer > totalTimer)
             {

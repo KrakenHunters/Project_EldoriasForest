@@ -24,7 +24,8 @@ MonoBehaviour:
     radius: 5
     duration: 8
     speed: 5
-  shortDescription: 
+  shortDescription: 'A totem that casts lightning spells to enemies that come close
+    to it. '
   tier1:
     damage: 0
     cooldown: 8

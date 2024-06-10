@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class AIController : CharacterClass
 {
@@ -31,7 +30,7 @@ public class AIController : CharacterClass
     public AIBrain currentAction;
 
     [SerializeField]
-    private float rotationSpeed = 5f;
+    protected float rotationSpeed = 5f;
 
     protected NavMeshAgent agent;
 
@@ -44,17 +43,17 @@ public class AIController : CharacterClass
     [SerializeField]
     protected float healthDropChance;
 
-    private List<AISpot> spotList;
-    private bool foundSpots = false;
+    protected List<AISpot> spotList;
+    protected bool foundSpots = false;
 
     [SerializeField]
     private int maxAmountInGroup;
 
     [SerializeField]
-    private float minIdleTime;  // Duration for idle state
+    protected float minIdleTime;  // Duration for idle state
 
     [SerializeField]
-    private float minIdleRadius;  // Radius within which the AI can roam while idling
+    protected float minIdleRadius;  // Radius within which the AI can roam while idling
 
     [Header("Soul Drop")]
     [SerializeField]
@@ -96,8 +95,6 @@ public class AIController : CharacterClass
         playerCheckCollider.radius = aggroRadius;
 
         SetHealth();
-
-        maxHealth = health;
 
         StartCoroutine(OnIdle());
     }
@@ -304,7 +301,7 @@ public class AIController : CharacterClass
     {
         StopAllCoroutines();
         agent.speed = 0f;
-        agent.SetDestination(transform.position);
+        agent.ResetPath();
 
         DropSouls();
         if (UnityEngine.Random.Range(0f,1f) <= healthDropChance)
@@ -342,7 +339,7 @@ public class AIController : CharacterClass
 
     }
 
-    private void SetHealth()
+    protected virtual void SetHealth()
     {
         switch (tier)
         {
@@ -358,6 +355,8 @@ public class AIController : CharacterClass
             default:
                 break;
         }
+
+        maxHealth = health;
     }
 
     public virtual void AttackPlayer() { }
@@ -467,7 +466,7 @@ public class AIController : CharacterClass
         return VisionConeCheck(player.position) || AreaCheck(player.position);
     }
 
-    void FindAISpots()
+    protected virtual void FindAISpots()
     {
         if (GridManager.Instance.gridDone)
         {
