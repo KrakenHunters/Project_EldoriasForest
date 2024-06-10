@@ -77,13 +77,12 @@ MonoBehaviour:
   cooldown: 0
   castOrigin: 2
   spellData: {fileID: 11400000, guid: 58f6056041ab5c544b619a9192d01dce, type: 2}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: 8cd77356481546b4d8602f97c582509b, type: 3}
   statusEffect: 1
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
   canUseBaseSpell: 1
-  ringRadius: 5
 --- !u!1 &6197777194098644506
 GameObject:
   m_ObjectHideFlags: 0

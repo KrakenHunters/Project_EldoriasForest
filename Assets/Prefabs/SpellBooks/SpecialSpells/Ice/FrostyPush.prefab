@@ -77,7 +77,7 @@ MonoBehaviour:
   cooldown: 0
   castOrigin: 2
   spellData: {fileID: 11400000, guid: 41272673ed162cd40a09ee95defd69d9, type: 2}
-  spellIcon: {fileID: 21300000, guid: 4a4af4766d8a93947b340058ae70d135, type: 3}
+  spellIcon: {fileID: 21300000, guid: c2d019d7ff2935c46942ae41d62b14cd, type: 3}
   statusEffect: 2
   statusEffectTimer: 0
   statusEffectDamage: 0

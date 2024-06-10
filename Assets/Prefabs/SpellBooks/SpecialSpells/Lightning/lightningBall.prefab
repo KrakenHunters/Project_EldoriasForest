@@ -77,15 +77,13 @@ MonoBehaviour:
   cooldown: 0
   castOrigin: 2
   spellData: {fileID: 11400000, guid: 8c4fda0de06294247bdcc4ad3782a052, type: 2}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: de3f85aabf025eb4bb32b61949b55cf4, type: 3}
   statusEffect: 0
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
   canUseBaseSpell: 1
-  spellTimer: 15
   _rotateRadius: 5
-  speed: 2.5
 --- !u!1 &6197777194098644506
 GameObject:
   m_ObjectHideFlags: 0

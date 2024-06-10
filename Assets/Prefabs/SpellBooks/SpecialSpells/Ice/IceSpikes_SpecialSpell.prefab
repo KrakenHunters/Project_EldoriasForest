@@ -50,11 +50,12 @@ MonoBehaviour:
   cooldown: 5
   castOrigin: 0
   spellData: {fileID: 11400000, guid: db39e15e1e0cd204aa224c52414f95b5, type: 2}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: 3cef5f84644876c4f91ad5a36a251f43, type: 3}
   statusEffect: 2
   statusEffectTimer: 5
   statusEffectDamage: 2
   statusEffectChance: 0
+  canUseBaseSpell: 1
   spellTimer: 2
 --- !u!54 &-8368721801276657126
 Rigidbody:
