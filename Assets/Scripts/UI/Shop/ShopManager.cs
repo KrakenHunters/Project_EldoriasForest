@@ -11,22 +11,27 @@ public class ShopManager : Singleton<ShopManager>
 
 
     private float countingSpeed = 50f;
-
+    private void Awake()
+    {
+       // SaveManager.Instance.TransferTempToPermaData();
+    }
     private void Start()
     {
-        //SaveManager.Instance.ResetTemporaryData();
         if (permData.totalSouls != 0)
             StartCoroutine(CountToTarget(-permData.totalSouls));
         else
             soulAmountText.text = permData.totalSouls.ToString();
-
+        InvokeRepeating(nameof(AutoSave), 0, 10);
     }
+
 
     public void PlayGame()
     {
+
+        SaveManager.Instance.SetUpTempData();
         SceneManager.LoadScene("Renee_ProgrammingGym");
         Debug.Log("Play Game");
-        
+
     }
 
     public void CheckButtonInteraction(Button button, bool check, int cost)
@@ -34,10 +39,11 @@ public class ShopManager : Singleton<ShopManager>
         button.interactable = check;
         if (cost > 0)
             StartCoroutine(CountToTarget(cost));
+        SaveManager.Instance.SavePermanentData();
     }
 
 
-    IEnumerator CountToTarget(int cost)
+    public IEnumerator CountToTarget(int cost)
     {
         int currentSouls = permData.totalSouls + cost;
 
@@ -57,4 +63,10 @@ public class ShopManager : Singleton<ShopManager>
             yield return null;
         }
     }
+
+    private void AutoSave()
+    {
+        SaveManager.Instance.SavePermanentData();
+    }
+
 }

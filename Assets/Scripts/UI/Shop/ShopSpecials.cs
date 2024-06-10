@@ -193,7 +193,8 @@ public class ShopSpecials : MonoBehaviour
     {
         return ShopManager.Instance.tempData.specialSpell != null &&
                ShopManager.Instance.tempData.specialSpell.tier < 3 &&
-               ShopManager.Instance.permData.totalSouls >= upgradeCost;
+               ShopManager.Instance.permData.totalSouls >= upgradeCost &&
+               spell1 != spell2 != spell3;
     }
 
     private bool CanReRollSpells()

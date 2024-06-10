@@ -34,14 +34,16 @@ public class PlayerGUIManager : MonoBehaviour
 
     public void SetSpellIcons()
     {
+        if(tempData.baseSpell != null)
         currentBaseSpell.sprite = tempData.baseSpell.spellIcon;
+        if(tempData.specialSpell != null)
         currentSpecialSpell.sprite = tempData.specialSpell.spellIcon;
-        currentUltimateSpell.sprite = tempData.ultimateSpell.spellIcon;
+        if(tempData.ultimateSpell != null)
+            currentUltimateSpell.sprite = tempData.ultimateSpell.spellIcon;
     }
 
     public void SetSoulCount()
     {
-        //string formatedCount = String.Format("{0:N0}", tempData.collectedSouls;
         soulCountText.text = tempData.collectedSouls.ToString(); 
     }
 
@@ -56,9 +58,10 @@ public class PlayerGUIManager : MonoBehaviour
         specialSpellCooldownGreyImage.enabled = true;
         specialSpellCooldownText.enabled = true;
 
-        if (cooldown < 0)
+        if (cooldown <= 0)
         {
-            specialSpellCooldownText.text = "Active";
+            specialSpellCooldownGreyImage.enabled = false;
+            specialSpellCooldownText.text = "";
         }
         else if (cooldown > 0)
         {

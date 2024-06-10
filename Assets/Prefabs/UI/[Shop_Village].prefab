@@ -331,7 +331,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 43.5
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 1637763176491172625}
   - component: {fileID: 4797434028521586552}
   m_Layer: 5
-  m_Name: itemHolder_image_1
+  m_Name: ultimateSpellSlot_image_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 3989962677958857860}
   - component: {fileID: 4959094659452414052}
   m_Layer: 5
-  m_Name: itemHolder_image_2
+  m_Name: healthUpgrade_image_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 7014066127951301614}
   - component: {fileID: 6067270543516884622}
   - component: {fileID: 4221791624652354313}
+  - component: {fileID: 7069534130312999396}
   m_Layer: 5
   m_Name: '[Shop_Village]'
   m_TagString: Untagged
@@ -1067,6 +1068,53 @@ MonoBehaviour:
   spell1Image: {fileID: 8696143878058840326}
   spell2Image: {fileID: 2096996198157096910}
   spell3Image: {fileID: 2260442977128054811}
+--- !u!114 &7069534130312999396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252247266808901615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2b1dddb56d06e4abf4b0833d606bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ultimateSpellSlot:
+    currentUnlock: 0
+    maxUnlock: 0
+    cost: 0
+    upgradeButton: {fileID: 8385987373847965924}
+    unlockText: {fileID: 1143669079181919506}
+    costText: {fileID: 36134361535696878}
+  healthUpgrade:
+    currentUnlock: 0
+    maxUnlock: 0
+    cost: 0
+    upgradeButton: {fileID: 5437642730636280003}
+    unlockText: {fileID: 5312847343910600762}
+    costText: {fileID: 3318247097688535683}
+  DefenseRune:
+    currentUnlock: 0
+    maxUnlock: 0
+    cost: 0
+    upgradeButton: {fileID: 5359060929737575441}
+    unlockText: {fileID: 1068018796836683562}
+    costText: {fileID: 7962187357638159758}
+  LootDropRate:
+    currentUnlock: 0
+    maxUnlock: 0
+    cost: 0
+    upgradeButton: {fileID: 8364291814686001979}
+    unlockText: {fileID: 20414686176254544}
+    costText: {fileID: 6890713716156773994}
+  CoolDownReduction:
+    currentUnlock: 0
+    maxUnlock: 0
+    cost: 0
+    upgradeButton: {fileID: 6605616056931139590}
+    unlockText: {fileID: 3963035441412902310}
+    costText: {fileID: 3342845471200691329}
 --- !u!1 &1545514972279370479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: CoolDowns
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1775,7 +1823,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8940513689517807745}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: OnUltimateSpellSlotUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2085789047048681842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,7 +2224,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7924151040403182389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: OnCoolDownReductionUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2629359373648233117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2432,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6534359003590282623}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: OnDefenseRuneUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2864332819196612964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,7 +2644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: LootDropRate
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3566,7 +3650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3029606555779891181}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: OnLootDropRateUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4755958464613780767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4384,7 +4480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: HealthUpgrade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4573,7 +4669,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1689470716838904809}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: OnHealthUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5963072095591915056
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,7 +6898,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.435
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -7834,7 +7942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: DefenseRune
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8125,7 +8233,7 @@ GameObject:
   - component: {fileID: 1782756760105041257}
   - component: {fileID: 135773844105667570}
   m_Layer: 5
-  m_Name: itemHolder_image_3
+  m_Name: DefenseRune_image_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8404,7 +8512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: UltimateSpellSlot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -25,6 +25,7 @@ public class SaveManager : Singleton<SaveManager>
     public void SavePermanentData()
     {
         string jsonData = JsonUtility.ToJson(permanentData);
+        if(permanentDataFilePath != null)
         File.WriteAllText(permanentDataFilePath, jsonData);
     }
 
@@ -48,6 +49,7 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.prefBaseSpell = basePermanentData.prefBaseSpell;
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
         permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
+        permanentData.InitializeData = basePermanentData.InitializeData;
         SavePermanentData();
     }
 
@@ -59,6 +61,16 @@ public class SaveManager : Singleton<SaveManager>
         temporaryData.ultimateSpell = baseTemporaryData.ultimateSpell;
         temporaryData.collectedSpells = new List<SpellBook>(baseTemporaryData.collectedSpells);
         temporaryData.startHealth = baseTemporaryData.startHealth;
+    }
+    
+
+    public void SetUpTempData()
+    {
+        temporaryData.collectedSouls = 0;
+        temporaryData.baseSpell = permanentData.prefBaseSpell;
+        temporaryData.ultimateSpell = null;
+        temporaryData.collectedSpells = new List<SpellBook>();
+        temporaryData.startHealth += permanentData.healthBonus;
     }
 
     public void TransferTempToPermaData()
@@ -93,7 +105,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public bool HasSaveData()
     {
-        return File.Exists(permanentDataFilePath);
+        return File.Exists(permanentDataFilePath) && permanentData.InitializeData;
     }
 
 }

@@ -23,6 +23,8 @@ public class MainMenu : Menu
     {
         if (!SaveManager.Instance.HasSaveData())
             _loadGame.interactable = false;
+        else
+        SaveManager.Instance.LoadPermanentData();
 
         //Ui settings
         _startActive = true;
@@ -52,7 +54,6 @@ public class MainMenu : Menu
 
     public void OnLoadGame()
     {
-        SaveManager.Instance.LoadPermanentData();
         StartGame();
     }
     public void StartGame()

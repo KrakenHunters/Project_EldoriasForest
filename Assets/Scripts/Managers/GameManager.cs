@@ -9,6 +9,11 @@ public class GameManager : Singleton<GameManager>
 
     public GameEvent<Empty> OnSoulChange;
 
+    private void Awake()
+    {
+        pData.InitializeData = true;
+    }
+
     public IEnumerator CountToTarget(int cost)
     {
         int currentSouls = pData.totalSouls + cost;
