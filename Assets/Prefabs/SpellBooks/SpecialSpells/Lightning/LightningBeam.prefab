@@ -76,20 +76,19 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 3
-  spellData: {fileID: 11400000, guid: 2422e1e0168081848b1d50eb02c7a997, type: 2}
+  spellData: {fileID: 11400000, guid: 9cbe7ce3e71651940a7040c7ddc5ece7, type: 2}
   spellIcon: {fileID: 0}
   statusEffect: 0
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
-  speed: 10
+  canUseBaseSpell: 0
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxDistance: 15
 --- !u!120 &5401187613460116493
 LineRenderer:
   serializedVersion: 2

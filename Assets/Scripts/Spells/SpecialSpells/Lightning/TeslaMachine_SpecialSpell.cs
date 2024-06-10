@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class TeslaMachine_SpecialSpell : SpecialSpellBook
 {
-    [SerializeField]
-    private float spellTimer;
-
     private float limitUp;
-
-    [SerializeField]
-    private float speed;
 
     private float startPosY;
 
@@ -38,14 +32,14 @@ public class TeslaMachine_SpecialSpell : SpecialSpellBook
     protected override void Update()
     {
         base.Update();
-        if (transform.position.y < limitUp && timer < spellTimer)
+        if (transform.position.y < limitUp && timer < duration)
         {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);
         }
-        else if (timer >= spellTimer)
+        else if (timer >= duration)
         {
 
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
+            transform.Translate(Vector3.down * projectileSpeed * Time.deltaTime);
             if (transform.position.y <= startPosY)
             {
                 Destroy(gameObject);

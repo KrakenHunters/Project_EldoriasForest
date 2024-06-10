@@ -72,7 +72,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 1
-  health: 100
+  health: 32
   _speed: 2
   _speedModifier: 2
   isInCombat: 0
@@ -161,6 +161,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3199953021242824415}
     m_Modifications:
+    - target: {fileID: 3701643556596207359, guid: 9a4a8949d00dbcd4cb41827330a80ed6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3736595754309824191, guid: 9a4a8949d00dbcd4cb41827330a80ed6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,6 +220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fire_StatusEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4363392143446488867, guid: 9a4a8949d00dbcd4cb41827330a80ed6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -296,6 +306,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice_StatusEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 6793076894844553047, guid: 8c5b6074c35422946a1e940809dd7307,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968481061182132584, guid: 8c5b6074c35422946a1e940809dd7307,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -321,6 +341,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3199953021242824415}
     m_Modifications:
+    - target: {fileID: 785864960757540948, guid: 062db103f98c9ee4ab2ec8b92b91c514,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313525264952219306, guid: 062db103f98c9ee4ab2ec8b92b91c514,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076247840466586722, guid: 062db103f98c9ee4ab2ec8b92b91c514,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3764242298277556586, guid: 062db103f98c9ee4ab2ec8b92b91c514,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -376,6 +411,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lightning_StatusEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 6858038332485887846, guid: 062db103f98c9ee4ab2ec8b92b91c514,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -401,6 +441,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3199953021242824415}
     m_Modifications:
+    - target: {fileID: 281205472694957628, guid: 7e45cfc7e344a5b4c89914a901a6b953,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 625114484059450502, guid: 7e45cfc7e344a5b4c89914a901a6b953,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -450,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DeerPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3959739327109172486, guid: 7e45cfc7e344a5b4c89914a901a6b953,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7818228075940956797, guid: 7e45cfc7e344a5b4c89914a901a6b953,
         type: 3}

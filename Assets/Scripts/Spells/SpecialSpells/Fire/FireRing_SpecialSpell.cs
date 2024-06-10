@@ -4,8 +4,6 @@ using UnityEngine;
 public class FireRing_SpecialSpell : SpecialSpellBook
 {
 
-    [SerializeField]
-    private float ringRadius = 5f;
 
     private float healAmount;
 
@@ -16,7 +14,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
 
         healAmount = spellData.currentTierData.healAmount;
         damageCollider = GetComponentInChildren<SphereCollider>();
-        damageCollider.radius = ringRadius;
+        damageCollider.radius = spellData.currentTierData.radius;
         if(GetComponentInParent<CharacterClass>() != null)
         {
             charAttacker = GetComponentInParent<CharacterClass>().gameObject;

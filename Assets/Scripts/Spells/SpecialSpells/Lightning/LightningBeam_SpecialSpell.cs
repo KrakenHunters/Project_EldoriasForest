@@ -33,42 +33,42 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
         base.Shoot(direction, attacker);
         transform.SetParent(charAttacker.transform);
         startPos = transform.position;
+        timer = 0f;
         StartCoroutine(LightningCoroutine());
     }
 
     IEnumerator LightningCoroutine()
     {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < duration)
+        while (timer <= duration)
         {
             Vector3 end = startPos + castDirection * range;
-            if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, range, obstacleLayer))
+
+            // Perform a single raycast that checks for both obstacles and enemies
+            int combinedLayerMask = obstacleLayer | enemyLayer;
+            if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, range, combinedLayerMask, QueryTriggerInteraction.Ignore))
             {
                 end = hit.point;
+                Debug.Log(hit.collider);
+
+                // Check if the hit is an enemy
+                if (((1 << hit.collider.gameObject.layer) & enemyLayer) != 0)
+                {
+                    CharacterClass enemy = hit.collider.GetComponent<CharacterClass>();
+                    if (enemy != null)
+                    {
+                        enemy.GetHit(damage * Time.deltaTime, charAttacker, this);
+                    }
+                }
             }
 
             // Draw the lightning bolt
             lineRenderer.SetPosition(0, startPos);
             lineRenderer.SetPosition(1, end);
 
-            // Handle damage to enemies
-            RaycastHit[] hits = Physics.RaycastAll(startPos, castDirection, (end - startPos).magnitude, enemyLayer);
-            foreach (RaycastHit enemyHit in hits)
-            {
-                CharacterClass enemy = enemyHit.collider.GetComponent<CharacterClass>();
-                if (enemy != null)
-                {
-                    enemy.GetHit(damage * Time.deltaTime, charAttacker, this);
-                }
-            }
-
-            elapsedTime += Time.deltaTime;
             yield return null;
-
         }
-
         Destroy(gameObject);
+
 
     }
 }

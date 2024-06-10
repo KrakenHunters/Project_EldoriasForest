@@ -45,13 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc5a79e23c0f5a41b1e2a9b010a52e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   cooldown: 0
   castOrigin: 0
-  spellData: {fileID: 11400000, guid: e82be8efe2275de4987925f0111d6f3d, type: 2}
+  spellData: {fileID: 11400000, guid: b28aa6a9d8df31d4799b4316c828dbb9, type: 2}
+  spellIcon: {fileID: 0}
   statusEffect: 1
   statusEffectTimer: 0
   statusEffectDamage: 0
-  spellTimer: 0.1
+  statusEffectChance: 0
+  canUseBaseSpell: 0
+  angle: 45
 --- !u!135 &7120863907982733483
 SphereCollider:
   m_ObjectHideFlags: 0

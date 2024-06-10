@@ -6,12 +6,15 @@ public class PlayerSpecialAttack : BaseState
 {
     private SpellBook activeSpell;
     private float spellDuration;
+    private bool spellCast = false;
 
     public override void EnterState()
     {
         base.EnterState();
-        timer = 10f;
+        timer = 0f;
         CheckAttackType();
+        spellCast = false;
+
         //Animate ad change to new state and cast spell after animation is done
 
     }
@@ -25,14 +28,19 @@ public class PlayerSpecialAttack : BaseState
         player.c.SimpleMove(_direction.normalized * player.Speed * player.SpeedModifier);
         player.RotateToTarget();
 
+        timer += Time.deltaTime;
+
         if (activeSpell.canUseBaseSpell)
         {
             float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
             if (timer >= clipLength)
             {
-                timer = 0f;
 
-                player.CastSpell(activeSpell, out spellDuration);
+                if (!spellCast)
+                {
+                    player.CastSpell(activeSpell, out spellDuration);
+                    spellCast = true;
+                }
                 player.ChangeState(new PlayerMoveInCombatState());
             }
         }
@@ -41,9 +49,11 @@ public class PlayerSpecialAttack : BaseState
             float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
             if (timer >= clipLength)
             {
-                timer = 0f;
-
-                player.CastSpell(activeSpell, out spellDuration);
+                if (!spellCast)
+                {
+                    player.CastSpell(activeSpell, out spellDuration);
+                    spellCast = true;
+                }
                 if (timer >= spellDuration)
                 {
                     player.ChangeState(new PlayerMoveInCombatState());
@@ -56,7 +66,7 @@ public class PlayerSpecialAttack : BaseState
 
     public override void StateUpdate()
     {
-        timer += Time.deltaTime;
+
     }
 
     public override void HandleInteract()

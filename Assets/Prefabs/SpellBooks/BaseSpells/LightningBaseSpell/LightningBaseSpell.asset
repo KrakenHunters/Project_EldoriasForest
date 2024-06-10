@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 0
-    cooldown: 0
+    damage: 3
+    cooldown: 0.3
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
-    range: 0
-    angle: 0
+    range: 20
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 0
+    speed: 25
   tier1:
     damage: 3
     cooldown: 0.3
@@ -32,7 +31,6 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 20
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
@@ -44,19 +42,17 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0.3
     range: 20
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
     speed: 25
   tier3:
-    damage: 10
+    damage: 8
     cooldown: 0.3
     statusEffectTimer: 5
     statusEffectDamage: 0
     statusEffectChance: 0.5
     range: 15
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static AIController;
 
 public class CharacterClass : BaseObject
 {

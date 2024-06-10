@@ -69,12 +69,13 @@ public class PlayerSpellCastManager : MonoBehaviour
         {
             player.attackType = AttackType.Special;
             player.currentState?.HandleSpecialAttack();
+            specialSpellTimer = 0f;
+
         }
     }
 
     public IEnumerator SpecialSpellCooldownTimer()
     {
-        specialSpellTimer = 0f;
 
         while (true)
         {
@@ -86,9 +87,9 @@ public class PlayerSpellCastManager : MonoBehaviour
             }
             else if (specialSpellTimer < totalTimer)
             {
-                onCooldownChange.Raise(totalTimer - specialSpellTimer);
+                onCooldownChange.Raise(currentSpecialSpellCooldown - specialSpellTimer);
             }
-            else
+            else if (specialSpellTimer > totalTimer)
             {
                 onCooldownChange.Raise(0f);
                 break;

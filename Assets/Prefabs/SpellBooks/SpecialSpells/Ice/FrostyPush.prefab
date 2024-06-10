@@ -73,14 +73,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e07c97fdd545cb4dbd9eed47526b0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   cooldown: 0
   castOrigin: 2
-  spellData: {fileID: 11400000, guid: fb46e79d72249504da6032a73ad3f988, type: 2}
+  spellData: {fileID: 11400000, guid: 41272673ed162cd40a09ee95defd69d9, type: 2}
   spellIcon: {fileID: 21300000, guid: 4a4af4766d8a93947b340058ae70d135, type: 3}
   statusEffect: 2
   statusEffectTimer: 0
   statusEffectDamage: 0
   statusEffectChance: 0
+  canUseBaseSpell: 1
   spellTimer: 0.5
   _distance: 2
   pushForce: 10

@@ -5,13 +5,7 @@ public class LightningBall_SpecialSpell : SpecialSpellBook
     private SphereCollider damageTrigger;
 
     [SerializeField]
-    private float spellTimer;
-
-    [SerializeField]
     private float _rotateRadius;
-    [SerializeField]
-    private float speed;
-
     private float angle;
 
     protected override void CastSpell(int tier)
@@ -22,8 +16,8 @@ public class LightningBall_SpecialSpell : SpecialSpellBook
     protected override void Update()
     {
         base.Update();
-        spellTimer -= Time.deltaTime;
-        if (spellTimer <= 0)
+        duration -= Time.deltaTime;
+        if (duration <= 0)
         {
             Destroy(gameObject);
             damageTrigger.enabled = false;
@@ -34,7 +28,7 @@ public class LightningBall_SpecialSpell : SpecialSpellBook
 
     private void OrbitAroundParent()
     {
-        angle += speed * Time.deltaTime;
+        angle += projectileSpeed * Time.deltaTime;
         float x = Mathf.Cos(angle) * _rotateRadius;
         float z = Mathf.Sin(angle) * _rotateRadius;
         transform.position = new Vector3(x, 0, z) + transform.parent.position;
@@ -45,7 +39,6 @@ public class LightningBall_SpecialSpell : SpecialSpellBook
         if (character != null)
         {
             character.GetHit(damage, charAttacker, this);
-            Debug.Log("Got Hit");
         }
     }
 }

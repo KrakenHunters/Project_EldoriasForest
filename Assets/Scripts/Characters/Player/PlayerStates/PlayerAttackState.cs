@@ -8,10 +8,11 @@ public class PlayerAttackState : BaseState
     private SpellBook activeSpell;
     private float spellDuration;
 
+
     public override void EnterState()
     {
         base.EnterState();
-        timer = 10f;
+        timer = 0f;
         CheckAttackType();
         //Animate ad change to new state and cast spell after animation is done
 
@@ -30,7 +31,6 @@ public class PlayerAttackState : BaseState
         if (timer >= clipLength)
         {
             timer = 0f;
-
             player.CastSpell(activeSpell, out spellDuration);
         }
 
