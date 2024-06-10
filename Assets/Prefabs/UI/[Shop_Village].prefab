@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 6067270543516884622}
   - component: {fileID: 4221791624652354313}
   - component: {fileID: 7069534130312999396}
+  - component: {fileID: 896779076477814546}
   m_Layer: 5
   m_Name: '[Shop_Village]'
   m_TagString: Untagged
@@ -1041,6 +1042,7 @@ MonoBehaviour:
     type: 3}
   baseSpellIcon: {fileID: 6198681160417648845}
   currentbasespell: 1
+  OnBuyStuff: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
 --- !u!114 &4221791624652354313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,6 +1070,7 @@ MonoBehaviour:
   spell1Image: {fileID: 8696143878058840326}
   spell2Image: {fileID: 2096996198157096910}
   spell3Image: {fileID: 2260442977128054811}
+  OnBuyStuff: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
 --- !u!114 &7069534130312999396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,6 +1118,60 @@ MonoBehaviour:
     upgradeButton: {fileID: 6605616056931139590}
     unlockText: {fileID: 3963035441412902310}
     costText: {fileID: 3342845471200691329}
+  OnUpdateUISouls: {fileID: 0}
+  OnBuyStuff: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
+--- !u!114 &896779076477814546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252247266808901615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7407bafecc764c849b571e57a01e1a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6067270543516884622}
+        m_TargetAssemblyTypeName: ShopBase, Assembly-CSharp
+        m_MethodName: UpdateButtonInteractions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7069534130312999396}
+        m_TargetAssemblyTypeName: ShopCharacterStats, Assembly-CSharp
+        m_MethodName: UpdateButtonInteractions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4221791624652354313}
+        m_TargetAssemblyTypeName: ShopSpecials, Assembly-CSharp
+        m_MethodName: UpdateButtonInteractions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1545514972279370479
 GameObject:
   m_ObjectHideFlags: 0

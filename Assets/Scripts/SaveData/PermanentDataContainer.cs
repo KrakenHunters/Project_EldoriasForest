@@ -7,7 +7,7 @@ using UnityEngine;
 public class PermanentDataContainer : ScriptableObject
 {
     public int totalSouls;
-    public List<SpellBook> spellBooksUnlocked;
+    public List<SpecialSpellBook> spellBooksUnlocked;
     public int baseAttackTier = 1;
     public BaseSpellBook prefBaseSpell;
 

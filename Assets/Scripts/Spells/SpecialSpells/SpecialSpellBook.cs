@@ -5,9 +5,9 @@ using UnityEngine;
 public class SpecialSpellBook : SpellBook
 {
 
-    protected virtual void SpellCollected()
+    public virtual void SpellCollected(int tierUnlock)
     {
-        if (tier > spellData.tierUnlocked)
+        if (tierUnlock > spellData.tierUnlocked)
         {
             spellData.tierUnlocked = tier;
         }

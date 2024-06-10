@@ -57,7 +57,7 @@ public class MainMenu : Menu
         StartGame();
     }
     public void StartGame()
-    {
+    {                                                                                      
         SaveManager.Instance.ResetTemporaryData();
         SceneManager.LoadScene("01_Shop");//change to the  level  name
     }

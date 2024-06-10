@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopBase : MonoBehaviour
+public class ShopBase : MonoBehaviour , IShoppable
 {
+
     [Header("Base Shop Selected")]
     [SerializeField] private Image baseFireSelected;
     [SerializeField] private Image baseIceSelected;
@@ -10,7 +11,7 @@ public class ShopBase : MonoBehaviour
 
     [Header("Upgrade Cost")]
     [SerializeField] private int upgradeCost = 100;
-    [SerializeField] private int costMultiplyer = 50;
+    [SerializeField] private int costMultiplyer;
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TMPro.TextMeshProUGUI upgradeCostText;
 
@@ -23,11 +24,12 @@ public class ShopBase : MonoBehaviour
 
 
     public BaseShopItems currentbasespell = BaseShopItems.None;
+    [SerializeField] private EmptyGameEvent OnBuyStuff;
 
     private void Start()
     {
         ConvertSpellToType(ShopManager.Instance.permData.prefBaseSpell);
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell(),0);
+        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell());
         upgradeCostText.text = upgradeCost.ToString();
         if (ShopManager.Instance.permData.baseAttackTier == 3)
             upgradeCostText.text = "Max";
@@ -104,15 +106,28 @@ public class ShopBase : MonoBehaviour
     {
         ShopManager.Instance.permData.baseAttackTier++;
         ShopManager.Instance.permData.totalSouls -= upgradeCost;
+
+        //Upgrade cost event
+        UpdateSoulsCountUI(upgradeCost);
         upgradeCost *= costMultiplyer;
         upgradeCostText.text = upgradeCost.ToString();
         if (ShopManager.Instance.permData.baseAttackTier == 3)
             upgradeCostText.text = "Max";
 
-        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell(), upgradeCost);
 
+
+        OnBuyStuff.Raise(new Empty());
     }
 
+    public void UpdateButtonInteractions()
+    {
+        ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell());
+
+    }
+    public void UpdateSoulsCountUI(int cost)
+    {
+        ShopManager.Instance.CostUIUpdate(upgradeCost);
+    }
     public bool CanUpgradeBaseSpell()
     {
         return ShopManager.Instance.permData.baseAttackTier <= 2 && ShopManager.Instance.permData.totalSouls >= upgradeCost;

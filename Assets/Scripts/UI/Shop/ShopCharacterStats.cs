@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopCharacterStats : MonoBehaviour
+public class ShopCharacterStats : MonoBehaviour, IShoppable
 {
     PermanentDataContainer permData;
     [Header("Character Stats")]
@@ -11,15 +11,29 @@ public class ShopCharacterStats : MonoBehaviour
     [SerializeField] private CharacterUpgrade DefenseRune;
     [SerializeField] private CharacterUpgrade LootDropRate;
     [SerializeField] private CharacterUpgrade CoolDownReduction;
+
+    [SerializeField] private IntGameEvent OnUpdateUISouls;
+    [SerializeField] private EmptyGameEvent OnBuyStuff;
     private void Awake()
     {
         permData = ShopManager.Instance.permData;
         SetUpValues();
     }
 
+    public void UpdateButtonInteractions()
+    {
+        UpdateUI();
+        CheckAllButtonInteraction();
+    }
+
+    public void UpdateSoulsCountUI(int cost)
+    {
+        ShopManager.Instance.CostUIUpdate(cost);
+    }
+
     private void SetUpValues()
     {
-        CoolDownReduction.cost = 100; 
+        CoolDownReduction.cost = 100;
         CoolDownReduction.maxUnlock = 5;
 
         LootDropRate.maxUnlock = 5;
@@ -34,43 +48,51 @@ public class ShopCharacterStats : MonoBehaviour
         ultimateSpellSlot.maxUnlock = 1;
         ultimateSpellSlot.cost = 100;
 
-        UpdateUI();
-        ShopManager.Instance.CheckButtonInteraction(ultimateSpellSlot.upgradeButton, CanUpgradeUltimateSpellSlot(), ultimateSpellSlot.cost);
-        ShopManager.Instance.CheckButtonInteraction(healthUpgrade.upgradeButton, CanUpgradeHealth(), healthUpgrade.cost);
-        ShopManager.Instance.CheckButtonInteraction(DefenseRune.upgradeButton, CanUpgradeDefenseRune(), DefenseRune.cost);
-        ShopManager.Instance.CheckButtonInteraction(LootDropRate.upgradeButton, CanUpgradeLootDropRate(), LootDropRate.cost);
-        ShopManager.Instance.CheckButtonInteraction(CoolDownReduction.upgradeButton, CanUpgradeCoolDownReduction(), CoolDownReduction.cost);
+        UpdateButtonInteractions();
+
     }
 
     public void UpdateUI()
     {
+
         ultimateSpellSlot.currentUnlock = permData.IsUltimateSpellSlotUnlocked ? 1 : 0;
         ultimateSpellSlot.unlockText.text = $"{ultimateSpellSlot.currentUnlock} / {ultimateSpellSlot.maxUnlock}";
         ultimateSpellSlot.costText.text = ultimateSpellSlot.cost.ToString();
+        if (ultimateSpellSlot.currentUnlock == 1)
+            ultimateSpellSlot.costText.text = "Max";
+
 
         healthUpgrade.currentUnlock = permData.healthBonus;
         healthUpgrade.unlockText.text = $"{healthUpgrade.currentUnlock} / {healthUpgrade.maxUnlock}";
         healthUpgrade.costText.text = healthUpgrade.cost.ToString();
+        if (healthUpgrade.currentUnlock == healthUpgrade.maxUnlock)
+            healthUpgrade.costText.text = "Max";
 
         DefenseRune.currentUnlock = permData.rune;
         DefenseRune.unlockText.text = $"{DefenseRune.currentUnlock} / {DefenseRune.maxUnlock}";
         DefenseRune.costText.text = DefenseRune.cost.ToString();
+        if (DefenseRune.currentUnlock == DefenseRune.maxUnlock)
+            DefenseRune.costText.text = "Max";
 
-        LootDropRate.currentUnlock = Mathf.RoundToInt(permData.templeSoulsDropRate);
+        //LootDropRate.currentUnlock = Mathf.RoundToInt(permData.templeSoulsDropRate);
         LootDropRate.unlockText.text = $"{LootDropRate.currentUnlock} / {LootDropRate.maxUnlock}";
         LootDropRate.costText.text = LootDropRate.cost.ToString();
+        if (LootDropRate.currentUnlock == LootDropRate.maxUnlock)
+            LootDropRate.costText.text = "Max";
 
-        CoolDownReduction.currentUnlock = Mathf.RoundToInt(permData.cooldownReduction);
+        //CoolDownReduction.currentUnlock = Mathf.RoundToInt(permData.cooldownReduction);
         CoolDownReduction.unlockText.text = $"{CoolDownReduction.currentUnlock} / {CoolDownReduction.maxUnlock}";
         CoolDownReduction.costText.text = CoolDownReduction.cost.ToString();
+        if (CoolDownReduction.currentUnlock == CoolDownReduction.maxUnlock)
+            CoolDownReduction.costText.text = "Max";
     }
     public void OnUltimateSpellSlotUpgrade()
     {
-            ShopManager.Instance.permData.totalSouls -= ultimateSpellSlot.cost;
-            ShopManager.Instance.permData.IsUltimateSpellSlotUnlocked = true;
-            ultimateSpellSlot.currentUnlock = 1;
-            ShopManager.Instance.CheckButtonInteraction(ultimateSpellSlot.upgradeButton, CanUpgradeUltimateSpellSlot(), ultimateSpellSlot.cost);
-            UpdateUI();
+        ShopManager.Instance.permData.totalSouls -= ultimateSpellSlot.cost;
+        ShopManager.Instance.permData.IsUltimateSpellSlotUnlocked = true;
+        ultimateSpellSlot.currentUnlock = 1;
+        UpdateSoulsCountUI(ultimateSpellSlot.cost);
+        OnBuyStuff.Raise(new Empty());
     }
 
     public void OnHealthUpgrade()
@@ -78,9 +100,10 @@ public class ShopCharacterStats : MonoBehaviour
         permData.totalSouls -= healthUpgrade.cost;
         permData.healthBonus++;
         healthUpgrade.currentUnlock++;
-        healthUpgrade.cost += (3*healthUpgrade.cost);
-        ShopManager.Instance.CheckButtonInteraction(healthUpgrade.upgradeButton, CanUpgradeHealth(), healthUpgrade.cost);
-        UpdateUI();
+        UpdateSoulsCountUI(healthUpgrade.cost);
+        healthUpgrade.cost += (3 * healthUpgrade.cost);
+        OnBuyStuff.Raise(new Empty());
+
     }
 
     public void OnDefenseRuneUpgrade()
@@ -88,9 +111,9 @@ public class ShopCharacterStats : MonoBehaviour
         permData.totalSouls -= DefenseRune.cost;
         permData.rune++;
         DefenseRune.currentUnlock++;
-        DefenseRune.cost += (3*DefenseRune.cost);
-        ShopManager.Instance.CheckButtonInteraction(DefenseRune.upgradeButton, CanUpgradeDefenseRune(), DefenseRune.cost);
-        UpdateUI();
+        UpdateSoulsCountUI(DefenseRune.cost);
+        DefenseRune.cost += (3 * DefenseRune.cost);
+        OnBuyStuff.Raise(new Empty());
     }
 
     public void OnLootDropRateUpgrade()
@@ -98,9 +121,9 @@ public class ShopCharacterStats : MonoBehaviour
         permData.totalSouls -= LootDropRate.cost;
         permData.templeSoulsDropRate += 0.25f;
         LootDropRate.currentUnlock++;
-        LootDropRate.cost += (3*LootDropRate.cost);
-        ShopManager.Instance.CheckButtonInteraction(LootDropRate.upgradeButton, CanUpgradeLootDropRate(), LootDropRate.cost);
-        UpdateUI();
+        UpdateSoulsCountUI(LootDropRate.cost);
+        LootDropRate.cost += (3 * LootDropRate.cost);
+        OnBuyStuff.Raise(new Empty());
     }
 
     public void OnCoolDownReductionUpgrade()
@@ -108,11 +131,22 @@ public class ShopCharacterStats : MonoBehaviour
         permData.totalSouls -= CoolDownReduction.cost;
         permData.cooldownReduction += 0.25f;
         CoolDownReduction.currentUnlock++;
-        CoolDownReduction.cost += (3*CoolDownReduction.cost);
-        ShopManager.Instance.CheckButtonInteraction(CoolDownReduction.upgradeButton, CanUpgradeCoolDownReduction(), CoolDownReduction.cost);
-        UpdateUI();
+        UpdateSoulsCountUI(CoolDownReduction.cost);
+        CoolDownReduction.cost += (3 * CoolDownReduction.cost);
+        OnBuyStuff.Raise(new Empty());
     }
 
+    private void CheckAllButtonInteraction()
+    {
+
+        ShopManager.Instance.CheckButtonInteraction(ultimateSpellSlot.upgradeButton, CanUpgradeUltimateSpellSlot());
+        ShopManager.Instance.CheckButtonInteraction(healthUpgrade.upgradeButton, CanUpgradeHealth());
+        ShopManager.Instance.CheckButtonInteraction(DefenseRune.upgradeButton, CanUpgradeDefenseRune());
+        ShopManager.Instance.CheckButtonInteraction(LootDropRate.upgradeButton, CanUpgradeLootDropRate());
+        ShopManager.Instance.CheckButtonInteraction(CoolDownReduction.upgradeButton, CanUpgradeCoolDownReduction());
+
+
+    }
     #region Upgrade Checks 
 
     public bool CanUpgradeUltimateSpellSlot()

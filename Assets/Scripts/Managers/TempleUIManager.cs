@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class TempleUIManager : Singleton<TempleUIManager>
 {
     [SerializeField] private GameObject templeUI;
+    [SerializeField] private GameObject confirmationSpellScreen;
 
-   // [SerializeField] private GameEvent InteractTemple;
+    // [SerializeField] private GameEvent InteractTemple;
 
     [Header("Temple UI")]
-    [SerializeField] private Image Hearts;
-    [SerializeField] private Image Souls;
-    [SerializeField] private Image SpecialSpell;
+    [SerializeField] private Image SpecialSpellImage;
+
 
     [Header("Temple UI Text")]
     [SerializeField] private TMPro.TextMeshProUGUI templeHealthText;
@@ -50,8 +50,9 @@ public class TempleUIManager : Singleton<TempleUIManager>
     private int templeSouls;
     private SpellBook currentTempleSpell;
 
-
     private int templeTier;
+
+
 
     public void SetTempleOptions(int tier)
     {
@@ -89,6 +90,88 @@ public class TempleUIManager : Singleton<TempleUIManager>
         //Set the values and the objects for the menu
     }
 
+    private SpecialSpellBook CheckSpecialSpellOnPlayer()
+    {
+        if (GameManager.Instance.tData.specialSpell != null)
+            return GameManager.Instance.tData.specialSpell;
+
+        return null;
+    }
+
+    private UltimateSpellBook CheckUltimateSpellOnPlayer()
+    {
+        if (GameManager.Instance.tData.ultimateSpell != null)
+            return GameManager.Instance.tData.ultimateSpell;
+
+        return null;
+    }
+
+
+    private void GetSpell()
+    {
+        SpellBook currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+
+        if (templeTier > CheckSpecialSpellOnPlayer().tier)
+        {
+            //tier check
+            if (templeTier < 3)
+            {
+                while (currentTempleSpell is not SpecialSpellBook)
+                {
+                    currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+                }
+            }
+        }
+        else
+        {
+            //tier check
+            if (templeTier == 3)
+            {
+                while (CheckSpecialSpellOnPlayer() == currentTempleSpell || CheckUltimateSpellOnPlayer() == currentTempleSpell)
+                {
+                    currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+                }
+            }
+            else
+            {
+                while (currentTempleSpell is not SpecialSpellBook && CheckSpecialSpellOnPlayer() == currentTempleSpell)
+                {
+                    currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+                }
+            }
+        }
+
+
+
+
+    }
+
+    /*    private SpellBook GetXSpell()
+        {
+            if (templeTier == 3)
+            {
+                currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+            }
+            else
+            {
+                while (currentTempleSpell is not SpecialSpellBook)
+                {
+                    currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+                }
+            }
+
+            if (currentTempleSpell is SpecialSpellBook)
+            {
+                currentTempleSpell.tier = templeTier;
+                GameManager.Instance.tData.specialSpell = currentTempleSpell as SpecialSpellBook; //fixthis to optional
+            }
+            else
+            {
+                GameManager.Instance.tData.ultimateSpell = currentTempleSpell as UltimateSpellBook;
+            }
+            return currentTempleSpell;
+        }
+    */
     public void OnHealthButton()
     {
         Time.timeScale = 1.0f;
@@ -107,35 +190,32 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void OnSpellButton()
     {
+
+        GetSpell();
+        //Show player the spell with UI
+
+
+        confirmationSpellScreen.SetActive(true);
+        templeUI.SetActive(false);
+
+    }
+
+    public void OnAcceptSpellButton()
+    {
         Time.timeScale = 1.0f;
-
-        if (templeTier == 3)
-        {
-            currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
-        }
-        else
-        {
-            while (currentTempleSpell is not SpecialSpellBook)
-            {
-                currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
-            }
-        }
-
-        if (currentTempleSpell is SpecialSpellBook)
-        {
-            currentTempleSpell.tier = templeTier;
-            GameManager.Instance.tData.specialSpell = currentTempleSpell as SpecialSpellBook;
-        }
-        else
-        {
-            GameManager.Instance.tData.ultimateSpell = currentTempleSpell as UltimateSpellBook;
-        }
-
-
         GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
 
         OnPlayerPickSpell.Raise(new Empty());
-        templeUI.SetActive(false);
+        confirmationSpellScreen.SetActive(false);
     }
+
+    public void OnDenySpellButton()
+    {
+        Time.timeScale = 1.0f;
+
+        confirmationSpellScreen.SetActive(false);
+    }
+
+
 
 }

@@ -41,7 +41,7 @@ public class SaveManager : Singleton<SaveManager>
     public void ResetPermanentData()
     {
         permanentData.totalSouls = basePermanentData.totalSouls;
-        permanentData.spellBooksUnlocked = new List<SpellBook>(basePermanentData.spellBooksUnlocked);
+        permanentData.spellBooksUnlocked = new List<SpecialSpellBook>(basePermanentData.spellBooksUnlocked);
         permanentData.rune = basePermanentData.rune;
         permanentData.cooldownReduction = basePermanentData.cooldownReduction;
         permanentData.healthBonus = basePermanentData.healthBonus;
@@ -76,9 +76,9 @@ public class SaveManager : Singleton<SaveManager>
     public void TransferTempToPermaData()
     {
         permanentData.totalSouls += temporaryData.collectedSouls;
-        foreach (SpellBook spell in temporaryData.collectedSpells)
+        foreach (SpecialSpellBook spell in temporaryData.collectedSpells)
         {
-            SpellBook existingSpell = permanentData.spellBooksUnlocked.Find(x => x.tier == spell.tier);
+            SpecialSpellBook existingSpell = permanentData.spellBooksUnlocked.Find(x => x.tier == spell.tier);
 
             if (existingSpell == null)
             {
@@ -86,8 +86,9 @@ public class SaveManager : Singleton<SaveManager>
             }
             else if (spell.tier > existingSpell.tier)
             {
-                permanentData.spellBooksUnlocked.Remove(existingSpell);
-                permanentData.spellBooksUnlocked.Add(spell);
+                spell.SpellCollected(spell.tier);
+                //permanentData.spellBooksUnlocked.Remove(existingSpell);
+                //permanentData.spellBooksUnlocked.Add(spell);
             }
         }
         SavePermanentData();

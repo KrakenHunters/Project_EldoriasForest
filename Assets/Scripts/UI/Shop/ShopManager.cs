@@ -3,12 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ShopManager : Singleton<ShopManager>
+public class ShopManager : Singleton<ShopManager> 
 {
     public TemporaryDataContainer tempData;
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
-
 
     private float countingSpeed = 50f;
     private void Awake()
@@ -34,12 +33,17 @@ public class ShopManager : Singleton<ShopManager>
 
     }
 
-    public void CheckButtonInteraction(Button button, bool check, int cost)
+    public void CheckButtonInteraction(Button button, bool check)
     {
         button.interactable = check;
+    }
+
+    public void CostUIUpdate(int cost)
+    {
         if (cost > 0)
             StartCoroutine(CountToTarget(cost));
         SaveManager.Instance.SavePermanentData();
+
     }
 
 
@@ -69,4 +73,10 @@ public class ShopManager : Singleton<ShopManager>
         SaveManager.Instance.SavePermanentData();
     }
 
+}
+
+public interface IShoppable
+{
+    void UpdateButtonInteractions();
+    void UpdateSoulsCountUI(int cost);
 }

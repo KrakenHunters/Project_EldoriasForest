@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopSpecials : MonoBehaviour
+public class ShopSpecials : MonoBehaviour, IShoppable
 {
+
     [Header("Special Spell Upgrades")]
     [SerializeField] private int upgradeCost = 100;
     [SerializeField] private int upgradeCostMultiplier = 2;
@@ -26,6 +27,9 @@ public class ShopSpecials : MonoBehaviour
     [SerializeField] private Image spell1Image;
     [SerializeField] private Image spell2Image;
     [SerializeField] private Image spell3Image;
+
+    [SerializeField] private EmptyGameEvent OnBuyStuff;
+
 
     private SpecialSpellBook spell1;
     private SpecialSpellBook spell2;
@@ -126,6 +130,8 @@ public class ShopSpecials : MonoBehaviour
             upgradeCost *= upgradeCostMultiplier;
             upgradeCostText.text = upgradeCost.ToString();
             UpdateButtonInteractivity();
+            OnBuyStuff.Raise(new Empty());
+
         }
     }
 
@@ -187,6 +193,17 @@ public class ShopSpecials : MonoBehaviour
         spell1Button.interactable = spell1 != null;
         spell2Button.interactable = spell2 != null;
         spell3Button.interactable = spell3 != null;
+    }
+
+
+    public void UpdateButtonInteractions()
+    {
+
+    }
+
+    public void UpdateSoulsCountUI(int cost)
+    {
+
     }
 
     private bool CanUpgradeSpecialSpell()
