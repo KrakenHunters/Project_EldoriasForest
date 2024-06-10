@@ -14,7 +14,7 @@ public class PlayerSpellCastManager : MonoBehaviour
     public float currentSpecialSpellDuration;
 
     [SerializeField]
-    private GameEvent<float> onCooldownChange;
+    private DoubleFloatEvent onCooldownChange;
 
 
     void Start()
@@ -83,15 +83,15 @@ public class PlayerSpellCastManager : MonoBehaviour
 
             if (specialSpellTimer < currentSpecialSpellDuration)
             {
-                onCooldownChange.Raise(-1f);
+                onCooldownChange.Raise(-1f,0f);
             }
             else if (specialSpellTimer < totalTimer)
             {
-                onCooldownChange.Raise(currentSpecialSpellCooldown - specialSpellTimer);
+                onCooldownChange.Raise((currentSpecialSpellCooldown - specialSpellTimer), currentSpecialSpellCooldown);
             }
             else if (specialSpellTimer > totalTimer)
             {
-                onCooldownChange.Raise(0f);
+                onCooldownChange.Raise(0f,0f);
                 break;
             }
             yield return null;

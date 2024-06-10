@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 7067083177338812560}
   - component: {fileID: 414588075176845299}
   - component: {fileID: 3657166124231656583}
-  - component: {fileID: 9126471197707970244}
   - component: {fileID: 3018317069251275238}
   m_Layer: 5
   m_Name: '[GameplayUI]'
@@ -202,6 +201,7 @@ MonoBehaviour:
   specialSpellCooldownText: {fileID: 8462514957348291841}
   specialSpellCooldownGreyImage: {fileID: 2789559563601663307}
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
+  onCooldownChange: {fileID: 11400000, guid: 0da4447480fdbe447b63ddf63b8fc911, type: 2}
 --- !u!114 &414588075176845299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,34 +250,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerGUIManager, Assembly-CSharp
         m_MethodName: SetSoulCount
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &9126471197707970244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712017882030959831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f0f303568bdd249a4cf2fa63f616ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 0da4447480fdbe447b63ddf63b8fc911, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7067083177338812560}
-        m_TargetAssemblyTypeName: PlayerGUIManager, Assembly-CSharp
-        m_MethodName: SetCooldown
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2317,7 +2289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9195305518358390802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

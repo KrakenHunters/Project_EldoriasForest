@@ -5,12 +5,6 @@ using UnityEngine.AI;
 
 public class FrostyPush_SpecialSpell : SpecialSpellBook
 {
-    [SerializeField]
-    private float spellTimer;
-
-    [SerializeField]
-    private float _distance;
-
     private float pushRadius;
 
     [SerializeField]
@@ -33,32 +27,12 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
     {
         base.Update();
         
-       // transform.position = charAttacker.transform.position + charAttacker.transform.forward * _distance;
 
-        if (timer >= spellTimer)
+        if (timer >= duration)
         {
            Destroy(gameObject);
         }
     }
-
-   /* void CastPushSpell()
-     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, pushRadius);
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Enemy")) // Ensure only enemies are affected
-            {
-                NavMeshAgent agent = hitCollider.GetComponent<NavMeshAgent>();
-                if (agent != null)
-                {
-                    Vector3 direction = hitCollider.transform.position - transform.position;
-                    direction.y = 0; // Ignore vertical push
-
-                    StartCoroutine(PushEnemy(agent, direction.normalized * pushForce));
-                }
-            }
-        }
-    }*/
 
     IEnumerator PushEnemy(NavMeshAgent agent, Vector3 force)
     {
@@ -66,7 +40,7 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
 
        //agent.enabled = false; // Disable NavMeshAgent to manually move the enemy
 
-        while (elapsedTime < spellTimer)
+        while (elapsedTime < duration)
         {
             agent.transform.position += force * Time.deltaTime;
             elapsedTime += Time.deltaTime;

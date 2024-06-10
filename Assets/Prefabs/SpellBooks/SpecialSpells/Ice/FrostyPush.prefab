@@ -83,9 +83,8 @@ MonoBehaviour:
   statusEffectDamage: 0
   statusEffectChance: 0
   canUseBaseSpell: 1
-  spellTimer: 0.5
   _distance: 2
-  pushForce: 10
+  pushForce: 20
 --- !u!135 &338545962376698602
 SphereCollider:
   m_ObjectHideFlags: 0

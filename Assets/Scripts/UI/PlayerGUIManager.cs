@@ -26,6 +26,20 @@ public class PlayerGUIManager : MonoBehaviour
     [SerializeField]
     private TemporaryDataContainer tempData;
 
+    [SerializeField]
+    private DoubleFloatEvent onCooldownChange;
+
+
+    private void OnEnable()
+    {
+        onCooldownChange.AddListener(SetCooldown);
+    }
+
+    private void OnDisable()
+    {
+        onCooldownChange.RemoveListener(SetCooldown);
+    }
+
     private void Start()
     {
         SetSpellIcons();
@@ -53,20 +67,21 @@ public class PlayerGUIManager : MonoBehaviour
         healthBar.value = health;
     }
 
-    public void SetCooldown(float cooldown)
+    public void SetCooldown(float cooldown, float maxCooldown)
     {
-        specialSpellCooldownGreyImage.enabled = true;
-        specialSpellCooldownText.enabled = true;
 
-        if (cooldown <= 0)
+        if (cooldown < 0)
         {
-            specialSpellCooldownGreyImage.fillAmount = 1;
-            specialSpellCooldownText.text = "";
+            specialSpellCooldownGreyImage.enabled = true;
+            specialSpellCooldownText.enabled = false;
         }
         else if (cooldown > 0)
         {
-            specialSpellCooldownGreyImage.fillAmount = 1/ cooldown;
-            specialSpellCooldownText.text = Mathf.RoundToInt(cooldown).ToString();
+            specialSpellCooldownGreyImage.enabled = true;
+            specialSpellCooldownText.enabled = true;
+
+            specialSpellCooldownGreyImage.fillAmount = cooldown / maxCooldown;
+            specialSpellCooldownText.text = Mathf.Round(cooldown).ToString();
         }
         else
         {

@@ -14,7 +14,15 @@ public  class DoubleFloatEvent : ScriptableObject
         floatEvent.Invoke(value1,value2);
     }
 
+    public void AddListener(UnityAction<float, float> listener)
+    {
+        floatEvent += listener;
+    }
 
+    public void RemoveListener(UnityAction<float, float> listener)
+    {
+        floatEvent -= listener;
+    }
 }
 
 
