@@ -3,10 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpellStatContainer")]
 public class SpellStatsContainer : ScriptableObject
 {
+    [HideInInspector]
     public int tierUnlocked = 1;
 
     [HideInInspector]
     public TierData currentTierData;
+
+    public string shortDescription;
 
     public void SetTierData(int currentTier)
     {

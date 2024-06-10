@@ -1155,82 +1155,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &730300796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 730300798}
-  - component: {fileID: 730300797}
-  m_Layer: 0
-  m_Name: '[TempleManagerUI]'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &730300797
+--- !u!114 &730300797 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5429865827857111654}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730300796}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cf396d1a06106c43b4904a4926b191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templeUI: {fileID: 968181731}
-  Hearts: {fileID: 577751025}
-  Souls: {fileID: 499682303}
-  SpecialSpell: {fileID: 1268746558}
-  templeHealthText: {fileID: 1642830092}
-  templeSoulsText: {fileID: 212467170}
-  templeSpecialSpellText: {fileID: 1829677094}
-  minTempleTier1Health: 3
-  maxTempleTier1Health: 4
-  minTempleTier1Souls: 3
-  maxTempleTier1Souls: 4
-  minTempleTier2Health: 5
-  maxTempleTier2Health: 6
-  minTempleTier2Souls: 5
-  maxTempleTier2Souls: 6
-  minTempleTier3Health: 7
-  maxTempleTier3Health: 8
-  minTempleTier3Souls: 7
-  maxTempleTier3Souls: 8
-  templeSpecialSpellList:
-  - {fileID: 8091918523171390254, guid: a8ce4f035abe7fb40a73f6b4ab6e9f22, type: 3}
-  - {fileID: 7813077001743519996, guid: f0bc094914adc49499ce155f4bbb39e1, type: 3}
-  - {fileID: 1183470640323938929, guid: 045f4f4b009aaa24291114fd07dbf328, type: 3}
-  - {fileID: -8831097466877167438, guid: dde5d0c1a4345c64499f5daaa3279477, type: 3}
-  - {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a, type: 3}
-  - {fileID: 634136164512254635, guid: 868cf2c14a01b2e44ba934465fe3c28f, type: 3}
-  - {fileID: 4574840128260253798, guid: 2ed41d7ed0fcf9949b364199cf1935ae, type: 3}
-  - {fileID: 62415612012794258, guid: cb108203a005a774e96b49a9646f34e1, type: 3}
-  - {fileID: 7433260048738468032, guid: cb81a668636c25941b6385b5e094432c, type: 3}
-  - {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5, type: 3}
-  OnHealPlayer: {fileID: 11400000, guid: 46cd8e36d33f3e54b809d9dd9bab0345, type: 2}
-  OnSoulCollect: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
---- !u!4 &730300798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730300796}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1091.2117, y: 530.22003, z: -27.215662}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &968181731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2668,109 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &5429865827857111654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: Souls
+      value: 
+      objectReference: {fileID: 499682303}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: Hearts
+      value: 
+      objectReference: {fileID: 577751025}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: templeUI
+      value: 
+      objectReference: {fileID: 968181731}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: SpecialSpell
+      value: 
+      objectReference: {fileID: 1268746558}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: templeSoulsText
+      value: 
+      objectReference: {fileID: 212467170}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: templeHealthText
+      value: 
+      objectReference: {fileID: 1642830092}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: templeSpecialSpellText
+      value: 
+      objectReference: {fileID: 1829677094}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1091.2117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 530.22003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -27.215662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936095629624338429, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147109028348557554, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: m_Name
+      value: '[TempleManagerUI]'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d3f5e3558a4cb594293142173640f2f5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2745,4 +2784,4 @@ SceneRoots:
   - {fileID: 1115447980}
   - {fileID: 1470132957}
   - {fileID: 1830625826}
-  - {fileID: 730300798}
+  - {fileID: 5429865827857111654}
