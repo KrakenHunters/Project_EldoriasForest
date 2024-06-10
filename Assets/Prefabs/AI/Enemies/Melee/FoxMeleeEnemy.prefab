@@ -147,6 +147,9 @@ MonoBehaviour:
   soulAmountMinTier2: 7
   soulAmountMaxTier3: 12
   soulAmountMinTier3: 8
+  baseHealth: 30
+  healthMultTier2: 2.5
+  healthMultTier3: 5
   boidNeighborRadius: 5
   separationWeight: 2.5
   alignmentWeight: 0.2

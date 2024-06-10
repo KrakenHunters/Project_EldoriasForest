@@ -70,6 +70,15 @@ public class AIController : CharacterClass
     [SerializeField]
     private int soulAmountMinTier3;
 
+    [Header("HealthTier")]
+    [SerializeField]
+    private float baseHealth;
+    [SerializeField]
+    private float healthMultTier2 = 2.5f;
+    [SerializeField]
+    private float healthMultTier3 = 5f;
+
+
 
     [Header("Boid Settings")]
     public float boidNeighborRadius = 5f;
@@ -85,6 +94,8 @@ public class AIController : CharacterClass
 
         playerCheckCollider = GetComponent<SphereCollider>();
         playerCheckCollider.radius = aggroRadius;
+
+        SetHealth();
 
         maxHealth = health;
 
@@ -329,7 +340,24 @@ public class AIController : CharacterClass
             soul.tier = tier;
         }
 
+    }
 
+    private void SetHealth()
+    {
+        switch (tier)
+        {
+            case 1:
+                health = baseHealth;
+                break;
+            case 2:
+                health = baseHealth * healthMultTier2;
+                break;
+            case 3:
+                health = baseHealth * healthMultTier3;
+                break;
+            default:
+                break;
+        }
     }
 
     public virtual void AttackPlayer() { }
