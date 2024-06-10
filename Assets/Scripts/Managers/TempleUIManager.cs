@@ -82,7 +82,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
        
         templeUI.SetActive(true);
 
-       // Time.timeScale = 0.0f;
+        Time.timeScale = 0.0f;
         //Randomize the values and the objects for the menu
         //Set the values and the objects for the menu
     }

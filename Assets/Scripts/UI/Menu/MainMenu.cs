@@ -6,10 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : Menu
 {
     [SerializeField]
-    private GameObject _playMenu;
-    [SerializeField]
     private GameObject _popupMenu;
-
 
     [Header("Start Buttons")]
     [SerializeField]
@@ -34,7 +31,7 @@ public class MainMenu : Menu
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        /*if (Input.GetKeyDown(KeyCode.Alpha1))
         {
            SaveManager.Instance.DeleteAllSaveData();
             Debug.Log("Delete Save Data");
@@ -43,24 +40,20 @@ public class MainMenu : Menu
         {
            SaveManager.Instance.SavePermanentData();
             Debug.Log("Save Game");
-        }
+        }*/
     }
-    public void OnTogglePlayMenu() => _playMenu.SetActive(!_playMenu.activeSelf);
     public void OnTogglePopUpMenu() => _popupMenu.SetActive(!_popupMenu.activeSelf);
 
     protected override void DisableScreens()
     {
         base.DisableScreens();
-        _playMenu.SetActive(false);
         _popupMenu.SetActive(false);
     }
 
     public void OnLoadGame()
     {
-        //update Save data
         SaveManager.Instance.LoadPermanentData();
-        //StartGame();
-        Debug.Log("Load Game");
+        StartGame();
     }
     public void StartGame()
     {
@@ -69,20 +62,14 @@ public class MainMenu : Menu
     public void OnNewGame()
     {
         if (_loadGame.interactable)
-        {
             OnTogglePopUpMenu();
-        }
         else
-        {
             StartNewGameData();
-        }
     }
     public void StartNewGameData()
     {
         SaveManager.Instance.ResetPermanentData();
-        //reset perma data 
-        Debug.Log("New Game");
-        //StartGame();
+        StartGame();
     }
 
     public void OnToggleMute()

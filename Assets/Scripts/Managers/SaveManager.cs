@@ -47,6 +47,7 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.baseAttackTier = basePermanentData.baseAttackTier;
         permanentData.prefBaseSpell = basePermanentData.prefBaseSpell;
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
+        permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
         SavePermanentData();
     }
 

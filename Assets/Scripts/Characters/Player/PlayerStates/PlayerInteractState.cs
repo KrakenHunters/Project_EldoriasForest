@@ -21,11 +21,6 @@ public class PlayerInteractState : BaseState
 
     public override void StateFixedUpdate()
     {
-
-    }
-
-    public override void StateUpdate()
-    {
         timer += Time.deltaTime;
         Debug.Log(timer);
         //Show UI loader here!
@@ -37,6 +32,12 @@ public class PlayerInteractState : BaseState
             player.interactableObj.Interact(); //Call interaction with the interactable obj
             player.ChangeState(new PlayerMoveState());
         }
+
+    }
+
+    public override void StateUpdate()
+    {
+
     }
 
     public override void HandleSpecialAttack()
