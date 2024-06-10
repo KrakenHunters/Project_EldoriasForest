@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8147109028348557554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6936095629624338429}
+  - component: {fileID: 1172484392687708869}
+  m_Layer: 0
+  m_Name: '[TempleManagerUI]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6936095629624338429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147109028348557554}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1091.2117, y: 530.22003, z: -27.215662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172484392687708869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147109028348557554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf396d1a06106c43b4904a4926b191f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templeUI: {fileID: 0}
+  Hearts: {fileID: 0}
+  Souls: {fileID: 0}
+  SpecialSpell: {fileID: 0}
+  templeHealthText: {fileID: 0}
+  templeSoulsText: {fileID: 0}
+  templeSpecialSpellText: {fileID: 0}
+  minTempleTier1Health: 3
+  maxTempleTier1Health: 4
+  minTempleTier1Souls: 3
+  maxTempleTier1Souls: 4
+  minTempleTier2Health: 5
+  maxTempleTier2Health: 6
+  minTempleTier2Souls: 5
+  maxTempleTier2Souls: 6
+  minTempleTier3Health: 7
+  maxTempleTier3Health: 8
+  minTempleTier3Souls: 7
+  maxTempleTier3Souls: 8
+  templeSpecialSpellList:
+  - {fileID: 8091918523171390254, guid: a8ce4f035abe7fb40a73f6b4ab6e9f22, type: 3}
+  - {fileID: 7813077001743519996, guid: f0bc094914adc49499ce155f4bbb39e1, type: 3}
+  - {fileID: 1183470640323938929, guid: 045f4f4b009aaa24291114fd07dbf328, type: 3}
+  - {fileID: -8831097466877167438, guid: dde5d0c1a4345c64499f5daaa3279477, type: 3}
+  - {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a, type: 3}
+  - {fileID: 634136164512254635, guid: 868cf2c14a01b2e44ba934465fe3c28f, type: 3}
+  - {fileID: 4574840128260253798, guid: 2ed41d7ed0fcf9949b364199cf1935ae, type: 3}
+  - {fileID: 62415612012794258, guid: cb108203a005a774e96b49a9646f34e1, type: 3}
+  - {fileID: 7433260048738468032, guid: cb81a668636c25941b6385b5e094432c, type: 3}
+  - {fileID: 6098789496272763341, guid: 46e56970510189b4fbab5f7a5e1721e5, type: 3}
+  OnHealPlayer: {fileID: 11400000, guid: 46cd8e36d33f3e54b809d9dd9bab0345, type: 2}
+  OnSoulCollect: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
