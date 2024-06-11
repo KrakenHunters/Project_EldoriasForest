@@ -35,7 +35,7 @@ public class PlayerSpellCastManager : MonoBehaviour
 
     private bool CanSpawnBaseSpell()
     {
-        if (baseSpellTimer > currentSpecialSpellCooldown + currentSpecialSpellDuration)
+        if (baseSpellTimer > currentBaseSpellCooldown)
         {
             return true;
         }
