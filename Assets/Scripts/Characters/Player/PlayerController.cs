@@ -26,6 +26,10 @@ public class PlayerController : CharacterClass
     private PlayerSpellCastManager spellCastManager;
     [SerializeField]
     private GameEvent<float> onHealthChanged;
+    [SerializeField]
+    public EmptyGameEvent OnPlayerDie;
+    [SerializeField]
+    private EmptyGameEvent OnPlayerPickSpell;
 
     public Vector3 MouseWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
@@ -113,8 +117,12 @@ public class PlayerController : CharacterClass
     }
     public void HandleUltimateAttack()
     {
+
         if (tempData.ultimateSpell != null)
+        {
             spellCastManager.CastUltimateSpell();
+            Invoke(nameof(RemoveUltimateSpell),4f);
+        }
     }
 
     #endregion
@@ -156,7 +164,8 @@ public class PlayerController : CharacterClass
     private void RemoveUltimateSpell()
     {
         //Turn it on later
-        //tempData.ultimateSpell = null;
+        tempData.ultimateSpell = null;
+        OnPlayerPickSpell.Raise(new Empty());
     }
 
     public void HandlePointerDirection(Vector2 mousePos)
@@ -193,6 +202,11 @@ public class PlayerController : CharacterClass
 
     protected override void TakeDamage(float damage)
     {
+        if (health <= 0)
+        {
+            ChangeState(new PlayerDieState());
+            OnPlayerDie.Raise(new Empty());//add in death aniimation 
+        }
         base.TakeDamage(damage);
        onHealthChanged.Raise(health);
     }

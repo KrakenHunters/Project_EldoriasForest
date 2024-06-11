@@ -12,7 +12,7 @@ public class ShopManager : Singleton<ShopManager>
     private float countingSpeed = 50f;
     private void Awake()
     {
-       // SaveManager.Instance.TransferTempToPermaData();
+       SaveManager.Instance.TransferTempToPermaData();
     }
     private void Start()
     {

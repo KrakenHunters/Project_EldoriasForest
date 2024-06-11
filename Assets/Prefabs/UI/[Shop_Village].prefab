@@ -1118,7 +1118,7 @@ MonoBehaviour:
     upgradeButton: {fileID: 6605616056931139590}
     unlockText: {fileID: 3963035441412902310}
     costText: {fileID: 3342845471200691329}
-  OnUpdateUISouls: {fileID: 0}
+  OnUpdateUISouls: {fileID: 11400000, guid: 3efa49b918556ca46a877198c0fa2bd5, type: 2}
   OnBuyStuff: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
 --- !u!114 &896779076477814546
 MonoBehaviour:

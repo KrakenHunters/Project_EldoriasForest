@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Village : Interactable
 {
@@ -12,11 +13,8 @@ public class Village : Interactable
     public override void Interact()
     {
         base.Interact();
-        //Add all the temporary data to permanent data
-        //Code to erase current procedural map
-        //Load and show village pop up with upgrades and options
-        //Button on Menu resets everything back and creates a new procedural map
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("01_Shop");
 
-        //Time.timeScale = 1.0f;
     }
 }

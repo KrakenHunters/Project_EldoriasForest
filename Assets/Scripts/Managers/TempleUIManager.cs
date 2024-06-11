@@ -7,11 +7,17 @@ public class TempleUIManager : Singleton<TempleUIManager>
 {
     [SerializeField] private GameObject templeUI;
     [SerializeField] private GameObject confirmationSpellScreen;
+    [SerializeField] private GameObject celebrationScreen;
 
     // [SerializeField] private GameEvent InteractTemple;
+    [Header("Temple Spell pick")]
+    [SerializeField] private Image currentSpellImage;
+    [SerializeField] private Image newSpellImage;
 
-    [Header("Temple UI")]
-    [SerializeField] private Image SpecialSpellImage;
+    [Header("Temple Spell celebration")]
+    [SerializeField] private Image celebrationImage;
+    [SerializeField] private TMPro.TextMeshProUGUI celebrationText;
+
 
 
     [Header("Temple UI Text")]
@@ -52,7 +58,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     private int templeTier;
 
-
+    [field: SerializeField]
+    public bool keep { get; set; }
 
     public void SetTempleOptions(int tier)
     {
@@ -62,23 +69,23 @@ public class TempleUIManager : Singleton<TempleUIManager>
             
             case 1:
                 templeHealth = Random.Range(minTempleTier1Health, maxTempleTier1Health);
-                templeHealthText.text = templeHealth.ToString();
+                templeHealthText.text = $"{minTempleTier1Health}-{maxTempleTier1Health}";
                 templeSouls = Random.Range(minTempleTier1Souls, maxTempleTier1Souls);
-                templeSoulsText.text = templeSouls.ToString();
+                templeSoulsText.text = $"{minTempleTier1Souls}-{maxTempleTier1Souls}";
                 templeSpecialSpellText.text = "Tier 1";
                 break;
             case 2:
                 templeHealth = Random.Range(minTempleTier2Health, maxTempleTier2Health);
-                templeHealthText.text = templeHealth.ToString();
+                templeHealthText.text = $"{minTempleTier2Health}-{maxTempleTier2Health}";
                 templeSouls = Random.Range(minTempleTier2Souls, maxTempleTier2Souls);
-                templeSoulsText.text = templeSouls.ToString();
+                templeSoulsText.text = $"{minTempleTier2Souls}-{maxTempleTier2Souls}";
                 templeSpecialSpellText.text = "Tier 2";
                 break;
             case 3:
                 templeHealth = Random.Range(minTempleTier3Health, maxTempleTier3Health);
-                templeHealthText.text = templeHealth.ToString();
+                templeHealthText.text = $"{minTempleTier3Health}-{maxTempleTier3Health}";
                 templeSouls = Random.Range(minTempleTier3Souls, maxTempleTier3Souls);
-                templeSoulsText.text = templeSouls.ToString();
+                templeSoulsText.text = $"{minTempleTier3Souls}-{maxTempleTier3Souls}";
                 templeSpecialSpellText.text = "Tier 3";
                 break;
         }
@@ -109,7 +116,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     private void GetSpell()
     {
-        SpellBook currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+        currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
 
         if (templeTier > CheckSpecialSpellOnPlayer().tier)
         {
@@ -141,9 +148,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
             }
         }
 
-
-
-
+        currentSpellImage.sprite = GameManager.Instance.tData.specialSpell.spellIcon;
+        newSpellImage.sprite = currentTempleSpell.spellIcon;
     }
 
     /*    private SpellBook GetXSpell()
@@ -174,16 +180,24 @@ public class TempleUIManager : Singleton<TempleUIManager>
     */
     public void OnHealthButton()
     {
-        Time.timeScale = 1.0f;
+
         OnHealPlayer.Raise(templeHealth);
-        templeUI.SetActive(false);   
+        //celebrationImage.sprite = AddHeartIcon;
+        celebrationText.text = $"You have been healed for {templeHealth} health!";
+        celebrationScreen.SetActive(true);
+        templeUI.SetActive(false);
     }
 
     public void OnSoulsButton()
     {
-        Time.timeScale = 1.0f;
+
         GameManager.Instance.tData.collectedSouls += templeSouls;
         OnSoulCollect.Raise(new Empty());
+
+        //celebrationImage.sprite = AddSoulsIcon;
+        celebrationText.text = $"You have gained {templeSouls} souls!";
+        celebrationScreen.SetActive(true);
+
         templeUI.SetActive(false);
 
     }
@@ -193,17 +207,58 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
         GetSpell();
         //Show player the spell with UI
+        if(currentTempleSpell is SpecialSpellBook)
+        {
+            if (GameManager.Instance.tData.specialSpell != null)
+            {
+                confirmationSpellScreen.SetActive(true);
+                templeUI.SetActive(false);
+            }
+            else
+            {
+                SetCelebrationScreen();
+            }
+        }
+        else if (currentTempleSpell is UltimateSpellBook)
+        {
+            if (GameManager.Instance.tData.ultimateSpell != null)
+            {
+                confirmationSpellScreen.SetActive(true);
+                templeUI.SetActive(false);
+            }
+            else
+            {
+                SetCelebrationScreen();
+                //setup 
+                //celebrationScreen.SetActive(true);
+            }
 
+        }
 
-        confirmationSpellScreen.SetActive(true);
+    }
+
+    private void SetCelebrationScreen()
+    {
+        if (currentTempleSpell is SpecialSpellBook)
+        {
+            GameManager.Instance.tData.specialSpell = (SpecialSpellBook)currentTempleSpell;
+        }
+        else
+        {
+            GameManager.Instance.tData.ultimateSpell = (UltimateSpellBook)currentTempleSpell;
+        }
+        GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
+        celebrationImage.sprite = currentTempleSpell.spellIcon;
+        celebrationText.text = $"You have gained {currentTempleSpell.name}!";
+        celebrationScreen.SetActive(true);
         templeUI.SetActive(false);
 
     }
 
     public void OnAcceptSpellButton()
     {
-        Time.timeScale = 1.0f;
-        GameManager.Instance.tData.collectedSpells.Add(currentTempleSpell);
+
+        SetCelebrationScreen();
 
         OnPlayerPickSpell.Raise(new Empty());
         confirmationSpellScreen.SetActive(false);
@@ -211,11 +266,27 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void OnDenySpellButton()
     {
-        Time.timeScale = 1.0f;
-
+         Time.timeScale = 1.0f;
         confirmationSpellScreen.SetActive(false);
     }
 
+    public void ChooseAction()
+    {
+        if (!keep)
+        {
+            OnAcceptSpellButton();
+        }
+        else
+        {
+            OnDenySpellButton();
+        }
 
+    }
+
+      public void CloseCelebrationScreen()
+    {
+        celebrationScreen.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
 
 }
