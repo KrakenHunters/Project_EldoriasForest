@@ -1,17 +1,44 @@
 using UnityEngine;
 
-public class MeleeEnemy : AIController
+public class MeleeEnemy : Enemy
 {
+    [Header("Damage")]
     [SerializeField]
-    private int _damage = 10;
+    private float damageTier1;
     [SerializeField]
-    private int _cooldown = 10;
-    public override void AttackPlayer()
+    private float damageTier2;
+    [SerializeField]
+    private float damageTier3;
+
+    private float _damage = 0f;
+
+    public override void Attack()
     {
-        if (_attackTimer >= _cooldown)
+        base.Attack();
+        if (canAttack)
         {
-            player.GetComponent<CharacterClass>().GetHit(_damage, this.gameObject, null);
-            _attackTimer = 0;
+            if (_damage == 0f)
+                GetDamage();
+
+            playerDetector.controller.GetHit(_damage, this.gameObject, null);
+        }
+
+    }
+
+    void GetDamage()
+    {
+        switch (tier)
+        {
+            case 1:
+                _damage = damageTier1;
+                break;
+            case 2:
+                _damage = damageTier2; 
+                break;
+            case 3:
+                _damage = damageTier3; 
+                break;
         }
     }
+    
 }

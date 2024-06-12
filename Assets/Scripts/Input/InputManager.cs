@@ -22,7 +22,6 @@ public class InputManager : MonoBehaviour
     {
         _player = GetComponent<PlayerController>();
         _action = new PlayerInput();
-        Debug.Log("Awake iknput");
     }
 
     private void Update()

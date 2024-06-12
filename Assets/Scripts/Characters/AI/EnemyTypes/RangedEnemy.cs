@@ -1,18 +1,17 @@
 using UnityEngine;
 
-public class RangedEnemy : AIController
+public class RangedEnemy : Enemy
 {
     [SerializeField]
     private BaseSpellBook spellBook;
+
     private float duration;
 
-    public override void AttackPlayer()
+    public override void Attack()
     {
-        if (spellBook.cooldown <= _attackTimer)
-        {
+        base.Attack();
+        if (canAttack)
             CastSpell(spellBook, out duration);
-            _attackTimer = 0;
-        }
     }
 
 }
