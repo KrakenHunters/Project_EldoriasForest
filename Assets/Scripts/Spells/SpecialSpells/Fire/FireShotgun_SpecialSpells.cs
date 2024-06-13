@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class FireShotgun_SpecialSpells : SpecialSpellBook
 {
@@ -43,9 +40,4 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(this.transform.position, range);
-
-    }
 }

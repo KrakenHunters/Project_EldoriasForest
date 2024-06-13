@@ -14,12 +14,17 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
+        Debug.Log("Chase");
+        enemy.gotHit = false;
         //animator.CrossFade(RunHash, crossFadeDuration);
         agent.speed = enemy.Speed * enemy.runMultiplier;
     }
 
+
+
     public override void Update()
     {
         agent.SetDestination(player.position);
+
     }
 }

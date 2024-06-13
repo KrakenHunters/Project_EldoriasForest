@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GridManager : Singleton<GridManager>
 {
@@ -32,19 +30,20 @@ public class GridManager : Singleton<GridManager>
     [HideInInspector]
     public Dictionary<int, List<AISpot>> enemySpots = new Dictionary<int, List<AISpot>>();
 
+
     // Dictionary to track positions and counts for each type
     private Dictionary<int, Dictionary<string, List<Vector3>>> objectPositions = new Dictionary<int, Dictionary<string, List<Vector3>>>();
     private Dictionary<int, Dictionary<string, int>> maxObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 45 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 60 } } },
-        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 7 }, { "Enemy", 65 } } }
+        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 30 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 40/*60*/ } } },
+        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 7 }, { "Enemy", 45/*65*/ } } }
     };
     private Dictionary<int, Dictionary<string, int>> minObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 50 } } },
-        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 55 } } },
+        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 25 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35/*50*/ } } },
+        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35/*55*/ } } },
     };
 
     [SerializeField]
@@ -162,7 +161,7 @@ public class GridManager : Singleton<GridManager>
 
     bool IsInnerBorder(int x, int y)
     {
-        return (x <= 7|| y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
+        return (x <= 12 || y <= 5 || x >= gridWidth - 5 || y >= gridHeight - 5) && !IsBorder(x, y);
     }
 
     bool IsCenter(int x, int y)
@@ -225,7 +224,7 @@ public class GridManager : Singleton<GridManager>
                         List<AISpot> newList = new List<AISpot> { spawnedObject.GetComponent<AISpot>() };
                         enemySpots.Add(tier, newList);
                     }
-                    
+
                 }
 
                 return spawnedObject;

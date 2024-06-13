@@ -304,12 +304,12 @@ public class AIController : CharacterClass
         agent.ResetPath();
 
         DropSouls();
-        if (UnityEngine.Random.Range(0f,1f) <= healthDropChance)
+        if (UnityEngine.Random.Range(0f, 1f) <= healthDropChance)
         {
             HealthCollectible health = Instantiate(healthDrop, transform.position + Vector3.forward, Quaternion.identity);
             health.tier = tier;
         }
-        
+
         Destroy(this.gameObject, 1f);
     }
 
@@ -331,7 +331,7 @@ public class AIController : CharacterClass
                 break;
         }
 
-        for (int i = 0;  i < nSoulDrops; i++)
+        for (int i = 0; i < nSoulDrops; i++)
         {
             SoulCollectible soul = Instantiate(soulDrop, transform.position, Quaternion.identity);
             soul.tier = tier;
@@ -391,7 +391,7 @@ public class AIController : CharacterClass
     #endregion
 
     #region Check Functions
-    void OnDrawGizmos()
+/*    void OnDrawGizmos()
     {
         if (player != null)
         {
@@ -417,7 +417,7 @@ public class AIController : CharacterClass
         Gizmos.DrawRay(Vector3.zero, vLeft);
         Gizmos.DrawRay(Vector3.zero, vRight);
     }
-
+*/
     private Vector3 GetFlatDirection(Vector3 targetPosition, out float flatDistance)
     {
         Vector3 vecToTargetWorld = targetPosition - transform.position;

@@ -19,7 +19,7 @@ public class PlayerDetector : MonoBehaviour
 
     void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform; 
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         controller = Player.GetComponent<PlayerController>();
     }
 
@@ -29,7 +29,11 @@ public class PlayerDetector : MonoBehaviour
         detectionStrategy = new ConeDetectionStrategy(detectionAngle, detectionRadius, innerDetectionRadius);
     }
 
-    void Update() => detectionTimer.Tick(Time.deltaTime);
+    void Update()
+    {
+        detectionTimer.Tick(Time.deltaTime);
+        Debug.Log("PlayerPos" + Player.position);
+    }
 
     public bool CanDetectPlayer()
     {
@@ -44,20 +48,21 @@ public class PlayerDetector : MonoBehaviour
 
     public void SetDetectionStrategy(IDetectionStrategy detectionStrategy) => this.detectionStrategy = detectionStrategy;
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
+    /*    void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
 
-        // Draw a spheres for the radii
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        Gizmos.DrawWireSphere(transform.position, innerDetectionRadius);
+            // Draw a spheres for the radii
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+            Gizmos.DrawWireSphere(transform.position, innerDetectionRadius);
 
-        // Calculate our cone directions
-        Vector3 forwardConeDirection = Quaternion.Euler(0, detectionAngle / 2, 0) * transform.forward * detectionRadius;
-        Vector3 backwardConeDirection = Quaternion.Euler(0, -detectionAngle / 2, 0) * transform.forward * detectionRadius;
+            // Calculate our cone directions
+            Vector3 forwardConeDirection = Quaternion.Euler(0, detectionAngle / 2, 0) * transform.forward * detectionRadius;
+            Vector3 backwardConeDirection = Quaternion.Euler(0, -detectionAngle / 2, 0) * transform.forward * detectionRadius;
 
-        // Draw lines to represent the cone
-        Gizmos.DrawLine(transform.position, transform.position + forwardConeDirection);
-        Gizmos.DrawLine(transform.position, transform.position + backwardConeDirection);
-    }
+            // Draw lines to represent the cone
+            Gizmos.DrawLine(transform.position, transform.position + forwardConeDirection);
+            Gizmos.DrawLine(transform.position, transform.position + backwardConeDirection);
+        }
+    */
 }

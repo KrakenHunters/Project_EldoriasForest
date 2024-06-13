@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
@@ -12,7 +13,6 @@ public class Enemy : CharacterClass
 {
     NavMeshAgent agent;
     protected PlayerDetector playerDetector;
-    EnemySpotDetector spotDetector;
 
     Animator animator;
 
@@ -31,6 +31,8 @@ public class Enemy : CharacterClass
     float deathTimer = 3f;
 
     protected bool canAttack;
+
+    [SerializeField] float playerDetectionDistance = 30f;
 
     [Header("Drops")]
     [SerializeField]
@@ -69,6 +71,10 @@ public class Enemy : CharacterClass
 
     private List<AISpot> spotList;
 
+    [HideInInspector]
+    public bool gotHit;
+
+
 
 
     void Start()
@@ -76,7 +82,6 @@ public class Enemy : CharacterClass
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerDetector = GetComponent<PlayerDetector>();
-        spotDetector = GetComponent<EnemySpotDetector>();
 
 
         initialSpeed = _speed;
@@ -101,9 +106,11 @@ public class Enemy : CharacterClass
         At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
         At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
         At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer()));
-        Any(dieState, new FuncPredicate(() => health <= 0));
+        Any(dieState, new FuncPredicate(() => !isAlive));
+        Any(chaseState, new FuncPredicate(() => isAlive && gotHit));
 
         stateMachine.SetState(wanderState);
+
     }
 
     void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -111,9 +118,12 @@ public class Enemy : CharacterClass
 
     void Update()
     {
-        stateMachine.Update();
-        attackTimer.Tick(Time.deltaTime);
-        wanderTimer.Tick(Time.deltaTime);
+        if (Vector3.Distance(playerDetector.Player.position, transform.position) <= playerDetectionDistance)
+        {
+            stateMachine.Update();
+            attackTimer.Tick(Time.deltaTime);
+            wanderTimer.Tick(Time.deltaTime);
+        }
 
     }
 
@@ -197,7 +207,7 @@ public class Enemy : CharacterClass
 
     bool ShouldPatrol()
     {
-        return (!wanderTimer.IsRunning || CrowdedRegion());
+        return (!wanderTimer.IsRunning /*&& CrowdedRegion()*/);
     }
 
     bool CrowdedRegion()
@@ -218,6 +228,14 @@ public class Enemy : CharacterClass
 
         return enemyCount >= maxGroupSize;
     }
+
+    public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
+    {
+        base.GetHit(damageAmount, attacker, spell);
+        gotHit = true;
+
+    }
+
 
     public AISpot SelectAISpot()
     {

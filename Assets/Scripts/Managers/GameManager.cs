@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -20,7 +19,7 @@ public class GameManager : Singleton<GameManager>
 
         int increment = (pData.totalSouls > currentSouls) ? 1 : -1;
 
-       float countingSpeed = Mathf.Abs(cost);
+        float countingSpeed = Mathf.Abs(cost);
 
         while (currentSouls != pData.totalSouls)
         {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseSpellBook : SpellBook
@@ -79,7 +77,7 @@ public class BaseSpellBook : SpellBook
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.GetComponent<AIController>())
+            if (hitCollider.GetComponent<Enemy>())
             {
                 Vector3 directionToTarget = hitCollider.transform.position - startPos;
                 float angle = Vector3.Angle(forward, directionToTarget);

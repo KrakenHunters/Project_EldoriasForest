@@ -74,6 +74,6 @@ MonoBehaviour:
     type: 3}
   minDistanceBetweenEnemies: 10
   minDistanceBetweenObjects: 40
-  innerBorderSpawnChance: 0.2
-  centerSpawnChance: 0.08
+  innerBorderSpawnChance: 0.15
+  centerSpawnChance: 0.15
   gridDone: 0
