@@ -202,12 +202,12 @@ public class PlayerController : CharacterClass
 
     protected override void TakeDamage(float damage)
     {
-        if (health <= 0)
+        base.TakeDamage(damage);
+        if (!isAlive)
         {
             ChangeState(new PlayerDieState());
             OnPlayerDie.Raise(new Empty());//add in death aniimation 
         }
-        base.TakeDamage(damage);
        onHealthChanged.Raise(health);
     }
 

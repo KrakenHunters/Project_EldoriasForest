@@ -139,14 +139,10 @@ public class CharacterClass : BaseObject
 
    protected virtual void TakeDamage(float damage)
     {
-        if (isAlive)
-        {
-            health -= damage;
-        }
-        if (health <= 0 && isAlive)
-        {
+        if (health <= 0)
             isAlive = false;
-        }
+        else if(isAlive)
+            health -= damage;
 
     }
     private void ApplyStatusEffect(SpellBook spellBook)
