@@ -18,7 +18,7 @@ MonoBehaviour:
     cooldown: 0.5
     statusEffectTimer: 10
     statusEffectDamage: 5
-    statusEffectChance: 1
+    statusEffectChance: 0
     range: 10
     healAmount: 0
     radius: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
     cooldown: 0.5
     statusEffectTimer: 10
     statusEffectDamage: 5
-    statusEffectChance: 1
+    statusEffectChance: 0
     range: 10
     healAmount: 0
     radius: 0
