@@ -1,5 +1,3 @@
-using System;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerAttackState : BaseState
@@ -8,11 +6,14 @@ public class PlayerAttackState : BaseState
     private SpellBook activeSpell;
     private float spellDuration;
 
+    private bool cancelAttack = false;
 
     public override void EnterState()
     {
         base.EnterState();
         timer = 0f;
+        cancelAttack = false;
+
         CheckAttackType();
         //Animate ad change to new state and cast spell after animation is done
 
@@ -24,15 +25,27 @@ public class PlayerAttackState : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.SimpleMove(_direction.normalized * player.Speed * player.SpeedModifier);
+        base.StateFixedUpdate();
+        float t = lerpTimer / lerpDuration;
+        currentSpeed = Mathf.Lerp(initialSpeed, player.Speed * player.SpeedModifier, t);
+        player.c.SimpleMove(_direction.normalized * currentSpeed);
+
         player.RotateToTarget();
 
         float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (timer >= clipLength)
         {
-            timer = 0f;
             player.CastSpell(activeSpell, out spellDuration);
+
+            timer = 0f;
+
+            if (cancelAttack)
+            { 
+                player.ChangeState(new PlayerMoveInCombatState());
+            }
+
         }
+
 
     }
 
@@ -48,8 +61,7 @@ public class PlayerAttackState : BaseState
 
     public override void HandleAttackCancel()
     {
-        player.ChangeState(new PlayerMoveInCombatState());
-
+        cancelAttack = true;
     }
 
     public override void HandleSpecialAttack()

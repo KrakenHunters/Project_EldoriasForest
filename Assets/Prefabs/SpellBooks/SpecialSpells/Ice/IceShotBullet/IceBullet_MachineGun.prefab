@@ -122,16 +122,13 @@ MonoBehaviour:
   tier: 1
   cooldown: 2
   castOrigin: 3
+  canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: a3495ee07e4534f4d9611d7809b292e0, type: 2}
   spellIcon: {fileID: 0}
-  statusEffect: 2
-  statusEffectTimer: 5
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  speed: 15
-  range: 15
-  aimRange: 10
-  aimAngle: 15
+  statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
+    type: 3}
+  autoAimRange: 10
+  autoAimAngle: 15
 --- !u!54 &5872516404404234687
 Rigidbody:
   m_ObjectHideFlags: 0

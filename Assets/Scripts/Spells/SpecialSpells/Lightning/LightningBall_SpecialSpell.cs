@@ -39,6 +39,8 @@ public class LightningBall_SpecialSpell : SpecialSpellBook
         if (character != null)
         {
             character.GetHit(damage, charAttacker, this);
+            SetStatusEffect(other.transform);
+
         }
     }
 }

@@ -76,14 +76,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 2
+  canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 41272673ed162cd40a09ee95defd69d9, type: 2}
   spellIcon: {fileID: 21300000, guid: c2d019d7ff2935c46942ae41d62b14cd, type: 3}
-  statusEffect: 2
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  canUseBaseSpell: 1
-  _distance: 2
+  statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
+    type: 3}
   pushForce: 20
 --- !u!135 &338545962376698602
 SphereCollider:

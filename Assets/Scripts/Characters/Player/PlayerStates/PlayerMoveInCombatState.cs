@@ -16,9 +16,11 @@ public class PlayerMoveInCombatState : BaseState
 
     public override void StateFixedUpdate()
     {
-        base.EnterState();
+        base.StateFixedUpdate();
+        float t = lerpTimer / lerpDuration;
+        currentSpeed = Mathf.Lerp(initialSpeed, player.Speed, t);
+        player.c.SimpleMove(_direction.normalized * currentSpeed);
 
-        player.c.SimpleMove(_direction.normalized * player.Speed);
         player.RotateToTarget();
     }
 

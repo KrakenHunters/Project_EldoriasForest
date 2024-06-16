@@ -52,14 +52,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 15
   castOrigin: 1
+  canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 6f9bc77967bebb74b9fdc22cc12d718b, type: 2}
   spellIcon: {fileID: 21300000, guid: 46ee6f498e9bca94e88e1ce8c3aa4699, type: 3}
-  statusEffect: 1
-  statusEffectTimer: 10
-  statusEffectDamage: 10
-  statusEffectChance: 0
-  canUseBaseSpell: 1
-  speed: 10
+  statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
+    type: 3}
 --- !u!33 &4995557826010180249
 MeshFilter:
   m_ObjectHideFlags: 0

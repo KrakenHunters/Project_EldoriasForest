@@ -47,13 +47,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 3
+  canUseBaseSpell: 0
   spellData: {fileID: 11400000, guid: 7dc8bb5e16d77a344801af8f949f3e05, type: 2}
   spellIcon: {fileID: 0}
-  statusEffect: 3
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  canUseBaseSpell: 0
+  statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
+    type: 3}
   interval: 0.3
   iceBullet: {fileID: 370365836938485006, guid: 218aaeb1a24354440a7e4a3baf4326ae,
     type: 3}

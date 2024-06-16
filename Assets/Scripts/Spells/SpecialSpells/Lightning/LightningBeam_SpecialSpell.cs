@@ -57,6 +57,8 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
                     if (enemy != null)
                     {
                         enemy.GetHit(damage * Time.deltaTime, charAttacker, this);
+                        SetStatusEffect(enemy.transform);
+
                     }
                 }
             }
