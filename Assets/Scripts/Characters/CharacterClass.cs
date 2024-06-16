@@ -32,7 +32,7 @@ public class CharacterClass : BaseObject
 
     protected bool isAlive = true;
 
-
+    protected Vector3 spellTarget;
 
     public virtual void ChangeState(BaseState newState)
     {
@@ -46,45 +46,23 @@ public class CharacterClass : BaseObject
         switch (spell.castOrigin)
         {
             case SpellBook.castType.projectile:
-                spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-                spellBook.Shoot(transform.forward, this.gameObject);
-                duration = spellBook.ReturnDuration();
+                    spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
+                    spellBook.Shoot(transform.forward, this.gameObject);
+                    duration = spellBook.ReturnDuration();
 
                 break;
 
             case SpellBook.castType.groundPos:
-                Vector3 mousePos = Input.mousePosition;
-                Ray ray = Camera.main.ScreenPointToRay(mousePos);
-                RaycastHit hit;
-                LayerMask groundLayer = LayerMask.GetMask("Ground");
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-                {
-                    Vector3 target = hit.point;
-
-                    spellBook = Instantiate(spell, target, Quaternion.identity);
+                    spellBook = Instantiate(spell, spellTarget, Quaternion.identity);
                     spellBook.Shoot(transform.forward, this.gameObject);
                     duration = spellBook.ReturnDuration();
 
-
-                }
                 break;
             case SpellBook.castType.skyToGroundPos:
-                Vector3 mousePos2 = Input.mousePosition;
-                Ray ray2 = Camera.main.ScreenPointToRay(mousePos2);
-                RaycastHit hit2;
-                LayerMask groundLayer2 = LayerMask.GetMask("Ground");
-
-                if (Physics.Raycast(ray2, out hit2, Mathf.Infinity, groundLayer2))
-                {
-                    Vector3 target = hit2.point;
-
                     spellBook = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
-                    spellBook.Shoot(target, this.gameObject);
+                    spellBook.Shoot(spellTarget, this.gameObject);
                     duration = spellBook.ReturnDuration();
 
-
-                }
                 break;
             case SpellBook.castType.self:
                 spellBook = Instantiate(spell, transform.position, Quaternion.identity, transform);
