@@ -107,7 +107,9 @@ public class BaseSpellBook : SpellBook
             SetStatusEffect(other.gameObject);
 
         }
-        Destroy(this.gameObject);
+
+        if (other.gameObject != charAttacker)
+            Destroy(this.gameObject);
 
         //Check if it is an enemy to call a damage function
         //Call an explosion or the after effect for the destroyed object.

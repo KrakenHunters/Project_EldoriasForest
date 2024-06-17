@@ -145,7 +145,7 @@ MonoBehaviour:
   detectionRadius: 10
   innerDetectionRadius: 3
   detectionCooldown: 3
-  attackRange: 1.5
+  attackRange: 2
   controller: {fileID: 0}
 --- !u!95 &1724517897213098423
 Animator:

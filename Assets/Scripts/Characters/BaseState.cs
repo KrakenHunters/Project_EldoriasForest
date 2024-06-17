@@ -12,7 +12,7 @@ public abstract class BaseState
 
     protected float initialSpeed;
     protected float currentSpeed;
-    protected float lerpDuration = 0.8f; // The duration over which to interpolate speed
+    protected float lerpDuration = 0.3f; // The duration over which to interpolate speed
     protected float lerpTimer;
 
     public CharacterClass character { get; set; }
