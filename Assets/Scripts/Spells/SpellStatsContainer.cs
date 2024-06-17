@@ -9,7 +9,8 @@ public class SpellStatsContainer : ScriptableObject
     [HideInInspector]
     public TierData currentTierData;
 
-    public string shortDescription;
+    public string templeDescription;
+    public string shopkeeperDescription;
 
     public void SetTierData(int currentTier)
     {
