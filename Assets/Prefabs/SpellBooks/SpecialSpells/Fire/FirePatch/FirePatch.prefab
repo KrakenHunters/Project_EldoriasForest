@@ -68,6 +68,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3462e3eb7f7e98240bc05d1e9c14559e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
+  cooldown: 0
+  castOrigin: 0
+  canUseBaseSpell: 1
+  spellData: {fileID: 11400000, guid: d2c5216619b75a14e846e18be535b765, type: 2}
+  spellIcon: {fileID: 0}
+  statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
+    type: 3}
+  autoAimRange: 10
+  autoAimAngle: 15
 --- !u!54 &2681300125906421656
 Rigidbody:
   m_ObjectHideFlags: 0

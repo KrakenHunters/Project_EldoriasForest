@@ -61,6 +61,8 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
                 direction.y = 0; // Ignore vertical push
 
                 StartCoroutine(PushEnemy(agent, direction.normalized * pushForce));
+                SetStatusEffect(other.transform);
+
             }
         }
 

@@ -31,7 +31,7 @@ public class PlayerController : CharacterClass
     [SerializeField]
     private EmptyGameEvent OnPlayerPickSpell;
 
-    public Vector3 MouseWorldPosition { get; private set; }
+    public Vector3 AimWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
 
     private LayerMask groundLayer;
@@ -113,13 +113,17 @@ public class PlayerController : CharacterClass
     public void HandleSpecialAttack()
     {
         if (tempData.specialSpell != null)
+        {
             spellCastManager.CastSpecialSpell();
+            spellTarget = AimWorldPosition;
+        }
     }
     public void HandleUltimateAttack()
     {
 
         if (tempData.ultimateSpell != null)
         {
+            spellTarget = AimWorldPosition;
             spellCastManager.CastUltimateSpell();
             Invoke(nameof(RemoveUltimateSpell),4f);
         }
@@ -175,9 +179,9 @@ public class PlayerController : CharacterClass
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
-            MouseWorldPosition = hit.point;
+            AimWorldPosition = hit.point;
         }
-        Vector3 target = MouseWorldPosition;
+        Vector3 target = AimWorldPosition;
         Vector3 direction = target - transform.position;
         direction.y = 0;
         PlayerRotation = Quaternion.LookRotation(direction);

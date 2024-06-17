@@ -78,13 +78,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 0
+  canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 9a8f3ae2d4ef5c4479d533a28eb066b8, type: 2}
   spellIcon: {fileID: 21300000, guid: ba8588d3b6a431f4580843357e247d09, type: 3}
-  statusEffect: 3
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  canUseBaseSpell: 1
+  statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
+    type: 3}
   interval: 1.5
   lightningBaseSpell: {fileID: 5174980907974982790, guid: 722a9b5dabff85f4a9f95d7db283b670,
     type: 3}

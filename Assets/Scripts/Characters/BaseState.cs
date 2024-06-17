@@ -10,6 +10,11 @@ public abstract class BaseState
     protected LayerMask groundLayer = LayerMask.GetMask("Ground");
     protected float timer;
 
+    protected float initialSpeed;
+    protected float currentSpeed;
+    protected float lerpDuration = 1.5f; // The duration over which to interpolate speed
+    protected float lerpTimer;
+
     public CharacterClass character { get; set; }
     public InputManager inputManager { get; set; }
 
@@ -18,9 +23,16 @@ public abstract class BaseState
     public virtual void EnterState() 
     {
         player = character.GetComponent<PlayerController>();
+        lerpTimer = 0f;
+        initialSpeed = player.c.velocity.magnitude; // Start from 0 speed
+
     }
     public virtual void ExitState() { }
-    public virtual void StateFixedUpdate() { }
+    public virtual void StateFixedUpdate() 
+    {
+        lerpTimer += Time.fixedDeltaTime;
+
+    }
     public virtual void StateUpdate() { }
     public virtual void HandleMovement(Vector2 dir) { }
     public virtual void HandleAttack() 

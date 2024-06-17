@@ -32,7 +32,6 @@ public class PlayerDetector : MonoBehaviour
     void Update()
     {
         detectionTimer.Tick(Time.deltaTime);
-        Debug.Log("PlayerPos" + Player.position);
     }
 
     public bool CanDetectPlayer()

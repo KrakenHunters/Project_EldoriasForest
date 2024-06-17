@@ -49,13 +49,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 2
+  canUseBaseSpell: 0
   spellData: {fileID: 11400000, guid: b28aa6a9d8df31d4799b4316c828dbb9, type: 2}
   spellIcon: {fileID: 21300000, guid: 890af04b34027a24a9836abde947580b, type: 3}
-  statusEffect: 1
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  canUseBaseSpell: 0
+  statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
+    type: 3}
   angle: 90
 --- !u!135 &7120863907982733483
 SphereCollider:

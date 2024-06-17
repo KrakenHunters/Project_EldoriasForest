@@ -11,8 +11,9 @@ public class CharacterClass : BaseObject
 
     [SerializeField]
     protected float _speed;
-    protected float initialSpeed;
-    public float Speed { get { return _speed; } }
+    [HideInInspector]
+    public float initialSpeed;
+    public float Speed { get { return _speed; } set { _speed = value; } }
     [SerializeField]
     protected float _speedModifier;
     public float SpeedModifier { get { return _speedModifier; } }
@@ -27,26 +28,11 @@ public class CharacterClass : BaseObject
     [HideInInspector]
     public BaseState currentState;
 
-    private float damageMultiplier = 1.0f;
-    private float originalSpeed;
+    public float damageMultiplier = 1.0f;
 
     protected bool isAlive = true;
 
-    [SerializeField]
-    private ParticleSystem fireStatusParticle;
-    [SerializeField]
-    private ParticleSystem iceStatusParticle;
-    [SerializeField]
-    private ParticleSystem lightningStatusParticle;
-
-
-    public enum StatusEffect
-    {
-        LightningEffect,
-        FireEffect,
-        IceEffect,
-        None
-    }
+    protected Vector3 spellTarget;
 
     public virtual void ChangeState(BaseState newState)
     {
@@ -60,45 +46,23 @@ public class CharacterClass : BaseObject
         switch (spell.castOrigin)
         {
             case SpellBook.castType.projectile:
-                spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
-                spellBook.Shoot(transform.forward, this.gameObject);
-                duration = spellBook.ReturnDuration();
+                    spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
+                    spellBook.Shoot(transform.forward, this.gameObject);
+                    duration = spellBook.ReturnDuration();
 
                 break;
 
             case SpellBook.castType.groundPos:
-                Vector3 mousePos = Input.mousePosition;
-                Ray ray = Camera.main.ScreenPointToRay(mousePos);
-                RaycastHit hit;
-                LayerMask groundLayer = LayerMask.GetMask("Ground");
-
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-                {
-                    Vector3 target = hit.point;
-
-                    spellBook = Instantiate(spell, target, Quaternion.identity);
+                    spellBook = Instantiate(spell, spellTarget, Quaternion.identity);
                     spellBook.Shoot(transform.forward, this.gameObject);
                     duration = spellBook.ReturnDuration();
 
-
-                }
                 break;
             case SpellBook.castType.skyToGroundPos:
-                Vector3 mousePos2 = Input.mousePosition;
-                Ray ray2 = Camera.main.ScreenPointToRay(mousePos2);
-                RaycastHit hit2;
-                LayerMask groundLayer2 = LayerMask.GetMask("Ground");
-
-                if (Physics.Raycast(ray2, out hit2, Mathf.Infinity, groundLayer2))
-                {
-                    Vector3 target = hit2.point;
-
                     spellBook = Instantiate(spell, new Vector3(transform.position.x, 30f, transform.position.z), Quaternion.identity);
-                    spellBook.Shoot(target, this.gameObject);
+                    spellBook.Shoot(spellTarget, this.gameObject);
                     duration = spellBook.ReturnDuration();
 
-
-                }
                 break;
             case SpellBook.castType.self:
                 spellBook = Instantiate(spell, transform.position, Quaternion.identity, transform);
@@ -127,12 +91,6 @@ public class CharacterClass : BaseObject
         if (attacker != this.gameObject)
         {
             TakeDamage(damageAmount * damageMultiplier);
-
-            if (spellBook != null)
-            {
-                if (Random.value <= spellBook.statusEffectChance)
-                    ApplyStatusEffect(spellBook);
-            }
         }
 
     }
@@ -144,102 +102,6 @@ public class CharacterClass : BaseObject
         else if(isAlive)
             health -= damage;
 
-    }
-    private void ApplyStatusEffect(SpellBook spellBook)
-    {
-
-        //  SpellBook newSpellBook = new SpellBook();
-        SpellBook newSpellBook;
-        if (spellBook == null)
-        {
-            newSpellBook = new SpellBook();
-            newSpellBook.statusEffect = SpellBook.StatusEffect.None;
-        }
-        else
-        {
-            newSpellBook = spellBook;
-        }
-
-        StopCoroutine(OnFrozen(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
-        StopCoroutine(OnBurning(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
-        StopCoroutine(OnStunned(newSpellBook.statusEffectTimer));
-
-        switch (newSpellBook.statusEffect)
-        {
-            case SpellBook.StatusEffect.IceEffect:
-                StartCoroutine(OnFrozen(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
-                break;
-            case SpellBook.StatusEffect.FireEffect:
-                StartCoroutine(OnBurning(newSpellBook.statusEffectTimer, newSpellBook.statusEffectDamage));
-                break;
-            case SpellBook.StatusEffect.LightningEffect:
-                StartCoroutine(OnStunned(newSpellBook.statusEffectTimer));
-                break;
-            case SpellBook.StatusEffect.None:
-                break;
-
-
-        }
-    }
-
-    private IEnumerator OnFrozen(float effectTimer,float damageMult)
-    {
-        float timer = 0f;
-
-        iceStatusParticle.Play();
-
-        while (timer < effectTimer)
-        {
-            timer += 1f;
-
-            damageMultiplier = damageMult;
-            yield return new WaitForSeconds(1f);
-        }
-        iceStatusParticle.Stop();
-        damageMultiplier = 1f;
-
-
-        yield return null;
-    }
-
-    private IEnumerator OnStunned(float effectTimer)
-    {
-        float timer = 0f;
-
-        lightningStatusParticle.Play();
-        while (timer < effectTimer)
-        {
-            timer += 1f;
-
-            _speed = 0f;
-
-            yield return new WaitForSeconds(1f);
-        }
-        lightningStatusParticle.Stop();
-
-        _speed = initialSpeed;
-
-        yield return null;
-    }
-
-
-    private IEnumerator OnBurning(float effectTimer, float damage)
-    {
-        float timer = 0f;
-        fireStatusParticle.Play();
-
-        while (timer < effectTimer)
-        {
-            yield return new WaitForSeconds(1f);
-
-            timer += 1f;
-            Debug.Log("Burning");
-
-            TakeDamage(damage);
-        }
-        fireStatusParticle.Stop();
-
-        yield return null;
     }
 
     public virtual void Heal(float healAmount)

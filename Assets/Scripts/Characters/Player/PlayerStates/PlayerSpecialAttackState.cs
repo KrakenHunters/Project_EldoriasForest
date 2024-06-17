@@ -25,7 +25,9 @@ public class PlayerSpecialAttack : BaseState
 
     public override void StateFixedUpdate()
     {
-        player.c.SimpleMove(_direction.normalized * player.Speed * player.SpeedModifier);
+        base.StateFixedUpdate();
+        float t = lerpTimer / lerpDuration;
+        currentSpeed = Mathf.Lerp(initialSpeed, player.Speed * player.SpeedModifier, t);
         player.RotateToTarget();
 
         timer += Time.deltaTime;
@@ -35,7 +37,6 @@ public class PlayerSpecialAttack : BaseState
             float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
             if (timer >= clipLength)
             {
-
                 if (!spellCast)
                 {
                     player.CastSpell(activeSpell, out spellDuration);

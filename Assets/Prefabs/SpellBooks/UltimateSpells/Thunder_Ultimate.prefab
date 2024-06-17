@@ -141,13 +141,11 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 0
+  canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 050533e1c7b21284ca3000f57ceb5d90, type: 2}
   spellIcon: {fileID: 21300000, guid: c7ca49be313a3a640909d048918e61d5, type: 3}
-  statusEffect: 0
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
-  canUseBaseSpell: 1
+  statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
+    type: 3}
   thunderEffects: {fileID: 4419524288812267784, guid: 7d092f8eb887025458ecf55d38bb6399,
     type: 3}
   damageInterval: 1

@@ -24,34 +24,23 @@ public class SpellBook : MonoBehaviour
 
     protected float projectileSpeed;
 
+    public bool canUseBaseSpell = true;
+
     [SerializeField]
     protected SpellStatsContainer spellData;
 
     public Sprite spellIcon;
 
     #region StatusEffect
-    public StatusEffect statusEffect;
+    [Header("Status Effect")]
+    protected float statusEffectTimer;
+    protected float statusEffectDamage;
+    protected float statusEffectChance;
 
-    [HideInInspector]
-    public float statusEffectTimer;
-    [HideInInspector]
-    public float statusEffectDamage;
-    [HideInInspector]
-    public float statusEffectChance;
-
-    public bool canUseBaseSpell = true;
+    [SerializeField]
+    protected StatusEffect statusEffect;
 
     #endregion
-
-
-    public enum StatusEffect
-    {
-        LightningEffect,
-        FireEffect,
-        IceEffect,
-        None
-    }
-
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -107,6 +96,16 @@ public class SpellBook : MonoBehaviour
     public float ReturnDuration()
     {
         return duration;
+    }
+
+    protected void SetStatusEffect(Transform target)
+    {
+        if (Random.value <= statusEffectChance)
+        {
+            StatusEffect effect = Instantiate(statusEffect, target);
+            effect.ActivateStatusEffect(statusEffectTimer, statusEffectDamage);
+        }
+
     }
 
 
