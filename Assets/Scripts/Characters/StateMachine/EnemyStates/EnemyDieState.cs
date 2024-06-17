@@ -12,7 +12,7 @@ public class EnemyDieState : EnemyBaseState
 
     public override void OnEnter()
     {
-        //animator.CrossFade(RunHash, crossFadeDuration);
+        //animator.CrossFade(DieHash, crossFadeDuration);
         agent.ResetPath();
 
         enemy.DropSouls();

@@ -51,7 +51,7 @@ public class IceSpike_SpecialSpell : SpecialSpellBook
         if (other.GetComponent<CharacterClass>())
         {
             other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
-            SetStatusEffect(other.transform);
+            SetStatusEffect(other.gameObject);
 
         }
 

@@ -34,7 +34,7 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
             if (angleToEnemy < angle / 2) // Check if the enemy is within the cone angle
             {
                 other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
-                SetStatusEffect(other.transform);
+                SetStatusEffect(other.gameObject);
 
             }
         }

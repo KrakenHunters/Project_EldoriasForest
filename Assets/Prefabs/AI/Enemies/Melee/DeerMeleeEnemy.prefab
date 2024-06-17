@@ -98,12 +98,11 @@ MonoBehaviour:
   tier: 1
   health: 32
   _speed: 2
+  initialSpeed: 0
   _speedModifier: 2
   isInCombat: 0
   castPos: {fileID: 0}
-  fireStatusParticle: {fileID: 0}
-  iceStatusParticle: {fileID: 0}
-  lightningStatusParticle: {fileID: 0}
+  damageMultiplier: 1
   wanderRadius: 10
   wanderTime: 5
   maxGroupSize: 4

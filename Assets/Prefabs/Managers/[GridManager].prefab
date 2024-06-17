@@ -54,8 +54,8 @@ MonoBehaviour:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
   - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
   centerPrefabs:
-  - {fileID: 7439797000257662282, guid: 1ce2d036b1e7fd242a525594e98da9fb, type: 3}
-  - {fileID: 7439797000257662282, guid: 59c3a5cd5fb3ee24387a23031ded63ca, type: 3}
+  - {fileID: 7439797000257662282, guid: d83cb65fb9604844bbbcbc34da16b5f6, type: 3}
+  - {fileID: 7439797000257662282, guid: e13ba0a30fa84d544a6cbabb16b7a66f, type: 3}
   - {fileID: 3242830716933975920, guid: e70b2e4fdb36c994e8059637b2adc977, type: 3}
   - {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9, type: 3}
   - {fileID: 5642612961866236942, guid: fe6e6eb4e0c2934428f99c4dbffa24cd, type: 3}

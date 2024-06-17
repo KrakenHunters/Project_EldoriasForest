@@ -15,7 +15,6 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void OnEnter()
     {
-        Debug.Log("AttackState");
         //animator.CrossFade(AttackHash, crossFadeDuration);
         agent.ResetPath();
     }

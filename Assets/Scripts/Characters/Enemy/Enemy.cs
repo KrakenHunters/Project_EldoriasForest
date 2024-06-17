@@ -7,7 +7,6 @@ using Utilities;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(PlayerDetector))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(EnemySpotDetector))]
 
 public class Enemy : CharacterClass
 {

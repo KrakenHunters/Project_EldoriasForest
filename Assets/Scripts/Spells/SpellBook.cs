@@ -98,11 +98,16 @@ public class SpellBook : MonoBehaviour
         return duration;
     }
 
-    protected void SetStatusEffect(Transform target)
+    protected void SetStatusEffect(GameObject target)
     {
+        if (target.GetComponentInChildren<StatusEffect>())
+        {
+            Destroy(target.GetComponentInChildren<StatusEffect>().gameObject);
+        }
+
         if (Random.value <= statusEffectChance)
         {
-            StatusEffect effect = Instantiate(statusEffect, target);
+            StatusEffect effect = Instantiate(statusEffect, target.transform);
             effect.ActivateStatusEffect(statusEffectTimer, statusEffectDamage);
         }
 
