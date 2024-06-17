@@ -36,7 +36,8 @@ public class CharacterClass : BaseObject
 
     protected bool isAlive = true;
 
-    protected Vector3 spellTarget;
+    [HideInInspector]
+    public Vector3 spellTarget;
 
     public virtual void ChangeState(BaseState newState)
     {

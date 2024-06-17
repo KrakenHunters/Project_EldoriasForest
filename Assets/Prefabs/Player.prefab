@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5066222880727964611}
   - component: {fileID: 156858833036162555}
   - component: {fileID: 2730505649946599395}
+  - component: {fileID: 4488782522038449466}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -161,6 +162,7 @@ MonoBehaviour:
   castPos: {fileID: 516063834806072628}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   damageMultiplier: 1
+  spellTarget: {x: 0, y: 0, z: 0}
   c: {fileID: 2666035536617133056}
   combatCooldown: 8
   _rotationSpeed: 3000
@@ -171,6 +173,7 @@ MonoBehaviour:
   OnPlayerPickSpell: {fileID: 11400000, guid: 5087cb3198c08bd4ab8d3eb3e592c7fb, type: 2}
   canInteract: 0
   interactableObj: {fileID: 0}
+  spellWeapon: {fileID: 0}
 --- !u!114 &5066222880727964611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +230,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4488782522038449466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6564312052886522217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deaeccb03acc7244abc3cd42ac0ec42d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 186690170489971989, guid: 9836b5d1697f6a54a83753b753fd9aff,
+    type: 3}
+  particleColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &6597620483037645168
 GameObject:
   m_ObjectHideFlags: 0

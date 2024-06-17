@@ -26,8 +26,7 @@ public class SpellBook : MonoBehaviour
 
     public bool canUseBaseSpell = true;
 
-    [SerializeField]
-    protected SpellStatsContainer spellData;
+    public SpellStatsContainer spellData;
 
     public Sprite spellIcon;
 

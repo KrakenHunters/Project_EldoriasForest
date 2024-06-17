@@ -41,6 +41,8 @@ public class PlayerController : CharacterClass
 
     [HideInInspector]
     public Interactable interactableObj;
+    [HideInInspector]
+    public SpellWeapon spellWeapon;
 
 
     private void Awake()
@@ -51,6 +53,7 @@ public class PlayerController : CharacterClass
         initialSpeed = _speed;
 
         spellCastManager = GetComponent<PlayerSpellCastManager>();
+        spellWeapon = GetComponent<SpellWeapon>();
         onHealthChanged.Raise(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();

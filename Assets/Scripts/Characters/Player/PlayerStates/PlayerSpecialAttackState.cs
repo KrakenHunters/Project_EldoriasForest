@@ -15,6 +15,8 @@ public class PlayerSpecialAttack : BaseState
         CheckAttackType();
         spellCast = false;
 
+        player.spellWeapon.InstantiateIndicator(activeSpell, player);
+
         //Animate ad change to new state and cast spell after animation is done
 
     }
@@ -29,7 +31,6 @@ public class PlayerSpecialAttack : BaseState
         float t = lerpTimer / lerpDuration;
         currentSpeed = Mathf.Lerp(initialSpeed, player.Speed * player.SpeedModifier, t);
         player.c.SimpleMove(_direction.normalized * currentSpeed);
-
 
         player.RotateToTarget();
 
