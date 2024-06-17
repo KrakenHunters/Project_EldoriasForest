@@ -78,7 +78,7 @@ MonoBehaviour:
   castOrigin: 3
   canUseBaseSpell: 0
   spellData: {fileID: 11400000, guid: 9cbe7ce3e71651940a7040c7ddc5ece7, type: 2}
-  spellIcon: {fileID: 0}
+  spellIcon: {fileID: 21300000, guid: 8488f361fd3cdc5449a23a8eaa39a0c2, type: 3}
   statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
     type: 3}
   obstacleLayer:

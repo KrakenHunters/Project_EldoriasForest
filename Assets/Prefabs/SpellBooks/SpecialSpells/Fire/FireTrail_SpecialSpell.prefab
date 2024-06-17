@@ -47,13 +47,10 @@ MonoBehaviour:
   tier: 1
   cooldown: 0
   castOrigin: 3
-  spellData: {fileID: 11400000, guid: d2c5216619b75a14e846e18be535b765, type: 2}
-  spellIcon: {fileID: 0}
-  statusEffect: 1
-  statusEffectTimer: 0
-  statusEffectDamage: 0
-  statusEffectChance: 0
   canUseBaseSpell: 1
+  spellData: {fileID: 11400000, guid: d2c5216619b75a14e846e18be535b765, type: 2}
+  spellIcon: {fileID: 21300000, guid: 77c72c1384894604e9981f404394ee56, type: 3}
+  statusEffect: {fileID: 0}
   firePatchPrefab: {fileID: 8949095429421698815, guid: 47ce48fd519a67241b8caf56799fef9c,
     type: 3}
   firePatchInterval: 1
