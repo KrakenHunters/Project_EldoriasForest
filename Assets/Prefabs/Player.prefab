@@ -154,13 +154,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 0
   health: 100
-  _speed: 4
+  _speed: 5
+  initialSpeed: 0
   _speedModifier: 0.5
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
-  fireStatusParticle: {fileID: 0}
-  iceStatusParticle: {fileID: 0}
-  lightningStatusParticle: {fileID: 0}
+  damageMultiplier: 1
   c: {fileID: 2666035536617133056}
   combatCooldown: 8
   _rotationSpeed: 3000
