@@ -24,7 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 0.1
     speed: 5
-  shortDescription: Ice spikes that grow from the floor to hit enemies
+  templeDescription: 
+  shopkeeperDescription: 
   tier1:
     damage: 55
     cooldown: 5
@@ -33,7 +34,7 @@ MonoBehaviour:
     statusEffectChance: 0.3
     range: 0
     healAmount: 0
-    radius: 0
+    radius: 1
     duration: 0.1
     speed: 5
   tier2:
@@ -44,7 +45,7 @@ MonoBehaviour:
     statusEffectChance: 0.5
     range: 0
     healAmount: 0
-    radius: 0
+    radius: 1
     duration: 0.1
     speed: 5
   tier3:
@@ -55,6 +56,6 @@ MonoBehaviour:
     statusEffectChance: 0.5
     range: 0
     healAmount: 0
-    radius: 0
+    radius: 1
     duration: 0.1
     speed: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   tierUnlocked: 1
   currentTierData:
     damage: 6
-    cooldown: 1
+    cooldown: 0.5
     statusEffectTimer: 10
     statusEffectDamage: 5
     statusEffectChance: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   shopkeeperDescription: 
   tier1:
     damage: 6
-    cooldown: 1
+    cooldown: 0.5
     statusEffectTimer: 10
     statusEffectDamage: 5
     statusEffectChance: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     speed: 10
   tier2:
     damage: 9
-    cooldown: 1
+    cooldown: 0.5
     statusEffectTimer: 3
     statusEffectDamage: 1
     statusEffectChance: 0.3
@@ -50,7 +50,7 @@ MonoBehaviour:
     speed: 10
   tier3:
     damage: 14
-    cooldown: 1
+    cooldown: 0.5
     statusEffectTimer: 5
     statusEffectDamage: 1
     statusEffectChance: 0.5

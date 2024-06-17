@@ -24,7 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 0
     speed: 0
-  shortDescription: 'A meteor of fire cast from the sky that falls into enemies. '
+  templeDescription: 
+  shopkeeperDescription: 
   tier1:
     damage: 200
     cooldown: 0
@@ -55,6 +56,6 @@ MonoBehaviour:
     statusEffectChance: 1
     range: 0
     healAmount: 0
-    radius: 0
+    radius: 8
     duration: 0
     speed: 10
