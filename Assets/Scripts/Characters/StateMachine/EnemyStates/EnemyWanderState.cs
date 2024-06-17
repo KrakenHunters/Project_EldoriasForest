@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.XR.Haptics;
 
 public class EnemyWanderState : EnemyBaseState
 {
@@ -16,7 +17,6 @@ public class EnemyWanderState : EnemyBaseState
 
     public override void OnEnter()
     {
-        //animator.CrossFade(WalkHash, crossFadeDuration);
         agent.speed = enemy.Speed;
         enemy.wanderTimer.Start();
     }
@@ -38,6 +38,15 @@ public class EnemyWanderState : EnemyBaseState
             var finalPosition = hit.position;
 
             agent.SetDestination(finalPosition);
+        }
+
+        if (agent.velocity.magnitude > 0f && animator.GetCurrentAnimatorStateInfo(0).shortNameHash != WalkHash)
+        {
+            animator.CrossFade(WalkHash, crossFadeDuration);
+        }
+        else if (agent.velocity.magnitude <= 0f && animator.GetCurrentAnimatorStateInfo(0).shortNameHash != IdleHash)
+        {
+            animator.CrossFade(IdleHash, crossFadeDuration);
         }
     }
 

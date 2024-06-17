@@ -13,7 +13,7 @@ public class EnemyPatrollingState : EnemyBaseState
 
     public override void OnEnter()
     {
-        //animator.CrossFade(WalkHash, crossFadeDuration);
+        animator.CrossFade(WalkHash, crossFadeDuration);
         agent.speed = enemy.Speed;
         agent.SetDestination(enemy.SelectAISpot().transform.position);
 

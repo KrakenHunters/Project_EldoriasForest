@@ -16,7 +16,7 @@ public class EnemyChaseState : EnemyBaseState
     {
         Debug.Log("Chase");
         enemy.gotHit = false;
-        //animator.CrossFade(RunHash, crossFadeDuration);
+        animator.CrossFade(RunHash, crossFadeDuration);
         agent.speed = enemy.Speed * enemy.runMultiplier;
     }
 
