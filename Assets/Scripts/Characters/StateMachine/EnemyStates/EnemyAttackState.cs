@@ -5,7 +5,7 @@ public class EnemyAttackState : EnemyBaseState
 {
     readonly NavMeshAgent agent;
     readonly Transform player;
-    readonly float fieldOfViewAngle = 5f;
+    readonly float fieldOfViewAngle = 10f;
 
     public EnemyAttackState(Enemy enemy, Animator animator, NavMeshAgent agent, Transform player) : base(enemy, animator)
     {
@@ -15,8 +15,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void OnEnter()
     {
-        Debug.Log("AttackState");
-        animator.CrossFade(AttackHash, crossFadeDuration);
+
         agent.ResetPath();
     }
 
@@ -28,9 +27,9 @@ public class EnemyAttackState : EnemyBaseState
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.rotationSpeed * Time.deltaTime);
 
-
-        if (angle < fieldOfViewAngle)
+        if (angle / 2 < fieldOfViewAngle && !enemy.attackTimer.IsRunning)
         {
+            animator.CrossFade(AttackHash, crossFadeDuration);
             enemy.Attack();
         }
     }

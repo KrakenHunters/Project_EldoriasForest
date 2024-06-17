@@ -23,13 +23,13 @@ public class Enemy : CharacterClass
     public float runMultiplier;
 
     StateMachine stateMachine;
-
-    CountdownTimer attackTimer;
+    
+    [HideInInspector]
+    public CountdownTimer attackTimer;
+    [HideInInspector]
     public CountdownTimer wanderTimer;
 
     float deathTimer = 3f;
-
-    protected bool canAttack;
 
     [SerializeField] float playerDetectionDistance = 30f;
 
@@ -81,7 +81,6 @@ public class Enemy : CharacterClass
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerDetector = GetComponent<PlayerDetector>();
-
 
         initialSpeed = _speed;
 
@@ -255,17 +254,7 @@ public class Enemy : CharacterClass
 
     public virtual void Attack()
     {
-
-        if (attackTimer.IsRunning)
-        {
-            canAttack = false;
-        }
-        else
-        {
-            canAttack = true;
-            attackTimer.Start();
-        }
-
+        attackTimer.Start();
     }
 
 }

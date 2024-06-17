@@ -15,13 +15,11 @@ public class MeleeEnemy : Enemy
     public override void Attack()
     {
         base.Attack();
-        if (canAttack)
-        {
-            if (_damage == 0f)
-                GetDamage();
+        if (_damage == 0f)
+            GetDamage();
 
-            playerDetector.controller.GetHit(_damage, this.gameObject, null);
-        }
+        Debug.Log("Attacking");
+        playerDetector.controller.GetHit(_damage, this.gameObject, null);
 
     }
 

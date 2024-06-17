@@ -10,8 +10,7 @@ public class RangedEnemy : Enemy
     public override void Attack()
     {
         base.Attack();
-        if (canAttack)
-            CastSpell(spellBook, out duration);
+        CastSpell(spellBook, out duration);
     }
 
 }
