@@ -34,6 +34,12 @@ public class ShopSpecials : MonoBehaviour, IShoppable
     [SerializeField] private GameObject lockedSpell2;
     [SerializeField] private GameObject lockedSpell3;
 
+    [Header("Current Selected Spell Icons")]
+    [SerializeField] private Image spell1SelectedIcon;
+    [SerializeField] private Image spell2SelectedIcon;
+    [SerializeField] private Image spell3SelectedIcon;
+
+
     [Header("Events")]
     [SerializeField] private EmptyGameEvent OnBuyStuff;
 
@@ -64,9 +70,9 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         buyButton.interactable = false;
 
 
-            ResetAllSpellTiers();
+        ResetAllSpellTiers();
 
-    
+        DisableSelectionIcons();
 
 
         // Load and display initial set of spells
@@ -216,20 +222,29 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         lockedSpell1.SetActive(spell1 != selectedSpell);
         lockedSpell2.SetActive(spell2 != selectedSpell);
         lockedSpell3.SetActive(spell3 != selectedSpell);
+
+       spell1Button.interactable = spell1 == selectedSpell;
+        spell2Button.interactable = spell2 == selectedSpell;
+        spell3Button.interactable = spell3 == selectedSpell;
+
     }
 
     public void OnPlayerChooseSpell(int spellNum)
     {
+        DisableSelectionIcons();
         switch (spellNum)
         {
             case 1:
                 selectedSpell = spell1;
+                spell1SelectedIcon.gameObject.SetActive(true);
                 break;
             case 2:
                 selectedSpell = spell2;
+                spell2SelectedIcon.gameObject.SetActive(true);
                 break;
             case 3:
                 selectedSpell = spell3;
+                spell3SelectedIcon.gameObject.SetActive(true);
                 break;
         }
 
@@ -254,10 +269,18 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         shopManager.CostUIUpdate(cost);
     }
 
+    private void DisableSelectionIcons()
+    {
+        spell1SelectedIcon.gameObject.SetActive(false);
+        spell2SelectedIcon.gameObject.SetActive(false);
+        spell3SelectedIcon.gameObject.SetActive(false);
+    }
+
     private bool CanBuySpell()
     {
         return shopManager.permData.totalSouls >= upgradeCost &&
-            (spell1 != null || spell2 != null || spell3 != null);
+            (spell1 != null || spell2 != null || spell3 != null) &&
+             selectedSpell != null;
     }
 
     private bool CanUpgradeSpecialSpell()

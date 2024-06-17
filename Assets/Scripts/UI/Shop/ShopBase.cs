@@ -37,21 +37,19 @@ public class ShopBase : MonoBehaviour , IShoppable
 
     public void OnSelectBaseSpell()
     {
+        baseFireSelected.gameObject.SetActive(false);
+        baseIceSelected.gameObject.SetActive(false);
+        baseLightningSelected.gameObject.SetActive(false);
+
         switch (currentbasespell)
         {
             case BaseShopItems.Fire:
                 baseFireSelected.gameObject.SetActive(true);
-                baseIceSelected.gameObject.SetActive(false);
-                baseLightningSelected.gameObject.SetActive(false);
                 break;
             case BaseShopItems.Ice:
-                baseFireSelected.gameObject.SetActive(false);
                 baseIceSelected.gameObject.SetActive(true);
-                baseLightningSelected.gameObject.SetActive(false);
                 break;
             case BaseShopItems.Lightning:
-                baseFireSelected.gameObject.SetActive(false);
-                baseIceSelected.gameObject.SetActive(false);
                 baseLightningSelected.gameObject.SetActive(true);
                 break;
         }

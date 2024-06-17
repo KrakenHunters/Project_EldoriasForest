@@ -201,6 +201,7 @@ MonoBehaviour:
   healthBar: {fileID: 8268646843579812311}
   specialSpellCooldownText: {fileID: 8462514957348291841}
   specialSpellCooldownGreyImage: {fileID: 2789559563601663307}
+  ultLockIcon: {fileID: 7670821453336903279}
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   onCooldownChange: {fileID: 11400000, guid: 0da4447480fdbe447b63ddf63b8fc911, type: 2}
 --- !u!114 &414588075176845299

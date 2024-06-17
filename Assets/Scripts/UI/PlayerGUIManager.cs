@@ -24,6 +24,9 @@ public class PlayerGUIManager : MonoBehaviour
     private Image specialSpellCooldownGreyImage;
 
     [SerializeField]
+    private Image ultLockIcon;
+
+    [SerializeField]
     private TemporaryDataContainer tempData;
 
     [SerializeField]
@@ -42,6 +45,7 @@ public class PlayerGUIManager : MonoBehaviour
 
     private void Start()
     {
+        ultLockIcon.enabled = !GameManager.Instance.pData.IsUltimateSpellSlotUnlocked;
         SetSpellIcons();
         SetSoulCount();
     }
