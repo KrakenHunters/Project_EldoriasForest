@@ -24,6 +24,10 @@ public class CharacterClass : BaseObject
     [SerializeField]
     protected Transform castPos;
 
+    [SerializeField]
+    private SpellAudioEvent spellAudioEvent;
+
+
 
     [HideInInspector]
     public BaseState currentState;
@@ -42,6 +46,7 @@ public class CharacterClass : BaseObject
     public void CastSpell(SpellBook spell, out float duration)
     {
         SpellBook spellBook;
+        spellAudioEvent.Cast.Invoke(spell);
         duration = 1f;
         switch (spell.castOrigin)
         {
@@ -49,7 +54,6 @@ public class CharacterClass : BaseObject
                     spellBook = Instantiate(spell, castPos.position, Quaternion.identity);
                     spellBook.Shoot(transform.forward, this.gameObject);
                     duration = spellBook.ReturnDuration();
-
                 break;
 
             case SpellBook.castType.groundPos:

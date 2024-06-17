@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 2641148910669047322}
   - component: {fileID: 9122830056397933239}
   - component: {fileID: 3242830716933975920}
+  - component: {fileID: 4949369657001733455}
+  - component: {fileID: 1724517897213098423}
   m_Layer: 7
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -233,30 +235,76 @@ MonoBehaviour:
   tier: 1
   health: 15
   _speed: 2.5
+  initialSpeed: 0
   _speedModifier: 0
   isInCombat: 0
   castPos: {fileID: 7852110605117582346}
-  coneRadius: 5
-  angleth: 0.718
-  areaRadius: 3
-  aggroRadius: 25
-  _attackrange: 8
-  currentAction: 0
-  rotationSpeed: 10
-  healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
-    type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
+  damageMultiplier: 1
+  wanderRadius: 10
+  wanderTime: 10
+  maxGroupSize: 4
+  timeBetweenAttacks: 1
+  runMultiplier: 0
+  playerDetectionDistance: 30
   soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
     type: 3}
+  healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
+    type: 3}
   healthDropChance: 0.2
-  maxAmountInGroup: 3
-  minIdleTime: 2
-  minIdleRadius: 4
-  boidNeighborRadius: 5
-  separationWeight: 3
-  alignmentWeight: 0.2
-  cohesionWeight: 0.2
+  rotationSpeed: 10
+  AISpotSelected: {fileID: 0}
+  soulAmountMaxTier1: 0
+  soulAmountMinTier1: 0
+  soulAmountMaxTier2: 0
+  soulAmountMinTier2: 0
+  soulAmountMaxTier3: 0
+  soulAmountMinTier3: 0
+  baseHealth: 0
+  healthMultTier2: 2.5
+  healthMultTier3: 5
+  gotHit: 0
   spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
     type: 3}
+--- !u!114 &4949369657001733455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690890994851115203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6a63bfe89c3104f9691a9c5149ad4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionAngle: 60
+  detectionRadius: 10
+  innerDetectionRadius: 5
+  detectionCooldown: 1
+  attackRange: 2
+  controller: {fileID: 0}
+--- !u!95 &1724517897213098423
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690890994851115203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9190619781961116417
 GameObject:
   m_ObjectHideFlags: 0

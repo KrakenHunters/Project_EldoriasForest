@@ -133,6 +133,7 @@ MonoBehaviour:
   _speedModifier: 2
   isInCombat: 0
   castPos: {fileID: 7852110605117582346}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   damageMultiplier: 1
   wanderRadius: 10
   wanderTime: 10

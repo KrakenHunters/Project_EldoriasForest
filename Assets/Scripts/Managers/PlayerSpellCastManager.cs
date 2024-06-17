@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using static PlayerController;
-
 public class PlayerSpellCastManager : MonoBehaviour
 {
     PlayerController player;
@@ -15,7 +14,6 @@ public class PlayerSpellCastManager : MonoBehaviour
 
     [SerializeField]
     private DoubleFloatEvent onCooldownChange;
-
 
     void Start()
     {

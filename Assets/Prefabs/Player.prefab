@@ -159,6 +159,7 @@ MonoBehaviour:
   _speedModifier: 0.5
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   damageMultiplier: 1
   c: {fileID: 2666035536617133056}
   combatCooldown: 8
