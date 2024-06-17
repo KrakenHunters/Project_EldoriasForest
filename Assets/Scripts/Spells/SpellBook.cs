@@ -42,6 +42,12 @@ public class SpellBook : MonoBehaviour
 
     #endregion
 
+    [Header("Clips")]
+    public AudioClip castClip;
+    public AudioClip hitClip;
+    public AudioClip endClip;
+    public AudioClip travelClip;
+
     // Start is called before the first frame update
     protected virtual void Awake()
     {

@@ -8,7 +8,6 @@ public class TipScreen : MonoBehaviour
     [SerializeField]
     GameObject tip;
 
-
     void Start()
     {
         GetComponent<BoxCollider2D>().isTrigger = true;
