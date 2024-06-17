@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BossEnemy : AIController
+public class BossEnemy : Enemy
 {
     private int phase = 1;
 
@@ -19,9 +20,21 @@ public class BossEnemy : AIController
 
     Dictionary<int, List<SpellBook>> phaseElement;
 
-    protected override void Awake()
+    [SerializeField]
+    List<Enemy> spawnEnemies;
+
+    [SerializeField]
+    List<SpellBook> fireCastOrder;
+
+    [SerializeField]
+    List<SpellBook> lightningCastOrder;
+
+    [SerializeField]
+    List<SpellBook> iceCastOrder;
+
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         DetermineElementsOrder();
     }
 
@@ -62,69 +75,40 @@ public class BossEnemy : AIController
 
     private void SelectSpell()
     {
-
-    }
-    protected override IEnumerator OnCombat()
-    {
-        while (AIBrain.Combat == currentAction)
+        switch (phase)
         {
-
+            case 1:
+                health = phase1Health;
+                break;
+            case 2:
+                health = phase2Health;
+                break;
+            case 3:
+                health = phase3Health;
+                break;
+            default:
+                break;
         }
-        yield return null;
+
+        maxHealth = health;
     }
 
-    protected override IEnumerator OnChasing()
+    protected override void TakeDamage(float damage)
     {
-
-        while (AIBrain.Chase == currentAction)
+        if (health <= 0 && phase == 3)
         {
-            while (Vector3.Distance(transform.position, player.position) >= _attackrange)
-            {
-                agent.speed = _speed * SpeedModifier;
-                agent.SetDestination(player.position);
-
-                Vector3 target = player.position - transform.position;
-                target.y = 0;
-
-                Quaternion targetRotation = Quaternion.LookRotation(target);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-
-                if (LoseAgro(player.position))
-                {
-                    agent.ResetPath();
-                    SetBrain(AIBrain.Idle);
-                    yield break;
-                }
-
-                yield return null;
-            }
-
-            SetBrain(AIBrain.Combat);
-            yield break;
-
+            isAlive = false;
         }
-        yield return null;
-    }
-
-    protected override void OnDie()
-    {
-        if (phase < 3)
+        else if (health <= 0 && phase != 3)
         {
             phase++;
             SetHealth();
         }
-        else
+        else if (isAlive)
         {
-            StopAllCoroutines();
-            agent.speed = 0f;
-            agent.ResetPath();
-
-            //Win the game!
-
-            Destroy(this.gameObject, 1f);
-
+            health -= damage;
         }
+
     }
 
 
@@ -147,20 +131,5 @@ public class BossEnemy : AIController
 
         maxHealth = health;
     }
-
-    protected override void FindAISpots()
-    {
-        if (GridManager.Instance.gridDone)
-        {
-            spotList = new List<AISpot>();
-            spotList = GridManager.Instance.enemySpots[3];
-            foundSpots = true;
-        }
-        else
-        {
-            SetBrain(AIBrain.Idle);
-        }
-    }
-
 
 }

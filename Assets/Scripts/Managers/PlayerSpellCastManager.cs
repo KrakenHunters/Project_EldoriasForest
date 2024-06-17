@@ -67,6 +67,7 @@ public class PlayerSpellCastManager : MonoBehaviour
     {
         if (CanSpawnSpecialSpell())
         {
+
             player.attackType = AttackType.Special;
             player.currentState?.HandleSpecialAttack();
 

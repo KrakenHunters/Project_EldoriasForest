@@ -114,13 +114,12 @@ public class PlayerController : CharacterClass
     {
         if (tempData.specialSpell != null)
         {
-            spellCastManager.CastSpecialSpell();
             spellTarget = AimWorldPosition;
+            spellCastManager.CastSpecialSpell();
         }
     }
     public void HandleUltimateAttack()
     {
-
         if (tempData.ultimateSpell != null)
         {
             spellTarget = AimWorldPosition;

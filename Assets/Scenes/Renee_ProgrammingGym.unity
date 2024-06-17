@@ -5261,6 +5261,66 @@ PrefabInstance:
       objectReference: {fileID: 1253732782}
     - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
         type: 3}
+      propertyPath: maxTempleTier1Souls
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: maxTempleTier2Souls
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: maxTempleTier3Souls
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier1Souls
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier2Souls
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier3Souls
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: maxTempleTier1Health
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: maxTempleTier2Health
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: maxTempleTier3Health
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier1Health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier2Health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
+      propertyPath: minTempleTier3Health
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172484392687708869, guid: d3f5e3558a4cb594293142173640f2f5,
+        type: 3}
       propertyPath: templeSpecialSpellText
       value: 
       objectReference: {fileID: 1829677094}

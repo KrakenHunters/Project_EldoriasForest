@@ -76,7 +76,7 @@ public class Enemy : CharacterClass
 
 
 
-    void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -231,9 +231,7 @@ public class Enemy : CharacterClass
     {
         base.GetHit(damageAmount, attacker, spell);
         gotHit = true;
-
     }
-
 
     public AISpot SelectAISpot()
     {

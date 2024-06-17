@@ -32,7 +32,7 @@ public class PlayerAttackState : BaseState
 
         player.RotateToTarget();
 
-        float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        float clipLength = 0.1f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (timer >= clipLength)
         {
             player.CastSpell(activeSpell, out spellDuration);

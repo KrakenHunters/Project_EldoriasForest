@@ -28,6 +28,9 @@ public class PlayerSpecialAttack : BaseState
         base.StateFixedUpdate();
         float t = lerpTimer / lerpDuration;
         currentSpeed = Mathf.Lerp(initialSpeed, player.Speed * player.SpeedModifier, t);
+        player.c.SimpleMove(_direction.normalized * currentSpeed);
+
+
         player.RotateToTarget();
 
         timer += Time.deltaTime;
