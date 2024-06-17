@@ -19,8 +19,8 @@ public class PlayerDetector : MonoBehaviour
 
     void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
-        controller = Player.GetComponent<PlayerController>();
+        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Player = controller.transform;
     }
 
     void Start()

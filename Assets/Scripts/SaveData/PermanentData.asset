@@ -12,12 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: PermanentData
   m_EditorClassIdentifier: 
-  totalSouls: 2600
-  spellBooksUnlocked: []
-  rune: 0
-  cooldownReduction: 0
-  baseAttackTier: 1
+  totalSouls: 300
+  spellBooksUnlocked:
+  - {fileID: 4574840128260253798, guid: 2ed41d7ed0fcf9949b364199cf1935ae, type: 3}
+  - {fileID: 62415612012794258, guid: cb108203a005a774e96b49a9646f34e1, type: 3}
+  - {fileID: 7433260048738468032, guid: cb81a668636c25941b6385b5e094432c, type: 3}
+  - {fileID: 634136164512254635, guid: 868cf2c14a01b2e44ba934465fe3c28f, type: 3}
+  - {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a, type: 3}
+  - {fileID: -8831097466877167438, guid: dde5d0c1a4345c64499f5daaa3279477, type: 3}
+  - {fileID: 8091918523171390254, guid: a8ce4f035abe7fb40a73f6b4ab6e9f22, type: 3}
+  - {fileID: 7813077001743519996, guid: f0bc094914adc49499ce155f4bbb39e1, type: 3}
+  - {fileID: 1183470640323938929, guid: 045f4f4b009aaa24291114fd07dbf328, type: 3}
+  baseAttackTier: 3
   prefBaseSpell: {fileID: 5174980907974982790, guid: 05c9a10685304c343a108b54ea69c240,
     type: 3}
-  templeSoulsDropRate: 0
-  healthBonus: 0
+  templeSoulsDropRate: 1.5
+  rune: 3
+  cooldownReduction: 1.5
+  healthBonus: 5
+  IsUltimateSpellSlotUnlocked: 1
+  InitializeData: 1
