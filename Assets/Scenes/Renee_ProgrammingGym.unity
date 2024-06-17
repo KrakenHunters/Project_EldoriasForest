@@ -4017,30 +4017,30 @@ PrefabInstance:
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: centerPrefabs.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: 2da4d155537363a49845673d646f0fe6,
+      objectReference: {fileID: 7439797000257662282, guid: 59c3a5cd5fb3ee24387a23031ded63ca,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: fcb76114a164ac4479401ef9ec3eb1c8,
+      objectReference: {fileID: 7439797000257662282, guid: 1ce2d036b1e7fd242a525594e98da9fb,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 7439797000257662282, guid: e13ba0a30fa84d544a6cbabb16b7a66f,
+      objectReference: {fileID: 3242830716933975920, guid: e70b2e4fdb36c994e8059637b2adc977,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
@@ -4088,13 +4088,13 @@ PrefabInstance:
         type: 3}
       propertyPath: centerPrefabs.Array.data[5]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: 2da4d155537363a49845673d646f0fe6,
+      objectReference: {fileID: 7439797000257662282, guid: 59c3a5cd5fb3ee24387a23031ded63ca,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: centerPrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: fcb76114a164ac4479401ef9ec3eb1c8,
+      objectReference: {fileID: 7439797000257662282, guid: 1ce2d036b1e7fd242a525594e98da9fb,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7439797000257662282}
   - component: {fileID: 4949369657001733455}
   - component: {fileID: 1724517897213098423}
-  - component: {fileID: 8658811258667049013}
   m_Layer: 7
   m_Name: DeerMeleeEnemy
   m_TagString: Enemy
@@ -157,7 +156,7 @@ Animator:
   m_GameObject: {fileID: 5690890994851115203}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d23fbd52be16164dbb1270e0523eccf, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,19 +167,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8658811258667049013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690890994851115203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f5f7aa0e4a84d4d8c3b5b29955fd73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spotList: []
 --- !u!1001 &9024291573705438475
 PrefabInstance:
   m_ObjectHideFlags: 0
