@@ -3914,24 +3914,24 @@ PrefabInstance:
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: centerPrefabs.Array.size
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: 5c4fab76494359346bbab8162daaace8,
+      objectReference: {fileID: 7439797000257662282, guid: 0227bf95004584b45b6da0e36891dd6f,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
       propertyPath: enemyPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 3242830716933975920, guid: f7a1f299128fe1c4db0135a9c731eada,
+      objectReference: {fileID: 7439797000257662282, guid: 0227bf95004584b45b6da0e36891dd6f,
         type: 3}
     - target: {fileID: 7142472389188139755, guid: ee3f19accefde4f4c8d9cbabc4570ffd,
         type: 3}
@@ -4616,7 +4616,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
