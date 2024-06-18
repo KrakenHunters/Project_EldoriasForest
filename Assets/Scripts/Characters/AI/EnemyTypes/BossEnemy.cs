@@ -53,6 +53,7 @@ public class BossEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        tier = 3;
         spellWeapon = GetComponent<SpellWeapon>();
         defaultAttackRange = playerDetector.attackRange;
         DetermineElementsOrder();
@@ -107,6 +108,7 @@ public class BossEnemy : Enemy
         // Check if spellOrderCount is within the range of the spellList
         if (spellOrderCount >= phaseElement[phase].Count)
         {
+            SpawnEnemies();
             // Reset spellOrderCount if it exceeds or matches the list count
             spellOrderCount = 0;
         }
