@@ -73,7 +73,6 @@ public class StatusEffect : MonoBehaviour
             timer += 1f;
             _particles.Play();
 
-
             yield return new WaitForSeconds(1f);
         }
 

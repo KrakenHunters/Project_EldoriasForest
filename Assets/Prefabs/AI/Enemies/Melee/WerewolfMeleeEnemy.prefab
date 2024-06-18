@@ -103,6 +103,7 @@ MonoBehaviour:
   castPos: {fileID: 0}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   damageMultiplier: 1
+  spellTarget: {x: 0, y: 0, z: 0}
   wanderRadius: 10
   wanderTime: 5
   maxGroupSize: 4
@@ -126,6 +127,7 @@ MonoBehaviour:
   healthMultTier2: 2.5
   healthMultTier3: 5
   gotHit: 0
+  attacking: 0
   damageTier1: 12
   damageTier2: 24
   damageTier3: 36

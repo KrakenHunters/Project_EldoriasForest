@@ -11,7 +11,8 @@ using Utilities;
 public class Enemy : CharacterClass
 {
     NavMeshAgent agent;
-    protected PlayerDetector playerDetector;
+    [HideInInspector]
+    public PlayerDetector playerDetector;
 
     Animator animator;
 

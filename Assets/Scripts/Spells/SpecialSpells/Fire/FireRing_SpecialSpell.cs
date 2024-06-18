@@ -44,7 +44,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // Ensure only enemies are affected
+        if (other.GetComponent<CharacterClass>() && charAttacker != other) // Ensure only enemies are affected
         {
             other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             SetStatusEffect(other.gameObject);

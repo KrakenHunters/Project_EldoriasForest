@@ -35,7 +35,9 @@ public class EnemyAttackState : EnemyBaseState
             hasAttacked = true; // Set the flag to true to prevent multiple calls
             if (enemy is BossEnemy bossEnemy)
             {
+                bossEnemy.spellTarget = bossEnemy.playerDetector.Player.position;
                 bossEnemy.spellWeapon.InstantiateIndicator(bossEnemy.currentSpell, enemy);
+
             }
         }
 

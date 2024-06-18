@@ -34,7 +34,7 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
         }
     }
 
-    IEnumerator PushEnemy(NavMeshAgent agent, Vector3 force)
+    IEnumerator PushEnemy(Transform agent, Vector3 force)
     {
         float elapsedTime = 0f;
 
@@ -47,14 +47,13 @@ public class FrostyPush_SpecialSpell : SpecialSpellBook
             yield return null;
         }
         agent.gameObject.GetComponent<CharacterClass>().GetHit(damage , charAttacker, this);
-        agent.enabled = true; // Re-enable NavMeshAgent after push
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // Ensure only enemies are affected
+        if (other.GetComponent<CharacterClass>() && charAttacker != other)
         {
-            NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
+            Transform agent = other.GetComponent<CharacterClass>().transform;
             if (agent != null)
             {
                 Vector3 direction = other.transform.position - transform.position;

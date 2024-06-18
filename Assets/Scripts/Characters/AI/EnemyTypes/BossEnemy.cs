@@ -65,6 +65,7 @@ public class BossEnemy : Enemy
         stateMachine.Update();
         attackTimer.Tick(Time.deltaTime);
         wanderTimer.Tick(Time.deltaTime);
+
     }
 
 
@@ -186,9 +187,9 @@ public class BossEnemy : Enemy
     public override void Attack()
     {
         base.Attack();
-        spellTarget = playerDetector.Player.position;
         CastSpell(currentSpell, out duration);
         StartCoroutine(WaitForTime(duration));
+        SelectSpell();
     }
     // Coroutine to wait for the spell duration
     private IEnumerator WaitForTime(float seconds)
