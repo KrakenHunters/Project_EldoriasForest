@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class BossEnemy : Enemy
 {
     private int phase = 1;
 
+    [SerializeField]
     private float phase1Health;
+    [SerializeField]
     private float phase2Health;
+    [SerializeField]
     private float phase3Health;
-
-    [SerializeField]
-    private List<SpellBook> fireSpells = new List<SpellBook>();
-    [SerializeField]
-    private List<SpellBook> iceSpells = new List<SpellBook>();
-    [SerializeField]
-    private List<SpellBook> lightningSpells = new List<SpellBook>();
 
     Dictionary<int, List<SpellBook>> phaseElement;
 
@@ -32,11 +29,36 @@ public class BossEnemy : Enemy
     [SerializeField]
     List<SpellBook> iceCastOrder;
 
+    private int spellOrderCount = 0;
+
+    private SpellBook currentSpell;
+
+    private float defaultAttackRange;
+
+    [SerializeField]
+    int numEnemiesSpawnPhase1;
+    [SerializeField]
+    int numEnemiesSpawnPhase2;
+    [SerializeField]
+    int numEnemiesSpawnPhase3;
+
+    int numEnemies;
+
     protected override void Start()
     {
         base.Start();
+        defaultAttackRange = playerDetector.attackRange;
         DetermineElementsOrder();
+        SelectSpell();
     }
+
+    protected override void Update()
+    {
+        stateMachine.Update();
+        attackTimer.Tick(Time.deltaTime);
+        wanderTimer.Tick(Time.deltaTime);
+    }
+
 
     private void DetermineElementsOrder()
     {
@@ -44,9 +66,9 @@ public class BossEnemy : Enemy
         // Create a list of spell lists
         List<List<SpellBook>> spellLists = new List<List<SpellBook>>()
         {
-            fireSpells,
-            iceSpells,
-            lightningSpells
+            fireCastOrder,
+            lightningCastOrder,
+            iceCastOrder
         };
 
         // Shuffle the spell lists
@@ -75,22 +97,36 @@ public class BossEnemy : Enemy
 
     private void SelectSpell()
     {
-        switch (phase)
+        // Check if spellOrderCount is within the range of the spellList
+        if (spellOrderCount >= phaseElement[phase].Count)
         {
-            case 1:
-                health = phase1Health;
-                break;
-            case 2:
-                health = phase2Health;
-                break;
-            case 3:
-                health = phase3Health;
-                break;
-            default:
-                break;
+            // Reset spellOrderCount if it exceeds or matches the list count
+            spellOrderCount = 0;
         }
+        currentSpell = phaseElement[phase][spellOrderCount];
+        spellOrderCount++;
+        // Update the attack range based on the current spell's range
+        if (currentSpell.spellData.tier3.range > 0f)
+            playerDetector.attackRange = currentSpell.spellData.tier3.range;
+        else
+            playerDetector.attackRange = defaultAttackRange;
 
-        maxHealth = health;
+
+    }
+
+    private void SpawnEnemies()
+    {
+        for (int i = 0; i < numEnemies; i++)
+        {
+            // Calculate random angle in radians
+            float angle = Random.Range(0f, Mathf.PI * 2f);
+
+            // Calculate spawn position based on angle and radius
+            Vector3 spawnPosition = transform.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * 4f;
+
+            // Spawn enemy at calculated position
+            Instantiate(spawnEnemies[Random.Range(0, spawnEnemies.Count)], spawnPosition, Quaternion.identity);
+        }
     }
 
     protected override void TakeDamage(float damage)
@@ -118,18 +154,29 @@ public class BossEnemy : Enemy
         {
             case 1:
                 health = phase1Health;
+                numEnemies = numEnemiesSpawnPhase1;
+
                 break;
             case 2:
                 health = phase2Health;
+                numEnemies = numEnemiesSpawnPhase2;
                 break;
             case 3:
                 health = phase3Health;
+                numEnemies = numEnemiesSpawnPhase3;
                 break;
             default:
                 break;
         }
 
         maxHealth = health;
+    }
+
+    private enum ElementPhase
+    {
+        Fire,
+        Ice,
+        Lightning
     }
 
 }

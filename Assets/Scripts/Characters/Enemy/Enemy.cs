@@ -22,7 +22,7 @@ public class Enemy : CharacterClass
 
     public float runMultiplier;
 
-    StateMachine stateMachine;
+    protected StateMachine stateMachine;
     
     [HideInInspector]
     public CountdownTimer attackTimer;
@@ -114,7 +114,7 @@ public class Enemy : CharacterClass
     void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
     void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
-    void Update()
+    protected virtual void Update()
     {
         if (Vector3.Distance(playerDetector.Player.position, transform.position) <= playerDetectionDistance)
         {

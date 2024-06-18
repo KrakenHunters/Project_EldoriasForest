@@ -6,6 +6,7 @@ public class EnemyAttackState : EnemyBaseState
     readonly NavMeshAgent agent;
     readonly Transform player;
     readonly float fieldOfViewAngle = 10f;
+    private bool hasAttacked;
 
     public EnemyAttackState(Enemy enemy, Animator animator, NavMeshAgent agent, Transform player) : base(enemy, animator)
     {
@@ -15,7 +16,7 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void OnEnter()
     {
-
+        hasAttacked = false;
         agent.ResetPath();
     }
 
@@ -27,10 +28,23 @@ public class EnemyAttackState : EnemyBaseState
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, targetRotation, enemy.rotationSpeed * Time.deltaTime);
 
-        if (angle / 2 < fieldOfViewAngle && !enemy.attackTimer.IsRunning)
+        if (angle / 2 < fieldOfViewAngle && !enemy.attackTimer.IsRunning && !hasAttacked)
         {
             animator.CrossFade(AttackHash, crossFadeDuration);
-            enemy.Attack();
+            hasAttacked = true; // Set the flag to true to prevent multiple calls
+
+        }
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.shortNameHash == AttackHash) // Ensure this matches the animation state name
+        {
+            if (stateInfo.normalizedTime >= 0.7f && hasAttacked && !enemy.attackTimer.IsRunning)
+            {
+                hasAttacked = false;
+                enemy.Attack();
+                animator.CrossFade(IdleHash, crossFadeDuration);
+
+            }
         }
     }
 }
