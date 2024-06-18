@@ -17,6 +17,7 @@ public class EnemyAttackState : EnemyBaseState
     public override void OnEnter()
     {
         hasAttacked = false;
+        enemy.attacking = true;
         agent.ResetPath();
     }
 
@@ -32,8 +33,12 @@ public class EnemyAttackState : EnemyBaseState
         {
             animator.CrossFade(AttackHash, crossFadeDuration);
             hasAttacked = true; // Set the flag to true to prevent multiple calls
-
+            if (enemy is BossEnemy bossEnemy)
+            {
+                bossEnemy.spellWeapon.InstantiateIndicator(bossEnemy.currentSpell, enemy);
+            }
         }
+
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.shortNameHash == AttackHash) // Ensure this matches the animation state name
@@ -43,7 +48,8 @@ public class EnemyAttackState : EnemyBaseState
                 hasAttacked = false;
                 enemy.Attack();
                 animator.CrossFade(IdleHash, crossFadeDuration);
-
+                if (enemy is not BossEnemy)
+                    enemy.attacking = false;
             }
         }
     }

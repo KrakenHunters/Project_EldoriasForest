@@ -12,6 +12,13 @@ public class MeleeEnemy : Enemy
 
     private float _damage = 0f;
 
+    protected override void Update()
+    {
+        base.Update();
+        if (!playerDetector.CanAttackPlayer())
+            attacking = false;
+    }
+
     public override void Attack()
     {
         base.Attack();

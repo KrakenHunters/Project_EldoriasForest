@@ -31,7 +31,7 @@ public class CharacterClass : BaseObject
 
     [HideInInspector]
     public BaseState currentState;
-
+    [HideInInspector]
     public float damageMultiplier = 1.0f;
 
     protected bool isAlive = true;

@@ -30,8 +30,8 @@ public class BossEnemy : Enemy
     List<SpellBook> iceCastOrder;
 
     private int spellOrderCount = 0;
-
-    private SpellBook currentSpell;
+    [HideInInspector]
+    public SpellBook currentSpell;
 
     private float defaultAttackRange;
 
@@ -42,11 +42,18 @@ public class BossEnemy : Enemy
     [SerializeField]
     int numEnemiesSpawnPhase3;
 
-    int numEnemies;
+    int numEnemies; 
+    
+    private float duration;
+
+    [HideInInspector]
+    public SpellWeapon spellWeapon;
+
 
     protected override void Start()
     {
         base.Start();
+        spellWeapon = GetComponent<SpellWeapon>();
         defaultAttackRange = playerDetector.attackRange;
         DetermineElementsOrder();
         SelectSpell();
@@ -107,7 +114,7 @@ public class BossEnemy : Enemy
         spellOrderCount++;
         // Update the attack range based on the current spell's range
         if (currentSpell.spellData.tier3.range > 0f)
-            playerDetector.attackRange = currentSpell.spellData.tier3.range;
+            playerDetector.attackRange = currentSpell.spellData.tier3.range * 0.7f;
         else
             playerDetector.attackRange = defaultAttackRange;
 
@@ -137,6 +144,8 @@ public class BossEnemy : Enemy
         }
         else if (health <= 0 && phase != 3)
         {
+            DropSouls();
+            DropHealth();
             phase++;
             SetHealth();
         }
@@ -170,6 +179,21 @@ public class BossEnemy : Enemy
         }
 
         maxHealth = health;
+    }
+
+    public override void Attack()
+    {
+        base.Attack();
+        spellTarget = playerDetector.Player.position;
+        CastSpell(currentSpell, out duration);
+        StartCoroutine(WaitForTime(duration));
+    }
+    // Coroutine to wait for the spell duration
+    private IEnumerator WaitForTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        attacking = false;
     }
 
     private enum ElementPhase

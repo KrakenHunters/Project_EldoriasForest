@@ -35,15 +35,15 @@ public class GridManager : Singleton<GridManager>
     private Dictionary<int, Dictionary<string, List<Vector3>>> objectPositions = new Dictionary<int, Dictionary<string, List<Vector3>>>();
     private Dictionary<int, Dictionary<string, int>> maxObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 15 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 40/*60*/ } } },
-        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 7 }, { "Enemy", 45/*65*/ } } }
+        { 1, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 25 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 6 }, { "Enemy", 40 } } },
+        { 3, new Dictionary<string, int> { { "Temple", 4 }, { "VillageTeleport", 1 }, { "EnemySpot", 7 }, { "Enemy", 45 } } }
     };
     private Dictionary<int, Dictionary<string, int>> minObjectCounts = new Dictionary<int, Dictionary<string, int>>
     {
-        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 10 } } },
-        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35/*50*/ } } },
-        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35/*55*/ } } },
+        { 1, new Dictionary<string, int> { { "Temple", 2 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 20 } } },
+        { 2, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
+        { 3, new Dictionary<string, int> { { "Temple", 3 }, { "VillageTeleport", 1 }, { "EnemySpot", 4 }, { "Enemy", 35 } } },
     };
 
     [SerializeField]
