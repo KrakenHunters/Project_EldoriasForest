@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 0
   canInteract: 0
-  waitTime: 5
+  waitTime: 3
   TrackEvent: {fileID: 11400000, guid: eeab70a7cb26e2048b7efa85694167f9, type: 2}
 --- !u!208 &960470660485490276
 NavMeshObstacle:
@@ -207,11 +207,11 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1216
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 60
   m_Center: {x: 0, y: 0, z: 0}
