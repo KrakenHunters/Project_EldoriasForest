@@ -114,6 +114,11 @@ public class BossEnemy : Enemy
             spellOrderCount = 0;
         }
         currentSpell = phaseElement[phase][spellOrderCount];
+        if (currentSpell is UltimateSpellBook && health > maxHealth * 0.30f)
+        {
+            spellOrderCount++;
+            currentSpell = phaseElement[phase][spellOrderCount];
+        }
         spellOrderCount++;
         // Update the attack range based on the current spell's range
         if (currentSpell.spellData.tier3.range > 0f)
