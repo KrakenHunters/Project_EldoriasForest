@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-[CreateAssetMenu(menuName = "Events/ Menu Audio Event")]
-public class MenuAudioEvent : AudioEvent
+[CreateAssetMenu(menuName = "Events/ Audio Event/ Menu Audio Event")]
+public class MenuAudioEvent : SOEvent
 {
 
 }
