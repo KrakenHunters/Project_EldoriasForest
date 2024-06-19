@@ -158,6 +158,11 @@ public class PlayerController : CharacterClass
             if (other.GetComponent<Interactable>().canInteract)
                 interactableObj = other.GetComponent<Interactable>();
         }
+
+        if (other.CompareTag("Detector"))
+        {
+           other.GetComponentInParent<Village>().TriggerTracker();
+        }
     }
     private void OnTriggerExit(Collider other)
     {

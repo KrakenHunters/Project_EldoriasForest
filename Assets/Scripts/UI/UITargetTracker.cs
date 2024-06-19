@@ -60,7 +60,11 @@ public class UITargetTracker : MonoBehaviour
             CalculateAngle();
 
             // Rotate the pointer UI to point towards the target direction
-            pointerUI.DORotate(new Vector3(0, 0, -angle), 1f).SetEase(easeMode);
+            // pointerUI.DORotate(new Vector3(0, 0, -angle), 1f).SetEase(easeMode);
+            /* Quaternion targetRotateion = Quaternion.Euler(0, 0, -angle);
+
+              pointerUI.rotation = Quaternion.Slerp(pointerUI.rotation, targetRotateion, Time.deltaTime * 5f);*/
+            pointerUI.rotation = Quaternion.Euler(0, 0, -angle);
 
 
             distance = Vector3.Distance(center, target.position);
