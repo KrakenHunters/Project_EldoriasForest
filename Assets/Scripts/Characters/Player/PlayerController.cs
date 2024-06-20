@@ -160,10 +160,6 @@ public class PlayerController : CharacterClass
                 interactableObj = other.GetComponent<Interactable>();
                 other.GetComponent<Interactable>().DeactivateInteractable();
             }
-            else
-            {
-                other.GetComponent<Interactable>().DeactivateInteractable();
-            }
         }
 
         if (other.CompareTag("Detector"))

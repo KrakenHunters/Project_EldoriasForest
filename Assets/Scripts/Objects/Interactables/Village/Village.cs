@@ -27,5 +27,6 @@ public class Village : Interactable
     public void EndTracker()
     {
         TrackEvent.EndTargetTracking.Invoke();
+
     }
 }
