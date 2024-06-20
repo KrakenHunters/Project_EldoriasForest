@@ -9,16 +9,13 @@ public class UITargetTracker : MonoBehaviour
     [SerializeField] private GameObject ArrowIcon;
 
     [SerializeField] private float minDistance;
-    [SerializeField] private float maxDistance;
-
-    [SerializeField] private Ease easeMode = Ease.Linear;
-    [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private UIPointerEvent TrackEvent;
 
     private Vector3 center;
     private float distance;
     private float angle;
+    private Transform secondTarget;
 
     private void Awake()
     {
@@ -27,25 +24,33 @@ public class UITargetTracker : MonoBehaviour
 
     public void SetTarget(Transform newTarget)
     {
-        if(newTarget == target)
-            return;
         
         if (target != null)
         {
+
+            if (newTarget == target)
+                return;
+
             float currentDistance = Vector3.Distance(center, target.position);
             float newDistance = Vector3.Distance(center, newTarget.position);
 
             if (currentDistance < newDistance)
             {
+                secondTarget = newTarget;
                 return;
             }
         }
         target = newTarget;
+        secondTarget = null;
     }
 
     public void EndTracking()
     {
-        target = null;
+      target = null;
+        if(secondTarget != null)
+        {
+           SetTarget(secondTarget);
+        }
     }
 
 
@@ -55,15 +60,9 @@ public class UITargetTracker : MonoBehaviour
     {
         if (target != null)
         {
-            // SetCenter();
             center = player.position;
             CalculateAngle();
 
-            // Rotate the pointer UI to point towards the target direction
-            // pointerUI.DORotate(new Vector3(0, 0, -angle), 1f).SetEase(easeMode);
-            /* Quaternion targetRotateion = Quaternion.Euler(0, 0, -angle);
-
-              pointerUI.rotation = Quaternion.Slerp(pointerUI.rotation, targetRotateion, Time.deltaTime * 5f);*/
             pointerUI.rotation = Quaternion.Euler(0, 0, -angle);
 
 
@@ -78,11 +77,6 @@ public class UITargetTracker : MonoBehaviour
         else
         {
             ArrowIcon.SetActive(false);
-        }
-
-        if(distance > maxDistance)
-        {
-           EndTracking();
         }
     }
 
@@ -104,14 +98,4 @@ public class UITargetTracker : MonoBehaviour
         TrackEvent.EndTargetTracking.RemoveListener(EndTracking);
     }
 
-    //Dont use its crazy $$$$  to use every frame
-    /*private void FindCenter()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
-        {
-            center = hit.point;
-        }
-    }*/
 }
