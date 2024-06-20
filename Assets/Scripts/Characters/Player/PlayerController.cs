@@ -158,7 +158,7 @@ public class PlayerController : CharacterClass
             if (other.GetComponent<Interactable>().canInteract)
             {
                 interactableObj = other.GetComponent<Interactable>();
-                other.GetComponent<Interactable>().DeactivateInteractable();
+                interactableObj.ActivateInteractable();
             }
         }
 
