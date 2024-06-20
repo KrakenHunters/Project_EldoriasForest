@@ -29,7 +29,6 @@ public class DissolvingController : MonoBehaviour
     {
         if (vfxGraph != null)
         {
-            Debug.Log("Play VFX");
             vfxGraph.SetFloat("Duration", (1 / dissolveRate) * refreshRate);
             vfxGraph.Play();
         }

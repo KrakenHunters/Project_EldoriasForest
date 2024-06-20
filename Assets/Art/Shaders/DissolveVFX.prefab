@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1966330021537147792}
   - component: {fileID: 7974036527665857915}
   - component: {fileID: 780767014823199061}
-  - component: {fileID: 6196519901032354586}
-  - component: {fileID: 4140502514191400353}
+  - component: {fileID: 1280736485367376924}
+  - component: {fileID: 5171719182759005654}
   m_Layer: 0
   m_Name: DissolveVFX
   m_TagString: Untagged
@@ -59,13 +59,13 @@ VisualEffect:
       m_Array:
       - m_Value: {x: 270.01978, y: -0.004946072, z: 0}
         m_Name: Transform_angles
-        m_Overridden: 1
+        m_Overridden: 0
       - m_Value: {x: 0.000068606576, y: -1.000246, z: 0.025657862}
         m_Name: Transform_position
-        m_Overridden: 1
+        m_Overridden: 0
       - m_Value: {x: 1, y: 0.99999994, z: 1}
         m_Name: Transform_scale
-        m_Overridden: 1
+        m_Overridden: 0
     m_Vector4f:
       m_Array:
       - m_Value: {x: 0.32433033, y: 0, z: 2, w: 0.8}
@@ -128,7 +128,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6196519901032354586
+--- !u!114 &1280736485367376924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
   m_Bindings:
-  - {fileID: 4140502514191400353}
+  - {fileID: 5171719182759005654}
   m_VisualEffect: {fileID: 7974036527665857915}
---- !u!114 &4140502514191400353
+--- !u!114 &5171719182759005654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +153,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2250788111603075687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Property:
-    m_Name: Transform
+    m_Name: Position
   Target: {fileID: 0}

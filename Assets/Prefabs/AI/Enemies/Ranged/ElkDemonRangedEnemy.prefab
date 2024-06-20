@@ -494,6 +494,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3199953021242824415}
     m_Modifications:
+    - target: {fileID: 1280736485367376924, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_Bindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280736485367376924, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_Bindings.Array.data[0]
+      value: 
+      objectReference: {fileID: 1224783924082240814}
     - target: {fileID: 1966330021537147792, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -549,65 +559,91 @@ PrefabInstance:
       propertyPath: m_Name
       value: DissolveVFX
       objectReference: {fileID: 0}
+    - target: {fileID: 5171719182759005654, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 6024151553506702244}
     - target: {fileID: 6196519901032354586, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_Bindings.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6196519901032354586, guid: c522b71e0b9280048a6dce145fe01308,
-        type: 3}
-      propertyPath: m_Bindings.Array.data[0]
-      value: 
-      objectReference: {fileID: 3800528203514974171}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
-      value: -0.000022988761
+      value: -0.000004325711
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
-      value: 0.000120589524
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.z
-      value: -0.004037328
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.x
-      value: 0.0000027438873
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
-      value: 0.7475741
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.z
-      value: -0.020549169
+      value: -0.009570122
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.x
+      value: 173.51265
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.y
-      value: 1
+      value: 173.51265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Value.z
+      value: 173.51265
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
       objectReference: {fileID: 6430967007420273958}
+    - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Overridden
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Overridden
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[2].m_Overridden
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4140502514191400353, guid: c522b71e0b9280048a6dce145fe01308, type: 3}
+    - {fileID: 0}
+    - {fileID: 5171719182759005654, guid: c522b71e0b9280048a6dce145fe01308, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2250788111603075687, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3800528203514974171}
+      addedObject: {fileID: 1224783924082240814}
   m_SourcePrefab: {fileID: 100100000, guid: c522b71e0b9280048a6dce145fe01308, type: 3}
 --- !u!1 &3024948060296745504 stripped
 GameObject:
@@ -615,7 +651,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3947020137570801735}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3800528203514974171
+--- !u!114 &1224783924082240814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -624,11 +660,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3024948060296745504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Property:
-    m_Name: Transform
+    m_Name: Position
   Target: {fileID: 6024151553506702244}
 --- !u!4 &3282965092858131415 stripped
 Transform:
