@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 0
   canInteract: 0
+  _holdToInteract: {fileID: 0}
   waitTime: 0
 --- !u!208 &6601305867652539120
 NavMeshObstacle:

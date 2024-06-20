@@ -156,7 +156,14 @@ public class PlayerController : CharacterClass
         if (other.GetComponent<Interactable>())
         {
             if (other.GetComponent<Interactable>().canInteract)
+            {
                 interactableObj = other.GetComponent<Interactable>();
+                other.GetComponent<Interactable>().DeactivateInteractable();
+            }
+            else
+            {
+                other.GetComponent<Interactable>().DeactivateInteractable();
+            }
         }
 
         if (other.CompareTag("Detector"))
@@ -169,6 +176,12 @@ public class PlayerController : CharacterClass
         if (other.GetComponent<Interactable>())
         {
             interactableObj = null;
+            other.GetComponent<Interactable>().DeactivateInteractable();
+        }
+
+        if (other.CompareTag("Detector"))
+        {
+            other.GetComponentInParent<Village>().EndTracker();
         }
     }
 
