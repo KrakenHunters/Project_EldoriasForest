@@ -28,13 +28,13 @@ public class Interactable : BaseObject
 
     public void ActivateInteractable()
     {
-        _holdToInteract.enabled = true;
+        //_holdToInteract.enabled = true;
         particles.Play();
     }
 
     public void DeactivateInteractable()
     {
-        _holdToInteract.enabled = false;
+        //_holdToInteract.enabled = false;
         particles.Stop();
 
     }
