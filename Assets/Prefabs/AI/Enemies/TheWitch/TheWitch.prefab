@@ -201,6 +201,7 @@ MonoBehaviour:
   healthMultTier3: 5
   gotHit: 0
   attacking: 0
+  healthBar: {fileID: 0}
   phase1Health: 200
   phase2Health: 350
   phase3Health: 500
@@ -250,6 +251,7 @@ MonoBehaviour:
   numEnemiesSpawnPhase2: 5
   numEnemiesSpawnPhase3: 7
   spellWeapon: {fileID: 0}
+  OnAggroWitch: {fileID: 11400000, guid: b36324eb88f21cd49a50bdff542215aa, type: 2}
 --- !u!114 &4309538859586518490
 MonoBehaviour:
   m_ObjectHideFlags: 0

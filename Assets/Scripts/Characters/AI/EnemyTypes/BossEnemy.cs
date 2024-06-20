@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class BossEnemy : Enemy
@@ -42,13 +40,14 @@ public class BossEnemy : Enemy
     [SerializeField]
     int numEnemiesSpawnPhase3;
 
-    int numEnemies; 
-    
-    private float duration;
+    int numEnemies;
 
+    private float duration;
+    private bool isAggro = false;
     [HideInInspector]
     public SpellWeapon spellWeapon;
 
+    public BoolGameEvent OnAggroWitch;
 
     protected override void Start()
     {
@@ -65,6 +64,25 @@ public class BossEnemy : Enemy
         stateMachine.Update();
         attackTimer.Tick(Time.deltaTime);
         wanderTimer.Tick(Time.deltaTime);
+        if (playerDetector.CanDetectPlayer() || gotHit)
+        {
+            if (!isAggro)
+            {
+                isAggro = true;
+                OnAggroWitch.Raise(isAggro);
+            }
+        }
+        else
+        {
+            if (isAggro)
+            {
+                isAggro = false;
+                OnAggroWitch.Raise(isAggro);
+            }
+            phase = 1;
+            SetHealth();
+
+        }
 
     }
 
