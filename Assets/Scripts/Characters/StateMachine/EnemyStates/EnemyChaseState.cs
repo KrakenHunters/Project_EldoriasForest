@@ -14,7 +14,6 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
-        enemy.gotHit = false;
         animator.CrossFade(RunHash, crossFadeDuration);
         agent.speed = enemy.Speed * enemy.runMultiplier;
     }

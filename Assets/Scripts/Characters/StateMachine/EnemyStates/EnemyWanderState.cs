@@ -17,6 +17,7 @@ public class EnemyWanderState : EnemyBaseState
 
     public override void OnEnter()
     {
+        enemy.gotHit = false;
         agent.speed = enemy.Speed;
         enemy.wanderTimer.Start();
     }

@@ -13,6 +13,8 @@ public class Enemy : CharacterClass
     NavMeshAgent agent;
     [HideInInspector]
     public PlayerDetector playerDetector;
+    [HideInInspector]
+    public DissolvingController dissolvingController;
 
     Animator animator;
 
@@ -82,6 +84,7 @@ public class Enemy : CharacterClass
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerDetector = GetComponent<PlayerDetector>();
+        dissolvingController = GetComponent<DissolvingController>();
 
         initialSpeed = _speed;
 
@@ -233,7 +236,8 @@ public class Enemy : CharacterClass
     {
         base.GetHit(damageAmount, attacker, spell);
         healthBar.SetHealth(health);
-        gotHit = true;
+        if (!gotHit)
+            gotHit = true;
     }
 
     public AISpot SelectAISpot()

@@ -38,7 +38,9 @@ public class ConeDetectionStrategy : IDetectionStrategy
         RaycastHit hit;
         Vector3 directionToPlayer = (player.position - detector.position).normalized;
 
-        if (Physics.Raycast(detector.position, directionToPlayer, out hit, detectionRadius))
+        LayerMask ignoreLayers = LayerMask.GetMask("Spell");
+
+        if (Physics.Raycast(detector.position, directionToPlayer, out hit, detectionRadius, ~ignoreLayers))
         {
             return hit.transform == player;
         }
