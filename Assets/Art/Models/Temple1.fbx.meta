@@ -3,7 +3,42 @@ guid: 60f50cf9ea9180c49b5b17325fd4a5b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Capitals_
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Facia_Decor
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Facia_Stones
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone_Column
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones_
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Well
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Well_Rims
+    second: {fileID: 2100000, guid: 5190067a63e383a41aa83ca93f87c002, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
