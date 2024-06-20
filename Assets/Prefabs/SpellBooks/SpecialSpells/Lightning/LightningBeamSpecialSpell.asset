@@ -24,8 +24,10 @@ MonoBehaviour:
     radius: 0
     duration: 8
     speed: 0
-  shortDescription: A beam of lightning cast in a straight line hitting all enemies
-    that touch it.
+  templeDescription: Lightning Beam! A beam of lightning cast forward attacking the
+    first thing it sees!
+  shopkeeperDescription: Oh the lightning beam! A beam of lightning cast forward
+    destroying everything on it's path!
   tier1:
     damage: 60
     cooldown: 10

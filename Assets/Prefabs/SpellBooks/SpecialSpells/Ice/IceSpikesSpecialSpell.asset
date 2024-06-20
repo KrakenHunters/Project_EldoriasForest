@@ -24,8 +24,10 @@ MonoBehaviour:
     radius: 0
     duration: 0.1
     speed: 5
-  templeDescription: 
-  shopkeeperDescription: 
+  templeDescription: Ice Spikes, they come from the ground and atack the enemies
+    that are standing on it.
+  shopkeeperDescription: The Ice Spikes! Spikes that come from the ground attacking
+    the enemies where they are.
   tier1:
     damage: 55
     cooldown: 5
@@ -34,7 +36,7 @@ MonoBehaviour:
     statusEffectChance: 0.3
     range: 0
     healAmount: 0
-    radius: 1
+    radius: 3
     duration: 0.1
     speed: 5
   tier2:
@@ -45,7 +47,7 @@ MonoBehaviour:
     statusEffectChance: 0.5
     range: 0
     healAmount: 0
-    radius: 1
+    radius: 3
     duration: 0.1
     speed: 5
   tier3:
@@ -56,6 +58,6 @@ MonoBehaviour:
     statusEffectChance: 0.5
     range: 0
     healAmount: 0
-    radius: 1
+    radius: 3
     duration: 0.1
     speed: 5

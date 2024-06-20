@@ -24,8 +24,10 @@ MonoBehaviour:
     radius: 0.5
     duration: 5
     speed: 0
-  shortDescription: 'A fire ring that revolves around the caster, burning nearby
-    enemies and healing the caster '
+  templeDescription: The Fire Ring! This spell hits enemies around you for a while
+    burning them!
+  shopkeeperDescription: The Fire Ring! This spell hits enemies around you for a
+    while burning them!
   tier1:
     damage: 0
     cooldown: 8

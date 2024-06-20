@@ -24,8 +24,9 @@ MonoBehaviour:
     radius: 0
     duration: 10
     speed: 0
-  shortDescription: A blizzard cast with the caster that hits every enemy on its
-    path
+  templeDescription: BLIZZARD! Blizzard follows you hitting everything around you
+    and dealing lots of damage!
+  shopkeeperDescription: 
   tier1:
     damage: 100
     cooldown: 0

@@ -24,7 +24,9 @@ MonoBehaviour:
     radius: 4
     duration: 5
     speed: 0
-  shortDescription: 
+  templeDescription: THUNDER! Thunder is cast on a specific region defined by the
+    caster and deals lots of damage!
+  shopkeeperDescription: 
   tier1:
     damage: 0
     cooldown: 0

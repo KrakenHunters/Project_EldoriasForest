@@ -24,6 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 0
     speed: 25
+  templeDescription: 
+  shopkeeperDescription: Fast and furious, the lightning spell!
   tier1:
     damage: 3
     cooldown: 0.3

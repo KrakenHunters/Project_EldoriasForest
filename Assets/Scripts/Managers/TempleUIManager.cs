@@ -236,8 +236,6 @@ public class TempleUIManager : Singleton<TempleUIManager>
             else
             {
                 SetCelebrationScreen();
-                //setup 
-                //celebrationScreen.SetActive(true);
             }
 
         }
@@ -256,7 +254,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
             GameManager.Instance.tData.ultimateSpell = (UltimateSpellBook)currentTempleSpell;
         }
         celebrationImage.sprite = currentTempleSpell.spellIcon;
-        celebrationText.text = $"You have gained {currentTempleSpell.name}!";
+        celebrationText.text = $"{currentTempleSpell.spellData.templeDescription}";
         celebrationScreen.SetActive(true);
         templeUI.SetActive(false);
         OnPlayerPickSpell.Raise(new Empty());

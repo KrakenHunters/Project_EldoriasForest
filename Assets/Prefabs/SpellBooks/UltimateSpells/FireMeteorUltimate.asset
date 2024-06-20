@@ -24,7 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 0
     speed: 0
-  templeDescription: 
+  templeDescription: FIRE METEOR! The fire meteor needs to be precise but it is a
+    certain kill when it hits!
   shopkeeperDescription: 
   tier1:
     damage: 200

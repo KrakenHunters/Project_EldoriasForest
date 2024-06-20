@@ -25,14 +25,14 @@ MonoBehaviour:
     duration: 0
     speed: 10
   templeDescription: 
-  shopkeeperDescription: 
+  shopkeeperDescription: A fire ball spell, strong but also short-ranged.
   tier1:
     damage: 6
     cooldown: 0.5
     statusEffectTimer: 10
     statusEffectDamage: 5
     statusEffectChance: 0
-    range: 10
+    range: 7
     healAmount: 0
     radius: 0
     duration: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
     statusEffectTimer: 3
     statusEffectDamage: 1
     statusEffectChance: 0.3
-    range: 10
+    range: 7
     healAmount: 0
     radius: 0
     duration: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 1
     statusEffectChance: 0.5
-    range: 10
+    range: 7
     healAmount: 0
     radius: 0
     duration: 0

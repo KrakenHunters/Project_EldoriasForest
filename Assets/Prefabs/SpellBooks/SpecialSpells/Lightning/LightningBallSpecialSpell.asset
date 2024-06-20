@@ -24,8 +24,10 @@ MonoBehaviour:
     radius: 0
     duration: 8
     speed: 15
-  shortDescription: A lightning ball that keeps moving around the caster dealing
-    damage to whoever touches it.
+  templeDescription: Lightning Ball! A ball of lightining, that moves around you
+    hitting everything in your path!
+  shopkeeperDescription: Oh the Lightning Ball! Really fun to use, a ball of lightning
+    moves around you hitting and electrifying everything on its path!
   tier1:
     damage: 30
     cooldown: 6

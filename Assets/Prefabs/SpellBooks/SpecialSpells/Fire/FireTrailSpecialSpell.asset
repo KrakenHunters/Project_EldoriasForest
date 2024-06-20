@@ -24,8 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 5
     speed: 8
-  shortDescription: 'A trail of fire in a certain direction, cast from the ground,
-    burning enemies that come close to it '
+  templeDescription: The Fire Trail! A line of fire hits everything in front of you!
+  shopkeeperDescription: The Fire Trail! A line of fire hits everything in its way!
   tier1:
     damage: 10
     cooldown: 6
