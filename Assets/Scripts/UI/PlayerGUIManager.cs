@@ -17,6 +17,8 @@ public class PlayerGUIManager : MonoBehaviour
 
     [SerializeField]
     private Slider healthBar;
+    [SerializeField] 
+    private float speedBar = 2f;
 
     [SerializeField] 
     private TMPro.TextMeshProUGUI specialSpellCooldownText;
@@ -32,6 +34,7 @@ public class PlayerGUIManager : MonoBehaviour
     [SerializeField]
     private DoubleFloatEvent onCooldownChange;
 
+    private float targetHealth;
 
     private void OnEnable()
     {
@@ -68,7 +71,12 @@ public class PlayerGUIManager : MonoBehaviour
     public void SetHealthValues(float health)
     {
         healthBar.maxValue = tempData.startHealth;
-        healthBar.value = health;
+        targetHealth = health;
+    }
+
+    private void Update()
+    {
+      healthBar.value = Mathf.Lerp(healthBar.value, targetHealth, speedBar * Time.deltaTime);  
     }
 
     public void SetCooldown(float cooldown, float maxCooldown)

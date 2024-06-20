@@ -76,7 +76,7 @@ public class Enemy : CharacterClass
     [HideInInspector]
     public bool attacking;
 
-
+   [SerializeField] protected WSHealthBar healthBar;
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -86,6 +86,7 @@ public class Enemy : CharacterClass
         initialSpeed = _speed;
 
         SetHealth();
+        healthBar.SetMaxHealth(maxHealth);
 
         attackTimer = new CountdownTimer(timeBetweenAttacks);
         wanderTimer = new CountdownTimer(wanderTime);
@@ -231,6 +232,7 @@ public class Enemy : CharacterClass
     public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
     {
         base.GetHit(damageAmount, attacker, spell);
+        healthBar.SetHealth(health);
         gotHit = true;
     }
 
