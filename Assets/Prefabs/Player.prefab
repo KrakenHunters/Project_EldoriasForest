@@ -171,6 +171,9 @@ MonoBehaviour:
   onHealthChanged: {fileID: 11400000, guid: d89ea8f87bae895408a71bac99a31fae, type: 2}
   OnPlayerDie: {fileID: 11400000, guid: 633901125bb92ce44b1e819dfa028e67, type: 2}
   OnPlayerPickSpell: {fileID: 11400000, guid: 5087cb3198c08bd4ab8d3eb3e592c7fb, type: 2}
+  AudioEvent: {fileID: 11400000, guid: 27e769dbc401572449f97751ab8520a2, type: 2}
+  getHitClip: {fileID: 0}
+  magicGetHitClip: {fileID: 0}
   canInteract: 0
   interactableObj: {fileID: 0}
   spellWeapon: {fileID: 0}
