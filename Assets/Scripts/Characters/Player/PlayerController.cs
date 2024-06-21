@@ -41,6 +41,7 @@ public class PlayerController : CharacterClass
     [SerializeField] private AudioClip magicGetHitClip;
 
 
+
     private LayerMask groundLayer;
 
     [HideInInspector]
