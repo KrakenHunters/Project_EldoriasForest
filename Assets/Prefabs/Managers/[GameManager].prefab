@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   tData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
-  playerPos: {fileID: 0}
   OnSoulChange: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
+  MenuEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
+  BGClip: {fileID: 0}

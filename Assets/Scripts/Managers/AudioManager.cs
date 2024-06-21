@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,11 +18,17 @@ public class AudioManager : Singleton<AudioManager>
     private void OnEnable()
     {
         spellAudioEvent.Cast.AddListener(PlaySpellCastAudio);
+        menuAudioEvent.PlayBGMusic.AddListener(PlayMenuMusic);
+        menuAudioEvent.ButtonClick.AddListener(PlayButtonClick);
+        collectableAudioEvent.ItemCollected.AddListener(PLayItemCollected);
     }
 
     private void OnDisable()
     {
         spellAudioEvent.Cast.RemoveListener(PlaySpellCastAudio);
+        menuAudioEvent.PlayBGMusic.RemoveListener(PlayMenuMusic);
+        menuAudioEvent.ButtonClick.RemoveListener(PlayButtonClick);
+        collectableAudioEvent.ItemCollected.RemoveListener(PLayItemCollected);
     }
 
     private void Awake()
@@ -35,6 +42,62 @@ public class AudioManager : Singleton<AudioManager>
     private void Update()
     {
         // Update logic as needed
+    }
+
+    private void PLayItemCollected(AudioClip clip)
+    {
+        AudioSource speaker = FindUnusedAudioSource();
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        if (clip == null)
+        {
+            Debug.Log("Item audio clip is missing.");
+        }
+        else
+        {
+            speaker.clip = clip;
+            speaker.PlayOneShot(clip);
+            speaker.clip = null;
+        }
+    }
+
+    private void PlayMenuMusic(AudioClip clip)
+    {
+        AudioSource speaker = FindUnusedAudioSource();
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        if (clip == null)
+        {
+            Debug.Log("Menu audio clip is missing.");
+        }
+        else
+        {
+            speaker.clip = clip;
+            speaker.loop = true;
+            speaker.Play();
+        }
+    }
+
+    private void PlayButtonClick(AudioClip clip)
+    {
+        AudioSource speaker = FindUnusedAudioSource();
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        speaker.clip = clip;
+        speaker.PlayOneShot(clip);
+        speaker.clip = null;
     }
 
     private void PlaySpellCastAudio(SpellBook spell)
@@ -86,7 +149,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         foreach (AudioSource source in unusedSources)
         {
-            if (!source.isPlaying && source.clip == null)
+            if (source.clip == null)
             {
                 return source;
             }

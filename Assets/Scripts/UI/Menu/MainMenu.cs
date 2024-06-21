@@ -14,9 +14,17 @@ public class MainMenu : Menu
     [SerializeField]
     private Button _newGame;
 
+    [SerializeField]
+    private AudioClip menuClip;
+    [SerializeField]
+    private AudioClip buttonClip;
+
     [Header("Audio Souce")]
     [SerializeField, Tooltip("Audio Mixer form the Assets folder")]
     private AudioMixer _MasterAudioMixer;
+
+    public MenuAudioEvent MenuEvent;
+    
     private float _maxVolume = 1f;
 
     private void Start()
@@ -29,6 +37,8 @@ public class MainMenu : Menu
         //Ui settings
         _startActive = true;
         DisableScreens();
+        MenuEvent.PlayBGMusic.Invoke(menuClip);
+
     }
 
     private void Update()
@@ -74,9 +84,15 @@ public class MainMenu : Menu
         StartGame();
     }
 
+    public void OnButtonClick()
+    {
+        MenuEvent.ButtonClick.Invoke(buttonClip);
+    }
+
     public void OnToggleMute()
     {
+        OnButtonClick();
         _isMusted = !_isMusted;
-        _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(0.1f) * 20 : Mathf.Log10(_maxVolume) * 20);
+        _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(_maxVolume) * 20);
     }
 }

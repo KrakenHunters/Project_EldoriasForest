@@ -30,9 +30,16 @@ public class PlayerController : CharacterClass
     public EmptyGameEvent OnPlayerDie;
     [SerializeField]
     private EmptyGameEvent OnPlayerPickSpell;
+    [SerializeField]
+    private PlayerAudioEvent AudioEvent;
 
     public Vector3 AimWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
+
+    [Header("Audio Clip")]
+    [SerializeField] private AudioClip getHitClip;
+    [SerializeField] private AudioClip magicGetHitClip;
+
 
     private LayerMask groundLayer;
 
@@ -135,6 +142,7 @@ public class PlayerController : CharacterClass
 
     public override void GetHit(float damageAmount,GameObject attacker, SpellBook spell)
     {
+        AudioEvent.PlayGetHit.Invoke(getHitClip);
         base.GetHit(damageAmount, attacker, spell);
         if (health <= 0)
         {

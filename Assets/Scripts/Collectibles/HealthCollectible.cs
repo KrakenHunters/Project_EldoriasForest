@@ -17,9 +17,12 @@ public class HealthCollectible : Collectible
     [SerializeField]
     private int healthAmountMinTier3;
 
+    [SerializeField] private AudioClip collectClip;
+    public CollectableAudioEvent collectableAudioEvent;
 
     protected override void ItemCollected(PlayerController player)
     {
+        collectableAudioEvent.ItemCollected.Invoke(collectClip);
         base.ItemCollected(player);
         switch (tier)
         {

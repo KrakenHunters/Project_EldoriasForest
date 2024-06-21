@@ -78,6 +78,9 @@ MonoBehaviour:
   healthAmountMinTier2: 30
   healthAmountMaxTier3: 40
   healthAmountMinTier3: 60
+  collectClip: {fileID: 8300000, guid: bf271ebb230bae643869cb8cf4527886, type: 3}
+  collectableAudioEvent: {fileID: 11400000, guid: 11c57949cfffa874aa2d7a02244eb421,
+    type: 2}
 --- !u!54 &3066700756872467583
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,10 +7,23 @@ public class GameManager : Singleton<GameManager>
     public TemporaryDataContainer tData;
 
     public GameEvent<Empty> OnSoulChange;
+    public MenuAudioEvent MenuEvent;
+
+    [SerializeField] AudioClip BGClip;
+    [SerializeField] AudioClip collectClip;
 
     private void Awake()
     {
         pData.InitializeData = true;
+    }
+    private void Start()
+    {
+        MenuEvent.PlayBGMusic.Invoke(BGClip);
+    }
+
+    public void CollectItem()
+    {
+        MenuEvent.ButtonClick.Invoke(collectClip);
     }
 
     public IEnumerator CountToTarget(int cost)

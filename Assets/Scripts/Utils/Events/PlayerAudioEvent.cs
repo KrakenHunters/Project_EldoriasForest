@@ -5,5 +5,5 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Events/ Audio Event/ Player Audio Event")]
 public class PlayerAudioEvent : SOEvent
 {
-   
+    public UnityAction<AudioClip> PlayGetHit;
 }
