@@ -143,7 +143,7 @@ public class PlayerController : CharacterClass
 
     public override void GetHit(float damageAmount,GameObject attacker, SpellBook spell)
     {
-        AudioEvent.PlayGetHit.Invoke(getHitClip);
+        //AudioEvent.PlayGetHit.Invoke(getHitClip);
         base.GetHit(damageAmount, attacker, spell);
         if (health <= 0)
         {
