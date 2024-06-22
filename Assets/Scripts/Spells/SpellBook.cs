@@ -106,7 +106,7 @@ public class SpellBook : MonoBehaviour
     protected void SetStatusEffect(GameObject target)
     {
 
-        if (Random.value <= statusEffectChance)
+        if (Random.value <= statusEffectChance && charAttacker != target)
         {
             if (target.GetComponentInChildren<StatusEffect>())
             {

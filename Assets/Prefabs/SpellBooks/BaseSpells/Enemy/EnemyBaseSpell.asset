@@ -20,44 +20,42 @@ MonoBehaviour:
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 0
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
     speed: 0
+  templeDescription: 
+  shopkeeperDescription: 
   tier1:
-    damage: 5
+    damage: 15
     cooldown: 0.5
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 15
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 15
+    speed: 25
   tier2:
-    damage: 7
+    damage: 30
     cooldown: 0.5
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 15
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 15
+    speed: 25
   tier3:
-    damage: 12
+    damage: 50
     cooldown: 0.5
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
     range: 15
-    angle: 0
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 15
+    speed: 25
