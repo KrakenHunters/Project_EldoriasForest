@@ -18,7 +18,6 @@ public class EnemyWanderState : EnemyBaseState
     public override void OnEnter()
     {
         enemy.gotHit = false;
-        agent.speed = enemy.Speed;
         enemy.wanderTimer.Start();
     }
 
@@ -30,6 +29,8 @@ public class EnemyWanderState : EnemyBaseState
 
     public override void Update()
     {
+        agent.speed = enemy.Speed;
+
         if (HasReachedDestination())
         {
             var randomDirection = Random.insideUnitSphere * wanderRadius;

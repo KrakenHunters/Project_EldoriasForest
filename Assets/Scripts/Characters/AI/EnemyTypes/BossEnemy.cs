@@ -125,21 +125,16 @@ public class BossEnemy : Enemy
     private void SelectSpell()
     {
         // Check if spellOrderCount is within the range of the spellList
-        if (spellOrderCount >= phaseElement[phase].Count)
+        if (spellOrderCount >= phaseElement[phase].Count || (currentSpell is UltimateSpellBook && health > maxHealth * 0.30f))
         {
             SpawnEnemies();
             // Reset spellOrderCount if it exceeds or matches the list count
             spellOrderCount = 0;
         }
         currentSpell = phaseElement[phase][spellOrderCount];
-        if (currentSpell is UltimateSpellBook && health > maxHealth * 0.30f)
-        {
-            spellOrderCount++;
-            currentSpell = phaseElement[phase][spellOrderCount];
-        }
         spellOrderCount++;
         // Update the attack range based on the current spell's range
-        if (currentSpell.spellData.tier3.range > 0f)
+        if (currentSpell.spellData.tier3.range > 1f)
             playerDetector.attackRange = currentSpell.spellData.tier3.range * 0.7f;
         else
             playerDetector.attackRange = defaultAttackRange;

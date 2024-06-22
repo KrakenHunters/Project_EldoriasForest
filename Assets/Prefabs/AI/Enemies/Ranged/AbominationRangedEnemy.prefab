@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   health: 15
-  _speed: 2.5
+  _speed: 2
   initialSpeed: 0
   _speedModifier: 2
   isInCombat: 0
@@ -151,8 +151,8 @@ MonoBehaviour:
     type: 3}
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
     type: 3}
-  healthDropChance: 0.2
-  rotationSpeed: 15
+  healthDropChance: 0.15
+  rotationSpeed: 1500
   AISpotSelected: {fileID: 0}
   soulAmountMaxTier1: 6
   soulAmountMinTier1: 4

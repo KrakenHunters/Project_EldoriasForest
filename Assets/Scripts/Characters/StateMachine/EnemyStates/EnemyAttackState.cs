@@ -18,7 +18,6 @@ public class EnemyAttackState : EnemyBaseState
     {
         hasAttacked = false;
         enemy.attacking = true;
-        agent.ResetPath();
     }
 
     public override void Update()
