@@ -59,6 +59,7 @@ public class PlayerController : CharacterClass
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
         initialSpeed = _speed;
+        onHealthChanged.Raise(health);
 
         spellCastManager = GetComponent<PlayerSpellCastManager>();
         spellWeapon = GetComponent<SpellWeapon>();

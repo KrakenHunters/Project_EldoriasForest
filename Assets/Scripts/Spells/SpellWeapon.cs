@@ -15,7 +15,7 @@ public class SpellWeapon : MonoBehaviour
         if (spell.castOrigin == SpellBook.castType.skyToGroundPos || spell.castOrigin == SpellBook.castType.groundPos)
         {
             ParticleSystem.MainModule mainModule = particleIndicator.main;
-
+            Debug.Log("Spell Tier" + spell.tier);
             switch (spell.tier)
             {
                 case 1:
@@ -31,7 +31,7 @@ public class SpellWeapon : MonoBehaviour
             }
 
             mainModule.startColor = particleColor;
-            Instantiate(particleIndicator.gameObject, caster.spellTarget, Quaternion.identity);
+            Instantiate(indicator, caster.spellTarget, Quaternion.identity);
         }
     }
 }

@@ -8,7 +8,10 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
     [SerializeField]
     private LayerMask obstacleLayer;
     [SerializeField]
-    private LayerMask enemyLayer;
+    private LayerMask monsterLayer;
+    [SerializeField]
+    private LayerMask playerLayer;
+
 
     private LineRenderer lineRenderer;
     private Vector3 castDirection;
@@ -44,12 +47,13 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
             Vector3 end = startPos + castDirection * range;
 
             // Perform a single raycast that checks for both obstacles and enemies
-            int combinedLayerMask = obstacleLayer | enemyLayer;
+            int combinedLayerMask = obstacleLayer | monsterLayer | playerLayer;
             if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, range, combinedLayerMask, QueryTriggerInteraction.Ignore))
             {
                 end = hit.point;
                 Debug.Log(hit.collider);
 
+                int enemyLayer = monsterLayer | playerLayer;
                 // Check if the hit is an enemy
                 if (((1 << hit.collider.gameObject.layer) & enemyLayer) != 0)
                 {
