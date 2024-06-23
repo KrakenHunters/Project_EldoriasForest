@@ -120,8 +120,8 @@ MonoBehaviour:
   statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
     type: 3}
   castClip: {fileID: 8300000, guid: 8261fd2ce8589e5408d95247ae2a60c9, type: 3}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
+  hitClip: {fileID: 8300000, guid: ad466d90a7d1288438fd28c7e66bac38, type: 3}
+  endClip: {fileID: 8300000, guid: 6d026e8d4ddc40d488a584d745cd521e, type: 3}
   travelClip: {fileID: 0}
   autoAimRange: 10
   autoAimAngle: 15
