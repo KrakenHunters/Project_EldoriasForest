@@ -145,7 +145,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
             }
             else
             {
-                while (currentTempleSpell is not SpecialSpellBook && CheckSpecialSpellOnPlayer() == currentTempleSpell)
+                while (currentTempleSpell is not SpecialSpellBook || CheckSpecialSpellOnPlayer() == currentTempleSpell)
                 {
                     currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
                 }
@@ -210,7 +210,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
         //Show player the spell with UI
         if (currentTempleSpell is SpecialSpellBook)
         {
-            if (GameManager.Instance.tData.specialSpell != null)
+            if (GameManager.Instance.tData.specialSpell != null && currentTempleSpell != GameManager.Instance.tData.specialSpell)
             {
                 currentSpellImage.sprite = GameManager.Instance.tData.specialSpell.spellIcon;
                 newSpellImage.sprite = currentTempleSpell.spellIcon;

@@ -57,8 +57,8 @@ public class SaveManager : Singleton<SaveManager>
     {
         temporaryData.collectedSouls = baseTemporaryData.collectedSouls;
         temporaryData.baseSpell = baseTemporaryData.baseSpell;
-        temporaryData.specialSpell = baseTemporaryData.specialSpell;
-        temporaryData.ultimateSpell = baseTemporaryData.ultimateSpell;
+        temporaryData.specialSpell = null;
+        temporaryData.ultimateSpell = null;
         temporaryData.collectedSpells = new List<SpellBook>(baseTemporaryData.collectedSpells);
         temporaryData.startHealth = baseTemporaryData.startHealth;
     }
@@ -78,20 +78,13 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.totalSouls += temporaryData.collectedSouls;
         foreach (SpecialSpellBook spell in temporaryData.collectedSpells)
         {
-            SpecialSpellBook existingSpell = permanentData.spellBooksUnlocked.Find(x => x.tier == spell.tier);
-
-            if (existingSpell == null)
+            if (!permanentData.spellBooksUnlocked.Contains(spell))
             {
                 permanentData.spellBooksUnlocked.Add(spell);
             }
-            else if (spell.tier > existingSpell.tier)
-            {
-                spell.SpellCollected(spell.tier);
-                //permanentData.spellBooksUnlocked.Remove(existingSpell);
-                //permanentData.spellBooksUnlocked.Add(spell);
-            }
         }
         SavePermanentData();
+        ResetTemporaryData();
     }
 
     public void DeleteAllSaveData()

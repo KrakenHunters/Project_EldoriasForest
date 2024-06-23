@@ -50,6 +50,7 @@ public class ShopSpecials : MonoBehaviour, IShoppable
     private SpecialSpellBook spell3;
 
     private SpecialSpellBook selectedSpell;
+    private SpecialSpellBook boughtSpell;
 
     private List<SpecialSpellBook> availableSpells = new List<SpecialSpellBook>();
     private List<SpecialSpellBook> usedSpells = new List<SpecialSpellBook>();
@@ -78,6 +79,11 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         // Load and display initial set of spells
         LoadAvailableSpells();
         SelectRandomSpecialSpells();
+
+        lockedSpell1.SetActive(spell1 == null);
+        lockedSpell2.SetActive(spell2 == null);
+        lockedSpell3.SetActive(spell3 == null);
+
         UpdateButtonInteractions();
 
 
@@ -217,15 +223,16 @@ public class ShopSpecials : MonoBehaviour, IShoppable
     public void OnBuySpell()
     {
         UpdateSoulsCountUI(upgradeCost);
-        shopManager.tempData.specialSpell = selectedSpell;
+        boughtSpell = selectedSpell;
+        shopManager.tempData.specialSpell = boughtSpell;
         UpdateButtonInteractions();
-        lockedSpell1.SetActive(spell1 != selectedSpell);
-        lockedSpell2.SetActive(spell2 != selectedSpell);
-        lockedSpell3.SetActive(spell3 != selectedSpell);
+        lockedSpell1.SetActive(spell1 != boughtSpell);
+        lockedSpell2.SetActive(spell2 != boughtSpell);
+        lockedSpell3.SetActive(spell3 != boughtSpell);
 
-       spell1Button.interactable = spell1 == selectedSpell;
-        spell2Button.interactable = spell2 == selectedSpell;
-        spell3Button.interactable = spell3 == selectedSpell;
+        spell1Button.interactable = spell1 == boughtSpell;
+        spell2Button.interactable = spell2 == boughtSpell;
+        spell3Button.interactable = spell3 == boughtSpell;
 
     }
 
@@ -256,9 +263,10 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         upgradeButton.interactable = CanUpgradeSpecialSpell();
         reRollButton.interactable = CanReRollSpells();
         buyButton.interactable = CanBuySpell();
-        spell1Button.interactable = spell1 != null;
-        spell2Button.interactable = spell2 != null;
-        spell3Button.interactable = spell3 != null;
+
+        spell1Button.interactable = (spell1 != null) && (spell1 == selectedSpell || boughtSpell == null);
+        spell2Button.interactable = (spell2 != null) && (spell2 == selectedSpell || boughtSpell == null);
+        spell3Button.interactable = (spell3 != null) && (spell3 == selectedSpell || boughtSpell == null);
 
         upgradeCostText.text = upgradeCost.ToString();
         reRollCostText.text = reRollCost.ToString();

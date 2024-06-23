@@ -238,6 +238,8 @@ public class Enemy : CharacterClass
         healthBar.SetHealth(health);
         if (!gotHit)
             gotHit = true;
+        if (health <= 0)
+            isAlive = false;
     }
 
     public AISpot SelectAISpot()

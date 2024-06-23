@@ -13,6 +13,7 @@ public class ShopManager : Singleton<ShopManager>
     private void Awake()
     {
        SaveManager.Instance.TransferTempToPermaData();
+       SaveManager.Instance.ResetTemporaryData();
     }
     private void Start()
     {
@@ -26,11 +27,8 @@ public class ShopManager : Singleton<ShopManager>
 
     public void PlayGame()
     {
-
         SaveManager.Instance.SetUpTempData();
         SceneManager.LoadScene("Renee_ProgrammingGym");
-        Debug.Log("Play Game");
-
     }
 
     public void CheckButtonInteraction(Button button, bool check)

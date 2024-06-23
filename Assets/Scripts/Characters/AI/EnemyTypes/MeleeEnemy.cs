@@ -25,7 +25,6 @@ public class MeleeEnemy : Enemy
         if (_damage == 0f)
             GetDamage();
 
-        Debug.Log("Attacking");
         playerDetector.controller.GetHit(_damage, this.gameObject, null);
 
     }

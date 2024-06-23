@@ -57,10 +57,9 @@ public class StatusEffect : MonoBehaviour
             _particles.Play();
             yield return new WaitForSeconds(1f);
         }
-        _target.damageMultiplier = 1f;
-        Destroy(gameObject, _particles.main.duration);
+        DisableStausEffect();
 
-        yield return null;
+
     }
 
     private IEnumerator OnStunned(float effectTimer)
@@ -75,11 +74,16 @@ public class StatusEffect : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+        DisableStausEffect();
 
+    }
+
+    public void DisableStausEffect()
+    {
         _target.Speed = _target.initialSpeed;
-        Destroy(this.gameObject, _particles.main.duration);
+        _target.damageMultiplier = 1f;
+        Destroy(gameObject, _particles.main.duration);
 
-        yield return null;
     }
 
 
@@ -98,9 +102,7 @@ public class StatusEffect : MonoBehaviour
 
 
         }
-        Destroy(this.gameObject, _particles.main.duration);
+        DisableStausEffect();
 
-
-        yield return null;
     }
 }

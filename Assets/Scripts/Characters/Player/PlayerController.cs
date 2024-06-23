@@ -59,6 +59,7 @@ public class PlayerController : CharacterClass
         health = tempData.startHealth;
         maxHealth = tempData.startHealth;
         initialSpeed = _speed;
+        onHealthChanged.Raise(health);
 
         spellCastManager = GetComponent<PlayerSpellCastManager>();
         spellWeapon = GetComponent<SpellWeapon>();
@@ -147,8 +148,7 @@ public class PlayerController : CharacterClass
         base.GetHit(damageAmount, attacker, spell);
         if (health <= 0)
         {
-            Debug.Log("Dead");
-            //Time.timeScale = 0f;
+            ChangeState(new PlayerDieState());
         }
 
     }
@@ -232,12 +232,11 @@ public class PlayerController : CharacterClass
     protected override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        onHealthChanged.Raise(health);
+
         if (!isAlive)
         {
-            ChangeState(new PlayerDieState());
-            OnPlayerDie.Raise(new Empty());//add in death aniimation 
         }
-       onHealthChanged.Raise(health);
     }
 
     public override void Heal(float healAmount)
