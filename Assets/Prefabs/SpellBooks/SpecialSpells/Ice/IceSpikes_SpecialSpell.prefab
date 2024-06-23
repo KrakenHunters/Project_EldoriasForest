@@ -54,6 +54,10 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 3cef5f84644876c4f91ad5a36a251f43, type: 3}
   statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
     type: 3}
+  castClip: {fileID: 8300000, guid: 0f0277b77839e164eb115905b12d5bc5, type: 3}
+  hitClip: {fileID: 0}
+  endClip: {fileID: 0}
+  travelClip: {fileID: 0}
   spellTimer: 2
 --- !u!54 &-8368721801276657126
 Rigidbody:

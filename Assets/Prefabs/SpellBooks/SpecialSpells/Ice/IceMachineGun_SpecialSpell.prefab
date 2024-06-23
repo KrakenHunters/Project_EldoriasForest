@@ -52,6 +52,10 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 6fc1428d5904a6b4ea146b6691a470dd, type: 3}
   statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
     type: 3}
+  castClip: {fileID: 8300000, guid: c79c5e85d18654c47a4ca51d0dc901e7, type: 3}
+  hitClip: {fileID: 0}
+  endClip: {fileID: 0}
+  travelClip: {fileID: 0}
   interval: 0.3
   iceBullet: {fileID: 370365836938485006, guid: 218aaeb1a24354440a7e4a3baf4326ae,
     type: 3}

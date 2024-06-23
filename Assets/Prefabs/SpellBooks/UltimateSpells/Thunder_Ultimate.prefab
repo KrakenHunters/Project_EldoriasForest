@@ -146,6 +146,10 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 79453cfffba04934f8d0597c48331ca2, type: 3}
   statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
     type: 3}
+  castClip: {fileID: 0}
+  hitClip: {fileID: 0}
+  endClip: {fileID: 0}
+  travelClip: {fileID: 0}
   thunderEffects: {fileID: 4419524288812267784, guid: 7d092f8eb887025458ecf55d38bb6399,
     type: 3}
   damageInterval: 1

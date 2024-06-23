@@ -54,6 +54,10 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 890af04b34027a24a9836abde947580b, type: 3}
   statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
     type: 3}
+  castClip: {fileID: 8300000, guid: aba0970c9e8f29944822324699a30872, type: 3}
+  hitClip: {fileID: 0}
+  endClip: {fileID: 0}
+  travelClip: {fileID: 0}
   angle: 90
 --- !u!135 &7120863907982733483
 SphereCollider:
