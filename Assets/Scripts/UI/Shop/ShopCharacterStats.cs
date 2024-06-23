@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ShopCharacterStats : MonoBehaviour, IShoppable
 {
-    PermanentDataContainer permData;
+    
     [Header("Character Stats")]
     [SerializeField] private CharacterUpgrade ultimateSpellSlot;
     [SerializeField] private CharacterUpgrade healthUpgrade;
@@ -14,6 +14,8 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
 
     [SerializeField] private IntGameEvent OnUpdateUISouls;
     [SerializeField] private EmptyGameEvent OnBuyStuff;
+
+    PermanentDataContainer permData;
     private void Awake()
     {
         permData = ShopManager.Instance.permData;
@@ -74,13 +76,13 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         if (DefenseRune.currentUnlock == DefenseRune.maxUnlock)
             DefenseRune.costText.text = "Max";
 
-        //LootDropRate.currentUnlock = Mathf.RoundToInt(permData.templeSoulsDropRate);
+        LootDropRate.currentUnlock =  Mathf.FloorToInt(permData.templeSoulsDropRate / 0.25f);
         LootDropRate.unlockText.text = $"{LootDropRate.currentUnlock} / {LootDropRate.maxUnlock}";
         LootDropRate.costText.text = LootDropRate.cost.ToString();
         if (LootDropRate.currentUnlock == LootDropRate.maxUnlock)
             LootDropRate.costText.text = "Max";
 
-        //CoolDownReduction.currentUnlock = Mathf.RoundToInt(permData.cooldownReduction);
+        CoolDownReduction.currentUnlock = Mathf.FloorToInt(permData.cooldownReduction / 0.25f);
         CoolDownReduction.unlockText.text = $"{CoolDownReduction.currentUnlock} / {CoolDownReduction.maxUnlock}";
         CoolDownReduction.costText.text = CoolDownReduction.cost.ToString();
         if (CoolDownReduction.currentUnlock == CoolDownReduction.maxUnlock)
