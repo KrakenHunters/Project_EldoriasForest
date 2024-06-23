@@ -194,7 +194,10 @@ public class ShopSpecials : MonoBehaviour, IShoppable
             UpdateSoulsCountUI(reRollCost);
             reRollCost *= reRollMultiplier;
             reRollCostText.text = reRollCost.ToString();
-
+            if (reRollMax == 0)
+            {
+                reRollCostText.text = "Max";
+            }
             LoadAvailableSpells();
 
             if (spell1 != null && availableSpells.Count > 0)
@@ -267,9 +270,6 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         spell1Button.interactable = (spell1 != null) && (spell1 == selectedSpell || boughtSpell == null);
         spell2Button.interactable = (spell2 != null) && (spell2 == selectedSpell || boughtSpell == null);
         spell3Button.interactable = (spell3 != null) && (spell3 == selectedSpell || boughtSpell == null);
-
-        upgradeCostText.text = upgradeCost.ToString();
-        reRollCostText.text = reRollCost.ToString();
     }
 
     public void UpdateSoulsCountUI(int cost)
