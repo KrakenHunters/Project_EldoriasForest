@@ -83,10 +83,8 @@ MonoBehaviour:
   isAudioLooping: 1
   statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
     type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: 59dbcddb4788ca14eb8589bba3f3d500, type: 3}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
-  travelClip: {fileID: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512

@@ -55,12 +55,11 @@ MonoBehaviour:
   canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 6f9bc77967bebb74b9fdc22cc12d718b, type: 2}
   spellIcon: {fileID: 21300000, guid: c92671744b866734eb524946faa559e4, type: 3}
+  isAudioLooping: 0
   statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
     type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: 9913fd437776af344900bb8dad053493, type: 3}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
-  travelClip: {fileID: 0}
 --- !u!33 &4995557826010180249
 MeshFilter:
   m_ObjectHideFlags: 0

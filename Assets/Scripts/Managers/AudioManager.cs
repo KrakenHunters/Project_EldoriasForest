@@ -115,8 +115,9 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("Spell audio clip is missing.");
             return;
         }
-
+        speaker.volume = 0.2f;
         speaker.PlayOneShot(speaker.clip);
+        speaker.clip = null;
     }
 
     private void PlaySpellLooping(SpellBook spell)
@@ -127,19 +128,24 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("No Audio Source Available");
             return;
         }
-         Debug.Log("Playing Looping Audio");
+        speaker.volume = 0.2f;
         speaker.clip = spell.castClip;
         speaker.loop = true;
         speaker.Play();
 
         // Stop the looping audio after the spell's duration
-        StartCoroutine(StopLoopingAudioAfterDuration(spell, spell.ReturnDuration()));
+        StartCoroutine(StopLoopingAudioAfterDuration(spell));
     }
 
-    private IEnumerator StopLoopingAudioAfterDuration(SpellBook spell, float duration)
+    private IEnumerator StopLoopingAudioAfterDuration(SpellBook spell)
     {
-        yield return new WaitForSeconds(duration);
-
+        float duration = spell.ReturnDuration();
+        float timer = 0;
+       while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
         StopLoopingAudio(spell);
     }
 
@@ -151,10 +157,10 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("No Audio Source Available");
             return;
         }
-
         speaker.loop = false;
         speaker.Stop();
         speaker.clip = null;
+        speaker.volume = 0.5f;
     }
 
 
@@ -169,12 +175,6 @@ public class AudioManager : Singleton<AudioManager>
         // If not, try to find an unused AudioSource
         AudioSource unusedSource = FindUnusedAudioSource();
 
-        // If no unused source is available, create a new one
-        if (unusedSource == null)
-        {
-
-        }
-
         // Add the spell and its AudioSource to the dictionary
         spellAudioSources[spell] = unusedSource;
         return unusedSource;
@@ -186,6 +186,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (source.clip == null)
             {
+                source.volume = 0.5f;
                 return source;
             }
         }

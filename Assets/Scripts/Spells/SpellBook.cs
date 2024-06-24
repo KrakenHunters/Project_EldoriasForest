@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class SpellBook : MonoBehaviour
@@ -40,6 +41,9 @@ public class SpellBook : MonoBehaviour
     [SerializeField]
     protected StatusEffect statusEffect;
 
+    [SerializeField]
+    private SpellAudioEvent spellAudioEvent;
+
     #endregion
 
     [Header("Clips")]
@@ -51,6 +55,10 @@ public class SpellBook : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Spell");
         SetDataFromSpellContainer();
         CastSpell(tier);
+        if (isAudioLooping)
+        spellAudioEvent.Looping.Invoke(this);
+        else
+        spellAudioEvent.Cast.Invoke(this);
     }
     public virtual void UpgradeTier()
     {

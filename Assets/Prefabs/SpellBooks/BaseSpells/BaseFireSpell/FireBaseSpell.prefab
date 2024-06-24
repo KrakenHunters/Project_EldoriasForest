@@ -117,12 +117,11 @@ MonoBehaviour:
   canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 0a53b5a023aefa341adfe6de394d1035, type: 2}
   spellIcon: {fileID: 21300000, guid: 46ee6f498e9bca94e88e1ce8c3aa4699, type: 3}
+  isAudioLooping: 0
   statusEffect: {fileID: 9038086640475272774, guid: 9307fc828f2a5d9499640a341688d6b4,
     type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: 8261fd2ce8589e5408d95247ae2a60c9, type: 3}
-  hitClip: {fileID: 8300000, guid: ad466d90a7d1288438fd28c7e66bac38, type: 3}
-  endClip: {fileID: 8300000, guid: 6d026e8d4ddc40d488a584d745cd521e, type: 3}
-  travelClip: {fileID: 0}
   autoAimRange: 10
   autoAimAngle: 15
 --- !u!54 &-1239753716125547343

@@ -125,11 +125,10 @@ MonoBehaviour:
   canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: ea455c3d8c7ae2b4cada7929634f4ebe, type: 2}
   spellIcon: {fileID: 21300000, guid: e04f361c1f4e6d044a87e1ab54e6f59c, type: 3}
+  isAudioLooping: 0
   statusEffect: {fileID: 0}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: f2d19c0c2fe1173419e2ab9cf114d2c4, type: 3}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
-  travelClip: {fileID: 0}
   autoAimRange: 10
   autoAimAngle: 15
 --- !u!54 &-1239753716125547343

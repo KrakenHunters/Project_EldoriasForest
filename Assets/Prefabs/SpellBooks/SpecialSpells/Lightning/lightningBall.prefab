@@ -80,12 +80,11 @@ MonoBehaviour:
   canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: 8c4fda0de06294247bdcc4ad3782a052, type: 2}
   spellIcon: {fileID: 21300000, guid: de3f85aabf025eb4bb32b61949b55cf4, type: 3}
+  isAudioLooping: 1
   statusEffect: {fileID: 4179312999047100471, guid: 8e7a131ad35214544a5da706191813f9,
     type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: 3a67213b27d427b4e8e093508b20d16a, type: 3}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
-  travelClip: {fileID: 0}
   _rotateRadius: 5
 --- !u!1 &6197777194098644506
 GameObject:
