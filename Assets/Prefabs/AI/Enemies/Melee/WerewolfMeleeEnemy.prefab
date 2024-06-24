@@ -135,9 +135,9 @@ MonoBehaviour:
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 1238473911412538695}
-  damageTier1: 20
-  damageTier2: 50
-  damageTier3: 80
+  damageTier1: 10
+  damageTier2: 30
+  damageTier3: 50
 --- !u!114 &4949369657001733455
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ public class BaseSpellBook : SpellBook
         {
             other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);
             SetStatusEffect(other.gameObject);
-
+            Destroy(this.gameObject);
         }
 
         if (other.gameObject != charAttacker)
