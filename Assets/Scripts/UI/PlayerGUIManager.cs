@@ -17,6 +17,9 @@ public class PlayerGUIManager : MonoBehaviour
 
     [SerializeField]
     private Slider healthBar;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI healthAmountNum;
+
     [SerializeField] 
     private float speedBar = 2f;
 
@@ -76,7 +79,8 @@ public class PlayerGUIManager : MonoBehaviour
 
     private void Update()
     {
-      healthBar.value = Mathf.Lerp(healthBar.value, targetHealth, speedBar * Time.deltaTime);  
+        healthBar.value = Mathf.Lerp(healthBar.value, targetHealth, speedBar * Time.deltaTime);  
+        healthAmountNum.text = Mathf.Round(healthBar.value).ToString() + " / " + Mathf.Round(healthBar.maxValue).ToString();
     }
 
     public void SetCooldown(float cooldown, float maxCooldown)
