@@ -21,7 +21,6 @@ public class EnemyWanderState : EnemyBaseState
         enemy.gotHit = false;
         enemy.wanderTimer.Start();
         animator.CrossFade(IdleHash, crossFadeDuration);
-        Debug.Log("Walkhash:" + WalkHash);
 
     }
 

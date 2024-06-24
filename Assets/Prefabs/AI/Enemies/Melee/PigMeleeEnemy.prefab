@@ -105,6 +105,8 @@ MonoBehaviour:
   isInCombat: 0
   castPos: {fileID: 0}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
+  damageIndicator: {fileID: 7952942286368911428, guid: f9f64a444d9e61740b1cb6368f8508e0,
+    type: 3}
   damageMultiplier: 1
   spellTarget: {x: 0, y: 0, z: 0}
   playerDetector: {fileID: 0}

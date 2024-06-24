@@ -25,8 +25,7 @@ public class CharacterClass : BaseObject
     protected Transform castPos;
 
     [SerializeField]
-    private SpellAudioEvent spellAudioEvent;
-
+    private DamagePopUp damageIndicator;
 
 
     [HideInInspector]
@@ -47,11 +46,6 @@ public class CharacterClass : BaseObject
     public void CastSpell(SpellBook spell, out float duration)
     {
         SpellBook spellBook;
-        spellAudioEvent.Cast.Invoke(spell);
-        if(spell.isAudioLooping)
-        {
-            spellAudioEvent.Looping.Invoke(spell);
-        }
         duration = 1f;
         switch (spell.castOrigin)
         {
@@ -109,7 +103,11 @@ public class CharacterClass : BaseObject
         if (health <= 0)
             isAlive = false;
         else if(isAlive)
+        {
             health -= damage;
+            DamagePopUp indicator = Instantiate(damageIndicator, transform.position, Quaternion.identity);
+            indicator.SetDamageText(Mathf.RoundToInt(damage));
+        }
 
     }
 

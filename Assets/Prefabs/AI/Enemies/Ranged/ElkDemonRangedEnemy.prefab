@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1787771507584485558}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.383, z: 0.512}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,7 +136,8 @@ MonoBehaviour:
   _speedModifier: 0
   isInCombat: 0
   castPos: {fileID: 7852110605117582346}
-  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
+  damageIndicator: {fileID: 7952942286368911428, guid: f9f64a444d9e61740b1cb6368f8508e0,
+    type: 3}
   damageMultiplier: 1
   spellTarget: {x: 0, y: 0, z: 0}
   playerDetector: {fileID: 0}
