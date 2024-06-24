@@ -126,12 +126,11 @@ MonoBehaviour:
   canUseBaseSpell: 1
   spellData: {fileID: 11400000, guid: a3495ee07e4534f4d9611d7809b292e0, type: 2}
   spellIcon: {fileID: 0}
+  isAudioLooping: 0
   statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
     type: 3}
+  spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 0}
-  hitClip: {fileID: 0}
-  endClip: {fileID: 0}
-  travelClip: {fileID: 0}
   autoAimRange: 10
   autoAimAngle: 15
 --- !u!54 &5872516404404234687
