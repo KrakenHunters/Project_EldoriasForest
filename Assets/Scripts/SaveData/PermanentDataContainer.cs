@@ -19,6 +19,12 @@ public class PermanentDataContainer : ScriptableObject
 
     public bool InitializeData = false;
 
+    [Header("CostUpgrades")]
+    public int baseUpgradeCost;
+    public int healthUpgradeCost;
+    public int defensiveRuneCost;
+    public int soulDropUpgradeCost;
+    public int spellCooldownCost;
 
 }
 

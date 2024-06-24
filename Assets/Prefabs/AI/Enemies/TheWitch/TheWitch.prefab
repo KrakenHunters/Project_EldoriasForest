@@ -180,6 +180,7 @@ MonoBehaviour:
     type: 3}
   damageMultiplier: 1
   spellTarget: {x: 0, y: 0, z: 0}
+  initialDamageMultiplier: 0
   playerDetector: {fileID: 0}
   dissolvingController: {fileID: 0}
   wanderRadius: 10
@@ -257,6 +258,7 @@ MonoBehaviour:
   numEnemiesSpawnPhase3: 7
   spellWeapon: {fileID: 0}
   OnAggroWitch: {fileID: 11400000, guid: b36324eb88f21cd49a50bdff542215aa, type: 2}
+  OnWitchDead: {fileID: 11400000, guid: 2a1ed26e832c8c74784bd3515c22a761, type: 2}
 --- !u!114 &4309538859586518490
 MonoBehaviour:
   m_ObjectHideFlags: 0

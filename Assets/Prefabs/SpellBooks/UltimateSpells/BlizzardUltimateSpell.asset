@@ -55,7 +55,7 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 2
     statusEffectChance: 0.8
-    range: 0
+    range: 8
     healAmount: 0
     radius: 0
     duration: 10

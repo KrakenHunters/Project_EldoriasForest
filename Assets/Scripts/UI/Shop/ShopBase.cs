@@ -28,6 +28,7 @@ public class ShopBase : MonoBehaviour , IShoppable
 
     private void Start()
     {
+        upgradeCost = ShopManager.Instance.permData.baseUpgradeCost;
         ConvertSpellToType(ShopManager.Instance.permData.prefBaseSpell);
         ShopManager.Instance.CheckButtonInteraction(upgradeButton, CanUpgradeBaseSpell());
         upgradeCostText.text = upgradeCost.ToString();
@@ -108,6 +109,7 @@ public class ShopBase : MonoBehaviour , IShoppable
         //Upgrade cost event
         UpdateSoulsCountUI(upgradeCost);
         upgradeCost *= costMultiplyer;
+        ShopManager.Instance.permData.baseUpgradeCost = upgradeCost;
         upgradeCostText.text = upgradeCost.ToString();
         if (ShopManager.Instance.permData.baseAttackTier == 3)
             upgradeCostText.text = "Max";

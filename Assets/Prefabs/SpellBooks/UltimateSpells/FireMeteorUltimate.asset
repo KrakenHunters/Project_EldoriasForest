@@ -33,7 +33,7 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 20
     statusEffectChance: 1
-    range: 0
+    range: 8
     healAmount: 0
     radius: 0
     duration: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
-    range: 0
+    range: 8
     healAmount: 0
     radius: 0
     duration: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 20
     statusEffectChance: 1
-    range: 0
+    range: 8
     healAmount: 0
     radius: 8
     duration: 0

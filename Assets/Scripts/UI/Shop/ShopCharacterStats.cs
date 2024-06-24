@@ -35,17 +35,17 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
 
     private void SetUpValues()
     {
-        CoolDownReduction.cost = 250;
+        CoolDownReduction.cost = permData.spellCooldownCost;
         CoolDownReduction.maxUnlock = 3;
 
         LootDropRate.maxUnlock = 5;
-        LootDropRate.cost = 150;
+        LootDropRate.cost = permData.soulDropUpgradeCost;
 
         DefenseRune.maxUnlock = 3;
-        DefenseRune.cost = 70;
+        DefenseRune.cost = permData.defensiveRuneCost;
 
         healthUpgrade.maxUnlock = 5;
-        healthUpgrade.cost = 100;
+        healthUpgrade.cost = permData.healthUpgradeCost;
 
         ultimateSpellSlot.maxUnlock = 1;
         ultimateSpellSlot.cost = 500;
@@ -103,7 +103,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.healthBonus++;
         healthUpgrade.currentUnlock++;
         UpdateSoulsCountUI(healthUpgrade.cost);
-        healthUpgrade.cost += (3 * healthUpgrade.cost);
+        permData.healthUpgradeCost += (3 * healthUpgrade.cost);
         OnBuyStuff.Raise(new Empty());
 
     }
@@ -114,7 +114,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.rune++;
         DefenseRune.currentUnlock++;
         UpdateSoulsCountUI(DefenseRune.cost);
-        DefenseRune.cost += (3 * DefenseRune.cost);
+        permData.defensiveRuneCost += (3 * DefenseRune.cost);
         OnBuyStuff.Raise(new Empty());
     }
 
@@ -124,7 +124,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.templeSoulsDropRate += 0.25f;
         LootDropRate.currentUnlock++;
         UpdateSoulsCountUI(LootDropRate.cost);
-        LootDropRate.cost += (3 * LootDropRate.cost);
+        permData.soulDropUpgradeCost += (3 * LootDropRate.cost);
         OnBuyStuff.Raise(new Empty());
     }
 
@@ -134,7 +134,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.cooldownReduction += 0.10f;
         CoolDownReduction.currentUnlock++;
         UpdateSoulsCountUI(CoolDownReduction.cost);
-        CoolDownReduction.cost += (3 * CoolDownReduction.cost);
+        permData.spellCooldownCost += (3 * CoolDownReduction.cost);
         OnBuyStuff.Raise(new Empty());
     }
 

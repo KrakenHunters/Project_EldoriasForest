@@ -16,9 +16,15 @@ public class WSHealthBar : MonoBehaviour
     }
     private void Update()
     {
+        //transform.LookAt(2 * transform.position - Camera.main.transform.position);
         healthBarSlider.value = Mathf.Lerp(healthBarSlider.value, targetHealth, speed * Time.deltaTime);
-         if(!isWitch)
-        transform.rotation = Quaternion.LookRotation(transform.position - mainCamera.transform.position);
+        if (!isWitch)
+        {
+            Vector3 direction = (mainCamera.transform.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(-direction);
+            lookRotation.eulerAngles = new Vector3(lookRotation.eulerAngles.x, 0, 0);
+            transform.rotation = lookRotation;
+        }
     }
 
     public void SetHealth(float health)

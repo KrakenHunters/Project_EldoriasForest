@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class BossEnemy : Enemy
@@ -48,6 +49,9 @@ public class BossEnemy : Enemy
     public SpellWeapon spellWeapon;
 
     public BoolGameEvent OnAggroWitch;
+
+    [SerializeField]
+    private GameEvent<Empty> OnWitchDead;
 
     protected override void Start()
     {
@@ -162,6 +166,7 @@ public class BossEnemy : Enemy
         if (health <= 0 && phase == 3)
         {
             isAlive = false;
+            OnWitchDead.Raise(new Empty());
         }
         else if (health <= 0 && phase != 3)
         {
