@@ -95,7 +95,7 @@ MonoBehaviour:
   tier: 0
   canInteract: 0
   _holdToInteract: {fileID: 7298152765517109679}
-  waitTime: 5
+  waitTime: 3
   TrackEvent: {fileID: 11400000, guid: eeab70a7cb26e2048b7efa85694167f9, type: 2}
 --- !u!208 &960470660485490276
 NavMeshObstacle:

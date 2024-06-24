@@ -8,6 +8,7 @@ public class EnemyWanderState : EnemyBaseState
     readonly Vector3 startPoint;
     readonly float wanderRadius;
 
+    private bool isMoving;
     public EnemyWanderState(Enemy enemy, Animator animator, NavMeshAgent agent, float wanderRadius) : base(enemy, animator)
     {
         this.agent = agent;
@@ -19,6 +20,9 @@ public class EnemyWanderState : EnemyBaseState
     {
         enemy.gotHit = false;
         enemy.wanderTimer.Start();
+        animator.CrossFade(IdleHash, crossFadeDuration);
+        Debug.Log("Walkhash:" + WalkHash);
+
     }
 
     public override void OnExit()
@@ -42,12 +46,15 @@ public class EnemyWanderState : EnemyBaseState
             agent.SetDestination(finalPosition);
         }
 
-        if (agent.velocity.magnitude > 0f && animator.GetCurrentAnimatorStateInfo(0).shortNameHash != WalkHash)
+        if (agent.velocity.magnitude > 0f && !isMoving)
         {
+            isMoving = true;
             animator.CrossFade(WalkHash, crossFadeDuration);
         }
-        else if (agent.velocity.magnitude <= 0f && animator.GetCurrentAnimatorStateInfo(0).shortNameHash != IdleHash)
+        else if (agent.velocity.magnitude <= 0f && isMoving)
         {
+            isMoving = false;
+
             animator.CrossFade(IdleHash, crossFadeDuration);
         }
     }
