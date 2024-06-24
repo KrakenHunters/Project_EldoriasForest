@@ -16,13 +16,13 @@ public class PlayerInteractState : BaseState
     }
     public override void ExitState()
     {
-        player.OnUILoading.OnCancelInteract.Invoke();
+        player.doubleFloatEvent.OnCancelInteract.Invoke();
     }
 
     public override void StateFixedUpdate()
     {
         timer += Time.deltaTime;
-        player.OnUILoading.OnValueChanged.Invoke(timer, player.interactableObj.waitTime);
+        player.doubleFloatEvent.OnValueChanged.Invoke(timer, player.interactableObj.waitTime);
 
         if (timer >= player.interactableObj.waitTime)
         {

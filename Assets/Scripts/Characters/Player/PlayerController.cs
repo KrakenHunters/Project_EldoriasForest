@@ -51,7 +51,8 @@ public class PlayerController : CharacterClass
     [SerializeField]
     private float healthBonusEachStage;
 
-    public DoubleFloatEvent OnUILoading;
+    public DoubleFloatEvent doubleFloatEvent;
+
 
     private void Awake()
     {
@@ -149,6 +150,7 @@ public class PlayerController : CharacterClass
     {
         //AudioEvent.PlayGetHit.Invoke(getHitClip);
         base.GetHit(damageAmount, attacker, spell);
+        doubleFloatEvent.OnPlayerGotHit.Invoke(1f, 0.5f);
         if (isAlive && health <= 0)
         {
             ChangeState(new PlayerDieState());
