@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: PermanentData
   m_EditorClassIdentifier: 
-  totalSouls: 999921000
-  spellBooksUnlocked: []
-  baseAttackTier: 1
+  totalSouls: 999919183
+  spellBooksUnlocked:
+  - {fileID: 1183470640323938929, guid: 045f4f4b009aaa24291114fd07dbf328, type: 3}
+  baseAttackTier: 3
   prefBaseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
   templeSoulsDropRate: 1.25

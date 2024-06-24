@@ -14,8 +14,6 @@ public class PlayerDieState : BaseState
 
         timer = 0f;
         clipLength = 1.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-
-
     }
     public override void ExitState()
     {

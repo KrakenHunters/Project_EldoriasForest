@@ -13,6 +13,8 @@ public class TempleUIManager : Singleton<TempleUIManager>
     [Header("Temple Spell pick")]
     [SerializeField] private Image currentSpellImage;
     [SerializeField] private Image newSpellImage;
+    [SerializeField] private Sprite heartIcon;
+    [SerializeField] private Sprite soulIcon;
 
     [Header("Temple Spell celebration")]
     [SerializeField] private Image celebrationImage;
@@ -183,7 +185,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
     {
 
         OnHealPlayer.Raise(templeHealth);
-        //celebrationImage.sprite = AddHeartIcon;
+        celebrationImage.sprite = heartIcon;
         celebrationText.text = $"You have been healed for {templeHealth} health!";
         celebrationScreen.SetActive(true);
         templeUI.SetActive(false);
@@ -195,7 +197,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
         GameManager.Instance.tData.collectedSouls += templeSouls;
         OnSoulCollect.Raise(new Empty());
 
-        //celebrationImage.sprite = AddSoulsIcon;
+        celebrationImage.sprite = soulIcon;
         celebrationText.text = $"You have gained {templeSouls} souls!";
         celebrationScreen.SetActive(true);
 

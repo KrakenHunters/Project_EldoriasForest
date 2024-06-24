@@ -29,6 +29,8 @@ public class SpellBook : MonoBehaviour
 
     public Sprite spellIcon;
 
+    public bool isAudioLooping = false;
+
     #region StatusEffect
     [Header("Status Effect")]
     protected float statusEffectTimer;
@@ -42,9 +44,6 @@ public class SpellBook : MonoBehaviour
 
     [Header("Clips")]
     public AudioClip castClip;
-    public AudioClip hitClip;
-    public AudioClip endClip;
-    public AudioClip travelClip;
 
     // Start is called before the first frame update
     protected virtual void Awake()
@@ -117,7 +116,6 @@ public class SpellBook : MonoBehaviour
         }
 
     }
-
 
     public enum castType
     {

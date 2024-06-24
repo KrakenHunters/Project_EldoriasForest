@@ -48,6 +48,10 @@ public class CharacterClass : BaseObject
     {
         SpellBook spellBook;
         spellAudioEvent.Cast.Invoke(spell);
+        if(spell.isAudioLooping)
+        {
+            spellAudioEvent.Looping.Invoke(spell);
+        }
         duration = 1f;
         switch (spell.castOrigin)
         {

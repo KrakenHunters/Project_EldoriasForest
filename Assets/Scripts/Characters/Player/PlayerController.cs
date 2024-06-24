@@ -30,8 +30,6 @@ public class PlayerController : CharacterClass
     public EmptyGameEvent OnPlayerDie;
     [SerializeField]
     private EmptyGameEvent OnPlayerPickSpell;
-    [SerializeField]
-    private PlayerAudioEvent AudioEvent;
 
     public Vector3 AimWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
@@ -146,11 +144,10 @@ public class PlayerController : CharacterClass
     {
         //AudioEvent.PlayGetHit.Invoke(getHitClip);
         base.GetHit(damageAmount, attacker, spell);
-        if (health <= 0)
+        if (isAlive && health <= 0)
         {
             ChangeState(new PlayerDieState());
         }
-
     }
 
     public enum AttackType

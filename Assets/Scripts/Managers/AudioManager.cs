@@ -17,17 +17,19 @@ public class AudioManager : Singleton<AudioManager>
     private void OnEnable()
     {
         spellAudioEvent.Cast.AddListener(PlaySpellCastAudio);
+        spellAudioEvent.Looping.AddListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.AddListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.AddListener(PlayButtonClick);
-        collectableAudioEvent.ItemCollected.AddListener(PLayItemCollected);
+        collectableAudioEvent.ItemCollected.AddListener(PlayItemCollected);
     }
 
     private void OnDisable()
     {
         spellAudioEvent.Cast.RemoveListener(PlaySpellCastAudio);
+        spellAudioEvent.Looping.RemoveListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.RemoveListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.RemoveListener(PlayButtonClick);
-        collectableAudioEvent.ItemCollected.RemoveListener(PLayItemCollected);
+        collectableAudioEvent.ItemCollected.RemoveListener(PlayItemCollected);
     }
 
     private void Awake()
@@ -38,12 +40,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private void Update()
-    {
-        // Update logic as needed
-    }
-
-    private void PLayItemCollected(AudioClip clip)
+    private void PlayItemCollected(AudioClip clip)
     {
         AudioSource speaker = FindUnusedAudioSource();
         if (speaker == null)
@@ -122,6 +119,45 @@ public class AudioManager : Singleton<AudioManager>
         speaker.PlayOneShot(speaker.clip);
     }
 
+    private void PlaySpellLooping(SpellBook spell)
+    {
+        AudioSource speaker = GetAudioSourceForSpell(spell);
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+         Debug.Log("Playing Looping Audio");
+        speaker.clip = spell.castClip;
+        speaker.loop = true;
+        speaker.Play();
+
+        // Stop the looping audio after the spell's duration
+        StartCoroutine(StopLoopingAudioAfterDuration(spell, spell.ReturnDuration()));
+    }
+
+    private IEnumerator StopLoopingAudioAfterDuration(SpellBook spell, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        StopLoopingAudio(spell);
+    }
+
+    private void StopLoopingAudio(SpellBook spell)
+    {
+        AudioSource speaker = GetAudioSourceForSpell(spell);
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        speaker.loop = false;
+        speaker.Stop();
+        speaker.clip = null;
+    }
+
+
     private AudioSource GetAudioSourceForSpell(SpellBook spell)
     {
         // Check if we already have an AudioSource for this spell
@@ -136,7 +172,7 @@ public class AudioManager : Singleton<AudioManager>
         // If no unused source is available, create a new one
         if (unusedSource == null)
         {
-          
+
         }
 
         // Add the spell and its AudioSource to the dictionary
