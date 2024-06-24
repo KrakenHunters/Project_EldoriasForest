@@ -108,6 +108,7 @@ MonoBehaviour:
     type: 3}
   damageMultiplier: 1
   spellTarget: {x: 0, y: 0, z: 0}
+  initialDamageMultiplier: 0
   playerDetector: {fileID: 0}
   dissolvingController: {fileID: 0}
   wanderRadius: 10
@@ -420,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}
       propertyPath: m_InitialEventNameOverriden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7974036527665857915, guid: c522b71e0b9280048a6dce145fe01308,
         type: 3}

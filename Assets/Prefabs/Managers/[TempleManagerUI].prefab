@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8147109028348557554}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1091.2117, y: 530.22003, z: -27.215662}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -49,23 +49,25 @@ MonoBehaviour:
   celebrationScreen: {fileID: 0}
   currentSpellImage: {fileID: 0}
   newSpellImage: {fileID: 0}
+  heartIcon: {fileID: 21300000, guid: 8a128ad63d591e241a09854db799bf6d, type: 3}
+  soulIcon: {fileID: 21300000, guid: 4d60ab50d12adc0488cdcaa59ed59d9d, type: 3}
   celebrationImage: {fileID: 0}
   celebrationText: {fileID: 0}
   templeHealthText: {fileID: 0}
   templeSoulsText: {fileID: 0}
   templeSpecialSpellText: {fileID: 0}
-  minTempleTier1Health: 3
-  maxTempleTier1Health: 4
-  minTempleTier1Souls: 3
-  maxTempleTier1Souls: 4
-  minTempleTier2Health: 5
-  maxTempleTier2Health: 6
-  minTempleTier2Souls: 5
-  maxTempleTier2Souls: 6
-  minTempleTier3Health: 7
-  maxTempleTier3Health: 8
-  minTempleTier3Souls: 7
-  maxTempleTier3Souls: 8
+  minTempleTier1Health: 15
+  maxTempleTier1Health: 30
+  minTempleTier1Souls: 15
+  maxTempleTier1Souls: 30
+  minTempleTier2Health: 50
+  maxTempleTier2Health: 70
+  minTempleTier2Souls: 50
+  maxTempleTier2Souls: 70
+  minTempleTier3Health: 100
+  maxTempleTier3Health: 150
+  minTempleTier3Souls: 100
+  maxTempleTier3Souls: 150
   templeSpecialSpellList:
   - {fileID: 8091918523171390254, guid: a8ce4f035abe7fb40a73f6b4ab6e9f22, type: 3}
   - {fileID: 7813077001743519996, guid: f0bc094914adc49499ce155f4bbb39e1, type: 3}

@@ -9,6 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09489e981e736154ca7b0d34c0410a94, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c51f7ac0e894d34d95a1dee17610781, type: 3}
   m_Name: OnSpecialSpellCooldown
   m_EditorClassIdentifier: 
+  OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCancelInteract:
+    m_PersistentCalls:
+      m_Calls: []

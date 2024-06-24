@@ -49,7 +49,7 @@ public class StatusEffect : MonoBehaviour
     private IEnumerator OnFrozen(float effectTimer, float damageMult)
     {
         float timer = 0f;
-        _target.damageMultiplier = damageMult;
+        _target.damageMultiplier *= damageMult;
 
         while (timer < effectTimer)
         {
@@ -81,7 +81,7 @@ public class StatusEffect : MonoBehaviour
     public void DisableStausEffect()
     {
         _target.Speed = _target.initialSpeed;
-        _target.damageMultiplier = 1f;
+        _target.damageMultiplier = _target.initialDamageMultiplier;
         Destroy(gameObject, _particles.main.duration);
 
     }

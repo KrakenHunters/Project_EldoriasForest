@@ -82,15 +82,15 @@ public class PlayerSpellCastManager : MonoBehaviour
 
             if (specialSpellTimer < currentSpecialSpellDuration)
             {
-                onCooldownChange.Raise(-1f,0f);
+                onCooldownChange.OnValueChanged.Invoke(-1f,0f);
             }
             else if (specialSpellTimer < totalTimer)
             {
-                onCooldownChange.Raise((totalTimer - specialSpellTimer), currentSpecialSpellCooldown);
+                onCooldownChange.OnValueChanged.Invoke((totalTimer - specialSpellTimer), currentSpecialSpellCooldown);
             }
             else if (specialSpellTimer > totalTimer)
             {
-                onCooldownChange.Raise(0f,0f);
+                onCooldownChange.OnValueChanged.Invoke(0f,0f);
                 break;
             }
             yield return null;

@@ -65,6 +65,14 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void SetTempleOptions(int tier)
     {
+        minTempleTier1Souls = Mathf.RoundToInt(minTempleTier1Souls * (1+GameManager.Instance.pData.templeSoulsDropRate));
+        minTempleTier2Souls = Mathf.RoundToInt(minTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        minTempleTier3Souls = Mathf.RoundToInt(minTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        maxTempleTier1Souls = Mathf.RoundToInt(maxTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        maxTempleTier2Souls = Mathf.RoundToInt(maxTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        maxTempleTier3Souls = Mathf.RoundToInt(maxTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+
+
         templeTier = tier;
         switch (tier)
         {

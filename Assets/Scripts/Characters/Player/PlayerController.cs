@@ -38,8 +38,6 @@ public class PlayerController : CharacterClass
     [SerializeField] private AudioClip getHitClip;
     [SerializeField] private AudioClip magicGetHitClip;
 
-
-
     private LayerMask groundLayer;
 
     [HideInInspector]
@@ -50,15 +48,22 @@ public class PlayerController : CharacterClass
     [HideInInspector]
     public SpellWeapon spellWeapon;
 
+    [SerializeField]
+    private float healthBonusEachStage;
+
+    public DoubleFloatEvent OnUILoading;
 
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
-        health = tempData.startHealth;
-        maxHealth = tempData.startHealth;
+        health = tempData.startHealth + GameManager.Instance.pData.healthBonus * healthBonusEachStage;
+        maxHealth = health;
         initialSpeed = _speed;
         onHealthChanged.Raise(health);
 
+        SetDamageMultiplier();
+        initialDamageMultiplier = damageMultiplier;
+        
         spellCastManager = GetComponent<PlayerSpellCastManager>();
         spellWeapon = GetComponent<SpellWeapon>();
         onHealthChanged.Raise(health);
@@ -240,6 +245,18 @@ public class PlayerController : CharacterClass
     {
         base.Heal(healAmount);
         onHealthChanged.Raise(health);
+    }
+
+    private void SetDamageMultiplier()
+    {
+        if (GameManager.Instance.pData.rune < 3)
+        {
+            damageMultiplier = 1 + GameManager.Instance.pData.rune * 0.1f;
+        }
+        else
+        {
+            damageMultiplier = 1 + GameManager.Instance.pData.rune * 0.15f;
+        }
     }
 
 }

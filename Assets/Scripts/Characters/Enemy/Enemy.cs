@@ -86,7 +86,15 @@ public class Enemy : CharacterClass
         playerDetector = GetComponent<PlayerDetector>();
         dissolvingController = GetComponent<DissolvingController>();
 
+        soulAmountMaxTier1 = Mathf.RoundToInt(soulAmountMaxTier1 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        soulAmountMaxTier2 = Mathf.RoundToInt(soulAmountMaxTier2 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        soulAmountMaxTier3 = Mathf.RoundToInt(soulAmountMaxTier3 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        soulAmountMinTier1 = Mathf.RoundToInt(soulAmountMinTier1 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        soulAmountMinTier2 = Mathf.RoundToInt(soulAmountMinTier2 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        soulAmountMinTier3 = Mathf.RoundToInt(soulAmountMinTier3 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+
         initialSpeed = _speed;
+        initialDamageMultiplier = damageMultiplier;
 
         SetHealth();
         healthBar.SetMaxHealth(maxHealth);
@@ -192,12 +200,12 @@ public class Enemy : CharacterClass
 
     float HealthDropChance()
     {
-        float healthRatio = health / maxHealth;
+        float healthRatio = playerDetector.Player.GetComponent<PlayerController>().Health / playerDetector.Player.GetComponent<PlayerController>().MaxHealth;
         float dropChance = healthDropChance;
 
         if (healthRatio <= 0.2f)
         {
-            dropChance *= 2f;
+            dropChance *= 3f;
         }
 
         return dropChance;

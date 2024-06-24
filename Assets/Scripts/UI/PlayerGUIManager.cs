@@ -38,12 +38,12 @@ public class PlayerGUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        onCooldownChange.AddListener(SetCooldown);
+        onCooldownChange.OnValueChanged.AddListener(SetCooldown);
     }
 
     private void OnDisable()
     {
-        onCooldownChange.RemoveListener(SetCooldown);
+        onCooldownChange.OnValueChanged.RemoveListener(SetCooldown);
     }
 
     private void Start()

@@ -88,6 +88,7 @@ MonoBehaviour:
     type: 3}
   damageMultiplier: 1
   spellTarget: {x: 0, y: 0, z: 0}
+  initialDamageMultiplier: 0
   c: {fileID: 2666035536617133056}
   combatCooldown: 8
   _rotationSpeed: 3000
@@ -101,6 +102,8 @@ MonoBehaviour:
   canInteract: 0
   interactableObj: {fileID: 0}
   spellWeapon: {fileID: 0}
+  healthBonusEachStage: 0
+  OnUILoading: {fileID: 11400000, guid: 9ce780162ebd8624484d265addbb18d6, type: 2}
 --- !u!114 &5066222880727964611
 MonoBehaviour:
   m_ObjectHideFlags: 0

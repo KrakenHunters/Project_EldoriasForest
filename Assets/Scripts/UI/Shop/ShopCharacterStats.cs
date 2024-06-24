@@ -35,20 +35,20 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
 
     private void SetUpValues()
     {
-        CoolDownReduction.cost = 100;
-        CoolDownReduction.maxUnlock = 5;
+        CoolDownReduction.cost = 250;
+        CoolDownReduction.maxUnlock = 3;
 
         LootDropRate.maxUnlock = 5;
-        LootDropRate.cost = 100;
+        LootDropRate.cost = 150;
 
         DefenseRune.maxUnlock = 3;
-        DefenseRune.cost = 100;
+        DefenseRune.cost = 70;
 
         healthUpgrade.maxUnlock = 5;
         healthUpgrade.cost = 100;
 
         ultimateSpellSlot.maxUnlock = 1;
-        ultimateSpellSlot.cost = 100;
+        ultimateSpellSlot.cost = 500;
 
         UpdateButtonInteractions();
 
@@ -131,7 +131,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnCoolDownReductionUpgrade()
     {
         permData.totalSouls -= CoolDownReduction.cost;
-        permData.cooldownReduction += 0.25f;
+        permData.cooldownReduction += 0.10f;
         CoolDownReduction.currentUnlock++;
         UpdateSoulsCountUI(CoolDownReduction.cost);
         CoolDownReduction.cost += (3 * CoolDownReduction.cost);

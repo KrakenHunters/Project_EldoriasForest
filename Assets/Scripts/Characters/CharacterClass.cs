@@ -8,6 +8,8 @@ public class CharacterClass : BaseObject
     public float Health { get { return health; } }
 
     protected float maxHealth;
+    public float MaxHealth { get { return maxHealth; } }
+
 
     [SerializeField]
     protected float _speed;
@@ -37,6 +39,10 @@ public class CharacterClass : BaseObject
 
     [HideInInspector]
     public Vector3 spellTarget;
+
+    [HideInInspector]
+    public float initialDamageMultiplier;
+
 
     public virtual void ChangeState(BaseState newState)
     {
