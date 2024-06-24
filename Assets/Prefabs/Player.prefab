@@ -81,7 +81,7 @@ MonoBehaviour:
   health: 100
   _speed: 5
   initialSpeed: 0
-  _speedModifier: 0.5
+  _speedModifier: 1
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
   damageIndicator: {fileID: 7952942286368911428, guid: f9f64a444d9e61740b1cb6368f8508e0,
@@ -103,7 +103,7 @@ MonoBehaviour:
   interactableObj: {fileID: 0}
   spellWeapon: {fileID: 0}
   healthBonusEachStage: 0
-  OnUILoading: {fileID: 11400000, guid: 9ce780162ebd8624484d265addbb18d6, type: 2}
+  doubleFloatEvent: {fileID: 11400000, guid: fbd6d458a22a1304ebea65214efaa754, type: 2}
 --- !u!114 &5066222880727964611
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ public class SpellBook : MonoBehaviour
 
     public bool isAudioLooping = false;
 
+
     #region StatusEffect
     [Header("Status Effect")]
     protected float statusEffectTimer;
