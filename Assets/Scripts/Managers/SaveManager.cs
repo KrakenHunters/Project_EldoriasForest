@@ -9,6 +9,12 @@ public class SaveManager : Singleton<SaveManager>
     public PermanentDataContainer basePermanentData;
     public TemporaryDataContainer baseTemporaryData;
 
+    public SpecialSpellBook[] specialSpellBooks; // Public array for assigning in Inspector
+    public BaseSpellBook[] baseSpellBooks; // Public array for assigning in Inspector
+
+    private Dictionary<int, SpecialSpellBook> specialSpellBookDictionary = new Dictionary<int, SpecialSpellBook>();
+    private Dictionary<int, BaseSpellBook> baseSpellBookDictionary = new Dictionary<int, BaseSpellBook>();
+
     private string permanentDataFilePath;
 
     private void Awake()
@@ -19,29 +25,101 @@ public class SaveManager : Singleton<SaveManager>
             return;
         }
         DontDestroyOnLoad(this.gameObject);
-        permanentDataFilePath = Application.persistentDataPath + "/GameData.save";
+        permanentDataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
+
+        InitializeSpellBookDictionaries();
+    }
+
+    private void InitializeSpellBookDictionaries()
+    {
+        for (int i = 0; i < specialSpellBooks.Length; i++)
+        {
+            if (!specialSpellBookDictionary.ContainsKey(i))
+            {
+                specialSpellBookDictionary.Add(i, specialSpellBooks[i]);
+            }
+        }
+
+        for (int i = 0; i < baseSpellBooks.Length; i++)
+        {
+            if (!baseSpellBookDictionary.ContainsKey(i))
+            {
+                baseSpellBookDictionary.Add(i, baseSpellBooks[i]);
+            }
+        }
     }
 
     public void SavePermanentData()
     {
-        string jsonData = JsonUtility.ToJson(permanentData);
-        if(permanentDataFilePath != null)
-        File.WriteAllText(permanentDataFilePath, jsonData);
+        List<int> spellBookIDs = new List<int>();
+        foreach (SpecialSpellBook spell in permanentData.spellBooksUnlocked)
+        {
+            int id = GetSpellBookID(spell);
+            if (id >= 0)
+            {
+                spellBookIDs.Add(id);
+            }
+        }
+        permanentData.spellBookIDs = spellBookIDs;
+
+        try
+        {
+            string json = JsonUtility.ToJson(permanentData, true);
+            File.WriteAllText(permanentDataFilePath, json);
+        }
+        catch (IOException ex)
+        {
+            Debug.LogError($"Failed to save data to {permanentDataFilePath}: {ex.Message}");
+        }
     }
 
     public void LoadPermanentData()
     {
         if (File.Exists(permanentDataFilePath))
         {
-            string jsonData = File.ReadAllText(permanentDataFilePath);
-            JsonUtility.FromJsonOverwrite(jsonData, permanentData);
+            try
+            {
+                string json = File.ReadAllText(permanentDataFilePath);
+                JsonUtility.FromJsonOverwrite(json, permanentData);
+                RestoreDataAfterLoading();
+            }
+            catch (IOException ex)
+            {
+                Debug.LogError($"Failed to load data from {permanentDataFilePath}: {ex.Message}");
+            }
         }
+    }
+
+    private int GetSpellBookID(SpecialSpellBook spell)
+    {
+        foreach (var kvp in specialSpellBookDictionary)
+        {
+            if (kvp.Value == spell)
+            {
+                return kvp.Key;
+            }
+        }
+        return -1; // Not found
+    }
+
+    private void RestoreDataAfterLoading()
+    {
+        List<SpecialSpellBook> loadedSpells = new List<SpecialSpellBook>();
+        foreach (int id in permanentData.spellBookIDs)
+        {
+            if (specialSpellBookDictionary.TryGetValue(id, out SpecialSpellBook spell))
+            {
+                loadedSpells.Add(spell);
+            }
+        }
+        permanentData.spellBooksUnlocked = loadedSpells;
     }
 
     public void ResetPermanentData()
     {
         permanentData.totalSouls = basePermanentData.totalSouls;
-        permanentData.spellBooksUnlocked = new List<SpecialSpellBook>(basePermanentData.spellBooksUnlocked);
+        permanentData.spellBooksUnlocked.Clear();
+        permanentData.spellBooksUnlocked.AddRange(basePermanentData.spellBooksUnlocked);
         permanentData.rune = basePermanentData.rune;
         permanentData.cooldownReduction = basePermanentData.cooldownReduction;
         permanentData.healthBonus = basePermanentData.healthBonus;
@@ -50,7 +128,6 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
         permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
         permanentData.InitializeData = basePermanentData.InitializeData;
-        SavePermanentData();
     }
 
     public void ResetTemporaryData()
@@ -59,17 +136,17 @@ public class SaveManager : Singleton<SaveManager>
         temporaryData.baseSpell = baseTemporaryData.baseSpell;
         temporaryData.specialSpell = null;
         temporaryData.ultimateSpell = null;
-        temporaryData.collectedSpells = new List<SpellBook>(baseTemporaryData.collectedSpells);
+        temporaryData.collectedSpells.Clear();
+        temporaryData.collectedSpells.AddRange(baseTemporaryData.collectedSpells);
         temporaryData.startHealth = baseTemporaryData.startHealth;
     }
-    
 
     public void SetUpTempData()
     {
         temporaryData.collectedSouls = 0;
         temporaryData.baseSpell = permanentData.prefBaseSpell;
         temporaryData.ultimateSpell = null;
-        temporaryData.collectedSpells = new List<SpellBook>();
+        temporaryData.collectedSpells.Clear();
         temporaryData.startHealth += permanentData.healthBonus;
     }
 
@@ -99,7 +176,6 @@ public class SaveManager : Singleton<SaveManager>
 
     public bool HasSaveData()
     {
-        return File.Exists(permanentDataFilePath) && permanentData.InitializeData;
+        return File.Exists(permanentDataFilePath);
     }
-
 }

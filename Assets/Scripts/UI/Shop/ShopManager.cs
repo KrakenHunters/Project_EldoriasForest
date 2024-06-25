@@ -21,7 +21,7 @@ public class ShopManager : Singleton<ShopManager>
             StartCoroutine(CountToTarget(-permData.totalSouls));
         else
             soulAmountText.text = permData.totalSouls.ToString();
-        InvokeRepeating(nameof(AutoSave), 0, 10);
+        InvokeRepeating(nameof(AutoSave),3, 20);
     }
 
 
