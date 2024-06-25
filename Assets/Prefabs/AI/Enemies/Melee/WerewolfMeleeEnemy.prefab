@@ -79,7 +79,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 0
   m_Height: 1
   m_BaseOffset: 1
@@ -111,11 +111,12 @@ MonoBehaviour:
   initialDamageMultiplier: 0
   playerDetector: {fileID: 0}
   dissolvingController: {fileID: 0}
+  enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 5
   maxGroupSize: 4
   timeBetweenAttacks: 0.7
-  runMultiplier: 2
+  runMultiplier: 1.5
   playerDetectionDistance: 30
   soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
     type: 3}

@@ -30,7 +30,7 @@ MonoBehaviour:
     while burning them!
   tier1:
     damage: 12
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 4
     statusEffectDamage: 10
     statusEffectChance: 0.8
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 0
   tier2:
     damage: 20
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 4
     statusEffectDamage: 15
     statusEffectChance: 1
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 0
   tier3:
     damage: 35
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 5
     statusEffectDamage: 20
     statusEffectChance: 1

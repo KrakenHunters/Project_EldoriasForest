@@ -30,7 +30,7 @@ MonoBehaviour:
     moves around you hitting and electrifying everything on its path!
   tier1:
     damage: 30
-    cooldown: 6
+    cooldown: 15
     statusEffectTimer: 5
     statusEffectDamage: 0
     statusEffectChance: 0.3
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 15
   tier2:
     damage: 50
-    cooldown: 6
+    cooldown: 15
     statusEffectTimer: 6
     statusEffectDamage: 0
     statusEffectChance: 0.5
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 18
   tier3:
     damage: 80
-    cooldown: 5
+    cooldown: 15
     statusEffectTimer: 6
     statusEffectDamage: 0
     statusEffectChance: 0.5

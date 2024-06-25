@@ -30,7 +30,7 @@ MonoBehaviour:
     the enemies where they are.
   tier1:
     damage: 55
-    cooldown: 5
+    cooldown: 15
     statusEffectTimer: 3
     statusEffectDamage: 1.2
     statusEffectChance: 0.3
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 5
   tier2:
     damage: 70
-    cooldown: 4
+    cooldown: 15
     statusEffectTimer: 3
     statusEffectDamage: 1.5
     statusEffectChance: 0.5
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 5
   tier3:
     damage: 120
-    cooldown: 4
+    cooldown: 15
     statusEffectTimer: 3
     statusEffectDamage: 1.7
     statusEffectChance: 0.5
