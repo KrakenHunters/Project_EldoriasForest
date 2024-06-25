@@ -7,14 +7,17 @@ public class Typer : MonoBehaviour
 {
     [SerializeField]
     private float typeSpeed = 0.05f;
+    private float adjustTypeSpeed;
     [SerializeField]
     private TextMeshProUGUI textComponent;
     private string currentText = "";
-    private bool isTyping = false;
+    public bool isTyping = false;
 
     public void ShowText(string fullText)
     {
         currentText = fullText;
+        adjustTypeSpeed = typeSpeed;
+
         StartCoroutine(TypeText());
     }
 
@@ -25,16 +28,16 @@ public class Typer : MonoBehaviour
         foreach (char c in currentText.ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(typeSpeed);
+            yield return new WaitForSeconds(adjustTypeSpeed);
         }
         isTyping = false;
     }
 
     void Update()
     {
-        if (isTyping && Input.GetMouseButtonDown(0)) // Check for mouse click
+        if (isTyping && Input.anyKeyDown) // Check for mouse click
         {
-            typeSpeed = 0.001f; // Increase typing speed
+            adjustTypeSpeed = 0.001f; // Increase typing speed
         }
     }
 }

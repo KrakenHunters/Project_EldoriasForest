@@ -9,6 +9,11 @@ public class ShopManager : Singleton<ShopManager>
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
 
+    [SerializeField]
+    private GameObject shopKeeperManager;
+
+    public Button[] buttonsInScene;
+
     private float countingSpeed = 50f;
     private void Awake()
     {
@@ -17,11 +22,14 @@ public class ShopManager : Singleton<ShopManager>
     }
     private void Start()
     {
+        buttonsInScene = FindObjectsOfType<Button>();
         if (permData.totalSouls != 0)
             StartCoroutine(CountToTarget(-permData.totalSouls));
         else
             soulAmountText.text = permData.totalSouls.ToString();
         InvokeRepeating(nameof(AutoSave),3, 20);
+
+        shopKeeperManager.SetActive(true);
     }
 
 
@@ -42,6 +50,14 @@ public class ShopManager : Singleton<ShopManager>
             StartCoroutine(CountToTarget(cost));
         SaveManager.Instance.SavePermanentData();
 
+    }
+
+    public void ButtonsInteractability(bool check)
+    {
+        foreach (Button button in buttonsInScene)
+        {
+            button.interactable = check;
+        }
     }
 
 

@@ -1389,10 +1389,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7369878922536638079}
+  - {fileID: 2239743059719153307}
   - {fileID: 4877232760722782451}
   - {fileID: 5276032707890338348}
   - {fileID: 2003803347252713031}
-  - {fileID: 2239743059719153307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1415,6 +1415,7 @@ MonoBehaviour:
   tempData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   permData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   soulAmountText: {fileID: 5366730114603413445}
+  buttonsInScene: []
 --- !u!114 &6067270543516884622
 MonoBehaviour:
   m_ObjectHideFlags: 0

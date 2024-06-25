@@ -2,11 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopKeeperManager : MonoBehaviour
 {
     public GameObject[] highlightAreas; // Areas to highlight (Base Spells, Special Spell Books, etc.)
     private int currentDialogueIndex = 0;
+    private string[] currentDialogueArray;
+
+    private bool fullTutorial;
+
+    private int currentTutorialIndex = 0;
+
+    [SerializeField]
+    private GameObject YesButton;
+    [SerializeField]
+    private GameObject NoButton;
+
     private string[] newGameTexts = new string[]
     {
         "Oh, hello there, magician!",
@@ -29,7 +41,7 @@ public class ShopKeeperManager : MonoBehaviour
     private string[] tutorialBaseSpellTexts = new string[]
     {
         "These are your base spells.",
-        "You can choose any of them, but you can't change a bse spell inside the forest, only here in the village.",
+        "You can choose one of the three, but you can't change a base spell inside the forest, only here in the village.",
         "If you bring me souls, I can upgrade them for you.",
         "Use the left mouse-click to attack with your base spell.",
         "Fire spells can ignite enemies, causing damage over time.",
@@ -79,68 +91,170 @@ public class ShopKeeperManager : MonoBehaviour
         "Hey there! Gathered any souls?"
     };
 
-    private string[] hintTexts = new string[]
+    private string[] chatTexts = new string[]
     {
         "Fire spells can ignite enemies, causing damage over time.",
         "Ice spells can freeze enemies, weakening them temporarily.",
         "Lightning spells can stun enemies, immobilizing them briefly.",
-        "If the screen darkens, your health might be low.",
+        "You know, if the screen darkens while in the forest, your health might be low.",
         "Be careful, enemies get stronger as you venture deeper into the forest, but the rewards also improve.",
         "Ultimate spells can only be used once, so use them wisely.",
         "Pigs are slower but hit harder.",
-        "The animals are fast, so keep moving to stay alive."
+        "I've heard the witch is pretty strong and knows all spells from the temples in the forest.",
+        "Do you like pineapple, my favorite fruit, don't know why.",
+        "The animals are fast, so keep moving to stay alive.",
+        "Have you tried combining spells?",
+        "I once saw a chicken cast a spell. No, really, it was trying to turn a worm into a dragonfly!",
+        "I once tried to teach a troll ballet. Let's just say, we both ended up with sore toes.",
+        "If you find a talking squirrel, please let me know. I've been looking for a good conversationalist!",
+        "I've heard there were foxes, deer standing on two feet and squirrels that shot nuts in the forest, have you seen any? Maybe the witch killed them all..."
     };
 
 
     private Typer typer;
 
-    void Start()
+    void Awake()
     {
         typer = GetComponent<Typer>();
-        IntroDialogue();
+        if (ShopManager.Instance.permData.tutorialDone)
+            IntroDialogue();
+        else
+        {
+            StartDialogue(newGameTexts);
+            ShopManager.Instance.ButtonsInteractability(false);
+
+        }
     }
 
-    public void IntroDialogue()
+    private void IntroDialogue()
     {
         typer.ShowText(introTexts[Random.Range(0, introTexts.Length)]);
     }
 
-    public void StartFullTutorial()
+    public void ChatDialogue()
     {
-
+        typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
     }
 
-    public void NextDialogue(string[] texts)
+
+    private void StartDialogue(string[] dialogue)
     {
-        currentDialogueIndex++;
-        if (currentDialogueIndex < texts.Length)
+        currentDialogueIndex = 0;
+        currentDialogueArray = dialogue;
+        ShowNextDialogue(dialogue);
+    }
+
+
+    private void ShowNextDialogue(string[] texts)
+    {
+        if (texts == newGameTexts && currentDialogueIndex == texts.Length - 1)
         {
             typer.ShowText(texts[currentDialogueIndex]);
+            YesButton.SetActive(true);
+            NoButton.SetActive(true);
+        }
+        else if (currentDialogueIndex < texts.Length)
+        {
+            typer.ShowText(texts[currentDialogueIndex]);
+            ShopManager.Instance.ButtonsInteractability(false);
+
         }
         else
         {
             EndDialogue();
+
+            if (currentTutorialIndex < 3 && fullTutorial)
+            {
+                currentTutorialIndex++;
+                if (currentTutorialIndex == 1)
+                {
+                    SpecialSpellExplanation();
+                }
+                else if (currentTutorialIndex == 2)
+                {
+                    PermanentUpgradeExplanation();
+                }
+                else
+                {
+                    StartDialogue(endTutorialTexts);
+                    fullTutorial = false;
+
+                }
+            }
         }
     }
 
-    void HighlightArea(int index)
+    public void ConfirmationButton()
     {
-        foreach (var area in highlightAreas)
+        fullTutorial = true;
+        YesButton.SetActive(false);
+        NoButton.SetActive(false);
+
+        currentTutorialIndex = 0;
+        ShopManager.Instance.permData.tutorialDone = true;
+        BaseSpellExplanation();
+    }
+
+    public void DenyButton()
+    {
+        YesButton.SetActive(false);
+        NoButton.SetActive(false);
+
+        ShopManager.Instance.permData.tutorialDone = true;
+        ShopManager.Instance.ButtonsInteractability(true);
+
+        StartDialogue(endTutorialTexts);
+    }
+
+    public void BaseSpellExplanation()
+    {
+        highlightAreas[0].SetActive(true);
+        StartDialogue(tutorialBaseSpellTexts);
+        
+    }
+
+    public void SpecialSpellExplanation()
+    {
+        highlightAreas[1].SetActive(true);
+        StartDialogue(tutorialSpecialSpellTexts);
+    }
+
+    public void PermanentUpgradeExplanation()
+    {
+        highlightAreas[2].SetActive(true);
+        StartDialogue(tutorialPermanentUpgradesTexts);
+    }
+
+
+    public void PlayerInputReceived()
+    {
+        currentDialogueIndex++;
+        ShowNextDialogue(currentDialogueArray); // Replace currentDialogueArray with appropriate array
+    }
+
+    void Update()
+    {
+        if (!typer.isTyping && Input.anyKeyDown && currentDialogueArray != null) // Check for input
         {
-            area.SetActive(false); // Deactivate all highlight areas
-        }
-        if (index < highlightAreas.Length)
-        {
-            highlightAreas[index].SetActive(true); // Activate the current highlight area
+            PlayerInputReceived();
         }
     }
+
+
 
     void EndDialogue()
     {
         typer.ShowText("");
+        currentDialogueArray = null;
         foreach (var area in highlightAreas)
         {
             area.SetActive(false); // Deactivate all highlight areas
         }
+
+        if (currentDialogueArray == endTutorialTexts)
+        {
+            ShopManager.Instance.ButtonsInteractability(true);
+        }
     }
+
 }

@@ -16,8 +16,9 @@ public class PermanentDataContainer : ScriptableObject
     public int healthBonus;
     public bool IsUltimateSpellSlotUnlocked;
     public bool InitializeData;
+    public bool tutorialDone;
 
-[Header("CostUpgrades")]
+    [Header("CostUpgrades")]
     public int baseUpgradeCost;
     public int healthUpgradeCost;
     public int defensiveRuneCost;
