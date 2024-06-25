@@ -242,7 +242,7 @@ public class GridManager : Singleton<GridManager>
             return false;
         }
 
-        if (position == playerSpawnPos || position == new Vector3(playerSpawnPos.x - 2, playerSpawnPos.y, playerSpawnPos.z))
+        if ((Vector3.Distance(position, playerSpawnPos) <= 25f && objectTag == "Enemy") || (Vector3.Distance(position, playerSpawnPos) <= 5f))
         {
             return false;
         }
@@ -302,7 +302,7 @@ public class GridManager : Singleton<GridManager>
 
         if (tier == 1)
         {
-            xMin = 6;
+            xMin = 12;
             xMax = gridWidth / 3;
         }
         else if (tier == 2)
