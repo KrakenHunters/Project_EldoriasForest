@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ShopKeeperManager : MonoBehaviour
 {
-    public TextMeshProUGUI dialogueText;
     public GameObject[] highlightAreas; // Areas to highlight (Base Spells, Special Spell Books, etc.)
     private int currentDialogueIndex = 0;
     private string[] newGameTexts = new string[]
@@ -71,13 +70,13 @@ public class ShopKeeperManager : MonoBehaviour
     {
         "Oh, you again! How has the hunt been?",
         "Welcome back, magician! Found any souls?",
-        "Good to see you! How goes the quest?",
+        "Good to see you! How's the quest?",
         "Ah, there you are! Any luck in the forest?",
-        "Back so soon? How was your journey?",
+        "Back so soon? How was the journey?",
         "Hello again! Any new discoveries?",
         "Welcome, friend! How fares the battle with the witch?",
         "You’ve returned! News from the forest?",
-        "Hey there! Gathered any souls on your travels?"
+        "Hey there! Gathered any souls?"
     };
 
     private string[] hintTexts = new string[]
