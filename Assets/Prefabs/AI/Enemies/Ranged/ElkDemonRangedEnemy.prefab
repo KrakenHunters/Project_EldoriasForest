@@ -143,6 +143,7 @@ MonoBehaviour:
   initialDamageMultiplier: 0
   playerDetector: {fileID: 0}
   dissolvingController: {fileID: 0}
+  enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 10
   maxGroupSize: 4
@@ -162,7 +163,7 @@ MonoBehaviour:
   soulAmountMinTier2: 7
   soulAmountMaxTier3: 12
   soulAmountMinTier3: 8
-  baseHealth: 20
+  baseHealth: 30
   healthMultTier2: 3
   healthMultTier3: 5
   gotHit: 0

@@ -30,7 +30,7 @@ MonoBehaviour:
     have a partner to shoot lightning at the enemies!
   tier1:
     damage: 0
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 5
   tier2:
     damage: 0
-    cooldown: 7
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 5
   tier3:
     damage: 0
-    cooldown: 7
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0

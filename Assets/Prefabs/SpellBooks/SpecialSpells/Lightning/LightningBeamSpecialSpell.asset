@@ -30,34 +30,34 @@ MonoBehaviour:
     destroying everything on it's path!
   tier1:
     damage: 60
-    cooldown: 10
+    cooldown: 20
     statusEffectTimer: 3
     statusEffectDamage: 0
     statusEffectChance: 0.3
     range: 20
     healAmount: 0
     radius: 0
-    duration: 8
+    duration: 6
     speed: 0
   tier2:
     damage: 100
-    cooldown: 9
+    cooldown: 20
     statusEffectTimer: 4
     statusEffectDamage: 0
     statusEffectChance: 0.5
     range: 20
     healAmount: 0
     radius: 0
-    duration: 10
+    duration: 7
     speed: 0
   tier3:
     damage: 160
-    cooldown: 9
+    cooldown: 20
     statusEffectTimer: 4
     statusEffectDamage: 0
     statusEffectChance: 0.5
     range: 20
     healAmount: 0
     radius: 0
-    duration: 12
+    duration: 8
     speed: 0

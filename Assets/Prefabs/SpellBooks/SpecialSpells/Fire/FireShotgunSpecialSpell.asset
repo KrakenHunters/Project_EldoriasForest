@@ -30,7 +30,7 @@ MonoBehaviour:
     with a powerful blow!
   tier1:
     damage: 60
-    cooldown: 5
+    cooldown: 10
     statusEffectTimer: 3
     statusEffectDamage: 5
     statusEffectChance: 0.3
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 0
   tier2:
     damage: 75
-    cooldown: 4
+    cooldown: 10
     statusEffectTimer: 3
     statusEffectDamage: 5
     statusEffectChance: 0.5
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 0
   tier3:
     damage: 110
-    cooldown: 4
+    cooldown: 10
     statusEffectTimer: 3
     statusEffectDamage: 5
     statusEffectChance: 0.5

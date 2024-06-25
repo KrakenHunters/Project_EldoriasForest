@@ -30,7 +30,7 @@ MonoBehaviour:
     in it's way!
   tier1:
     damage: 0
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     speed: 0
   tier2:
     damage: 0
-    cooldown: 7
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     speed: 0
   tier3:
     damage: 0
-    cooldown: 7
+    cooldown: 15
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
