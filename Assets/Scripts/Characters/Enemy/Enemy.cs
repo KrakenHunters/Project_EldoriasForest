@@ -15,6 +15,9 @@ public class Enemy : CharacterClass
     public PlayerDetector playerDetector;
     [HideInInspector]
     public DissolvingController dissolvingController;
+    [HideInInspector]
+    public Collider enemyCollider;
+
 
     Animator animator;
 
@@ -85,6 +88,7 @@ public class Enemy : CharacterClass
         animator = GetComponent<Animator>();
         playerDetector = GetComponent<PlayerDetector>();
         dissolvingController = GetComponent<DissolvingController>();
+        enemyCollider = GetComponent<Collider>();
 
         soulAmountMaxTier1 = Mathf.RoundToInt(soulAmountMaxTier1 * (1 + GameManager.Instance.pData.templeSoulsDropRate));
         soulAmountMaxTier2 = Mathf.RoundToInt(soulAmountMaxTier2 * (1 + GameManager.Instance.pData.templeSoulsDropRate));

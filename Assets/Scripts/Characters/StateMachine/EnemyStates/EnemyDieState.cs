@@ -12,7 +12,8 @@ public class EnemyDieState : EnemyBaseState
 
     public override void OnEnter()
     {
-        //animator.CrossFade(DieHash, crossFadeDuration);
+        enemy.enemyCollider.enabled = false;
+        animator.CrossFade(IdleHash, crossFadeDuration);
         enemy.dissolvingController.OnDead();
         agent.ResetPath();
 

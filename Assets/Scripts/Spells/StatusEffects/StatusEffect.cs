@@ -51,7 +51,7 @@ public class StatusEffect : MonoBehaviour
         float timer = 0f;
         _target.damageMultiplier *= damageMult;
 
-        while (timer < effectTimer)
+        while (timer < effectTimer && _target.Health > 0)
         {
             timer += 1f;
             _particles.Play();
@@ -67,7 +67,7 @@ public class StatusEffect : MonoBehaviour
         float timer = 0f;
         _target.Speed = 0f;
 
-        while (timer < effectTimer)
+        while (timer < effectTimer && _target.Health > 0)
         {
             timer += 1f;
             _particles.Play();
@@ -91,7 +91,7 @@ public class StatusEffect : MonoBehaviour
     {
         float timer = 0f;
 
-        while (timer < effectTimer)
+        while (timer < effectTimer && _target.Health > 0)
         {
             yield return new WaitForSeconds(1f);
 

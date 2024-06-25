@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3583d290fa41e4ab98d0b959ad6fec, type: 3}
   m_Name: TemporaryData
   m_EditorClassIdentifier: 
-  collectedSouls: 99
+  collectedSouls: 15
   baseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
-  specialSpell: {fileID: 7813077001743519996, guid: f0bc094914adc49499ce155f4bbb39e1,
+  specialSpell: {fileID: 62415612012794258, guid: cb108203a005a774e96b49a9646f34e1,
     type: 3}
   ultimateSpell: {fileID: 0}
-  collectedSpells: []
+  collectedSpells:
+  - {fileID: 62415612012794258, guid: cb108203a005a774e96b49a9646f34e1, type: 3}
   startHealth: 80

@@ -54,7 +54,7 @@ public class Collectible : BaseObject
             {
                 ItemCollected(player);
                 // Play Collected SFX and VFX
-                Invoke("DestroyGameObj", 0.2f); // Destroy game object after VFX and SFX are done
+                Invoke("DestroyGameObj", 0.02f); // Destroy game object after VFX and SFX are done
             }
 
             yield return new WaitForFixedUpdate(); // Wait for next physics update
