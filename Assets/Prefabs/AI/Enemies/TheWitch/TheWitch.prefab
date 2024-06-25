@@ -183,6 +183,7 @@ MonoBehaviour:
   initialDamageMultiplier: 0
   playerDetector: {fileID: 0}
   dissolvingController: {fileID: 0}
+  enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 10
   maxGroupSize: 4
@@ -451,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsGlobal: 0
   priority: 0
-  blendDistance: 20
+  blendDistance: 15
   weight: 1
   sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!65 &3475350500440781336
@@ -473,7 +474,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.6, y: 0.6, z: 0.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7831038496388856887
 PrefabInstance:
