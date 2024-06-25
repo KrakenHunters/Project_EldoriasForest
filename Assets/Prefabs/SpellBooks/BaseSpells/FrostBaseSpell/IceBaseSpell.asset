@@ -27,7 +27,7 @@ MonoBehaviour:
   templeDescription: 
   shopkeeperDescription: Ah, the ice spell, can hit greater distances, chilly!
   tier1:
-    damage: 5
+    damage: 12
     cooldown: 0.5
     statusEffectTimer: 0
     statusEffectDamage: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     duration: 0
     speed: 15
   tier2:
-    damage: 8
+    damage: 26
     cooldown: 0.5
     statusEffectTimer: 3
     statusEffectDamage: 1.2
@@ -49,7 +49,7 @@ MonoBehaviour:
     duration: 0
     speed: 15
   tier3:
-    damage: 13
+    damage: 55
     cooldown: 0.5
     statusEffectTimer: 5
     statusEffectDamage: 1.5

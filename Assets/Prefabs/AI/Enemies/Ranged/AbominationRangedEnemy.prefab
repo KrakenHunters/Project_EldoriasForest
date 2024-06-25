@@ -112,7 +112,7 @@ NavMeshAgent:
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
@@ -186,7 +186,7 @@ MonoBehaviour:
   detectionRadius: 10
   innerDetectionRadius: 3
   detectionCooldown: 3
-  attackRange: 7
+  attackRange: 8
   controller: {fileID: 0}
 --- !u!95 &1724517897213098423
 Animator:

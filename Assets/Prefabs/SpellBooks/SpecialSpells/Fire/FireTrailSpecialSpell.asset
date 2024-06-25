@@ -27,7 +27,7 @@ MonoBehaviour:
   templeDescription: The Fire Trail! A line of fire hits everything in front of you!
   shopkeeperDescription: The Fire Trail! A line of fire hits everything in its way!
   tier1:
-    damage: 10
+    damage: 20
     cooldown: 6
     statusEffectTimer: 3
     statusEffectDamage: 5
@@ -38,7 +38,7 @@ MonoBehaviour:
     duration: 5
     speed: 8
   tier2:
-    damage: 14
+    damage: 30
     cooldown: 6
     statusEffectTimer: 3
     statusEffectDamage: 7
@@ -49,7 +49,7 @@ MonoBehaviour:
     duration: 6
     speed: 8
   tier3:
-    damage: 20
+    damage: 60
     cooldown: 6
     statusEffectTimer: 4
     statusEffectDamage: 10

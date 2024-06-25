@@ -52,6 +52,8 @@ public class PlayerController : CharacterClass
     private float healthBonusEachStage;
 
     public DoubleFloatEvent doubleFloatEvent;
+    public DoubleFloatEvent damageScreen;
+
 
 
     private void Awake()
@@ -150,10 +152,14 @@ public class PlayerController : CharacterClass
     {
         //AudioEvent.PlayGetHit.Invoke(getHitClip);
         base.GetHit(damageAmount, attacker, spell);
-        doubleFloatEvent.OnPlayerGotHit.Invoke(1f, 0.5f);
         if (isAlive && health <= 0)
         {
             ChangeState(new PlayerDieState());
+        }
+        else if(isAlive && health > 0)
+        {
+            doubleFloatEvent.OnPlayerGotHit.Invoke(1f, 0.5f);
+            damageScreen.OnPlayerGotHit.Invoke(health, maxHealth);
         }
     }
 
@@ -247,6 +253,8 @@ public class PlayerController : CharacterClass
     {
         base.Heal(healAmount);
         onHealthChanged.Raise(health);
+        damageScreen.OnPlayerHeal.Invoke(health, maxHealth);
+
     }
 
     private void SetDamageMultiplier()

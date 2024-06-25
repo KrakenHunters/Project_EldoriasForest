@@ -80,7 +80,7 @@ NavMeshAgent:
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 1
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
@@ -121,7 +121,7 @@ MonoBehaviour:
     type: 3}
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
     type: 3}
-  healthDropChance: 0.15
+  healthDropChance: 0.3
   rotationSpeed: 40
   AISpotSelected: {fileID: 0}
   soulAmountMaxTier1: 6
@@ -136,9 +136,9 @@ MonoBehaviour:
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 1238473911412538695}
-  damageTier1: 30
-  damageTier2: 50
-  damageTier3: 80
+  damageTier1: 20
+  damageTier2: 30
+  damageTier3: 50
 --- !u!114 &4949369657001733455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   detectionRadius: 10
   innerDetectionRadius: 3
   detectionCooldown: 3
-  attackRange: 2
+  attackRange: 2.5
   controller: {fileID: 0}
 --- !u!95 &1724517897213098423
 Animator:

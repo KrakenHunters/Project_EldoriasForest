@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 0
+    damage: 12
     cooldown: 8
     statusEffectTimer: 4
     statusEffectDamage: 10
     statusEffectChance: 0.6
-    range: 0
+    range: 3
     healAmount: 5
     radius: 0.5
     duration: 5
@@ -29,7 +29,7 @@ MonoBehaviour:
   shopkeeperDescription: The Fire Ring! This spell hits enemies around you for a
     while burning them!
   tier1:
-    damage: 0
+    damage: 12
     cooldown: 8
     statusEffectTimer: 4
     statusEffectDamage: 10
@@ -40,7 +40,7 @@ MonoBehaviour:
     duration: 5
     speed: 0
   tier2:
-    damage: 0
+    damage: 20
     cooldown: 8
     statusEffectTimer: 4
     statusEffectDamage: 15
@@ -51,7 +51,7 @@ MonoBehaviour:
     duration: 5
     speed: 0
   tier3:
-    damage: 0
+    damage: 35
     cooldown: 8
     statusEffectTimer: 5
     statusEffectDamage: 20

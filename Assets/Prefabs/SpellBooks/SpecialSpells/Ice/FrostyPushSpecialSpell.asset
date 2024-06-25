@@ -44,7 +44,7 @@ MonoBehaviour:
     cooldown: 3
     statusEffectTimer: 5
     statusEffectDamage: 2
-    statusEffectChance: 0.7
+    statusEffectChance: 1
     range: 5
     healAmount: 0
     radius: 12
