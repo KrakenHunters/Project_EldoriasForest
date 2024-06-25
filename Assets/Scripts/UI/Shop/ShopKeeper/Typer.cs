@@ -22,6 +22,7 @@ public class Typer : MonoBehaviour
         adjustTypeSpeed = typeSpeed;
         isTyping = true;
         timer = 0f;
+        StopAllCoroutines();
         StartCoroutine(TypeText());
     }
 

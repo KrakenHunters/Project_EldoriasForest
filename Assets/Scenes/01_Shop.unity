@@ -1941,7 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212869d9233664844bd2188daff7b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeSpeed: 0.05
+  typeSpeed: 0.03
   textComponent: {fileID: 33514746}
   isTyping: 0
 --- !u!114 &1363705887

@@ -101,7 +101,7 @@ public class ShopKeeperManager : MonoBehaviour
         "Ultimate spells can only be used once, so use them wisely.",
         "Pigs are slower but hit harder.",
         "I've heard the witch is pretty strong and knows all spells from the temples in the forest.",
-        "Do you like pineapple, my favorite fruit, don't know why.",
+        "Do you like pineapple? My favorite fruit.",
         "The animals are fast, so keep moving to stay alive.",
         "Have you tried combining spells?",
         "I once saw a chicken cast a spell. No, really, it was trying to turn a worm into a dragonfly!",
@@ -245,16 +245,17 @@ public class ShopKeeperManager : MonoBehaviour
     void EndDialogue()
     {
         typer.ShowText("");
+        if (currentDialogueArray == endTutorialTexts)
+        {
+            ShopManager.Instance.ButtonsInteractability(true);
+        }
+
         currentDialogueArray = null;
         foreach (var area in highlightAreas)
         {
             area.SetActive(false); // Deactivate all highlight areas
         }
 
-        if (currentDialogueArray == endTutorialTexts)
-        {
-            ShopManager.Instance.ButtonsInteractability(true);
-        }
     }
 
 }
