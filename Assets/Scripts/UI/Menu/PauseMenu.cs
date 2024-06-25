@@ -1,41 +1,46 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PauseMenu : Menu
+public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject _pauseMenu;
     private bool _isPaused;
-     private void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))  //add and input manager to handle this later 
-        {
-            OnTogglePauseMenu();   
-        }
+        _isPaused = false;
+        _pauseMenu.gameObject.SetActive(_isPaused);
     }
+
     public void OnTogglePauseMenu()
     {
         _isPaused = !_isPaused;
-
-        if (_isPaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
+        _pauseMenu.gameObject.SetActive(_isPaused);
         Time.timeScale = _isPaused ? 0 : 1;
-       // DisableScreens();
-       
     }
+
 
     public void OnLoadMainMenu()
     {
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("00_MainMenu");
+        SceneManager.LoadScene("00_MainMenu");
+    }
+
+    public void OnReturnToShop()
+    {
+
+       Time.timeScale = 1f;
+        SceneManager.LoadScene("01_Shop");
+    }
+
+    public void OnQuitGame()
+    {
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 
 }

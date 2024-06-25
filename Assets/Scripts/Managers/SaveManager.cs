@@ -9,8 +9,8 @@ public class SaveManager : Singleton<SaveManager>
     public PermanentDataContainer basePermanentData;
     public TemporaryDataContainer baseTemporaryData;
 
-    public SpecialSpellBook[] specialSpellBooks; // Public array for assigning in Inspector
-    public BaseSpellBook[] baseSpellBooks; // Public array for assigning in Inspector
+    public SpecialSpellBook[] specialSpellBooks; 
+    public BaseSpellBook[] baseSpellBooks;
 
     private Dictionary<int, SpecialSpellBook> specialSpellBookDictionary = new Dictionary<int, SpecialSpellBook>();
     private Dictionary<int, BaseSpellBook> baseSpellBookDictionary = new Dictionary<int, BaseSpellBook>();
@@ -99,7 +99,7 @@ public class SaveManager : Singleton<SaveManager>
                 return kvp.Key;
             }
         }
-        return -1; // Not found
+        return -1;
     }
 
     private void RestoreDataAfterLoading()
@@ -128,6 +128,13 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
         permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
         permanentData.InitializeData = basePermanentData.InitializeData;
+
+        permanentData.baseUpgradeCost = basePermanentData.baseUpgradeCost;
+        permanentData.healthUpgradeCost = basePermanentData.healthUpgradeCost;
+        permanentData.defensiveRuneCost = basePermanentData.defensiveRuneCost;
+        permanentData.soulDropUpgradeCost  = basePermanentData.soulDropUpgradeCost;
+        permanentData.spellCooldownCost  = basePermanentData.spellCooldownCost;
+
     }
 
     public void ResetTemporaryData()

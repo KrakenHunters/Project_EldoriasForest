@@ -20,7 +20,7 @@ public class ShopBase : MonoBehaviour , IShoppable
     [SerializeField] private BaseFrostSpell iceSpell;
     [SerializeField] private BaseElectricityspell lightningSpell;
 
-    [SerializeField] private Image baseSpellIcon;
+    //[SerializeField] private Image baseSpellIcon;
 
 
     public BaseShopItems currentbasespell = BaseShopItems.None;
@@ -54,7 +54,7 @@ public class ShopBase : MonoBehaviour , IShoppable
                 baseLightningSelected.gameObject.SetActive(true);
                 break;
         }
-        baseSpellIcon.sprite = ShopManager.Instance.permData.prefBaseSpell.spellIcon;
+        //baseSpellIcon.sprite = ShopManager.Instance.permData.prefBaseSpell.spellIcon;
     }
 
     public void ConvertSpellToType(BaseSpellBook spell)
