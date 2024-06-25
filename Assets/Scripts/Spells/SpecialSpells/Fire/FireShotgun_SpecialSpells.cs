@@ -9,16 +9,21 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
 
     protected override void CastSpell(int tier)
     {
+        Destroy(gameObject, duration);
+
         damageCollider = GetComponent<SphereCollider>();
         damageCollider.radius = range;
     }
+    public override void Shoot(Vector3 direction, GameObject attacker)
+    {
+        base.Shoot(direction, attacker);
+        transform.forward = direction;
 
+    }
 
     protected override void Update()
     {
         base.Update();
-
-        Destroy(gameObject, duration);
     }
 
 
@@ -27,10 +32,8 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
         if (other.GetComponent<CharacterClass>() && other.gameObject != charAttacker) // Ensure only enemies are affected
         {
 
-            Vector3 directionToEnemy = (other.transform.position - charAttacker.transform.position).normalized;
+            Vector3 directionToEnemy = (other.transform.localPosition - charAttacker.transform.position).normalized;
             float angleToEnemy = Vector3.Angle(charAttacker.transform.forward, directionToEnemy);
-            Debug.Log(angleToEnemy);
-
             if (angleToEnemy < angle / 2) // Check if the enemy is within the cone angle
             {
                 other.GetComponent<CharacterClass>().GetHit(damage, charAttacker, this);

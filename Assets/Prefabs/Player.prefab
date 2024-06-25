@@ -169,7 +169,7 @@ MonoBehaviour:
   canInteract: 0
   interactableObj: {fileID: 0}
   spellWeapon: {fileID: 0}
-  healthBonusEachStage: 0
+  healthBonusEachStage: 20
   doubleFloatEvent: {fileID: 11400000, guid: fbd6d458a22a1304ebea65214efaa754, type: 2}
   damageScreen: {fileID: 11400000, guid: 52055cc7db52e5c43bebc137d7d656c4, type: 2}
 --- !u!114 &5066222880727964611
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicator: {fileID: 186690170489971989, guid: 9836b5d1697f6a54a83753b753fd9aff,
     type: 3}
-  particleColor: {r: 1, g: 1, b: 1, a: 0}
+  particleColor: {r: 0.23791064, g: 0.9245283, b: 0.17967243, a: 1}
 --- !u!1 &6597620483037645168
 GameObject:
   m_ObjectHideFlags: 0

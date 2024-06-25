@@ -58,7 +58,7 @@ MonoBehaviour:
     type: 3}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
   castClip: {fileID: 8300000, guid: aba0970c9e8f29944822324699a30872, type: 3}
-  angle: 0
+  angle: 60
 --- !u!135 &7120863907982733483
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 895685802129951017, guid: 96d676fe1d794bf4eade0d22d636cd8b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 895685802129951017, guid: 96d676fe1d794bf4eade0d22d636cd8b,
         type: 3}
@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 895685802129951017, guid: 96d676fe1d794bf4eade0d22d636cd8b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 895685802129951017, guid: 96d676fe1d794bf4eade0d22d636cd8b,
         type: 3}
@@ -219,6 +219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 895685802129951017, guid: 96d676fe1d794bf4eade0d22d636cd8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 1466082549139650327, guid: 96d676fe1d794bf4eade0d22d636cd8b,
         type: 3}

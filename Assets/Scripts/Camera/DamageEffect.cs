@@ -25,13 +25,13 @@ public class DamageEffect : MonoBehaviour
     private void OnEnable()
     {
         gameEvent.OnPlayerGotHit.AddListener(StartDamageEffect);
-        gameEvent.OnPlayerHeal.AddListener(StartHealEffect);
+        gameEvent.OnPlayerHeal.AddListener(ReduceEffect);
+
     }
 
     private void OnDisable()
     {
         gameEvent.OnPlayerGotHit.RemoveListener(StartDamageEffect);
-        gameEvent.OnPlayerHeal.RemoveListener(StartHealEffect);
     }
 
     void Start()
@@ -57,42 +57,55 @@ public class DamageEffect : MonoBehaviour
     {
         playerHealthRatio = health / maxHealth;
         StopAllCoroutines();
-        StartCoroutine(AdjustDamageEffect());
+        StartCoroutine(TakeDamageEffect());
     }
 
-    private void StartHealEffect(float health, float maxHealth)
+    private void ReduceEffect(float health, float maxHealth)
     {
         playerHealthRatio = health / maxHealth;
         StopAllCoroutines();
-        StartCoroutine(AdjustDamageEffect());
+        StartCoroutine(ReduceDamageEffect());
     }
 
-    IEnumerator AdjustDamageEffect()
+    IEnumerator ReduceDamageEffect()
     {
-        float targetIntensity = (1 - playerHealthRatio) * damageMaxIntensity;
-        float currentIntensity = _vignette.intensity.value;
+        float intensity = _vignette.intensity.value;
 
-        if (currentIntensity < targetIntensity)
+        yield return null;
+
+        while (intensity > (1 - playerHealthRatio) * damageMaxIntensity)
         {
-            // Healing
-            while (currentIntensity < targetIntensity)
-            {
-                currentIntensity += 0.05f;
-                _vignette.intensity.Override(currentIntensity);
+            intensity -= 0.01f;
 
-                yield return new WaitForSeconds(damageTimer);
-            }
+            if (intensity < (1 - playerHealthRatio) * damageMaxIntensity)
+                intensity = (1 - playerHealthRatio) * damageMaxIntensity;
+
+            _vignette.intensity.Override(intensity);
+
+            yield return new WaitForSeconds(damageTimer);
         }
-        else
-        {
-            // Taking Damage
-            while (currentIntensity > targetIntensity)
-            {
-                currentIntensity -= 0.05f;
-                _vignette.intensity.Override(currentIntensity);
 
-                yield return new WaitForSeconds(damageTimer);
-            }
+        yield break;
+    }
+
+
+    IEnumerator TakeDamageEffect()
+    {
+        float intensity = damageIntensity;
+        _vignette.intensity.Override(damageIntensity);
+
+        yield return null;
+
+        while (intensity > (1 - playerHealthRatio) * damageMaxIntensity)
+        {
+            intensity -= 0.01f;
+
+            if (intensity < (1 - playerHealthRatio) * damageMaxIntensity)
+                intensity = (1 - playerHealthRatio) * damageMaxIntensity;
+
+            _vignette.intensity.Override(intensity);
+
+            yield return new WaitForSeconds(damageTimer);
         }
 
         yield break;

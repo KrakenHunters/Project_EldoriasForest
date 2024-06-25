@@ -62,7 +62,6 @@ public class PlayerController : CharacterClass
         health = tempData.startHealth + GameManager.Instance.pData.healthBonus * healthBonusEachStage;
         maxHealth = health;
         initialSpeed = _speed;
-        onHealthChanged.Raise(health);
 
         SetDamageMultiplier();
         initialDamageMultiplier = damageMultiplier;
@@ -73,6 +72,8 @@ public class PlayerController : CharacterClass
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new PlayerMoveState());
+        onHealthChanged.Raise(health);
+
 
     }
 
@@ -156,7 +157,7 @@ public class PlayerController : CharacterClass
         {
             ChangeState(new PlayerDieState());
         }
-        else if(isAlive && health > 0)
+        else if(isAlive && health > 0 && attacker != this.gameObject)
         {
             doubleFloatEvent.OnPlayerGotHit.Invoke(1f, 0.5f);
             damageScreen.OnPlayerGotHit.Invoke(health, maxHealth);

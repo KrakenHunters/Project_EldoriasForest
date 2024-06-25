@@ -8,12 +8,19 @@ public class FireRing_SpecialSpell : SpecialSpellBook
 
     private SphereCollider damageCollider;
 
+    private Quaternion initialRotation;
+
     protected override void CastSpell(int tier)
     {
-
+        Destroy(gameObject, duration);
+        initialRotation = transform.rotation;
         healAmount = spellData.currentTierData.healAmount;
         damageCollider = GetComponentInChildren<SphereCollider>();
         damageCollider.radius = radius;
+        ParticleSystem particle = GetComponentInChildren<ParticleSystem>();
+        ParticleSystem.ShapeModule shapeModule = particle.shape;
+
+        shapeModule.radius = radius;
         if(GetComponentInParent<CharacterClass>() != null)
         {
             charAttacker = GetComponentInParent<CharacterClass>().gameObject;
@@ -21,6 +28,11 @@ public class FireRing_SpecialSpell : SpecialSpellBook
         }
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        transform.rotation = initialRotation;
+    }
 
     private IEnumerator HealCaster()
     {
@@ -35,12 +47,6 @@ public class FireRing_SpecialSpell : SpecialSpellBook
         }
         yield return null;
     }
-    protected override void Update()
-    {
-        base.Update();
-        Destroy(gameObject, duration);
-    }
-
 
     private void OnTriggerEnter(Collider other)
     {
