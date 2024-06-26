@@ -1615,6 +1615,9 @@ MonoBehaviour:
   spell2SelectedIcon: {fileID: 3176733828355916149}
   spell3SelectedIcon: {fileID: 6731834963790573128}
   OnBuyStuff: {fileID: 11400000, guid: e1df0ad7c1a5c6b4f976d581034e470f, type: 2}
+  spell1: {fileID: 0}
+  spell2: {fileID: 0}
+  spell3: {fileID: 0}
 --- !u!114 &7069534130312999396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4628,7 +4631,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

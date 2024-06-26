@@ -1385,6 +1385,30 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 33514750}
+    - targetCorrespondingSourceObject: {fileID: 4181894608695262487, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 461066326}
+    - targetCorrespondingSourceObject: {fileID: 1545514972279370479, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1374055741}
+    - targetCorrespondingSourceObject: {fileID: 3326477799257919058, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 533319984}
+    - targetCorrespondingSourceObject: {fileID: 6118138006600248049, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1700817984}
+    - targetCorrespondingSourceObject: {fileID: 3995532774731611472, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1828075376}
+    - targetCorrespondingSourceObject: {fileID: 5334601994084077744, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 233405534}
     - targetCorrespondingSourceObject: {fileID: 2052710615213495939, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       insertIndex: -1
@@ -1493,6 +1517,39 @@ MonoBehaviour:
       - m_Target: {fileID: 1363705887}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
         m_MethodName: SpellCooldownUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &233405532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5334601994084077744, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &233405534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233405532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: SpecialSpell3
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1663,6 +1720,72 @@ MonoBehaviour:
       - m_Target: {fileID: 1363705887}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
         m_MethodName: SoulDropUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &461066324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4181894608695262487, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &461066326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461066324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: BaseSpell1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &533319982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3326477799257919058, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &533319984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533319982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: BaseSpell3
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2229,7 +2352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212869d9233664844bd2188daff7b4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeSpeed: 0.03
+  typeSpeed: 0.02
   textComponent: {fileID: 33514746}
   isTyping: 0
 --- !u!114 &1363705887
@@ -2249,8 +2372,8 @@ MonoBehaviour:
   - {fileID: 1301996085}
   - {fileID: 1689930272}
   - {fileID: 2132163055}
-  shopBase: {fileID: 0}
-  shopSpecials: {fileID: 0}
+  shopBase: {fileID: 1819241823}
+  shopSpecials: {fileID: 1819241822}
   YesButton: {fileID: 1295986827}
   NoButton: {fileID: 1106677222}
   YesWitch: {fileID: 33514747}
@@ -2270,6 +2393,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1374055739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1545514972279370479, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1374055741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374055739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: BaseSpell2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1440920862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5809137837100817812, guid: 2e044885a3b0a634fb0d56f9359fd362,
@@ -2384,6 +2540,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689930272}
   m_CullTransparentMesh: 1
+--- !u!1 &1700817982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6118138006600248049, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700817984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700817982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: SpecialSpell1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1798011599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7014066127951301614, guid: 2e044885a3b0a634fb0d56f9359fd362,
@@ -2396,6 +2585,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5d9021559527c4484e48995c9179eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1819241822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4221791624652354313, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6bbb16dc5eb2f49a1268df647d2690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1819241823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6067270543516884622, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da69df165a5e8741b47e7f6bd4cbbd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1828075374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3995532774731611472, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1828075376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828075374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: SpecialSpell2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1987574959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2699439778404214887, guid: 2e044885a3b0a634fb0d56f9359fd362,

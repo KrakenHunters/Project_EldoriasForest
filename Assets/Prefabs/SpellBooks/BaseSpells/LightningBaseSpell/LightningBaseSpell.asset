@@ -27,8 +27,8 @@ MonoBehaviour:
   templeDescription: 
   shopkeeperDescription: Fast and furious, the lightning spell!
   tier1:
-    damage: 12
-    cooldown: 0.3
+    damage: 9
+    cooldown: 0.4
     statusEffectTimer: 0
     statusEffectDamage: 0
     statusEffectChance: 0
@@ -38,8 +38,8 @@ MonoBehaviour:
     duration: 0
     speed: 25
   tier2:
-    damage: 22
-    cooldown: 0.3
+    damage: 18
+    cooldown: 0.4
     statusEffectTimer: 3
     statusEffectDamage: 0
     statusEffectChance: 0.3
@@ -49,8 +49,8 @@ MonoBehaviour:
     duration: 0
     speed: 25
   tier3:
-    damage: 50
-    cooldown: 0.3
+    damage: 45
+    cooldown: 0.4
     statusEffectTimer: 5
     statusEffectDamage: 0
     statusEffectChance: 0.5

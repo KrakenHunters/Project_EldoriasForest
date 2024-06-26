@@ -35,7 +35,7 @@ MonoBehaviour:
     range: 10
     healAmount: 0
     radius: 0
-    duration: 5
+    duration: 10
     speed: 8
   tier2:
     damage: 30
@@ -46,7 +46,7 @@ MonoBehaviour:
     range: 12
     healAmount: 0
     radius: 0
-    duration: 6
+    duration: 15
     speed: 8
   tier3:
     damage: 60
@@ -57,5 +57,5 @@ MonoBehaviour:
     range: 15
     healAmount: 0
     radius: 0
-    duration: 6
+    duration: 20
     speed: 8
