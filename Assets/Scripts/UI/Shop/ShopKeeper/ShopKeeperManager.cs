@@ -14,12 +14,13 @@ public class ShopKeeperManager : MonoBehaviour
     public ShopBase shopBase;
     public ShopSpecials shopSpecials;
 
-    private bool fullTutorial;
+    private bool fullTutorial = false;
 
     private int currentTutorialIndex = 0;
 
     [SerializeField]
-    private float witchStoryProb;
+    private int limitToWitch = 2;
+    private int chatCounter;
 
     [SerializeField]
     private GameObject YesButton;
@@ -214,13 +215,17 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void ChatDialogue()
     {
-        if (Random.Range(0f,1f) > witchStoryProb)
-            typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
-        else
+        chatCounter++;
+        if (chatCounter > limitToWitch)
         {
             typer.ShowText(witchStoryConfirmation);
             YesWitch.SetActive(true);
             NoWitch.SetActive(true);
+            limitToWitch = 100000;
+        }
+        else
+        {
+            typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
         }
 
     }
@@ -245,7 +250,6 @@ public class ShopKeeperManager : MonoBehaviour
         else if (currentDialogueIndex < texts.Length)
         {
             typer.ShowText(texts[currentDialogueIndex]);
-            ShopManager.Instance.ButtonsInteractability(false);
 
         }
         else
@@ -266,6 +270,7 @@ public class ShopKeeperManager : MonoBehaviour
                 else
                 {
                     StartDialogue(endTutorialTexts);
+                    ShopManager.Instance.ButtonsInteractability(false);
                     fullTutorial = false;
 
                 }
@@ -290,7 +295,6 @@ public class ShopKeeperManager : MonoBehaviour
         NoButton.SetActive(false);
 
         ShopManager.Instance.permData.tutorialDone = true;
-        ShopManager.Instance.ButtonsInteractability(true);
 
         StartDialogue(endTutorialTexts);
     }
@@ -308,7 +312,6 @@ public class ShopKeeperManager : MonoBehaviour
     {
         YesWitch.SetActive(false);
         NoWitch.SetActive(false);
-        witchStoryProb = 0f;
         ShopManager.Instance.ButtonsInteractability(true);
 
         StartDialogue(endTutorialTexts);
