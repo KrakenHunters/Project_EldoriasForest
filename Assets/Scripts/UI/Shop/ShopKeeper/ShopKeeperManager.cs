@@ -18,6 +18,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     private int currentTutorialIndex = 0;
 
+    [SerializeField]
     private float witchStoryProb;
 
     [SerializeField]
@@ -65,7 +66,7 @@ public class ShopKeeperManager : MonoBehaviour
         "If you are not maybe we can try hiring a knight or something..."
     };
 
-    private string witchStoryConfirmation = "Would you like me to tell you more about the witch?";
+    private string witchStoryConfirmation = "Would you like to learn more about the witch?";
 
 
 
@@ -213,7 +214,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void ChatDialogue()
     {
-        if (Random.Range(0,1) > witchStoryProb)
+        if (Random.Range(0f,1f) > witchStoryProb)
             typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
         else
         {
@@ -297,7 +298,7 @@ public class ShopKeeperManager : MonoBehaviour
     public void WitchStoryConfirmationButton()
     {
         YesWitch.SetActive(false);
-        NoButton.SetActive(false);
+        NoWitch.SetActive(false);
 
         ShopManager.Instance.ButtonsInteractability(false);
         StartDialogue(witchStoryTexts);
@@ -306,7 +307,7 @@ public class ShopKeeperManager : MonoBehaviour
     public void WitchStoryDenyButton()
     {
         YesWitch.SetActive(false);
-        NoButton.SetActive(false);
+        NoWitch.SetActive(false);
         witchStoryProb = 0f;
         ShopManager.Instance.ButtonsInteractability(true);
 
