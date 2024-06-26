@@ -11,9 +11,9 @@ public class PermanentDataContainer : ScriptableObject
     public int baseAttackTier;
     public BaseSpellBook prefBaseSpell;
     public float templeSoulsDropRate;
-    public int rune;
+    public float rune;
     public float cooldownReduction;
-    public int healthBonus;
+    public float healthBonus;
     public bool IsUltimateSpellSlotUnlocked;
     public bool InitializeData;
     public bool tutorialDone;
@@ -24,7 +24,11 @@ public class PermanentDataContainer : ScriptableObject
     public int defensiveRuneCost;
     public int soulDropUpgradeCost;
     public int spellCooldownCost;
-
+    [Header("Increments")]
+    public float templeSoulsDropRateIncrement;
+    public float runeIncrement;
+    public float cooldownReductionIncrement;
+    public float healthBonusIncrement;
 }
 
 

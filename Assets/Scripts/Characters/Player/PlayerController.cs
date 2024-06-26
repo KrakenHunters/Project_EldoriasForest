@@ -48,9 +48,6 @@ public class PlayerController : CharacterClass
     [HideInInspector]
     public SpellWeapon spellWeapon;
 
-    [SerializeField]
-    private float healthBonusEachStage;
-
     public DoubleFloatEvent doubleFloatEvent;
     public DoubleFloatEvent damageScreen;
 
@@ -59,7 +56,7 @@ public class PlayerController : CharacterClass
     private void Awake()
     {
         groundLayer = LayerMask.GetMask("Ground");
-        health = tempData.startHealth + GameManager.Instance.pData.healthBonus * healthBonusEachStage;
+        health = tempData.startHealth + GameManager.Instance.pData.healthBonus;
         maxHealth = health;
         initialSpeed = _speed;
 
@@ -260,14 +257,7 @@ public class PlayerController : CharacterClass
 
     private void SetDamageMultiplier()
     {
-        if (GameManager.Instance.pData.rune < 3)
-        {
-            damageMultiplier = 1 + GameManager.Instance.pData.rune * 0.1f;
-        }
-        else
-        {
-            damageMultiplier = 1 + GameManager.Instance.pData.rune * 0.15f;
-        }
+        damageMultiplier = 1 - GameManager.Instance.pData.rune;
     }
 
 }

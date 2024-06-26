@@ -6,27 +6,40 @@ using UnityEngine.UI;
 
 public class ShopKeeperManager : MonoBehaviour
 {
+    public PermanentDataContainer pData;
     public GameObject[] highlightAreas; // Areas to highlight (Base Spells, Special Spell Books, etc.)
     private int currentDialogueIndex = 0;
     private string[] currentDialogueArray;
 
+    public ShopBase shopBase;
+    public ShopSpecials shopSpecials;
+
     private bool fullTutorial;
 
     private int currentTutorialIndex = 0;
+
+    private float witchStoryProb;
 
     [SerializeField]
     private GameObject YesButton;
     [SerializeField]
     private GameObject NoButton;
 
+    [SerializeField]
+    private GameObject YesWitch;
+    [SerializeField]
+    private GameObject NoWitch;
+
+
     private string[] newGameTexts = new string[]
     {
         "Oh, hello there, magician!",
         "I'm Jolly, the shopkeeper of this village.",
-        "Welcome to Eldoria, a magical village thriving on purified souls.",
-        "We use a sacred ritual to extract and purify souls from forest animals.",
-        "These purified souls are our primary source of energy, sustaining our magic and way of life.",
-        "However, it's been difficult since the witch appeared.",
+        "Welcome to Eldoria, our charming magical village!",
+        "Our village thrives with the presence of many animals around us.",
+        "Our magic comes from the souls of these living forest animals.",
+        "These souls are our primary source of energy, sustaining our magic and way of life.",
+        "However, it's been difficult to sense the animals' souls since the witch appeared.",
         "You know about the witch, don't you?",
         "She resides in the forest, corrupting and feeding on animal souls.",
         "Her dark magic has cursed our land, draining its life and disrupting our lives.",
@@ -34,9 +47,27 @@ public class ShopKeeperManager : MonoBehaviour
         "But there's something different about you...",
         "Legends speak of a magician destined to break this curse.",
         "Perhaps you are the one!",
-        "If you can bring me souls, and I'll help you grow stronger to defeat her.",
+        "If you bring me souls, I'll help you grow stronger to defeat her.",
         "Would you like me to explain how the shop works?"
     };
+
+    private string[] witchStoryTexts = new string[]
+    {
+        "Long ago, she was a powerful magician who sought eternal life.",
+        "She discovered a forbidden ritual that required the souls of living beings.",
+        "Driven by her desire, she performed the ritual, transforming herself into a witch.",
+        "Her newfound power came at a terrible cost: the corruption of her soul.",
+        "Now, she roams the forest, stealing the souls of animals to maintain her dark magic.",
+        "Her curse not only drains the life from the animals but also weakens our village.",
+        "The once vibrant forest is now a place of fear and darkness.",
+        "It's said that only a magician with a pure heart can break this curse.",
+        "You might be the one to restore balance and save Eldoria! Who knows?",
+        "If you are not maybe we can try hiring a knight or something..."
+    };
+
+    private string witchStoryConfirmation = "Would you like me to tell you more about the witch?";
+
+
 
     private string[] tutorialBaseSpellTexts = new string[]
     {
@@ -72,7 +103,7 @@ public class ShopKeeperManager : MonoBehaviour
     private string[] endTutorialTexts = new string[]
     {
         "If you need me to explain something about the shop again, please hit the question mark buttons on the shop sections.",
-        "While in the forest, find the purple portal whenever you need to return to the shop to upgrade yourself..",
+        "While in the forest, find the purple portal whenever you need to return to the shop to upgrade yourself.",
         "The arrow on your screen will point to the closest one.",
         "Good luck, magician! We're counting on you to restore peace to Eldoria!"
     };
@@ -110,11 +141,60 @@ public class ShopKeeperManager : MonoBehaviour
         "I've heard there were foxes, deer standing on two feet and squirrels that shot nuts in the forest, have you seen any? Maybe the witch killed them all..."
     };
 
+    private string[] hoverPlayButton = new string[]
+    {
+        "May fortune favor you!",
+        "Wishing you success and victory!",
+        "Luck be on your side!",
+        "Here's to a triumphant journey!",
+        "May your skills shine bright!",
+        "Go forth with courage and luck!",
+        "Best of luck on your magical quest!",
+        "May every spell cast bring you closer to triumph!",
+        "Harness your magic and conquer!",
+        "May the stars align in your favor!"
+    };
+
+    private string upgradeBaseSpell = "Oh yes! Upgrade your base spells to deal more damage and have a bigger chance of applying a status effect";
+    private string ultimateSpellButton = "Oh ultimate spells! They are really strong and you can only get them on the far end of the forest. Remember they are a one-time use only!";
+    private string healthUpgradeButton;
+    private string defenseUpgrade;
+    private string soulDropUpgrade;
+    private string spellCooldownUpgrade;
+    private string rerollText = "Reroll the special spells, but remember it only rerolls the ones you have acquired! Good luck!";
+
+    private string baseSpell1Text;
+    private string baseSpell2Text;
+    private string baseSpell3Text;
+
+    private string specialSpell1Text;
+    private string specialSpell2Text;
+    private string specialSpell3Text;
+
 
     private Typer typer;
 
     void Awake()
     {
+
+        baseSpell1Text = shopBase.fireSpell.spellData.shopkeeperDescription;
+        baseSpell2Text = shopBase.iceSpell.spellData.shopkeeperDescription;
+        baseSpell3Text = shopBase.lightningSpell.spellData.shopkeeperDescription;
+
+        if (shopSpecials.spell1 != null)
+            specialSpell1Text = shopSpecials.spell1.spellData.shopkeeperDescription;
+        if (shopSpecials.spell2 != null)
+            specialSpell2Text = shopSpecials.spell2.spellData.shopkeeperDescription;
+        if (shopSpecials.spell3 != null)
+            specialSpell3Text = shopSpecials.spell3.spellData.shopkeeperDescription;
+
+
+        healthUpgradeButton = $"So cheap! Increase your health by {pData.healthBonusIncrement} health points";
+        defenseUpgrade = $"Enemies will deal {pData.runeIncrement * 100f}% less damage to you";
+        soulDropUpgrade = $"Increase the soul drop from enemies and temples by {pData.templeSoulsDropRateIncrement * 100f}%";
+        spellCooldownUpgrade = $"Reduce your special spells cooldowns by {pData.cooldownReductionIncrement * 100f}%";
+
+
         typer = GetComponent<Typer>();
         if (ShopManager.Instance.permData.tutorialDone)
             IntroDialogue();
@@ -133,7 +213,15 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void ChatDialogue()
     {
-        typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
+        if (Random.Range(0,1) > witchStoryProb)
+            typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
+        else
+        {
+            typer.ShowText(witchStoryConfirmation);
+            YesWitch.SetActive(true);
+            NoWitch.SetActive(true);
+        }
+
     }
 
 
@@ -206,6 +294,26 @@ public class ShopKeeperManager : MonoBehaviour
         StartDialogue(endTutorialTexts);
     }
 
+    public void WitchStoryConfirmationButton()
+    {
+        YesWitch.SetActive(false);
+        NoButton.SetActive(false);
+
+        ShopManager.Instance.ButtonsInteractability(false);
+        StartDialogue(witchStoryTexts);
+    }
+
+    public void WitchStoryDenyButton()
+    {
+        YesWitch.SetActive(false);
+        NoButton.SetActive(false);
+        witchStoryProb = 0f;
+        ShopManager.Instance.ButtonsInteractability(true);
+
+        StartDialogue(endTutorialTexts);
+    }
+
+
     public void BaseSpellExplanation()
     {
         highlightAreas[0].SetActive(true);
@@ -245,7 +353,7 @@ public class ShopKeeperManager : MonoBehaviour
     void EndDialogue()
     {
         typer.ShowText("");
-        if (currentDialogueArray == endTutorialTexts)
+        if (currentDialogueArray == endTutorialTexts || currentDialogueArray == witchStoryTexts)
         {
             ShopManager.Instance.ButtonsInteractability(true);
         }
@@ -257,5 +365,124 @@ public class ShopKeeperManager : MonoBehaviour
         }
 
     }
+
+    #region HoverFunctions
+    public void BaseSpellUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(upgradeBaseSpell);
+        }
+    }
+
+    public void UltimateSpellUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(ultimateSpellButton);
+        }
+    }
+
+    public void HealthUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(healthUpgradeButton);
+        }
+    }
+
+    public void DefenseUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(defenseUpgrade);
+        }
+    }
+
+    public void SoulDropUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(soulDropUpgrade);
+        }
+    }
+
+    public void SpellCooldownUpgradeDialogue(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(spellCooldownUpgrade);
+        }
+    }
+
+    public void PlayButton(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(hoverPlayButton[Random.Range(0, hoverPlayButton.Length)]);
+        }
+    }
+
+    public void RerollButton(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(rerollText);
+        }
+    }
+
+    public void BaseSpell1(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(baseSpell1Text);
+        }
+    }
+
+    public void BaseSpell2(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(baseSpell2Text);
+        }
+    }
+
+    public void BaseSpell3(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(baseSpell3Text);
+        }
+    }
+
+    public void SpecialSpell1(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(specialSpell1Text);
+        }
+    }
+
+    public void SpecialSpell2(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(specialSpell2Text);
+        }
+    }
+
+    public void SpecialSpell3(bool buttonInteractable)
+    {
+        if (buttonInteractable)
+        {
+            typer.ShowText(specialSpell3Text);
+        }
+    }
+
+
+
+
+
+    #endregion
 
 }

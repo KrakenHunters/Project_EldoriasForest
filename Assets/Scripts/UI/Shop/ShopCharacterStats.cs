@@ -64,25 +64,25 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
             ultimateSpellSlot.costText.text = "Max";
 
 
-        healthUpgrade.currentUnlock = permData.healthBonus;
+        healthUpgrade.currentUnlock = Mathf.FloorToInt(permData.healthBonus/permData.healthBonusIncrement) < 0 ? 0 : Mathf.FloorToInt(permData.healthBonus / permData.healthBonusIncrement);
         healthUpgrade.unlockText.text = $"{healthUpgrade.currentUnlock} / {healthUpgrade.maxUnlock}";
         healthUpgrade.costText.text = healthUpgrade.cost.ToString();
         if (healthUpgrade.currentUnlock == healthUpgrade.maxUnlock)
             healthUpgrade.costText.text = "Max";
 
-        DefenseRune.currentUnlock = permData.rune;
+        DefenseRune.currentUnlock = Mathf.FloorToInt(permData.rune / permData.runeIncrement) < 0 ? 0 : Mathf.FloorToInt(permData.rune / permData.runeIncrement);
         DefenseRune.unlockText.text = $"{DefenseRune.currentUnlock} / {DefenseRune.maxUnlock}";
         DefenseRune.costText.text = DefenseRune.cost.ToString();
         if (DefenseRune.currentUnlock == DefenseRune.maxUnlock)
             DefenseRune.costText.text = "Max";
 
-        LootDropRate.currentUnlock =  Mathf.FloorToInt(permData.templeSoulsDropRate / 0.25f);
+        LootDropRate.currentUnlock =  Mathf.FloorToInt(permData.templeSoulsDropRate / permData.templeSoulsDropRateIncrement) < 0 ? 0 : Mathf.FloorToInt(permData.templeSoulsDropRate / permData.templeSoulsDropRateIncrement);
         LootDropRate.unlockText.text = $"{LootDropRate.currentUnlock} / {LootDropRate.maxUnlock}";
         LootDropRate.costText.text = LootDropRate.cost.ToString();
         if (LootDropRate.currentUnlock == LootDropRate.maxUnlock)
             LootDropRate.costText.text = "Max";
 
-        CoolDownReduction.currentUnlock = Mathf.FloorToInt(permData.cooldownReduction / 0.25f);
+        CoolDownReduction.currentUnlock = Mathf.FloorToInt(permData.cooldownReduction / permData.cooldownReductionIncrement) < 0 ? 0 : Mathf.FloorToInt(permData.cooldownReduction / permData.cooldownReductionIncrement);
         CoolDownReduction.unlockText.text = $"{CoolDownReduction.currentUnlock} / {CoolDownReduction.maxUnlock}";
         CoolDownReduction.costText.text = CoolDownReduction.cost.ToString();
         if (CoolDownReduction.currentUnlock == CoolDownReduction.maxUnlock)
@@ -100,7 +100,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnHealthUpgrade()
     {
         permData.totalSouls -= healthUpgrade.cost;
-        permData.healthBonus++;
+        permData.healthBonus+= permData.healthBonusIncrement;
         healthUpgrade.currentUnlock++;
         UpdateSoulsCountUI(healthUpgrade.cost);
         permData.healthUpgradeCost += (3 * healthUpgrade.cost);
@@ -111,7 +111,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnDefenseRuneUpgrade()
     {
         permData.totalSouls -= DefenseRune.cost;
-        permData.rune++;
+        permData.rune += permData.runeIncrement;
         DefenseRune.currentUnlock++;
         UpdateSoulsCountUI(DefenseRune.cost);
         permData.defensiveRuneCost += (3 * DefenseRune.cost);
@@ -121,7 +121,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnLootDropRateUpgrade()
     {
         permData.totalSouls -= LootDropRate.cost;
-        permData.templeSoulsDropRate += 0.25f;
+        permData.templeSoulsDropRate += permData.templeSoulsDropRateIncrement;
         LootDropRate.currentUnlock++;
         UpdateSoulsCountUI(LootDropRate.cost);
         permData.soulDropUpgradeCost += (3 * LootDropRate.cost);
@@ -131,7 +131,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnCoolDownReductionUpgrade()
     {
         permData.totalSouls -= CoolDownReduction.cost;
-        permData.cooldownReduction += 0.10f;
+        permData.cooldownReduction += permData.cooldownReductionIncrement;
         CoolDownReduction.currentUnlock++;
         UpdateSoulsCountUI(CoolDownReduction.cost);
         permData.spellCooldownCost += (3 * CoolDownReduction.cost);

@@ -16,9 +16,9 @@ public class ShopBase : MonoBehaviour , IShoppable
     [SerializeField] private TMPro.TextMeshProUGUI upgradeCostText;
 
     [Header("Base Shop Items")]
-    [SerializeField] private BaseFireSpell fireSpell;
-    [SerializeField] private BaseFrostSpell iceSpell;
-    [SerializeField] private BaseElectricityspell lightningSpell;
+    public BaseFireSpell fireSpell;
+    public BaseFrostSpell iceSpell;
+    public BaseElectricityspell lightningSpell;
 
     //[SerializeField] private Image baseSpellIcon;
 

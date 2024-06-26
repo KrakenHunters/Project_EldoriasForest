@@ -45,9 +45,12 @@ public class ShopSpecials : MonoBehaviour, IShoppable
 
     private ShopManager shopManager;
 
-    private SpecialSpellBook spell1;
-    private SpecialSpellBook spell2;
-    private SpecialSpellBook spell3;
+    [HideInInspector]
+    public SpecialSpellBook spell1;
+    [HideInInspector]
+    public SpecialSpellBook spell2;
+    [HideInInspector]
+    public SpecialSpellBook spell3;
 
     private SpecialSpellBook selectedSpell;
     private SpecialSpellBook boughtSpell;

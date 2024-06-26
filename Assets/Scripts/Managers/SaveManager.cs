@@ -128,6 +128,7 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.templeSoulsDropRate = basePermanentData.templeSoulsDropRate;
         permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
         permanentData.InitializeData = basePermanentData.InitializeData;
+        permanentData.tutorialDone = basePermanentData.tutorialDone;
 
         permanentData.baseUpgradeCost = basePermanentData.baseUpgradeCost;
         permanentData.healthUpgradeCost = basePermanentData.healthUpgradeCost;
@@ -135,6 +136,12 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.soulDropUpgradeCost  = basePermanentData.soulDropUpgradeCost;
         permanentData.spellCooldownCost  = basePermanentData.spellCooldownCost;
 
+        
+
+        permanentData.templeSoulsDropRateIncrement = basePermanentData.templeSoulsDropRateIncrement;
+        permanentData.runeIncrement = basePermanentData.runeIncrement;
+        permanentData.cooldownReductionIncrement = basePermanentData.cooldownReductionIncrement;
+        permanentData.healthBonusIncrement = basePermanentData.healthBonusIncrement;
     }
 
     public void ResetTemporaryData()
