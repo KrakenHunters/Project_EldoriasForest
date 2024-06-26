@@ -14,9 +14,16 @@ public class ShopManager : Singleton<ShopManager>
 
     public Button[] buttonsInScene;
 
+    private ShopBase shopBase;
+    private ShopSpecials shopSpecials;
+    private ShopCharacterStats shopCharacterStats;
+
     private float countingSpeed = 50f;
     private void Awake()
     {
+        shopBase = GetComponent<ShopBase>();
+        shopSpecials = GetComponent<ShopSpecials>();
+        shopCharacterStats = GetComponent<ShopCharacterStats>();
        SaveManager.Instance.TransferTempToPermaData();
        SaveManager.Instance.ResetTemporaryData();
     }
@@ -58,6 +65,14 @@ public class ShopManager : Singleton<ShopManager>
         {
             button.interactable = check;
         }
+
+        if(check)
+        {
+            shopBase.UpdateButtonInteractions();
+            shopCharacterStats.UpdateButtonInteractions();
+            shopSpecials.UpdateButtonInteractions();
+        }
+
     }
 
 
