@@ -802,6 +802,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5719015991258866672, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5882780874780697494, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1735,6 +1740,7 @@ MonoBehaviour:
   - {fileID: 2132163055}
   shopBase: {fileID: 1819241823}
   shopSpecials: {fileID: 1819241822}
+  blockShop: {fileID: 1574603967}
   limitToWitch: 3
   YesButton: {fileID: 1295986827}
   NoButton: {fileID: 1106677222}
@@ -1755,6 +1761,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1574603967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5719015991258866672, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689930272 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5828997424394750339, guid: 2e044885a3b0a634fb0d56f9359fd362,
