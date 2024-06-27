@@ -55,6 +55,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
         {
+            speaker.volume = 1f;
             speaker.clip = clip;
             speaker.PlayOneShot(clip);
             speaker.clip = null;
