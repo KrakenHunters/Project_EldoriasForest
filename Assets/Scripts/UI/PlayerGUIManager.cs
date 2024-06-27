@@ -28,13 +28,6 @@ public class PlayerGUIManager : MonoBehaviour
     [SerializeField]
     private Image ultLockIcon;
 
-    [Header("Tiers")]
-    [SerializeField] private Image baseTierImage;
-    [SerializeField] private Image specialTierImage;
-    [SerializeField] private Sprite tier1;
-    [SerializeField] private Sprite tier2;
-    [SerializeField] private Sprite tier3;
-
     [SerializeField]
     private TemporaryDataContainer tempData;
 
@@ -57,52 +50,8 @@ public class PlayerGUIManager : MonoBehaviour
         ultLockIcon.enabled = !GameManager.Instance.pData.IsUltimateSpellSlotUnlocked;
         SetSpellIcons();
         SetSoulCount();
-        SetTier();
     }
 
-    public void SetTier()
-    {
-        baseTierImage.gameObject.SetActive(true);
-        switch (GameManager.Instance.pData.baseAttackTier)
-        {
-            case 1:
-                baseTierImage.sprite = tier1;
-                break;
-            case 2:
-                baseTierImage.sprite = tier2;
-                break;
-            case 3:
-                baseTierImage.sprite = tier3;
-                break;
-            default:
-                baseTierImage.gameObject.SetActive(false);
-                break;
-        }
-
-        specialTierImage.gameObject.SetActive(true);
-        int? specialtier = GameManager.Instance.tData.specialSpell?.tier ?? 0;
-        if(specialtier != 0)
-        specialTierImage.sprite = GetSpriteByTier(specialtier.Value);
-        else
-            specialTierImage.gameObject.SetActive(false);
-
-
-    }
-
-    public Sprite GetSpriteByTier(int tier)
-    {
-        switch (tier)
-        {
-            case 1:
-                return tier1;
-            case 2:
-                return tier2;
-            case 3:
-                return tier3;
-            default:
-                return null;
-        }
-    }
 
     public void SetSpellIcons()
     {
