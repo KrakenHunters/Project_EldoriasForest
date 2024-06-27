@@ -27,7 +27,7 @@ public class FireShotgun_SpecialSpells : SpecialSpellBook
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<CharacterClass>() && other.gameObject != charAttacker) // Ensure only enemies are affected
         {

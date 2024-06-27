@@ -163,7 +163,7 @@ MonoBehaviour:
   soulAmountMinTier2: 7
   soulAmountMaxTier3: 12
   soulAmountMinTier3: 8
-  baseHealth: 30
+  baseHealth: 40
   healthMultTier2: 3
   healthMultTier3: 5
   gotHit: 0

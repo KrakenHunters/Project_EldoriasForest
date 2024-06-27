@@ -131,15 +131,15 @@ MonoBehaviour:
   soulAmountMinTier2: 7
   soulAmountMaxTier3: 20
   soulAmountMinTier3: 13
-  baseHealth: 40
+  baseHealth: 60
   healthMultTier2: 3
   healthMultTier3: 5
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 1238473911412538695}
   damageTier1: 20
-  damageTier2: 30
-  damageTier3: 50
+  damageTier2: 50
+  damageTier3: 80
 --- !u!114 &4949369657001733455
 MonoBehaviour:
   m_ObjectHideFlags: 0
