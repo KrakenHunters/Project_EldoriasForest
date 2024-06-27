@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    public UnityEvent OnPause;
+    public UnityEvent OnResume;
     private bool _isPaused;
 
     private void Awake()
@@ -17,6 +20,10 @@ public class PauseMenu : MonoBehaviour
         _isPaused = !_isPaused;
         _pauseMenu.gameObject.SetActive(_isPaused);
         Time.timeScale = _isPaused ? 0 : 1;
+        if (_isPaused)
+            OnPause.Invoke();
+        else
+            OnResume.Invoke();
     }
 
 
