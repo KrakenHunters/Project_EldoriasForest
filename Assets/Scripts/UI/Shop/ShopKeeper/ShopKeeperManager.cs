@@ -321,6 +321,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         highlightAreas[0].SetActive(true);
         StartDialogue(tutorialBaseSpellTexts);
+        ShopManager.Instance.ButtonsInteractability(false);
 
     }
 
@@ -328,12 +329,16 @@ public class ShopKeeperManager : MonoBehaviour
     {
         highlightAreas[1].SetActive(true);
         StartDialogue(tutorialSpecialSpellTexts);
+        ShopManager.Instance.ButtonsInteractability(false);
+
     }
 
     public void PermanentUpgradeExplanation()
     {
         highlightAreas[2].SetActive(true);
         StartDialogue(tutorialPermanentUpgradesTexts);
+        ShopManager.Instance.ButtonsInteractability(false);
+
     }
 
 
@@ -356,10 +361,7 @@ public class ShopKeeperManager : MonoBehaviour
     void EndDialogue()
     {
         typer.ShowText("");
-        if (currentDialogueArray == endTutorialTexts || currentDialogueArray == witchStoryTexts)
-        {
-            ShopManager.Instance.ButtonsInteractability(true);
-        }
+        ShopManager.Instance.ButtonsInteractability(true);
 
         currentDialogueArray = null;
         foreach (var area in highlightAreas)

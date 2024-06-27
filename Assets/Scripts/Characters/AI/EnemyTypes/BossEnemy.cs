@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using Utilities;
 
 public class BossEnemy : Enemy
 {
@@ -45,22 +46,69 @@ public class BossEnemy : Enemy
 
     private float duration;
     private bool isAggro = false;
+
+    [HideInInspector]
+    public bool switchPhase = false;
+    public float switchPhaseTime;
+
     [HideInInspector]
     public SpellWeapon spellWeapon;
 
     public BoolGameEvent OnAggroWitch;
 
     [SerializeField]
+    public bool invulnerable;
+
+    [SerializeField]
     private GameEvent<Empty> OnWitchDead;
 
     protected override void Start()
     {
-        base.Start();
-        tier = 3;
+        tier = 1;
         spellWeapon = GetComponent<SpellWeapon>();
         defaultAttackRange = playerDetector.attackRange;
         DetermineElementsOrder();
         SelectSpell();
+
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        playerDetector = GetComponent<PlayerDetector>();
+        dissolvingController = GetComponent<DissolvingController>();
+        enemyCollider = GetComponent<Collider>();
+
+        initialSpeed = _speed;
+        initialDamageMultiplier = damageMultiplier;
+
+        SetHealth();
+        healthBar.SetMaxHealth(maxHealth);
+
+        attackTimer = new CountdownTimer(timeBetweenAttacks);
+        wanderTimer = new CountdownTimer(wanderTime);
+
+        stateMachine = new StateMachine();
+
+        var wanderState = new EnemyWanderState(this, animator, agent, wanderRadius);
+        var patrollingState = new EnemyPatrollingState(this, animator, agent);
+        var chaseState = new EnemyChaseState(this, animator, agent, playerDetector.Player);
+        var switchPhaseState = new BossSwitchPhaseState(this, animator, agent);
+        var attackState = new EnemyAttackState(this, animator, agent, playerDetector.Player);
+        var dieState = new BossDieState(this, animator, agent);
+
+        At(wanderState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
+        At(wanderState, patrollingState, new FuncPredicate(() => ShouldPatrol()));
+        At(patrollingState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
+        At(patrollingState, wanderState, new FuncPredicate(() => ArrivedAtLocation()));
+        At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
+        At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
+        At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer() && !attacking));
+        At(switchPhaseState, chaseState, new FuncPredicate(() => !switchPhase));
+        Any(dieState, new FuncPredicate(() => !isAlive));
+        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer()));
+        Any(switchPhaseState, new FuncPredicate(() => isAlive && switchPhase));
+
+
+        stateMachine.SetState(wanderState);
+
     }
 
     protected override void Update()
@@ -170,20 +218,21 @@ public class BossEnemy : Enemy
         }
         else if (health <= 0 && phase != 3)
         {
-            DropSouls();
-            DropHealth();
+            switchPhase = true;
             phase++;
-            SetHealth();
         }
         else if (isAlive)
         {
-            health -= damage;
+            if (!invulnerable)
+            {
+                health -= damage;
+            }
         }
 
     }
 
 
-    protected override void SetHealth()
+    public override void SetHealth()
     {
         switch (phase)
         {

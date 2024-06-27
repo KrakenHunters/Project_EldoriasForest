@@ -10,7 +10,7 @@ using Utilities;
 
 public class Enemy : CharacterClass
 {
-    NavMeshAgent agent;
+    protected NavMeshAgent agent;
     [HideInInspector]
     public PlayerDetector playerDetector;
     [HideInInspector]
@@ -18,13 +18,11 @@ public class Enemy : CharacterClass
     [HideInInspector]
     public Collider enemyCollider;
 
+    protected Animator animator;
 
-    Animator animator;
-
-    [SerializeField] float wanderRadius = 10f;
-    [SerializeField] float wanderTime = 10f;
-    [SerializeField] int maxGroupSize = 4;
-    [SerializeField] float timeBetweenAttacks = 1f;
+    [SerializeField] protected float wanderRadius = 10f;
+    [SerializeField] protected float wanderTime = 10f;
+    [SerializeField] protected float timeBetweenAttacks = 1f;
 
     public float runMultiplier;
 
@@ -81,6 +79,7 @@ public class Enemy : CharacterClass
     [HideInInspector]
     public bool attacking;
 
+
    [SerializeField] protected WSHealthBar healthBar;
     protected virtual void Start()
     {
@@ -128,8 +127,8 @@ public class Enemy : CharacterClass
 
     }
 
-    void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
-    void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
+    protected void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
+    protected void Any(IState to, IPredicate condition) => stateMachine.AddAnyTransition(to, condition);
 
     protected virtual void Update()
     {
@@ -147,7 +146,7 @@ public class Enemy : CharacterClass
         stateMachine.FixedUpdate();
     }
 
-    protected virtual void SetHealth()
+    public virtual void SetHealth()
     {
         switch (tier)
         {
@@ -220,29 +219,11 @@ public class Enemy : CharacterClass
         Destroy(gameObject, deathTimer);
     }
 
-    bool ShouldPatrol()
+    protected bool ShouldPatrol()
     {
-        return (!wanderTimer.IsRunning /*&& CrowdedRegion()*/);
+        return (!wanderTimer.IsRunning);
     }
 
-    bool CrowdedRegion()
-    {
-        // Get all colliders within the radius
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, wanderRadius);
-
-        int enemyCount = 0;
-
-        // Iterate through the colliders and count the ones tagged as "Enemy"
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Enemy"))
-            {
-                enemyCount++;
-            }
-        }
-
-        return enemyCount >= maxGroupSize;
-    }
 
     public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
     {
@@ -266,7 +247,7 @@ public class Enemy : CharacterClass
         return AISpotSelected;
     }
 
-    bool ArrivedAtLocation()
+    protected bool ArrivedAtLocation()
     {
         return (Vector3.Distance(transform.position, AISpotSelected.transform.position) <= Random.Range(1f, 6f));
     }

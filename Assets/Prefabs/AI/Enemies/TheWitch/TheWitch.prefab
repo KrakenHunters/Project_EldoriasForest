@@ -131,10 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionAngle: 60
-  detectionRadius: 10
-  innerDetectionRadius: 5
+  detectionRadius: 15
+  innerDetectionRadius: 8
   detectionCooldown: 1
-  attackRange: 3
+  attackRange: 6
   controller: {fileID: 0}
 --- !u!95 &3398003951915658533
 Animator:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 3
   health: 0
-  _speed: 6
+  _speed: 4
   initialSpeed: 0
   _speedModifier: 0
   isInCombat: 0
@@ -186,7 +186,6 @@ MonoBehaviour:
   enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 10
-  maxGroupSize: 4
   timeBetweenAttacks: 1
   runMultiplier: 2
   playerDetectionDistance: 30
@@ -194,8 +193,8 @@ MonoBehaviour:
     type: 3}
   healthDrop: {fileID: 1664738405116719305, guid: b184557e1a127524ba46ebf3ef5eaa1f,
     type: 3}
-  healthDropChance: 0.3
-  rotationSpeed: 10
+  healthDropChance: 0.5
+  rotationSpeed: 50
   AISpotSelected: {fileID: 0}
   soulAmountMaxTier1: 0
   soulAmountMinTier1: 0
@@ -203,17 +202,18 @@ MonoBehaviour:
   soulAmountMinTier2: 0
   soulAmountMaxTier3: 30
   soulAmountMinTier3: 20
-  baseHealth: 200
+  baseHealth: 400
   healthMultTier2: 2.5
   healthMultTier3: 5
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 0}
-  phase1Health: 200
-  phase2Health: 350
-  phase3Health: 500
+  phase1Health: 400
+  phase2Health: 800
+  phase3Health: 1500
   spawnEnemies:
   - {fileID: 7439797000257662282, guid: 0227bf95004584b45b6da0e36891dd6f, type: 3}
+  - {fileID: 7439797000257662282, guid: e1a36f5cd851ccf498a6148b32c4512e, type: 3}
   fireCastOrder:
   - {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee, type: 3}
   - {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee, type: 3}
@@ -257,8 +257,11 @@ MonoBehaviour:
   numEnemiesSpawnPhase1: 3
   numEnemiesSpawnPhase2: 5
   numEnemiesSpawnPhase3: 7
+  switchPhase: 0
+  switchPhaseTime: 2
   spellWeapon: {fileID: 0}
   OnAggroWitch: {fileID: 11400000, guid: b36324eb88f21cd49a50bdff542215aa, type: 2}
+  invulnerable: 0
   OnWitchDead: {fileID: 11400000, guid: 2a1ed26e832c8c74784bd3515c22a761, type: 2}
 --- !u!114 &4309538859586518490
 MonoBehaviour:
@@ -287,10 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1af7166c84ade7459c69a75e025e05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinnedMesh: {fileID: 0}
-  vfxGraph: {fileID: 0}
-  dissolveRate: 0.0125
-  refreshRate: 0.025
+  skinnedMesh: {fileID: 8148823845039417534}
+  vfxGraph: {fileID: 381348834807340982}
+  dissolveRate: 0.0001
+  refreshRate: 0.0001
 --- !u!1 &6408243033859267434
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +365,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 8148823845039417534}
+        m_Name: SkinnedMeshRenderer
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &7274665186618776328
@@ -1287,6 +1293,12 @@ PrefabInstance:
 --- !u!4 &7721361607293918172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1e7737eb7e08ac499ca0bf8ec22eb4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7831038496388856887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8148823845039417534 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2142306156383835273, guid: a1e7737eb7e08ac499ca0bf8ec22eb4b,
     type: 3}
   m_PrefabInstance: {fileID: 7831038496388856887}
   m_PrefabAsset: {fileID: 0}
