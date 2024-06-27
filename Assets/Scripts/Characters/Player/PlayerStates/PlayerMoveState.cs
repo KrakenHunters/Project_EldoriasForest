@@ -5,7 +5,6 @@ public class PlayerMoveState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-        Debug.Log("Enter Move");
 
         //Animate
 

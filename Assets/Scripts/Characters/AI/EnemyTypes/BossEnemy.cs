@@ -64,17 +64,17 @@ public class BossEnemy : Enemy
 
     protected override void Start()
     {
-        tier = 1;
-        spellWeapon = GetComponent<SpellWeapon>();
-        defaultAttackRange = playerDetector.attackRange;
-        DetermineElementsOrder();
-        SelectSpell();
-
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerDetector = GetComponent<PlayerDetector>();
         dissolvingController = GetComponent<DissolvingController>();
         enemyCollider = GetComponent<Collider>();
+
+        tier = 3;
+        spellWeapon = GetComponent<SpellWeapon>();
+        defaultAttackRange = playerDetector.attackRange;
+        DetermineElementsOrder();
+        SelectSpell();
 
         initialSpeed = _speed;
         initialDamageMultiplier = damageMultiplier;
@@ -187,7 +187,7 @@ public class BossEnemy : Enemy
         spellOrderCount++;
         // Update the attack range based on the current spell's range
         if (currentSpell.spellData.tier3.range > 1f)
-            playerDetector.attackRange = currentSpell.spellData.tier3.range * 0.7f;
+            playerDetector.attackRange = currentSpell.spellData.tier3.range;
         else
             playerDetector.attackRange = defaultAttackRange;
 

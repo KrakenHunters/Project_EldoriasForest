@@ -15,7 +15,7 @@ MonoBehaviour:
   tierUnlocked: 1
   currentTierData:
     damage: 12
-    cooldown: 8
+    cooldown: 15
     statusEffectTimer: 4
     statusEffectDamage: 10
     statusEffectChance: 0.8
@@ -56,7 +56,7 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 20
     statusEffectChance: 1
-    range: 3
+    range: 5
     healAmount: 10
     radius: 10
     duration: 5
