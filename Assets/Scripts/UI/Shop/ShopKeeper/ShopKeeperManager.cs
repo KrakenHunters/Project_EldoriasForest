@@ -181,7 +181,6 @@ public class ShopKeeperManager : MonoBehaviour
         baseSpell1Text = shopBase.fireSpell.spellData.shopkeeperDescription;
         baseSpell2Text = shopBase.iceSpell.spellData.shopkeeperDescription;
         baseSpell3Text = shopBase.lightningSpell.spellData.shopkeeperDescription;
-        Debug.Log("Spell ............." + shopSpecials.spell1);
         if (shopSpecials.spell1 != null)
             specialSpell1Text = shopSpecials.spell1.spellData.shopkeeperDescription;
         if (shopSpecials.spell2 != null)
@@ -198,7 +197,10 @@ public class ShopKeeperManager : MonoBehaviour
 
         typer = GetComponent<Typer>();
         if (ShopManager.Instance.permData.tutorialDone)
+        {
             IntroDialogue();
+            ShopManager.Instance.ButtonsInteractability(true);
+        }
         else
         {
             StartDialogue(newGameTexts);
