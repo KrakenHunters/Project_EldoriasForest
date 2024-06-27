@@ -106,12 +106,13 @@ public class PlayerController : CharacterClass
     #region character Actions
     public void HandleMove(Vector2 dir)
     {
+        if(isAlive)
         currentState?.HandleMovement(dir);
     }
     
     public void HandleInteract()
     {
-        if (interactableObj != null)
+        if (interactableObj != null && isAlive)
             currentState?.HandleInteract();
     }
 
@@ -122,13 +123,13 @@ public class PlayerController : CharacterClass
 
     public void HandleBaseAttack()
     {
-        if (tempData.baseSpell != null)
+        if (tempData.baseSpell != null && isAlive)
             spellCastManager.CastBaseSpell();
 
     }
     public void HandleSpecialAttack()
     {
-        if (tempData.specialSpell != null)
+        if (tempData.specialSpell != null && isAlive)
         {
             spellTarget = AimWorldPosition;
             spellCastManager.CastSpecialSpell();
@@ -136,7 +137,7 @@ public class PlayerController : CharacterClass
     }
     public void HandleUltimateAttack()
     {
-        if (tempData.ultimateSpell != null)
+        if (tempData.ultimateSpell != null && isAlive)
         {
             spellTarget = AimWorldPosition;
             spellCastManager.CastUltimateSpell();
@@ -152,6 +153,7 @@ public class PlayerController : CharacterClass
         base.GetHit(damageAmount, attacker, spell);
         if (isAlive && health <= 0)
         {
+            isAlive = false;
             ChangeState(new PlayerDieState());
         }
         else if(isAlive && health > 0 && attacker != this.gameObject)
@@ -242,9 +244,6 @@ public class PlayerController : CharacterClass
         base.TakeDamage(damage);
         onHealthChanged.Raise(health);
 
-        if (!isAlive)
-        {
-        }
     }
 
     public override void Heal(float healAmount)

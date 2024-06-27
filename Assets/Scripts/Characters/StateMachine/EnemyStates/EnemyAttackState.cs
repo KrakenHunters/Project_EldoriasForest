@@ -16,6 +16,8 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void OnEnter()
     {
+        animator.CrossFade(IdleHash, crossFadeDuration);
+
         hasAttacked = false;
         enemy.attacking = true;
         agent.ResetPath();
@@ -49,7 +51,6 @@ public class EnemyAttackState : EnemyBaseState
             {
                 hasAttacked = false;
                 enemy.Attack();
-                Debug.Log("Attacked");
                 animator.CrossFade(IdleHash, crossFadeDuration);
                 if (enemy is not BossEnemy)
                     enemy.attacking = false;

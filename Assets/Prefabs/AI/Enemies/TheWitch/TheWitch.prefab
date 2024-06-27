@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 8938214681447104387}
   - component: {fileID: 4309538859586518490}
   - component: {fileID: 8903390523940871372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TheWitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,8 +186,8 @@ MonoBehaviour:
   enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 10
-  timeBetweenAttacks: 1
-  runMultiplier: 2
+  timeBetweenAttacks: 5
+  runMultiplier: 1.5
   playerDetectionDistance: 30
   soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
     type: 3}

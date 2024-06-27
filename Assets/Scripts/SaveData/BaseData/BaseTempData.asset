@@ -18,4 +18,4 @@ MonoBehaviour:
   specialSpell: {fileID: 0}
   ultimateSpell: {fileID: 0}
   collectedSpells: []
-  startHealth: 80
+  startHealth: 50

@@ -6,6 +6,8 @@ public class EnemyChaseState : EnemyBaseState
     readonly NavMeshAgent agent;
     readonly Transform player;
 
+    private bool isMoving;
+
     public EnemyChaseState(Enemy enemy, Animator animator, NavMeshAgent agent, Transform player) : base(enemy, animator)
     {
         this.agent = agent;
@@ -14,7 +16,7 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
-        animator.CrossFade(RunHash, crossFadeDuration);
+
     }
 
 
@@ -24,6 +26,20 @@ public class EnemyChaseState : EnemyBaseState
         agent.speed = enemy.Speed * enemy.runMultiplier;
 
         agent.SetDestination(player.position);
+
+        if (agent.velocity.magnitude > 0f && !isMoving)
+        {
+            isMoving = true;
+            animator.CrossFade(RunHash, crossFadeDuration);
+        }
+        else if (agent.velocity.magnitude <= 0f && isMoving)
+        {
+            isMoving = false;
+
+            animator.CrossFade(IdleHash, crossFadeDuration);
+        }
+
+
 
     }
 }

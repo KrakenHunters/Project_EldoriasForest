@@ -25,7 +25,7 @@ public class BossDieState : EnemyBaseState
 
         enemy.enemyCollider.enabled = false;
         animator.CrossFade(DieHash, crossFadeDuration);
-        enemy.dissolvingController.OnDead();
+        // enemy.dissolvingController.OnDead();
 
     }
 
@@ -38,6 +38,8 @@ public class BossDieState : EnemyBaseState
             enemy.DropSouls();
             enemy.DropHealth();
             timer = 0f;
+            enemy.DestroyGameObject();
+
         }
     }
 

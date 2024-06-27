@@ -69,7 +69,7 @@ public class BossEnemy : Enemy
         playerDetector = GetComponent<PlayerDetector>();
         dissolvingController = GetComponent<DissolvingController>();
         enemyCollider = GetComponent<Collider>();
-
+        phase = 1;
         tier = 3;
         spellWeapon = GetComponent<SpellWeapon>();
         defaultAttackRange = playerDetector.attackRange;
@@ -103,7 +103,7 @@ public class BossEnemy : Enemy
         At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer() && !attacking));
         At(switchPhaseState, chaseState, new FuncPredicate(() => !switchPhase));
         Any(dieState, new FuncPredicate(() => !isAlive));
-        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer()));
+        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase));
         Any(switchPhaseState, new FuncPredicate(() => isAlive && switchPhase));
 
 
@@ -209,24 +209,41 @@ public class BossEnemy : Enemy
         }
     }
 
+    public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
+    {
+        if (attacker != this.gameObject)
+        {
+            TakeDamage(damageAmount * damageMultiplier);
+        }
+
+        healthBar.SetHealth(health);
+        if (!gotHit)
+            gotHit = true;
+    }
+
+
     protected override void TakeDamage(float damage)
     {
-        if (health <= 0 && phase == 3)
-        {
-            isAlive = false;
-            OnWitchDead.Raise(new Empty());
-        }
-        else if (health <= 0 && phase != 3)
-        {
-            switchPhase = true;
-            phase++;
-        }
-        else if (isAlive)
+        if (isAlive)
         {
             if (!invulnerable)
             {
                 health -= damage;
+                DamagePopUp indicator = Instantiate(damageIndicator, transform.position, Quaternion.identity);
+                indicator.SetDamageText(Mathf.RoundToInt(damage));
             }
+        }
+
+        if (health <= 0 && phase == 3 && !invulnerable)
+        {
+            isAlive = false;
+            OnWitchDead.Raise(new Empty());
+
+        }
+        else if (health <= 0 && phase != 3 && !invulnerable)
+        {
+            switchPhase = true;
+            phase++;
         }
 
     }

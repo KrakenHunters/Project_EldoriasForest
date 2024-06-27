@@ -10,13 +10,16 @@ public class PlayerDieState : BaseState
     public override void EnterState()
     {
         base.EnterState();
+        Debug.Log("Die");
         //animate 
-
+        inputManager = player.GetComponent<InputManager>();
+        inputManager.DisableInput();
         timer = 0f;
         clipLength = 1.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
     }
     public override void ExitState()
     {
+        Debug.Log("ExitDie");
 
     }
 
@@ -37,19 +40,29 @@ public class PlayerDieState : BaseState
 
     }
 
-    public override void HandleSpecialAttack()
-    {
-
-    }
-
+    public override void HandleMovement(Vector2 dir) { }
     public override void HandleAttack()
     {
 
     }
-    public override void StopInteract()
+
+    public override void HandleAttackCancel()
     {
 
     }
+
+    public override void HandleInteract()
+    {
+
+    }
+
+    public override void HandleSpecialAttack()
+    {
+
+    }
+    public override void StopInteract() { }
+
+    public override void HandleDeath() { }
 
 
 }

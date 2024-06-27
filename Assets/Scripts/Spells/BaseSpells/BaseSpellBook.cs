@@ -50,18 +50,21 @@ public class BaseSpellBook : SpellBook
             targetDirection = FindClosestEnemyWithinCone(direction);
             tier = GameManager.Instance.pData.baseAttackTier;
 
+
         }
         else if (attacker.GetComponent<SpecialSpellBook>())
         {
             targetDirection = FindClosestEnemyWithinCone(direction);
             tier = charAttacker.gameObject.GetComponent<SpellBook>().tier;
-
         }
         else
         {
             tier = charAttacker.gameObject.GetComponent<CharacterClass>().tier;
+
             targetDirection = direction;
         }
+        SetDataFromSpellContainer();
+
 
         GetComponent<Rigidbody>().velocity = targetDirection * projectileSpeed;
     }

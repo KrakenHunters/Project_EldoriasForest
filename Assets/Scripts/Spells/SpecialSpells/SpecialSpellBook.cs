@@ -21,7 +21,11 @@ public class SpecialSpellBook : SpellBook
             attacker.GetComponent<PlayerSpellCastManager>().currentSpecialSpellCooldown = cooldown;
             attacker.GetComponent<PlayerSpellCastManager>().currentSpecialSpellDuration = duration;
             attacker.GetComponent<PlayerSpellCastManager>().StartCoroutine("SpecialSpellCooldownTimer");
-
+        }
+        else
+        {
+            tier = charAttacker.GetComponent<CharacterClass>().tier;
+            SetDataFromSpellContainer();
 
         }
 

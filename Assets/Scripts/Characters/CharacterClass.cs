@@ -27,7 +27,7 @@ public class CharacterClass : BaseObject
     protected Transform castPos;
 
     [SerializeField]
-    private DamagePopUp damageIndicator;
+    protected DamagePopUp damageIndicator;
 
 
     [HideInInspector]
