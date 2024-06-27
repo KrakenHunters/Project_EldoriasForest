@@ -98,7 +98,7 @@ public class BaseSpellBook : SpellBook
         return returnDirection;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
 
         if (other.GetComponent<CharacterClass>() && other.gameObject != charAttacker)
@@ -115,4 +115,3 @@ public class BaseSpellBook : SpellBook
         //Call an explosion or the after effect for the destroyed object.
     }
 }
-;

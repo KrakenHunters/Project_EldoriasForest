@@ -51,4 +51,10 @@ public class FirePatch_SpecialSpell : BaseSpellBook
             }
         }
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+
+    }
+
 }
