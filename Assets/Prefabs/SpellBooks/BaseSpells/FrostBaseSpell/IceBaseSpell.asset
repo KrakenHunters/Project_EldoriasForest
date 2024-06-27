@@ -14,24 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 0
-    cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
-    range: 0
+    damage: 12
+    cooldown: 0.5
+    statusEffectTimer: 3
+    statusEffectDamage: 1.2
+    statusEffectChance: 0.1
+    range: 20
     healAmount: 0
     radius: 0
     duration: 0
-    speed: 0
+    speed: 15
   templeDescription: 
   shopkeeperDescription: Ah, the ice spell, can hit greater distances, chilly!
   tier1:
     damage: 12
     cooldown: 0.5
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
+    statusEffectTimer: 3
+    statusEffectDamage: 1.2
+    statusEffectChance: 0.1
     range: 20
     healAmount: 0
     radius: 0
