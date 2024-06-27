@@ -106,11 +106,28 @@ PrefabInstance:
     - target: {fileID: 3485975892050809803, guid: 1c343ff33b0189a4a9e9e03df353b59f,
         type: 3}
       propertyPath: m_text
-      value: Hold E To Interact
+      value: HOld E tO Interact
       objectReference: {fileID: 0}
     - target: {fileID: 3485975892050809803, guid: 1c343ff33b0189a4a9e9e03df353b59f,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485975892050809803, guid: 1c343ff33b0189a4a9e9e03df353b59f,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f51670d87466f844865462ed4cf4f5f,
+        type: 2}
+    - target: {fileID: 3485975892050809803, guid: 1c343ff33b0189a4a9e9e03df353b59f,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6610148831055141403, guid: 6f51670d87466f844865462ed4cf4f5f,
+        type: 2}
+    - target: {fileID: 3485975892050809803, guid: 1c343ff33b0189a4a9e9e03df353b59f,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3767370527449703149, guid: 1c343ff33b0189a4a9e9e03df353b59f,
