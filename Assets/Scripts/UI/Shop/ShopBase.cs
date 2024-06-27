@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopBase : MonoBehaviour , IShoppable
+public class ShopBase : MonoBehaviour, IShoppable
 {
 
     [Header("Base Shop Selected")]
@@ -21,7 +21,11 @@ public class ShopBase : MonoBehaviour , IShoppable
     public BaseElectricityspell lightningSpell;
 
     //[SerializeField] private Image baseSpellIcon;
-
+    [Header("Tiers")]
+    [SerializeField] private Image tierImage;
+    [SerializeField] private Sprite tier1;
+    [SerializeField] private Sprite tier2;
+    [SerializeField] private Sprite tier3;
 
     public BaseShopItems currentbasespell = BaseShopItems.None;
     [SerializeField] private EmptyGameEvent OnBuyStuff;
@@ -34,6 +38,7 @@ public class ShopBase : MonoBehaviour , IShoppable
         upgradeCostText.text = upgradeCost.ToString();
         if (ShopManager.Instance.permData.baseAttackTier == 3)
             upgradeCostText.text = "Max";
+        SetTier();
     }
 
     public void OnSelectBaseSpell()
@@ -55,6 +60,22 @@ public class ShopBase : MonoBehaviour , IShoppable
                 break;
         }
         //baseSpellIcon.sprite = ShopManager.Instance.permData.prefBaseSpell.spellIcon;
+    }
+
+    public void SetTier()
+    {
+        switch (ShopManager.Instance.permData.baseAttackTier)
+        {
+            case 1:
+                tierImage.sprite = tier1;
+                break;
+            case 2:
+                tierImage.sprite = tier2;
+                break;
+            case 3:
+                tierImage.sprite = tier3;
+                break;
+        }
     }
 
     public void ConvertSpellToType(BaseSpellBook spell)
@@ -114,8 +135,7 @@ public class ShopBase : MonoBehaviour , IShoppable
         if (ShopManager.Instance.permData.baseAttackTier == 3)
             upgradeCostText.text = "Max";
 
-
-
+        SetTier();
         OnBuyStuff.Raise(new Empty());
     }
 

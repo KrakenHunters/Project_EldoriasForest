@@ -25,7 +25,7 @@ public class SaveManager : Singleton<SaveManager>
             return;
         }
         DontDestroyOnLoad(this.gameObject);
-        permanentDataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
+        permanentDataFilePath = Application.persistentDataPath + "/GameData.save";
 
         InitializeSpellBookDictionaries();
     }

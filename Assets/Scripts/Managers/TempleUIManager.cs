@@ -20,7 +20,13 @@ public class TempleUIManager : Singleton<TempleUIManager>
     [SerializeField] private Image celebrationImage;
     [SerializeField] private TMPro.TextMeshProUGUI celebrationText;
 
-
+    [Header("Tier Icons")]
+    [SerializeField] private Image currentSpellTierIcon;
+    [SerializeField] private Image newSpellTierIcon;
+    [SerializeField] private Image celebrationSpellTierIcon;
+    [SerializeField] private Sprite tier1;
+    [SerializeField] private Sprite tier2;
+    [SerializeField] private Sprite tier3;
 
     [Header("Temple UI Text")]
     [SerializeField] private TMPro.TextMeshProUGUI templeHealthText;
@@ -46,6 +52,9 @@ public class TempleUIManager : Singleton<TempleUIManager>
     [Header("All SpellBooks")]
     [SerializeField] private List<SpellBook> templeSpecialSpellList;
 
+    [field: SerializeField]
+    public bool keep { get; set; }
+
     [SerializeField]
     private FloatGameEvent OnHealPlayer;
     [SerializeField]
@@ -60,12 +69,10 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     private int templeTier;
 
-    [field: SerializeField]
-    public bool keep { get; set; }
 
     public void SetTempleOptions(int tier)
     {
-        minTempleTier1Souls = Mathf.RoundToInt(minTempleTier1Souls * (1+GameManager.Instance.pData.templeSoulsDropRate));
+        minTempleTier1Souls = Mathf.RoundToInt(minTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
         minTempleTier2Souls = Mathf.RoundToInt(minTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
         minTempleTier3Souls = Mathf.RoundToInt(minTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
         maxTempleTier1Souls = Mathf.RoundToInt(maxTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
@@ -107,6 +114,37 @@ public class TempleUIManager : Singleton<TempleUIManager>
         //Set the values and the objects for the menu
     }
 
+
+    public void SetAllTempleTiers()
+    {
+
+        newSpellTierIcon.sprite = GetSpriteByTier(templeTier);
+        celebrationSpellTierIcon.sprite = GetSpriteByTier(templeTier);
+        if (GameManager.Instance.tData.specialSpell != null)
+        {
+            currentSpellTierIcon.gameObject.SetActive(true);
+            currentSpellTierIcon.sprite = GetSpriteByTier(GameManager.Instance.tData.specialSpell.tier);
+        }
+        else
+            currentSpellTierIcon.gameObject.SetActive(false);
+
+    }
+
+    public Sprite GetSpriteByTier(int tier)
+    {
+        switch (tier)
+        {
+            case 1:
+                return tier1;
+            case 2:
+                return tier2;
+            case 3:
+                return tier3;
+            default:
+                return null;
+        }
+    }
+
     private SpecialSpellBook CheckSpecialSpellOnPlayer()
     {
         if (GameManager.Instance.tData.specialSpell != null)
@@ -127,7 +165,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
     private void GetSpell()
     {
         int EquippedSpecialSpellTier = 0;
-            currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
+        currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
         if (CheckSpecialSpellOnPlayer() != null)
         {
             EquippedSpecialSpellTier = CheckSpecialSpellOnPlayer().tier;
@@ -163,32 +201,6 @@ public class TempleUIManager : Singleton<TempleUIManager>
         }
     }
 
-    /*    private SpellBook GetXSpell()
-        {
-            if (templeTier == 3)
-            {
-                currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
-            }
-            else
-            {
-                while (currentTempleSpell is not SpecialSpellBook)
-                {
-                    currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
-                }
-            }
-
-            if (currentTempleSpell is SpecialSpellBook)
-            {
-                currentTempleSpell.tier = templeTier;
-                GameManager.Instance.tData.specialSpell = currentTempleSpell as SpecialSpellBook; //fixthis to optional
-            }
-            else
-            {
-                GameManager.Instance.tData.ultimateSpell = currentTempleSpell as UltimateSpellBook;
-            }
-            return currentTempleSpell;
-        }
-    */
     public void OnHealthButton()
     {
 
@@ -225,6 +237,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
                 currentSpellImage.sprite = GameManager.Instance.tData.specialSpell.spellIcon;
                 newSpellImage.sprite = currentTempleSpell.spellIcon;
 
+                SetAllTempleTiers();
                 confirmationSpellScreen.SetActive(true);
                 templeUI.SetActive(false);
             }
@@ -240,6 +253,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
                 currentSpellImage.sprite = GameManager.Instance.tData.ultimateSpell.spellIcon;
                 newSpellImage.sprite = currentTempleSpell.spellIcon;
 
+                SetAllTempleTiers();    
                 confirmationSpellScreen.SetActive(true);
                 templeUI.SetActive(false);
             }
@@ -249,7 +263,6 @@ public class TempleUIManager : Singleton<TempleUIManager>
             }
 
         }
-
     }
 
     private void SetCelebrationScreen()
@@ -299,6 +312,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void CloseCelebrationScreen()
     {
+
         celebrationScreen.SetActive(false);
         Time.timeScale = 1.0f;
     }

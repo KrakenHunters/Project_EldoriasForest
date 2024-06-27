@@ -9,6 +9,8 @@ public class ShopManager : Singleton<ShopManager>
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
 
+    [SerializeField] 
+    private GameObject hoverCheck;
     [SerializeField]
     private GameObject shopKeeperManager;
 
@@ -17,6 +19,8 @@ public class ShopManager : Singleton<ShopManager>
     private ShopBase shopBase;
     private ShopSpecials shopSpecials;
     private ShopCharacterStats shopCharacterStats;
+
+    
 
     private float countingSpeed = 50f;
     private void Awake()
@@ -35,8 +39,6 @@ public class ShopManager : Singleton<ShopManager>
         else
             soulAmountText.text = permData.totalSouls.ToString();
         InvokeRepeating(nameof(AutoSave),3, 20);
-
-        shopKeeperManager.SetActive(true);
     }
 
 

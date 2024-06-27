@@ -32,9 +32,8 @@ public class ShopKeeperManager : MonoBehaviour
     [SerializeField]
     private GameObject NoWitch;
 
-
     private string[] newGameTexts = new string[]
-    {
+   {
         "Oh, hello there, magician!",
         "I'm Jolly, the shopkeeper of this village.",
         "Welcome to Eldoria, our charming magical village!",
@@ -51,7 +50,7 @@ public class ShopKeeperManager : MonoBehaviour
         "Perhaps you are the one!",
         "If you bring me souls, I'll help you grow stronger to defeat her.",
         "Would you like me to explain how the shop works?"
-    };
+   };
 
     private string[] witchStoryTexts = new string[]
     {
@@ -176,13 +175,13 @@ public class ShopKeeperManager : MonoBehaviour
 
     private Typer typer;
 
-    void Awake()
+    public void StartShopKeeperManager()
     {
 
         baseSpell1Text = shopBase.fireSpell.spellData.shopkeeperDescription;
         baseSpell2Text = shopBase.iceSpell.spellData.shopkeeperDescription;
         baseSpell3Text = shopBase.lightningSpell.spellData.shopkeeperDescription;
-
+        Debug.Log("Spell ............." + shopSpecials.spell1);
         if (shopSpecials.spell1 != null)
             specialSpell1Text = shopSpecials.spell1.spellData.shopkeeperDescription;
         if (shopSpecials.spell2 != null)
@@ -322,7 +321,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         highlightAreas[0].SetActive(true);
         StartDialogue(tutorialBaseSpellTexts);
-        
+
     }
 
     public void SpecialSpellExplanation()

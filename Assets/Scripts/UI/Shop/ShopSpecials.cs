@@ -39,6 +39,11 @@ public class ShopSpecials : MonoBehaviour, IShoppable
     [SerializeField] private Image spell2SelectedIcon;
     [SerializeField] private Image spell3SelectedIcon;
 
+    [Header("Tiers")]
+    [SerializeField] private Image tierImage;
+    [SerializeField] private Sprite tier1;
+    [SerializeField] private Sprite tier2;
+    [SerializeField] private Sprite tier3;
 
     [Header("Events")]
     [SerializeField] private EmptyGameEvent OnBuyStuff;
@@ -57,6 +62,10 @@ public class ShopSpecials : MonoBehaviour, IShoppable
 
     private List<SpecialSpellBook> availableSpells = new List<SpecialSpellBook>();
     private List<SpecialSpellBook> usedSpells = new List<SpecialSpellBook>();
+
+
+    public GameEvent<Empty> OnStartShopKeeper;
+
 
     private void Start()
     {
@@ -89,9 +98,23 @@ public class ShopSpecials : MonoBehaviour, IShoppable
 
         UpdateButtonInteractions();
 
-
+       OnStartShopKeeper.Raise(new Empty());
     }
-
+    public void SetTier(SpellBook spell)
+    {
+        switch (spell.tier)
+        {
+            case 1:
+                tierImage.sprite = tier1;
+                break;
+            case 2:
+                tierImage.sprite = tier2;
+                break;
+            case 3:
+                tierImage.sprite = tier3;
+                break;
+        }
+    }
     private void ResetAllSpellTiers()
     {
         foreach (var spell in shopManager.permData.spellBooksUnlocked)
@@ -184,7 +207,7 @@ public class ShopSpecials : MonoBehaviour, IShoppable
             shopManager.permData.totalSouls -= upgradeCost;
             upgradeCost *= upgradeCostMultiplier;
             upgradeCostText.text = upgradeCost.ToString();
-
+            SetTier(spell);
             OnBuyStuff.Raise(new Empty());
         }
     }
@@ -239,6 +262,7 @@ public class ShopSpecials : MonoBehaviour, IShoppable
         spell1Button.interactable = spell1 == boughtSpell;
         spell2Button.interactable = spell2 == boughtSpell;
         spell3Button.interactable = spell3 == boughtSpell;
+        SetTier(boughtSpell);
 
     }
 
