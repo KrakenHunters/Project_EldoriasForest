@@ -121,7 +121,7 @@ MonoBehaviour:
   statusEffect: {fileID: -1352487326808034615, guid: 7c889cd1e8caa434e8483ce2e9a02702,
     type: 3}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
-  castClip: {fileID: 8300000, guid: c9409d84cd60f074ab4200906b099908, type: 3}
+  castClip: {fileID: 8300000, guid: b1edc386273673f4185a40795535dc7b, type: 3}
   autoAimRange: 10
   autoAimAngle: 15
 --- !u!54 &664759525010073408

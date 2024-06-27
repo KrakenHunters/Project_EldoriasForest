@@ -15,22 +15,21 @@ MonoBehaviour:
   totalSouls: 0
   spellBooksUnlocked: []
   spellBookIDs: 
-  baseAttackTier: 1
-  prefBaseSpell: {fileID: 370365836938485006, guid: d275522146d238e4882e7347999dc242,
-    type: 3}
+  baseAttackTier: 0
+  prefBaseSpell: {fileID: 0}
   templeSoulsDropRate: 0
   rune: 0
   cooldownReduction: 0
   healthBonus: 0
   IsUltimateSpellSlotUnlocked: 0
   InitializeData: 0
-  tutorialDone: 1
-  baseUpgradeCost: 150
-  healthUpgradeCost: 70
-  defensiveRuneCost: 80
-  soulDropUpgradeCost: 50
-  spellCooldownCost: 150
-  templeSoulsDropRateIncrement: 0.25
-  runeIncrement: 0.1
-  cooldownReductionIncrement: 0.1
-  healthBonusIncrement: 20
+  tutorialDone: 0
+  baseUpgradeCost: 0
+  healthUpgradeCost: 0
+  defensiveRuneCost: 0
+  soulDropUpgradeCost: 0
+  spellCooldownCost: 0
+  templeSoulsDropRateIncrement: 0
+  runeIncrement: 0
+  cooldownReductionIncrement: 0
+  healthBonusIncrement: 0
