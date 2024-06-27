@@ -128,7 +128,7 @@ MonoBehaviour:
   isAudioLooping: 0
   statusEffect: {fileID: 0}
   spellAudioEvent: {fileID: 11400000, guid: 9d57c8c9ca9d2b44790b62d16ab3351f, type: 2}
-  castClip: {fileID: 8300000, guid: f2d19c0c2fe1173419e2ab9cf114d2c4, type: 3}
+  castClip: {fileID: 8300000, guid: 7eec271b25839854bb1ce2ce9431a511, type: 3}
   autoAimRange: 10
   autoAimAngle: 15
 --- !u!54 &-1239753716125547343
