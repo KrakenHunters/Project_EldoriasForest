@@ -49,4 +49,4 @@ MonoBehaviour:
   OnSoulChange: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
   MenuEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
   BGClip: {fileID: 8300000, guid: 879d44bd624a7bf438058510aac14159, type: 3}
-  collectClip: {fileID: 8300000, guid: 92fecc9df4d3b3d4ebfd7e00be1d9ca1, type: 3}
+  collectClip: {fileID: 8300000, guid: 587dcc80002013946b23f1013adaa168, type: 3}
