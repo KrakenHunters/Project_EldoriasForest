@@ -146,7 +146,6 @@ MonoBehaviour:
   enemyCollider: {fileID: 0}
   wanderRadius: 10
   wanderTime: 10
-  maxGroupSize: 4
   timeBetweenAttacks: 1
   runMultiplier: 2
   playerDetectionDistance: 30
@@ -169,7 +168,7 @@ MonoBehaviour:
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 6090936399453225415}
-  spellBook: {fileID: 5214903931515123978, guid: 5d7b563356bfd014e86b528272199336,
+  spellBook: {fileID: 6092356686330749912, guid: dbfb2075809ad514b9cdd656b877a3be,
     type: 3}
 --- !u!114 &4949369657001733455
 MonoBehaviour:
