@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class Interactable : BaseObject
@@ -13,12 +14,29 @@ public class Interactable : BaseObject
 
     private ParticleSystem particles;
 
+    private Transform Player;
+
     public float waitTime;
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().transform;
+
         canInteract = true;
         particles = GetComponentInChildren<ParticleSystem>();
+
+    }
+
+    private void Update()
+    {
+        if (Vector3.Distance(this.transform.position, Player.position) < 10f && canInteract && !particles.isPlaying)
+        {
+            particles.Play();
+        }
+        else if((Vector3.Distance(this.transform.position, Player.position) > 10f || !canInteract) && particles.isPlaying)
+        {
+            particles.Stop();
+        }
     }
 
     public virtual void Interact()
@@ -29,13 +47,11 @@ public class Interactable : BaseObject
     public void ActivateInteractable()
     {
         _holdToInteract.enabled = true;
-        particles.Play();
     }
 
     public void DeactivateInteractable()
     {
         _holdToInteract.enabled = false;
-        particles.Stop();
 
     }
 

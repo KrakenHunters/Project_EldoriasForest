@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 0
-  followSpeed: 20
-  curveStrength: 2
+  followSpeed: 30
+  curveStrength: 1
   healthAmountMaxTier1: 5
   healthAmountMinTier1: 10
   healthAmountMaxTier2: 20
