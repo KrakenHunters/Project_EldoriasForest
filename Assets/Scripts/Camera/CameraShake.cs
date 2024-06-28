@@ -11,10 +11,15 @@ public class CameraShake : MonoBehaviour
     [SerializeField]
     private DoubleFloatEvent gameEvent;
 
+    [SerializeField]
+    private EnemyAudioEvent enemyEvent;
+
     private void OnEnable()
     {
         gameEvent.OnPlayerGotHit.AddListener(ShakeCamera);
         gameEvent.OnUltimateCast.AddListener(ShakeCamera);
+        enemyEvent.OnWitchScream.AddListener(ShakeCameraWitch);
+
 
     }
 
@@ -22,6 +27,8 @@ public class CameraShake : MonoBehaviour
     {
         gameEvent.OnPlayerGotHit.RemoveListener(ShakeCamera);
         gameEvent.OnUltimateCast.RemoveListener(ShakeCamera);
+        enemyEvent.OnWitchScream.RemoveListener(ShakeCameraWitch);
+
     }
 
 
@@ -36,6 +43,14 @@ public class CameraShake : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         shakeTimer = time;
     }
+
+    private void ShakeCameraWitch(BossEnemy witch)
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = witch.screamShakeIntensity;
+        shakeTimer = witch.screamShakeTime;
+    }
+
 
     private void Update()
     {

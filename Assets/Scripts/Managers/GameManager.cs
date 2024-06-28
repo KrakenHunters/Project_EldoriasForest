@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -9,8 +10,15 @@ public class GameManager : Singleton<GameManager>
     public GameEvent<Empty> OnSoulChange;
     public MenuAudioEvent MenuEvent;
 
+    public EnemyAudioEvent enemyEvent;
+    public BossEnemy witch;
+
+    [SerializeField] PlayableDirector witchCinematic;
+
     [SerializeField] AudioClip BGClip;
     [SerializeField] AudioClip collectClip;
+
+    [SerializeField] GameObject ScreamUI;
 
     private void Awake()
     {
@@ -18,6 +26,10 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
+        if (!pData.tutorialDone)
+        {
+            StartCoroutine(BlinkScreamUI());
+        }
         MenuEvent.PlayBGMusic.Invoke(BGClip);
     }
 
@@ -45,5 +57,24 @@ public class GameManager : Singleton<GameManager>
             OnSoulChange.Raise(new Empty());
             yield return null;
         }
+    }
+
+    private IEnumerator BlinkScreamUI()
+    {
+        yield return new WaitForSeconds(2f); // Wait for 3 seconds before starting the blink effect
+        enemyEvent.OnWitchScream.Invoke(witch);
+
+        float elapsedTime = 0f;
+        float blinkDuration = 2f;
+
+        while (elapsedTime < blinkDuration)
+        {
+            ScreamUI.SetActive(!ScreamUI.activeSelf);
+            yield return new WaitForSeconds(0.5f); // Adjust the duration to control the blink speed
+            elapsedTime += 0.5f;
+        }
+
+        ScreamUI.SetActive(false); // Ensure ScreamUI is inactive after blinking
+        witchCinematic.Play();
     }
 }

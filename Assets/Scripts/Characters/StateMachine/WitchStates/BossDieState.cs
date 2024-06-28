@@ -20,6 +20,7 @@ public class BossDieState : EnemyBaseState
 
     public override void OnEnter()
     {
+        Debug.Log("DieState");
         agent.ResetPath();
 
         enemy.enemyCollider.enabled = false;

@@ -26,7 +26,7 @@ public class BossSwitchPhaseState : EnemyBaseState
         timer = 0f;
         agent.ResetPath();
 
-        animator.CrossFade(switchPhaseHash, crossFadeDuration);
+        animator.CrossFade(SwitchPhaseHash, crossFadeDuration);
 
     }
 

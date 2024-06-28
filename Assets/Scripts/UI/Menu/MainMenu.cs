@@ -81,7 +81,8 @@ public class MainMenu : Menu
     public void StartNewGameData()
     {
         SaveManager.Instance.ResetPermanentData();
-        StartGame();
+        SaveManager.Instance.ResetTemporaryData();
+        SceneManager.LoadScene("Renee_ProgrammingGym");//change to the  level  name
     }
 
     public void OnButtonClick()

@@ -21,6 +21,7 @@ public class AudioManager : Singleton<AudioManager>
         menuAudioEvent.PlayBGMusic.AddListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.AddListener(PlayButtonClick);
         collectableAudioEvent.ItemCollected.AddListener(PlayItemCollected);
+        enemyAudioEvent.OnWitchScream.AddListener(PlayWitchScream);
     }
 
     private void OnDisable()
@@ -30,6 +31,8 @@ public class AudioManager : Singleton<AudioManager>
         menuAudioEvent.PlayBGMusic.RemoveListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.RemoveListener(PlayButtonClick);
         collectableAudioEvent.ItemCollected.RemoveListener(PlayItemCollected);
+        enemyAudioEvent.OnWitchScream.RemoveListener(PlayWitchScream);
+
     }
 
     private void Awake()
@@ -95,6 +98,21 @@ public class AudioManager : Singleton<AudioManager>
         speaker.PlayOneShot(clip);
         speaker.clip = null;
     }
+
+    private void PlayWitchScream(BossEnemy witch)
+    {
+        AudioSource speaker = FindUnusedAudioSource();
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        speaker.clip = witch.screamClip;
+        speaker.PlayOneShot(witch.screamClip);
+        speaker.clip = null;
+    }
+
 
     private void PlaySpellCastAudio(SpellBook spell)
     {

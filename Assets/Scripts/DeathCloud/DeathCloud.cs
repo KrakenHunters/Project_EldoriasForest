@@ -52,7 +52,7 @@ public class DeathCloud : MonoBehaviour
         while (true)
         {
             player.GetHit(player.MaxHealth * 0.25f, this.gameObject, null);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageIntensity: 0.8
-  damageMaxIntensity: 1
+  damageMaxIntensity: 0.5
   damageTimer: 0.01
   gameEvent: {fileID: 11400000, guid: 52055cc7db52e5c43bebc137d7d656c4, type: 2}
 --- !u!114 &6051749570762878236
@@ -148,7 +148,7 @@ MonoBehaviour:
   health: 100
   _speed: 5
   initialSpeed: 0
-  _speedModifier: 1
+  _speedModifier: 0.8
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
   damageIndicator: {fileID: 7952942286368911428, guid: f9f64a444d9e61740b1cb6368f8508e0,
@@ -169,7 +169,6 @@ MonoBehaviour:
   canInteract: 0
   interactableObj: {fileID: 0}
   spellWeapon: {fileID: 0}
-  healthBonusEachStage: 20
   doubleFloatEvent: {fileID: 11400000, guid: fbd6d458a22a1304ebea65214efaa754, type: 2}
   damageScreen: {fileID: 11400000, guid: 52055cc7db52e5c43bebc137d7d656c4, type: 2}
 --- !u!114 &5066222880727964611

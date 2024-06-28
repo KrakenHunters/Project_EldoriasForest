@@ -74,6 +74,8 @@ public class Enemy : CharacterClass
 
     private List<AISpot> spotList;
 
+    public EnemyAudioEvent enemyEvent;
+
     [HideInInspector]
     public bool gotHit;
     [HideInInspector]

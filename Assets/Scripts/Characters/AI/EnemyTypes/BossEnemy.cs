@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.VFX;
 using Utilities;
 
 public class BossEnemy : Enemy
@@ -61,6 +62,12 @@ public class BossEnemy : Enemy
 
     [SerializeField]
     private GameEvent<Empty> OnWitchDead;
+    [HideInInspector]
+    public bool scream;
+
+    public AudioClip screamClip;
+    public float screamShakeIntensity;
+    public float screamShakeTime;
 
     protected override void Start()
     {
@@ -91,6 +98,7 @@ public class BossEnemy : Enemy
         var patrollingState = new EnemyPatrollingState(this, animator, agent);
         var chaseState = new EnemyChaseState(this, animator, agent, playerDetector.Player);
         var switchPhaseState = new BossSwitchPhaseState(this, animator, agent);
+        var screamState = new BossScreamState(this, animator, agent);
         var attackState = new EnemyAttackState(this, animator, agent, playerDetector.Player);
         var dieState = new BossDieState(this, animator, agent);
 
@@ -102,10 +110,11 @@ public class BossEnemy : Enemy
         At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
         At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer() && !attacking));
         At(switchPhaseState, chaseState, new FuncPredicate(() => !switchPhase));
+        At(screamState, wanderState, new FuncPredicate(() => isAlive && !scream));
         Any(dieState, new FuncPredicate(() => !isAlive));
         Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase));
         Any(switchPhaseState, new FuncPredicate(() => isAlive && switchPhase));
-
+        Any(screamState, new FuncPredicate(() => isAlive && scream));
 
         stateMachine.SetState(wanderState);
 
@@ -179,6 +188,7 @@ public class BossEnemy : Enemy
         // Check if spellOrderCount is within the range of the spellList
         if (spellOrderCount >= phaseElement[phase].Count || (currentSpell is UltimateSpellBook && health > maxHealth * 0.30f))
         {
+            Scream();
             SpawnEnemies();
             // Reset spellOrderCount if it exceeds or matches the list count
             spellOrderCount = 0;
@@ -205,8 +215,15 @@ public class BossEnemy : Enemy
             Vector3 spawnPosition = transform.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * 4f;
 
             // Spawn enemy at calculated position
-            Instantiate(spawnEnemies[Random.Range(0, spawnEnemies.Count)], spawnPosition, Quaternion.identity);
+            Enemy enemySpawned = Instantiate(spawnEnemies[Random.Range(0, spawnEnemies.Count)], spawnPosition, Quaternion.identity);
+            enemySpawned.GetComponentInChildren<VisualEffect>().Play();
         }
+    }
+
+    public void Scream()
+    {
+        Debug.Log("Scream");
+        scream = true;
     }
 
     public override void GetHit(float damageAmount, GameObject attacker, SpellBook spell)
