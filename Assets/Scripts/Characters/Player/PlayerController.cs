@@ -86,6 +86,11 @@ public class PlayerController : CharacterClass
             }
         }
 
+        if(health < maxHealth * 0.2f)
+            TrackerUIManager.Instance.isHealthlow = true;
+        else
+            TrackerUIManager.Instance.isHealthlow = false;
+
         if (inputManager.Movement != new Vector2(0f, 0f) || !isMoving)
         {
             HandleMove(inputManager.Movement);
