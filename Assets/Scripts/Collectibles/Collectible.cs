@@ -27,8 +27,11 @@ public class Collectible : BaseObject
         if (other.GetComponent<PlayerController>() && !isFollowingPlayer)
         {
             player = other.GetComponent<PlayerController>();
-            isFollowingPlayer = true;
-            StartCoroutine(FollowPlayerCoroutine());
+            if (player.Health > 0f)
+            {
+                isFollowingPlayer = true;
+                StartCoroutine(FollowPlayerCoroutine());
+            }
         }
     }
 
@@ -53,8 +56,7 @@ public class Collectible : BaseObject
             if (Vector3.Distance(transform.position, player.transform.position) < 1f)
             {
                 ItemCollected(player);
-                // Play Collected SFX and VFX
-                Invoke("DestroyGameObj", 0.02f); // Destroy game object after VFX and SFX are done
+                Destroy(gameObject);
             }
 
             yield return new WaitForFixedUpdate(); // Wait for next physics update
@@ -66,8 +68,4 @@ public class Collectible : BaseObject
         StopAllCoroutines();
     }
 
-    private void DestroyGameObj()
-    {
-        Destroy(gameObject);
-    }
 }

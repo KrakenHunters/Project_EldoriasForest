@@ -16,7 +16,7 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
-
+        TrackerUIManager.Instance.isFightingWitch = true;
     }
 
 

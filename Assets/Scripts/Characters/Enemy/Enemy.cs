@@ -81,6 +81,8 @@ public class Enemy : CharacterClass
     [HideInInspector]
     public bool attacking;
 
+    protected bool startActions;
+
 
    [SerializeField] protected WSHealthBar healthBar;
     protected virtual void Start()
@@ -134,13 +136,22 @@ public class Enemy : CharacterClass
 
     protected virtual void Update()
     {
-        if (Vector3.Distance(playerDetector.Player.position, transform.position) <= playerDetectionDistance)
+        
+        if (Vector3.Distance(playerDetector.Player.position, transform.position) <= playerDetectionDistance && CanStartAction())
         {
             stateMachine.Update();
             attackTimer.Tick(Time.deltaTime);
             wanderTimer.Tick(Time.deltaTime);
         }
 
+    }
+
+    private bool CanStartAction()
+    {
+        if (GameManager.Instance.enemyActions)
+            return true;
+        else
+            return false;
     }
 
     void FixedUpdate()
@@ -246,6 +257,7 @@ public class Enemy : CharacterClass
         }
 
         AISpotSelected = spotList[Random.Range(0, spotList.Count)];
+        Debug.Log(spotList.Count);
         return AISpotSelected;
     }
 

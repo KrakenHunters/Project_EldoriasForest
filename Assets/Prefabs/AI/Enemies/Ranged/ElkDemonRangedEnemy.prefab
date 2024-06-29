@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4949369657001733455}
   - component: {fileID: 1724517897213098423}
   - component: {fileID: 5396051200626988677}
+  - component: {fileID: -2147717200658222999}
   m_Layer: 7
   m_Name: ElkDemonRangedEnemy
   m_TagString: Enemy
@@ -165,6 +166,7 @@ MonoBehaviour:
   baseHealth: 40
   healthMultTier2: 3
   healthMultTier3: 5
+  enemyEvent: {fileID: 0}
   gotHit: 0
   attacking: 0
   healthBar: {fileID: 3869476167306144655}
@@ -225,6 +227,36 @@ MonoBehaviour:
   vfxGraph: {fileID: 6372547423779937596}
   dissolveRate: 0.0125
   refreshRate: 0.025
+--- !u!114 &-2147717200658222999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690890994851115203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f7361218d86efed4b8fa4f8a9e419c41, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3242830716933975920}
+          m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+          m_MethodName: StartActions
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1832747710586203471
 PrefabInstance:
   m_ObjectHideFlags: 0

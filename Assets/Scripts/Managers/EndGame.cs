@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField]
+    TMPro.TextMeshProUGUI hintText;
+
     private void Awake()
     {
         Time.timeScale = 0;
@@ -14,7 +17,16 @@ public class EndGame : MonoBehaviour
     {
         Time.timeScale = 1f;
         SaveManager.Instance.ResetTemporaryData();
-        SceneManager.LoadScene("01_Shop");
+        if (GameManager.Instance.pData.tutorialDone)
+        {
+            hintText.enabled = true;
+            SceneManager.LoadScene("01_Shop");
+        }
+        else
+        {
+            hintText.enabled = false;
+            SceneManager.LoadScene("02_ForestScene");
+        }
     }
 
     public void TeleporttoShop()

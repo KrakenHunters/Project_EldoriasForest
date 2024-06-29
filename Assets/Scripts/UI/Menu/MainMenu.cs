@@ -82,7 +82,7 @@ public class MainMenu : Menu
     {
         SaveManager.Instance.ResetPermanentData();
         SaveManager.Instance.ResetTemporaryData();
-        SceneManager.LoadScene("Renee_ProgrammingGym");//change to the  level  name
+        SceneManager.LoadScene("02_ForestScene");//change to the  level  name
     }
 
     public void OnButtonClick()

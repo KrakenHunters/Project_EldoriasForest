@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour
     }
     public void DisableInput()
     {
-        _action.Player.Move.performed -= (val) => Movement = val.ReadValue<Vector2>();
+        _action.Player.Move.performed += (val) => Movement = Vector2.zero;
         _action.Player.PointerMove.performed -= (val) => _player.HandlePointerDirection(val.ReadValue<Vector2>());
 
 

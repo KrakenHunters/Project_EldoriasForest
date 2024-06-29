@@ -11,6 +11,7 @@ public class Temple : Interactable
     protected override void Start()
     {
         base.Start();
+        canInteract = true;
     }
 
     public override void Interact()

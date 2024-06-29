@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Interactable : BaseObject
 {
     [HideInInspector]
-    public bool canInteract;
+    public bool canInteract = true;
 
     [SerializeField]
     private TMPro.TextMeshProUGUI _holdToInteract;
@@ -22,7 +22,6 @@ public class Interactable : BaseObject
     {
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().transform;
 
-        canInteract = true;
         particles = GetComponentInChildren<ParticleSystem>();
 
     }

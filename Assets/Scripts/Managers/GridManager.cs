@@ -244,7 +244,7 @@ public class GridManager : Singleton<GridManager>
             return false;
         }
 
-        if ((Vector3.Distance(position, playerSpawnPos) <= 25f && objectTag == "Enemy") || (Vector3.Distance(position, playerSpawnPos) <= 5f))
+        if ((Vector3.Distance(position, playerSpawnPos) <= 15f && objectTag == "Enemy") || (Vector3.Distance(position, playerSpawnPos) <= 3f))
         {
             return false;
         }

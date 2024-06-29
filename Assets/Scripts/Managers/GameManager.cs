@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] GameObject ScreamUI;
 
+    public bool enemyActions;
+
     private void Awake()
     {
         pData.InitializeData = true;
@@ -29,8 +31,18 @@ public class GameManager : Singleton<GameManager>
         if (!pData.tutorialDone)
         {
             StartCoroutine(BlinkScreamUI());
+            enemyActions = false;
+        }
+        else
+        {
+            enemyActions = true;
         }
         MenuEvent.PlayBGMusic.Invoke(BGClip);
+    }
+
+    public void StartEnemyActions()
+    {
+        enemyActions = true;
     }
 
     public void CollectItem()
@@ -61,11 +73,11 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator BlinkScreamUI()
     {
-        yield return new WaitForSeconds(2f); // Wait for 3 seconds before starting the blink effect
+        yield return new WaitForSeconds(0.5f); // Wait for 3 seconds before starting the blink effect
         enemyEvent.OnWitchScream.Invoke(witch);
 
         float elapsedTime = 0f;
-        float blinkDuration = 2f;
+        float blinkDuration = 1f;
 
         while (elapsedTime < blinkDuration)
         {

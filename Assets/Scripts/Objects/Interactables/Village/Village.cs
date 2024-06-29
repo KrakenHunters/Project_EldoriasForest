@@ -9,6 +9,10 @@ public class Village : Interactable
     protected override void Start()
     {
         base.Start();
+        if (!GameManager.Instance.pData.tutorialDone)
+        {
+            canInteract = false;
+        }
     }
 
     public override void Interact()

@@ -164,6 +164,8 @@ MonoBehaviour:
   onHealthChanged: {fileID: 11400000, guid: d89ea8f87bae895408a71bac99a31fae, type: 2}
   OnPlayerDie: {fileID: 11400000, guid: 633901125bb92ce44b1e819dfa028e67, type: 2}
   OnPlayerPickSpell: {fileID: 11400000, guid: 5087cb3198c08bd4ab8d3eb3e592c7fb, type: 2}
+  soulDrop: {fileID: 7319059061915240303, guid: 30de3509805f80f44ae201386577f186,
+    type: 3}
   getHitClip: {fileID: 0}
   magicGetHitClip: {fileID: 0}
   canInteract: 0
@@ -171,6 +173,7 @@ MonoBehaviour:
   spellWeapon: {fileID: 0}
   doubleFloatEvent: {fileID: 11400000, guid: fbd6d458a22a1304ebea65214efaa754, type: 2}
   damageScreen: {fileID: 11400000, guid: 52055cc7db52e5c43bebc137d7d656c4, type: 2}
+  OnSoulCollected: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}
 --- !u!114 &5066222880727964611
 MonoBehaviour:
   m_ObjectHideFlags: 0

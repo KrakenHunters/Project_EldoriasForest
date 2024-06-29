@@ -45,7 +45,7 @@ public class ShopManager : Singleton<ShopManager>
     public void PlayGame()
     {
         SaveManager.Instance.SetUpTempData();
-        SceneManager.LoadScene("Renee_ProgrammingGym");
+        SceneManager.LoadScene("02_ForestScene");
     }
 
     public void CheckButtonInteraction(Button button, bool check)

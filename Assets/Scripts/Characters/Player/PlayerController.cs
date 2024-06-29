@@ -31,6 +31,9 @@ public class PlayerController : CharacterClass
     [SerializeField]
     private EmptyGameEvent OnPlayerPickSpell;
 
+    [SerializeField]
+    private SoulCollectible soulDrop;
+
     public Vector3 AimWorldPosition { get; private set; }
     public Quaternion PlayerRotation { get; private set; }
 
@@ -52,6 +55,8 @@ public class PlayerController : CharacterClass
     public DoubleFloatEvent damageScreen;
 
 
+    [SerializeField]
+    private GameEvent<Empty> OnSoulCollected;
 
     private void Awake()
     {
@@ -65,12 +70,14 @@ public class PlayerController : CharacterClass
         
         spellCastManager = GetComponent<PlayerSpellCastManager>();
         spellWeapon = GetComponent<SpellWeapon>();
-        onHealthChanged.Raise(health);
         inputManager = GetComponent<InputManager>();
         c = GetComponent<CharacterController>();
         ChangeState(new PlayerMoveState());
-        onHealthChanged.Raise(health);
 
+    }
+    private void Start()
+    {
+        onHealthChanged.Raise(health);
 
     }
 
@@ -225,6 +232,22 @@ public class PlayerController : CharacterClass
         Vector3 direction = target - transform.position;
         direction.y = 0;
         PlayerRotation = Quaternion.LookRotation(direction);
+    }
+
+    public void LoseSouls()
+    {
+        int nSoulDrops = Mathf.RoundToInt(tempData.collectedSouls / 10);
+
+        tempData.collectedSouls -= tempData.collectedSouls;
+
+
+        for (int i = 0; i < nSoulDrops; i++)
+        {
+            Instantiate(soulDrop, transform.position, Quaternion.identity);
+        }
+
+        OnSoulCollected.Raise(new Empty());
+
     }
 
     public void RotateToTarget()
