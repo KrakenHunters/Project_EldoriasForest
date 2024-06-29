@@ -52,7 +52,7 @@ MonoBehaviour:
   player: {fileID: 0}
   pointerUI: {fileID: 3808861208928643554}
   ArrowIcon: {fileID: 8363609317065219781}
-  minDistance: 2
+  minDistance: 3
   villages: []
   isFightingWitch: 0
   challengeCompleted: 0

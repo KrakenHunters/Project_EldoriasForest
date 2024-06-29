@@ -6,18 +6,16 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
     [SerializeField] private Transform player;
     [SerializeField] private RectTransform pointerUI;
     [SerializeField] private GameObject ArrowIcon;
-
     [SerializeField] private float minDistance;
 
     public List<Transform> villages = new List<Transform>();
 
-    private Transform target;
-
     [HideInInspector] public bool isFightingWitch = false;
     [HideInInspector] public bool challengeCompleted = false;
     [HideInInspector] public bool isHealthlow = false;
-    private bool isClose = false;
 
+    private bool isClose = false;
+    private Transform target;
     private Vector3 center;
     private float angle;
 
@@ -27,30 +25,31 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
         ArrowIcon.SetActive(false);
     }
 
-
     private void FixedUpdate() => TrackTarget();
 
     private void TrackTarget()
     {
-        if (Vector3.Distance(center, target.position) < minDistance)
-            isClose = true;
-        else
-            isClose = false;
+        center = player.position;
 
-        ArrowIcon.SetActive(ShowTacker());
-        if (!ShowTacker())
+        float distanceToTarget = Vector3.Distance(center, target.position);
+        isClose = distanceToTarget < minDistance;
+
+        bool shouldShowTracker = ShowTracker();
+        ArrowIcon.SetActive(shouldShowTracker);
+
+        if (!shouldShowTracker)
             return;
+
         FindClosestVillage();
         if (target != null)
         {
-            center = player.position;
             CalculateAngle();
             pointerUI.rotation = Quaternion.Euler(0, 0, -angle);
-
         }
         else
+        {
             ArrowIcon.SetActive(false);
-
+        }
     }
 
     private void CalculateAngle()
@@ -60,27 +59,27 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
         angle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
     }
 
-
     private void FindClosestVillage()
     {
         if (villages.Count == 0)
             return;
 
-        float currentDistance = Vector3.Distance(center, target.position);
-
+        float closestDistance = float.MaxValue;
         foreach (Transform village in villages)
         {
             float villageDistance = Vector3.Distance(center, village.position);
-
-            if (villageDistance < currentDistance)
+            if (villageDistance < closestDistance)
             {
+                closestDistance = villageDistance;
                 target = village;
             }
         }
     }
 
-    private bool ShowTacker()
+    private bool ShowTracker()
     {
-        return !isFightingWitch && !isClose && (challengeCompleted || isHealthlow) ;
+        return !isFightingWitch && 
+               !isClose && 
+               (challengeCompleted || isHealthlow);
     }
 }
