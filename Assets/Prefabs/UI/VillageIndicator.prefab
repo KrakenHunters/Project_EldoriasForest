@@ -49,12 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaf3998a8ed89941892ef231090dd37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   player: {fileID: 0}
   pointerUI: {fileID: 3808861208928643554}
   ArrowIcon: {fileID: 8363609317065219781}
-  minDistance: 10
-  TrackEvent: {fileID: 11400000, guid: eeab70a7cb26e2048b7efa85694167f9, type: 2}
+  minDistance: 3
+  villages: []
+  isFightingWitch: 0
+  challengeCompleted: 0
+  isHealthlow: 0
 --- !u!1 &8363609317065219781
 GameObject:
   m_ObjectHideFlags: 0

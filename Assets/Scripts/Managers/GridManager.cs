@@ -99,6 +99,7 @@ public class GridManager : Singleton<GridManager>
                     playerSpawnPos = playerPosition;
                     playerPrefab.gameObject.transform.position = playerPosition;
                     BaseObject spawnedObject = Instantiate(GetPrefabByTag("VillageTeleport"), position, Quaternion.identity);
+                    TrackerUIManager.Instance.villages.Add(spawnedObject.transform);
                     spawnedObject.tier = 1;
 
                     objectPositions[1]["VillageTeleport"].Add(position);
@@ -226,7 +227,8 @@ public class GridManager : Singleton<GridManager>
                     }
 
                 }
-
+               if(spawnedObject.CompareTag("VillageTeleport"))
+                TrackerUIManager.Instance.villages.Add(spawnedObject.transform);
                 return spawnedObject;
             }
         }
