@@ -9,14 +9,14 @@ public class TutorialObjective : Objective
         challenge1 = new Challenge
         {
             CurrentAmount = 0,
-            Goal = 100,
+            Goal = 30,
             IsCompleted = false,
             Description = ""
         };
         challenge2 = new Challenge
         {
             CurrentAmount = 0,
-            Goal = 2,
+            Goal = 1,
             IsCompleted = false,
             Description = ""
         };

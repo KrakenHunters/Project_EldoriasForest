@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4131df6641c3f45817e93c9b14c49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reward: 100
   tData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   pData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   ObjectiveEvent: {fileID: 11400000, guid: e49e59c27ea665b44bf505e78331cd66, type: 2}
+  OnSoulCollected: {fileID: 11400000, guid: 99342536bc570ee40ac0c89013efe14c, type: 2}

@@ -6,9 +6,9 @@ public class Objective
 {
     public Challenge challenge1;
     public Challenge challenge2;
-
-    public virtual void InitializeChallenges() 
-    { 
+    protected int Reward = 100;
+    public virtual void InitializeChallenges()
+    {
 
     }
     protected virtual void UpdateChallengeDescriptions()
@@ -30,9 +30,9 @@ public class Objective
         {
             challenge1.Description = "Return to Base";
             challenge2.Description = "";
+            ObjectiveManager.Instance.ObjectiveEvent.OnCompleteObjective.Invoke();
         }
     }
-
     public void UpdateChallenge(Challenge challenge, int amount)
     {
         challenge.CurrentAmount += amount;
@@ -40,15 +40,17 @@ public class Objective
         UpdateChallengeDescriptions();
         CheckObjectiveFinished();
     }
+    public int GiveReward()
+    {
+        return Reward;
+    }
+
 }
+
 
 [System.Serializable]
 public class Challenge
 {
-    public Challenge()
-    {
-        //Description = 
-    }
     [field: SerializeField] public string Description { get; set; }
     [field: SerializeField] public int CurrentAmount { get; set; }
     [field: SerializeField] public int Goal { get; set; }

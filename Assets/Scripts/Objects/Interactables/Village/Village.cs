@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Village : Interactable
 {
     [SerializeField] private UIPointerEvent TrackEvent;
+
+    public ObjectiveEvent OnObjectiveEvent;
     protected override void Start()
     {
         base.Start();
@@ -35,6 +37,20 @@ public class Village : Interactable
     public void EndTracker()
     {
         TrackEvent.EndTargetTracking.Invoke();
-
     }
+
+    private void ActivateVillage()
+    {
+        canInteract = true;
+    }
+
+    private void OnEnable()
+    {
+        OnObjectiveEvent.OnCompleteObjective.AddListener(ActivateVillage);
+    }
+    private void OnDisable()
+    {
+        OnObjectiveEvent.OnCompleteObjective.RemoveListener(ActivateVillage);
+    }
+
 }

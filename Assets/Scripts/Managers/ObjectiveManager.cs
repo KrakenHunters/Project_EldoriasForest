@@ -6,10 +6,13 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
     public MainObjective mainObjective = new();
     public TutorialObjective tutorialObjective = new();
 
+    [SerializeField] private int reward = 100;
+
     public TemporaryDataContainer tData;
     public PermanentDataContainer pData;
 
     public ObjectiveEvent ObjectiveEvent;
+    public GameEvent<Empty> OnSoulCollected;
 
     private int lastSoulCount = 0;
     private Objective currentObjective;
@@ -42,6 +45,11 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         {
             UpdateChallenge2(tData.collectedSouls - lastSoulCount);
             lastSoulCount = tData.collectedSouls;
+            if(currentObjective.challenge2.IsCompleted)
+            {
+                tData.collectedSouls += reward;
+                OnSoulCollected.Raise(new Empty());
+            }
         }
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }
@@ -78,17 +86,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }
 
-    /*    private void OnEnable()
-        {
-            ObjectiveEvent.OnChallenge1.AddListener(UpdateChallenge1);
-            ObjectiveEvent.OnChallenge2.AddListener(UpdateChallenge2);
-        }
-        private void OnDisable()
-        {
-            ObjectiveEvent.OnChallenge1.RemoveListener(UpdateChallenge1);
-            ObjectiveEvent.OnChallenge2.RemoveListener(UpdateChallenge2);
-        }
-    */
+   
 }
 
 
