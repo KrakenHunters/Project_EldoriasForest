@@ -55,6 +55,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 937922673060477617}
     m_Modifications:
+    - target: {fileID: 170181130082175085, guid: b71b0f8d2f881c743a85228f3030d1cb,
+        type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6239969156481072347, guid: b71b0f8d2f881c743a85228f3030d1cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -211,7 +216,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.15400001, y: 0.075, z: 0.155}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.007, y: 0.012, z: 0.002}
   m_TimeToStationary: 0.5
