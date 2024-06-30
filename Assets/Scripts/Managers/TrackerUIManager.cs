@@ -79,7 +79,15 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
     private bool ShowTracker()
     {
         return !isFightingWitch && 
-               !isClose && 
-               (challengeCompleted || isHealthlow);
+               !isClose && CheckCondition();
+    }
+
+    private bool CheckCondition()
+    {
+       if(!GameManager.Instance.pData.tutorialDone)
+       {
+           return false;
+       }  
+       return (challengeCompleted || isHealthlow);
     }
 }
