@@ -9671,6 +9671,7 @@ GameObject:
   - component: {fileID: 4429967149865628672}
   - component: {fileID: 231732044387294576}
   - component: {fileID: 7128789301926344624}
+  - component: {fileID: 5253472428385898935}
   m_Layer: 0
   m_Name: IceShowerVFX
   m_TagString: Untagged
@@ -9774,6 +9775,23 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5253472428385898935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693184880290178482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 03f9eaae8abd0ee42aa7e889de10a75c, type: 2}
 --- !u!1 &7225608436765507519
 GameObject:
   m_ObjectHideFlags: 0
