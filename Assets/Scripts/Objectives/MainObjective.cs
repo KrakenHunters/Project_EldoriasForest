@@ -17,7 +17,7 @@ public class MainObjective : Objective
         challenge2 = new Challenge
         {
             CurrentAmount = 0,
-            Goal = 15,
+            Goal = 100,
             IsCompleted = false,
             Description = ""
         };
@@ -31,14 +31,39 @@ public class MainObjective : Objective
 
     protected override void CheckObjectiveFinished()
     {
-        if (challenge1.IsCompleted)
-        {
-            challenge1.Description = "Return to Base";
-        }
-            
         if(challenge2.IsCompleted)
         {
             challenge2.Description = "Completed: 100 souls reward";
         }
+        if (challenge1.IsCompleted)
+        {
+            challenge1.Description = "Return to Base";
+            challenge2.Description = "";
+        }
     }
+
+
+ /*   private Challenge GetRandomChallenge()
+    {
+       private List<Challenge> challenges = new ();
+
+       Challenge c1 = new Challenge
+       {
+           CurrentAmount = 0,
+           Goal = 1,
+           IsCompleted = false,
+           Description = ""
+       };
+    Challenge c2 = new Challenge
+         {
+              CurrentAmount = 0,
+              Goal = 100,
+              IsCompleted = false,
+              Description = ""
+         };
+         challenges.Add(c1);
+        challenges.Add(c2);
+
+       return challenges[Random.Range(0, challenges.Count)]
+    }*/
 }

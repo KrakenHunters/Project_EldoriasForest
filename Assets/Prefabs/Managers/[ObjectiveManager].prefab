@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4697099873640689721}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3346.627, y: 1822.6023, z: -2.6446157}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reward: 100
+  objectiveUI: {fileID: 0}
   tData: {fileID: 11400000, guid: 56e232d446411694c84b5f573551fde9, type: 2}
   pData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   ObjectiveEvent: {fileID: 11400000, guid: e49e59c27ea665b44bf505e78331cd66, type: 2}

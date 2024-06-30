@@ -7,6 +7,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
     public TutorialObjective tutorialObjective;
 
     [SerializeField] private int reward = 100;
+    [SerializeField] private GameObject objectiveUI;
 
     public TemporaryDataContainer tData;
     public PermanentDataContainer pData;
@@ -22,10 +23,10 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
 
         if (pData.tutorialDone)
         {
+            EnableUI();
             mainObjective = new MainObjective();
             mainObjective.InitializeChallenges();
             currentObjective = mainObjective;
-            Debug.Log("Main Objective");
         }
         else
         {
@@ -37,7 +38,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }
 
-    
+
     public void SoulsCollected() // Called when the player collects a soul event
     {
         if (!GameManager.Instance.pData.tutorialDone)
@@ -50,7 +51,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         {
             UpdateChallenge2(tData.collectedSouls - lastSoulCount);
             lastSoulCount = tData.collectedSouls;
-            if(currentObjective.challenge2.IsCompleted && !rewardGiven)
+            if (currentObjective.challenge2.IsCompleted && !rewardGiven)
             {
                 rewardGiven = true;
                 tData.collectedSouls += reward;
@@ -92,7 +93,10 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }
 
-   
+    public void EnableUI()
+    {
+       objectiveUI.SetActive(true);
+    }
 }
 
 
