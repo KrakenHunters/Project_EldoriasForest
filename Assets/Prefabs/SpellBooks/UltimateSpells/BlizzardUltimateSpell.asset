@@ -19,9 +19,9 @@ MonoBehaviour:
     statusEffectTimer: 5
     statusEffectDamage: 2
     statusEffectChance: 0.8
-    range: 0
+    range: 8
     healAmount: 0
-    radius: 0
+    radius: 8
     duration: 10
     speed: 0
   templeDescription: BLIZZARD! Blizzard follows you hitting everything around you
@@ -57,6 +57,6 @@ MonoBehaviour:
     statusEffectChance: 0.8
     range: 8
     healAmount: 0
-    radius: 0
+    radius: 8
     duration: 10
     speed: 0
