@@ -53,15 +53,33 @@ MonoBehaviour:
   innerBorderPrefabs:
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
   - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
+  - {fileID: 3507047254295741524, guid: e289bf5debb17f6459818c207d781953, type: 3}
+  - {fileID: -8967318156197948509, guid: 88f2fd29f58b9734683512546acec310, type: 3}
+  - {fileID: 6049804772901615352, guid: c60edd51c065ceb46b345849a03bc106, type: 3}
+  - {fileID: 2072077215893840444, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
   centerPrefabs:
-  - {fileID: 7439797000257662282, guid: d83cb65fb9604844bbbcbc34da16b5f6, type: 3}
-  - {fileID: 7439797000257662282, guid: e13ba0a30fa84d544a6cbabb16b7a66f, type: 3}
-  - {fileID: 3242830716933975920, guid: e70b2e4fdb36c994e8059637b2adc977, type: 3}
   - {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9, type: 3}
   - {fileID: 5642612961866236942, guid: fe6e6eb4e0c2934428f99c4dbffa24cd, type: 3}
   - {fileID: 4165503215034726028, guid: 51f499caba5a8794193cffbd61548163, type: 3}
   - {fileID: 8345116227132461756, guid: 8e8c67131b2b7e649b851b625fe9fba5, type: 3}
   - {fileID: 8345116227132461756, guid: b4b46aaeaa0215840926963583160394, type: 3}
+  - {fileID: 7439797000257662282, guid: 0227bf95004584b45b6da0e36891dd6f, type: 3}
+  - {fileID: 3242830716933975920, guid: 5c4fab76494359346bbab8162daaace8, type: 3}
+  - {fileID: 3242830716933975920, guid: f7a1f299128fe1c4db0135a9c731eada, type: 3}
+  - {fileID: 7439797000257662282, guid: e1a36f5cd851ccf498a6148b32c4512e, type: 3}
+  - {fileID: -3519677046757536940, guid: 3cdafb3c2f54d434894928d72d282874, type: 3}
+  - {fileID: 3285682340151246889, guid: eebb56c82efbd8d4bb0eb6bd925a0e9d, type: 3}
+  - {fileID: -8967318156197948509, guid: 88f2fd29f58b9734683512546acec310, type: 3}
+  - {fileID: 3507047254295741524, guid: e289bf5debb17f6459818c207d781953, type: 3}
+  - {fileID: 6049804772901615352, guid: c60edd51c065ceb46b345849a03bc106, type: 3}
+  - {fileID: -4680197274232411378, guid: f0c16f0ea935ea64297ca1d4d55d9746, type: 3}
+  - {fileID: 2072077215893840444, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
+  - {fileID: 2698410696574170805, guid: 7bef878bb44ccb64c968409bdb75bd50, type: 3}
+  - {fileID: 2698410696574170805, guid: 9833e69b601d4ad498ac561b7156c1f9, type: 3}
+  - {fileID: 2823808264505573770, guid: a172a7db07ca5f5409ef6c33f30390cb, type: 3}
+  - {fileID: 8823433017224064507, guid: bdd11a8d1b4294845b81cef43e229985, type: 3}
+  - {fileID: 2208200981774389811, guid: 2e99d0882c79cb6468a9e999f6bf79c2, type: 3}
+  - {fileID: 2962944493770496084, guid: cecc42f586dff164b8bbb8e5bb9c4299, type: 3}
   templePrefabs:
   - {fileID: 1303099117951496383, guid: b2d6b10f4a004ee4b817620c6286d1e9, type: 3}
   villageTeleportPrefabs:
@@ -75,5 +93,5 @@ MonoBehaviour:
   minDistanceBetweenEnemies: 8
   minDistanceBetweenObjects: 30
   innerBorderSpawnChance: 0.1
-  centerSpawnChance: 0.15
+  centerSpawnChance: 0.1
   gridDone: 0

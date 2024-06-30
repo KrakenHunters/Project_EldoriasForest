@@ -11,6 +11,15 @@ public class EndGame : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 0;
+        if (GameManager.Instance.pData.tutorialDone)
+        {
+            hintText.enabled = true;
+        }
+        else
+        {
+            hintText.enabled = false;
+            SceneManager.LoadScene("02_ForestScene");
+        }
     }
 
     public void ReturnToBase()
@@ -19,7 +28,6 @@ public class EndGame : MonoBehaviour
         SaveManager.Instance.ResetTemporaryData();
         if (GameManager.Instance.pData.tutorialDone)
         {
-            hintText.enabled = true;
             SceneManager.LoadScene("01_Shop");
         }
         else

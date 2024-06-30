@@ -8,12 +8,19 @@ public class PlayerAttackState : BaseState
 
     private bool cancelAttack = false;
 
+    private float clipLength;
+
+    private bool mirrorAnim;
+
     public override void EnterState()
     {
         base.EnterState();
         timer = 10f;
         cancelAttack = false;
-
+        player.animator.CrossFade(MovementHash, 0.2f);
+        player.animator.Play(AttackHash);
+        clipLength = 0.5f;
+        mirrorAnim = true;
         CheckAttackType();
         //Animate ad change to new state and cast spell after animation is done
 
@@ -26,15 +33,21 @@ public class PlayerAttackState : BaseState
     public override void StateFixedUpdate()
     {
         base.StateFixedUpdate();
+    }
+
+    public override void StateUpdate()
+    {
+        timer += Time.deltaTime;
+
         float t = lerpTimer / lerpDuration;
         currentSpeed = Mathf.Lerp(initialSpeed, player.Speed * player.SpeedModifier, t);
         player.c.SimpleMove(_direction.normalized * currentSpeed);
 
         player.RotateToTarget();
-
-        float clipLength = 0.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
         if (timer >= clipLength)
         {
+            mirrorAnim = !mirrorAnim;
+
             if (cancelAttack)
             {
                 player.ChangeState(new PlayerMoveInCombatState());
@@ -43,17 +56,16 @@ public class PlayerAttackState : BaseState
             {
 
                 player.CastSpell(activeSpell, out spellDuration);
-
+                player.animator.Play(AttackHash);
+                player.animator.SetBool("MirrorAnim", mirrorAnim);
                 timer = 0f;
 
             }
 
-        }
-    }
 
-    public override void StateUpdate()
-    {
-        timer += Time.deltaTime;
+
+        }
+
     }
 
     public override void HandleInteract()
@@ -73,6 +85,9 @@ public class PlayerAttackState : BaseState
     public override void HandleMovement(Vector2 dir)
     {
         _direction = new Vector3(dir.x, 0, dir.y);
+        player.animator.SetFloat("Horizontal", (currentSpeed / player.Speed) * _direction.x);
+        player.animator.SetFloat("Vertical", (currentSpeed / player.Speed) * _direction.z);
+
     }
     private void CheckAttackType()
     {

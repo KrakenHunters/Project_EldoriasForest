@@ -14,8 +14,11 @@ public class PlayerDieState : BaseState
         inputManager = player.GetComponent<InputManager>();
         inputManager.DisableInput();
         player.LoseSouls();
+
+        player.animator.CrossFade(DieHash, 0.2f);
+
         timer = 0f;
-        clipLength = 1.5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        clipLength = 5f;//player.anim.GetCurrentAnimatorClipInfo(0)[0].clip.length;
     }
     public override void ExitState()
     {

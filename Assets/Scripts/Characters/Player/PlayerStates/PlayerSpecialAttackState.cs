@@ -14,6 +14,8 @@ public class PlayerSpecialAttack : BaseState
         timer = 0f;
         CheckAttackType();
         spellCast = false;
+        player.animator.CrossFade(MovementHash, 0.2f);
+        player.animator.Play(AttackHash);
 
         player.spellWeapon.InstantiateIndicator(activeSpell, player);
 

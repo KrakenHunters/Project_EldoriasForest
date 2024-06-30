@@ -15,6 +15,14 @@ public abstract class BaseState
     protected float lerpDuration = 0.3f; // The duration over which to interpolate speed
     protected float lerpTimer;
 
+    protected static readonly int MovementHash = Animator.StringToHash("Movement");
+    protected static readonly int AttackHash = Animator.StringToHash("Attack");
+    protected static readonly int SpecialAttackHash = Animator.StringToHash("SpecialAttack");
+
+    protected static readonly int InteractHash = Animator.StringToHash("Interact");
+    protected static readonly int DieHash = Animator.StringToHash("Death");
+
+
     public CharacterClass character { get; set; }
     public InputManager inputManager { get; set; }
 

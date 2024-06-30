@@ -17,17 +17,20 @@ public class DeathCloud : MonoBehaviour
 
     void Update()
     {
-        // Calculate the leading edge of the box collider in the X direction
-        float leadingEdgeX = transform.position.x + (boxCollider.size.x / 2) * transform.localScale.x;
-
-        // Move the cloud towards the target position
-        if (leadingEdgeX < targetXPosition)
+        if (GameManager.Instance.pData.tutorialDone)
         {
-            transform.position = new Vector3(
-                Mathf.MoveTowards(transform.position.x, targetXPosition - (boxCollider.size.x / 2) * transform.localScale.x, moveSpeed * Time.deltaTime),
-                transform.position.y,
-                transform.position.z
-            );
+            // Calculate the leading edge of the box collider in the X direction
+            float leadingEdgeX = transform.position.x + (boxCollider.size.x / 2) * transform.localScale.x;
+
+            // Move the cloud towards the target position
+            if (leadingEdgeX < targetXPosition)
+            {
+                transform.position = new Vector3(
+                    Mathf.MoveTowards(transform.position.x, targetXPosition - (boxCollider.size.x / 2) * transform.localScale.x, moveSpeed * Time.deltaTime),
+                    transform.position.y,
+                    transform.position.z
+                );
+            }
         }
     }
 

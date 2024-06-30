@@ -234,7 +234,7 @@ public class Enemy : CharacterClass
 
     protected bool ShouldPatrol()
     {
-        return (!wanderTimer.IsRunning);
+        return (!wanderTimer.IsRunning && SelectAISpot() != null);
     }
 
 
@@ -256,9 +256,14 @@ public class Enemy : CharacterClass
             spotList = GridManager.Instance.enemySpots[tier];
         }
 
-        AISpotSelected = spotList[Random.Range(0, spotList.Count)];
-        Debug.Log(spotList.Count);
-        return AISpotSelected;
+        if (spotList.Count > 0)
+        {
+            AISpotSelected = spotList[Random.Range(0, spotList.Count)];
+            return AISpotSelected;
+
+        }
+        else
+            return null;
     }
 
     protected bool ArrivedAtLocation()

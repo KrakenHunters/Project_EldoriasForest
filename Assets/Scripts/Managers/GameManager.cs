@@ -28,9 +28,10 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
+        StartCoroutine(BlinkScreamUI());
+
         if (!pData.tutorialDone)
         {
-            StartCoroutine(BlinkScreamUI());
             enemyActions = false;
         }
         else
@@ -87,6 +88,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         ScreamUI.SetActive(false); // Ensure ScreamUI is inactive after blinking
-        witchCinematic.Play();
+        if (!pData.tutorialDone)
+            witchCinematic.Play();
     }
 }

@@ -58,8 +58,11 @@ public class PlayerController : CharacterClass
     [SerializeField]
     private GameEvent<Empty> OnSoulCollected;
 
+    public Animator animator;
+
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground");
         health = tempData.startHealth + GameManager.Instance.pData.healthBonus;
         maxHealth = health;

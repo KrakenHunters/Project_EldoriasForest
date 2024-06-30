@@ -9,7 +9,7 @@ public class PlayerInteractState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-        //Animate
+        player.animator.CrossFade(InteractHash, 0.2f);
 
         timer = 0f;
 

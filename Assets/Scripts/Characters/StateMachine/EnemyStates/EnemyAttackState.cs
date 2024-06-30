@@ -51,7 +51,7 @@ public class EnemyAttackState : EnemyBaseState
             {
                 hasAttacked = false;
                 enemy.Attack();
-                animator.CrossFade(IdleHash, crossFadeDuration);
+                animator.Play(IdleHash);
                 if (enemy is not BossEnemy)
                     enemy.attacking = false;
             }

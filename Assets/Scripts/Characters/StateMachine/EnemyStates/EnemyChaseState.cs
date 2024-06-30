@@ -16,7 +16,16 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
-        TrackerUIManager.Instance.isFightingWitch = true;
+        if (agent.velocity.magnitude > 0f )
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+        
+            TrackerUIManager.Instance.isFightingWitch = true;
     }
 
 

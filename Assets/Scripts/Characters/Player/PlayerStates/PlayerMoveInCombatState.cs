@@ -6,7 +6,7 @@ public class PlayerMoveInCombatState : BaseState
     public override void EnterState()
     {
         base.EnterState();
-        //Animate
+        player.animator.CrossFade(MovementHash, 0.2f);
         timer = 0f;
     }
     public override void ExitState()
@@ -39,7 +39,8 @@ public class PlayerMoveInCombatState : BaseState
     public override void HandleMovement(Vector2 dir)
     {
         _direction = new Vector3(dir.x, 0, dir.y);
-        //rotate
+        player.animator.SetFloat("Horizontal", (currentSpeed / player.Speed) * _direction.x);
+        player.animator.SetFloat("Vertical", (currentSpeed / player.Speed) * _direction.z);
     }
 
 
