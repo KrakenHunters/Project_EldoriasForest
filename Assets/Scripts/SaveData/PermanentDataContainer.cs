@@ -17,6 +17,7 @@ public class PermanentDataContainer : ScriptableObject
     public bool IsUltimateSpellSlotUnlocked;
     public bool InitializeData;
     public bool tutorialDone;
+    public bool isObjective1Completed;
 
     [Header("CostUpgrades")]
     public int baseUpgradeCost;
