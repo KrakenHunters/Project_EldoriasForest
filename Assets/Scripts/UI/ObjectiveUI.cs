@@ -1,6 +1,5 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
+using UnityEngine;
 
 public class ObjectiveUI : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class ObjectiveUI : MonoBehaviour
 
     public void UpdateUI()
     {
-       
+
         challenge1Text.text = objective.challenge1.Description;
         challenge2Text.text = objective.challenge2.Description;
 
