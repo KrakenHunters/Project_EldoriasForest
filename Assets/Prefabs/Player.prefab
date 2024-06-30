@@ -267,7 +267,7 @@ MonoBehaviour:
   health: 100
   _speed: 5
   initialSpeed: 0
-  _speedModifier: 0.8
+  _speedModifier: 1
   isInCombat: 0
   castPos: {fileID: 516063834806072628}
   damageIndicator: {fileID: 7952942286368911428, guid: f9f64a444d9e61740b1cb6368f8508e0,
