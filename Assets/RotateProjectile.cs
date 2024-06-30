@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RotateProjectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Velocidade de rotação em graus por segundo.
+    public float rotationSpeed = 100f;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Calcula a rotação em torno do eixo Y.
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+
+        // Aplica a rotação ao objeto.
+        transform.Rotate(Vector3.up, rotationAmount);
     }
 }
