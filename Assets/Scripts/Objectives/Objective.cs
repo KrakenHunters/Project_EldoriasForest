@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Objective
+public class Objective
 {
     public Challenge challenge1;
     public Challenge challenge2;
@@ -43,8 +43,12 @@ public abstract class Objective
 }
 
 [System.Serializable]
-public struct Challenge
+public class Challenge
 {
+    public Challenge()
+    {
+        //Description = 
+    }
     [field: SerializeField] public string Description { get; set; }
     [field: SerializeField] public int CurrentAmount { get; set; }
     [field: SerializeField] public int Goal { get; set; }

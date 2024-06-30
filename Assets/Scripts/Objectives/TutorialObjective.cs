@@ -11,21 +11,21 @@ public class TutorialObjective : Objective
             CurrentAmount = 0,
             Goal = 100,
             IsCompleted = false,
-            Description = $"Collect {challenge1.CurrentAmount} / {challenge1.Goal} Souls"
+            Description = ""
         };
         challenge2 = new Challenge
         {
             CurrentAmount = 0,
             Goal = 2,
             IsCompleted = false,
-            Description = $"Collect {challenge1.CurrentAmount} / {challenge1.Goal} Spells from temples"
+            Description = ""
         };
         UpdateChallengeDescriptions();
     }
     protected override void UpdateChallengeDescriptions()
     {
         challenge1.Description = $"Collect {challenge1.CurrentAmount} / {challenge1.Goal} Souls";
-        challenge2.Description = $"Collect {challenge1.CurrentAmount} / {challenge1.Goal} Spells from temples";
+        challenge2.Description = $"Collect {challenge2.CurrentAmount} / {challenge2.Goal} Spells from temples";
     }
 
 }

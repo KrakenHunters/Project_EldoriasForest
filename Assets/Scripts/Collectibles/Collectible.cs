@@ -8,8 +8,7 @@ public class Collectible : BaseObject
     private float followSpeed = 5f; // Speed at which the collectible follows the player
     [SerializeField]
     private float curveStrength = 2f; // Strength of the lateral force to create the curve
-
-
+    
     private Rigidbody rb;
     private PlayerController player;
     private bool isFollowingPlayer = false;

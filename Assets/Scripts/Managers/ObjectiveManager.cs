@@ -29,7 +29,7 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }
 
-
+    
     public void SoulsCollected() // Called when the player collects a soul event
     {
         if (!GameManager.Instance.pData.tutorialDone)
