@@ -129,6 +129,7 @@ public class SaveManager : Singleton<SaveManager>
         permanentData.IsUltimateSpellSlotUnlocked = basePermanentData.IsUltimateSpellSlotUnlocked;
         permanentData.InitializeData = basePermanentData.InitializeData;
         permanentData.tutorialDone = basePermanentData.tutorialDone;
+        permanentData.isObjective1Completed = basePermanentData.isObjective1Completed;
 
         permanentData.baseUpgradeCost = basePermanentData.baseUpgradeCost;
         permanentData.healthUpgradeCost = basePermanentData.healthUpgradeCost;
