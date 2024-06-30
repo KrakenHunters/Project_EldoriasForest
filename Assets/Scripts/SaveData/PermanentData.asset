@@ -23,7 +23,7 @@ MonoBehaviour:
   healthBonus: 0
   IsUltimateSpellSlotUnlocked: 0
   InitializeData: 1
-  tutorialDone: 1
+  tutorialDone: 0
   baseUpgradeCost: 0
   healthUpgradeCost: 0
   defensiveRuneCost: 0
