@@ -53,8 +53,7 @@ public class ShopManager : Singleton<ShopManager>
 
     public void CostUIUpdate(int cost)
     {
-        if (cost > 0)
-            StartCoroutine(CountToTarget(cost));
+        StartCoroutine(CountToTarget(cost));
         SaveManager.Instance.SavePermanentData();
 
     }
