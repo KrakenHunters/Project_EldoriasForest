@@ -5,11 +5,14 @@ using UnityEngine;
 public class Blizzard_UltimateSpell : UltimateSpellBook
 {
     private Quaternion fixedRotation;
+    private SphereCollider sphereCollider;
     protected override void CastSpell(int tier)
     {
         base.CastSpell(tier);
         Destroy(this.gameObject, duration);
         fixedRotation = transform.rotation;
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = radius;
     }
 
     protected override void Update()
