@@ -13,6 +13,10 @@ public class Village : Interactable
         {
             canInteract = false;
         }
+        else
+        {
+            canInteract = true;
+        }
     }
 
     public override void Interact()
