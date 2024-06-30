@@ -252,9 +252,13 @@ MonoBehaviour:
   baseHealth: 60
   healthMultTier2: 3
   healthMultTier3: 5
-  enemyEvent: {fileID: 0}
+  enemyEvent: {fileID: 11400000, guid: dd939cac4925aec4ea5702bbfe960b66, type: 2}
   gotHit: 0
   attacking: 0
+  imageTier1: {fileID: 21300000, guid: 61a0543c16d850f43ac4dbafb1a1733d, type: 3}
+  imageTier2: {fileID: 21300000, guid: 1bbdc337a4f8b574fb6ef7fefeb4e61d, type: 3}
+  imageTier3: {fileID: 21300000, guid: e8730cd20ffdc10478323d09a977449b, type: 3}
+  TierImageUI: {fileID: 6871637233518568087}
   healthBar: {fileID: 1238473911412538695}
   damageTier1: 20
   damageTier2: 50
@@ -366,11 +370,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6023700012673508919, guid: b2f5aa5fa57de05468d0ffe325bb15cb,
-        type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8066735824675907388, guid: b2f5aa5fa57de05468d0ffe325bb15cb,
         type: 3}
@@ -489,6 +488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc9a46bc4bf0e54aacf93ae52761d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6871637233518568087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5894908151110035304, guid: b2f5aa5fa57de05468d0ffe325bb15cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1049934730407904767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7016840685319267011 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8066735824675907388, guid: b2f5aa5fa57de05468d0ffe325bb15cb,

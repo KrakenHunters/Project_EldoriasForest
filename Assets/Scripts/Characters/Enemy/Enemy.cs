@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using Utilities;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -83,8 +84,17 @@ public class Enemy : CharacterClass
 
     protected bool startActions;
 
+    [SerializeField]
+    private Sprite imageTier1;
+    [SerializeField]
+    private Sprite imageTier2;
+    [SerializeField]
+    private Sprite imageTier3;
 
-   [SerializeField] protected WSHealthBar healthBar;
+    [SerializeField]
+    private GameObject TierImageUI;
+
+    [SerializeField] protected WSHealthBar healthBar;
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -165,12 +175,28 @@ public class Enemy : CharacterClass
         {
             case 1:
                 health = baseHealth;
+
+                if (TierImageUI != null)
+                {
+                    TierImageUI.GetComponent<UnityEngine.UI.Image>().sprite = imageTier1;
+                }
+
                 break;
             case 2:
                 health = baseHealth * healthMultTier2;
+                if (TierImageUI != null)
+                {
+                    TierImageUI.GetComponent<UnityEngine.UI.Image>().sprite = imageTier2;
+                }
+
                 break;
             case 3:
                 health = baseHealth * healthMultTier3;
+                if (TierImageUI != null)
+                {
+                    TierImageUI.GetComponent<UnityEngine.UI.Image>().sprite = imageTier3;
+                }
+
                 break;
             default:
                 break;
