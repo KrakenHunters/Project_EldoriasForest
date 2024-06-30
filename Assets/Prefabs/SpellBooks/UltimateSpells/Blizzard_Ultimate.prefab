@@ -29,10 +29,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3655264729326476907}
+  - {fileID: 1024778077809839545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &4014860509822583953
@@ -184,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice
       objectReference: {fileID: 0}
+    - target: {fileID: 7908853216720015642, guid: b497f490ed60b6b4bb8f89ae46376999,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8066027885624811557, guid: b497f490ed60b6b4bb8f89ae46376999,
         type: 3}
       propertyPath: ShapeModule.type
@@ -229,4 +235,123 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2052065804725226158, guid: b497f490ed60b6b4bb8f89ae46376999,
     type: 3}
   m_PrefabInstance: {fileID: 3368830087026398405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3693753915600632249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2068997917363127718}
+    m_Modifications:
+    - target: {fileID: 2172187583570046076, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172187583570046076, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172187583570046076, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172187583570046076, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060241408136837772, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060241408136837772, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060241408136837772, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060241408136837772, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693184880290178482, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: m_Name
+      value: IceShowerVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301599517309213637, guid: 29c36245583df9e448ca599b2e8e203f,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29c36245583df9e448ca599b2e8e203f, type: 3}
+--- !u!4 &1024778077809839545 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4429967149865628672, guid: 29c36245583df9e448ca599b2e8e203f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3693753915600632249}
   m_PrefabAsset: {fileID: 0}
