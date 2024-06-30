@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: PermanentData
   m_EditorClassIdentifier: 
-  totalSouls: 400
+  totalSouls: 405
   spellBooksUnlocked:
   - {fileID: 7433260048738468032, guid: cb81a668636c25941b6385b5e094432c, type: 3}
   spellBookIDs: 08000000
@@ -25,7 +25,7 @@ MonoBehaviour:
   healthBonus: 20
   IsUltimateSpellSlotUnlocked: 0
   InitializeData: 1
-  tutorialDone: 1
+  tutorialDone: 0
   isObjective1Completed: 0
   baseUpgradeCost: 150
   healthUpgradeCost: 280
