@@ -9,8 +9,6 @@ public class ShopManager : Singleton<ShopManager>
     public PermanentDataContainer permData;
     public TMPro.TextMeshProUGUI soulAmountText;
 
-    [SerializeField] 
-    private GameObject hoverCheck;
     [SerializeField]
     private GameObject shopKeeperManager;
 

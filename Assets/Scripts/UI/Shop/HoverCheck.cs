@@ -9,6 +9,7 @@ public class HoverCheck : MonoBehaviour
 {
     public Canvas canvas; // Reference to the canvas
     private bool hasHovered = false; // Flag to track if hover has been detected
+    public bool canHoverOverDescription;
 
     void Update()
     {
@@ -36,14 +37,18 @@ public class HoverCheck : MonoBehaviour
         // Iterate through the results to find UI elements
         foreach (RaycastResult result in results)
         {
-            if (result.gameObject.GetComponent<Button>() != null)
+            if (result.gameObject.GetComponent<OnHover>() != null)
             {
                 isHoveringOverButton = true;
                 if (!hasHovered)
                 {
-                    if (result.gameObject.GetComponent<OnHover>() != null)
+                    if (result.gameObject.GetComponent<Button>() != null)
                     {
                         result.gameObject.GetComponent<OnHover>().OnHoverEvent.Invoke(result.gameObject.GetComponent<Button>().IsInteractable());
+                    }
+                    else
+                    {
+                        result.gameObject.GetComponent<OnHover>().OnHoverEvent.Invoke(canHoverOverDescription);
                     }
                     hasHovered = true; // Set the flag to true
                 }

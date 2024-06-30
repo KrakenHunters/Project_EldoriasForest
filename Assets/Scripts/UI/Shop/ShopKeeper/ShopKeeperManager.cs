@@ -19,6 +19,13 @@ public class ShopKeeperManager : MonoBehaviour
     private int currentTutorialIndex = 0;
 
     [SerializeField]
+    private List<Button> baseShopButtonList;
+    [SerializeField]
+    private List<Button> SpecialShopButtonList;
+    [SerializeField]
+    private List<Button> CharacterShopButtonList;
+
+    [SerializeField]
     GameObject blockShop;
 
     [SerializeField]
@@ -35,24 +42,17 @@ public class ShopKeeperManager : MonoBehaviour
     [SerializeField]
     private GameObject NoWitch;
 
+    [SerializeField]
+    private GameObject hoverCheck;
+
+
     private string[] newGameTexts = new string[]
    {
         "Oh, hello there, magician!",
-        "I'm Jolly, the shopkeeper of this village.",
-        "Welcome to Eldoria, our charming magical village!",
-        "Our village thrives with the presence of many animals around us.",
-        "Our magic comes from the souls of these living forest animals.",
-        "These souls are our primary source of energy, sustaining our magic and way of life.",
-        "However, it's been difficult to sense the animals' souls since the witch appeared.",
-        "You know about the witch, don't you?",
-        "She resides in the forest, corrupting and feeding on animal souls.",
-        "Her dark magic has cursed our land, draining its life and disrupting our lives.",
-        "Many warriors have tried to defeat her, but none have succeeded.",
-        "But there's something different about you...",
-        "Legends speak of a magician destined to break this curse.",
-        "Perhaps you are the one!",
-        "If you bring me souls, I'll help you grow stronger to defeat her.",
-        "Would you like me to explain how the shop works?"
+        "Welcome to Eldoria! Our small little village",
+        "From the looks of your face you already met the witch didn't you?",
+        "I'm Jolly, the shopkeeper and if you bring me souls I'll help you grow stronger to defeat her.",
+        "If you can, I mean... it's only the fate of our whole village we are talking about here."
    };
 
     private string[] witchStoryTexts = new string[]
@@ -66,50 +66,38 @@ public class ShopKeeperManager : MonoBehaviour
         "The once vibrant forest is now a place of fear and darkness.",
         "It's said that only a magician with a pure heart can break this curse.",
         "You might be the one to restore balance and save Eldoria! Who knows?",
-        "If you are not maybe we can try hiring a knight or something..."
+        "If you can't do it maybe we can try hiring a knight or something..."
     };
 
     private string witchStoryConfirmation = "Would you like to learn more about the witch?";
-
-
 
     private string[] tutorialBaseSpellTexts = new string[]
     {
         "These are your base spells.",
         "You can choose one of the three, but you can't change a base spell inside the forest, only here in the village.",
-        "If you bring me souls, I can upgrade them for you.",
-        "Use the left mouse-click to attack with your base spell.",
-        "Fire spells can ignite enemies, causing damage over time.",
-        "Ice spells can freeze enemies, weakening them temporarily.",
-        "Lightning spells can stun enemies, immobilizing them for a short duration."
+        "Use the left mouse click to attack with your base spell",
+        "Bring me more souls, and I can upgrade them for you.",
+        "Please select one of them!"
     };
 
     private string[] tutorialSpecialSpellTexts = new string[]
     {
         "These are the special spells.",
-        "In the forest, you'll find temples containing spell books.",
         "Once found, you can use these special spells during your run, but you'll lose them when you return to the village due to the witch's curse.",
         "However, you can buy them back here in the shop for a certain amount of souls.",
-        "Use the right mouse-click to cast your special spell."
+        "Please buy the one you got from the forest."
     };
 
     private string[] tutorialPermanentUpgradesTexts = new string[]
     {
-        "These are some upgrades for yourself.",
-        "The ultimate spell slot holds a powerful spell found deep in the forest.",
-        "Use the middle mouse-click to cast it, but use it wisely, as it can only be cast once.",
-        "Health upgrade increases your health to better face enemies!",
-        "Defensive runes reduce the amount of damage you take from enemies!",
-        "Soul Drop increases the number of souls dropped by enemies and gathered from temples.",
-        "Cooldown reduction decreases the time it takes for you to use a special spell again."
+        "These are some upgrades for yourself, to grow stronger!",
+        "I highly recommend acquiring them to have a chance on beating the witch.",
+        "Acquire one!"
     };
 
     private string[] endTutorialTexts = new string[]
     {
-        "If you need me to explain something about the shop again, please hit the question mark buttons on the shop sections.",
-        "While in the forest, find the purple portal whenever you need to return to the shop to upgrade yourself.",
-        "The arrow on your screen will point to the closest one.",
-        "Good luck, magician! We're counting on you to restore peace to Eldoria!"
+        "You are ready to go! Good luck, magician! We're counting on you to restore peace to Eldoria!"
     };
 
 
@@ -159,7 +147,7 @@ public class ShopKeeperManager : MonoBehaviour
         "May the stars align in your favor!"
     };
 
-    private string upgradeBaseSpell = "Oh yes! Upgrade your base spells to deal more damage and have a bigger chance of applying a status effect";
+    private string upgradeBaseSpell = "Oh yes! Upgrade your base spells to deal more damage and have a bigger chance of applying a status effect.";
     private string ultimateSpellButton = "Oh ultimate spells! They are really strong and you can only get them on the far end of the forest. Remember they are a one-time use only!";
     private string healthUpgradeButton;
     private string defenseUpgrade;
@@ -197,6 +185,14 @@ public class ShopKeeperManager : MonoBehaviour
         soulDropUpgrade = $"Increase the soul drop from enemies and temples by {pData.templeSoulsDropRateIncrement * 100f}%";
         spellCooldownUpgrade = $"Reduce your special spells cooldowns by {pData.cooldownReductionIncrement * 100f}%";
 
+        if ( pData.tutorialDone )
+        {
+            hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription  = true;
+        }
+        else
+        {
+            hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription = false;
+        }
 
         typer = GetComponent<Typer>();
         if (ShopManager.Instance.permData.tutorialDone)
@@ -238,6 +234,8 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void StartDialogue(string[] dialogue)
     {
+        hoverCheck.SetActive(false);
+
         currentDialogueIndex = 0;
         currentDialogueArray = dialogue;
         ShowNextDialogue(dialogue);
@@ -246,11 +244,11 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void ShowNextDialogue(string[] texts)
     {
-        if (texts == newGameTexts && currentDialogueIndex == texts.Length - 1)
+        if (texts == newGameTexts && currentDialogueIndex == texts.Length-1)
         {
             typer.ShowText(texts[currentDialogueIndex]);
-            YesButton.SetActive(true);
-            NoButton.SetActive(true);
+            BaseSpellExplanation();
+
         }
         else if (currentDialogueIndex < texts.Length)
         {
@@ -259,50 +257,19 @@ public class ShopKeeperManager : MonoBehaviour
         }
         else
         {
+
             EndDialogue();
 
-            if (currentTutorialIndex < 3 && fullTutorial)
-            {
-                currentTutorialIndex++;
-                if (currentTutorialIndex == 1)
-                {
-                    SpecialSpellExplanation();
-                }
-                else if (currentTutorialIndex == 2)
-                {
-                    PermanentUpgradeExplanation();
-                }
-                else
-                {
-                    StartDialogue(endTutorialTexts);
-                    ShopManager.Instance.ButtonsInteractability(false);
-
-                    fullTutorial = false;
-
-                }
-            }
         }
     }
 
-    public void ConfirmationButton()
+    public void EndTutorial()
     {
-        fullTutorial = true;
-        YesButton.SetActive(false);
-        NoButton.SetActive(false);
-
-        currentTutorialIndex = 0;
-        ShopManager.Instance.permData.tutorialDone = true;
-        BaseSpellExplanation();
-    }
-
-    public void DenyButton()
-    {
-        YesButton.SetActive(false);
-        NoButton.SetActive(false);
-
-        ShopManager.Instance.permData.tutorialDone = true;
-
+        EndDialogue();
         StartDialogue(endTutorialTexts);
+        ShopManager.Instance.ButtonsInteractability(true);
+
+        pData.tutorialDone = true;
     }
 
     public void WitchStoryConfirmationButton()
@@ -326,25 +293,40 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void BaseSpellExplanation()
     {
+        DisableHighlight();
         highlightAreas[0].SetActive(true);
         StartDialogue(tutorialBaseSpellTexts);
         ShopManager.Instance.ButtonsInteractability(false);
-
+        ActivateButons(baseShopButtonList);
     }
 
     public void SpecialSpellExplanation()
     {
+        DisableHighlight();
+
         highlightAreas[1].SetActive(true);
         StartDialogue(tutorialSpecialSpellTexts);
         ShopManager.Instance.ButtonsInteractability(false);
-
+        ActivateButons(SpecialShopButtonList);
     }
 
     public void PermanentUpgradeExplanation()
     {
+        DisableHighlight();
+
         highlightAreas[2].SetActive(true);
         StartDialogue(tutorialPermanentUpgradesTexts);
         ShopManager.Instance.ButtonsInteractability(false);
+        ActivateButons(CharacterShopButtonList);
+
+    }
+
+    private void DisableHighlight()
+    {
+        foreach (var area in highlightAreas)
+        {
+            area.SetActive(false); // Deactivate all highlight areas
+        }
 
     }
 
@@ -363,6 +345,26 @@ public class ShopKeeperManager : MonoBehaviour
         }
     }
 
+    void ActivateButons(List<Button> listOfButtons)
+    {
+        foreach(Button button in listOfButtons)
+        {
+            button.IsInteractable();
+        }
+    }
+
+    public void SpecialSpellTutorial()
+    {
+        if (!pData.tutorialDone)
+            SpecialSpellExplanation();
+    }
+
+    public void CharacterUpgradeTutorial()
+    {
+        if (!pData.tutorialDone)
+            PermanentUpgradeExplanation();
+    }
+
 
 
     void EndDialogue()
@@ -372,12 +374,9 @@ public class ShopKeeperManager : MonoBehaviour
         if (blockShop.activeSelf)
             StartCoroutine(FadeOut());
 
+        hoverCheck.SetActive(true);
 
         currentDialogueArray = null;
-        foreach (var area in highlightAreas)
-        {
-            area.SetActive(false); // Deactivate all highlight areas
-        }
 
     }
 
