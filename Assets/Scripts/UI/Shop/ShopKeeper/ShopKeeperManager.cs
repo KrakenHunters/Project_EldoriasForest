@@ -260,7 +260,10 @@ public class ShopKeeperManager : MonoBehaviour
     private void ShowNextDialogue(string[] texts)
     {
         animator.SetTrigger("Talk");
-        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudio);
+        if(texts.Length >= 3)
+        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioLong);
+        else
+        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioShort[Random.Range(0, ShopManager.Instance.shopKeeperAudioShort.Length)]);
 
         if (texts == newGameTexts && currentDialogueIndex == texts.Length-1)
         {
