@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectedSouls: 0
   baseSpell: {fileID: 0}
-  specialSpell: {fileID: 0}
+  specialSpell: {fileID: 2173658814602363057, guid: 03076968340fa0640a0a749c9c024d3a,
+    type: 3}
   ultimateSpell: {fileID: 0}
   collectedSpells: []
   startHealth: 0
