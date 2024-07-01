@@ -63,6 +63,8 @@ public class GridManager : Singleton<GridManager>
 
     public bool gridDone = false;
 
+    public FadeManager fadeManager;
+
     void Start()
     {
         playerSpawnPosY = Mathf.RoundToInt(Random.Range(7, gridHeight - 8));
@@ -71,6 +73,7 @@ public class GridManager : Singleton<GridManager>
         PopulateGrid();
         EnsureMinimumObjects();
         gridDone = true;
+        fadeManager.gameObject.SetActive(true);
     }
 
     void InitializeObjectPositions()

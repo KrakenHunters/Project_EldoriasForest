@@ -16,14 +16,15 @@ MonoBehaviour:
   spellBooksUnlocked: []
   spellBookIDs: 
   baseAttackTier: 0
-  prefBaseSpell: {fileID: 0}
+  prefBaseSpell: {fileID: 5174980907974982790, guid: 05c9a10685304c343a108b54ea69c240,
+    type: 3}
   templeSoulsDropRate: 0
   rune: 0
   cooldownReduction: 0
   healthBonus: 0
   IsUltimateSpellSlotUnlocked: 0
-  InitializeData: 0
-  tutorialDone: 0
+  InitializeData: 1
+  tutorialDone: 1
   isObjective1Completed: 0
   baseUpgradeCost: 0
   healthUpgradeCost: 0

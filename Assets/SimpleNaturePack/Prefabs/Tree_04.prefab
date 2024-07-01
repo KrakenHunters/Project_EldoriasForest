@@ -291,4 +291,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalMaterial: {fileID: 2100000, guid: 93caadf4359ae8143aad35b3145d31af, type: 2}
   fadeableMaterial: {fileID: 2100000, guid: f5d52c3056c36e6458e70fd3fb8b7014, type: 2}
-  fadeSpeed: 5
+  fadeSpeed: 1
+  ShouldFade: 0

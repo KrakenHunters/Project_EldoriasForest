@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class FadeManager : Singleton<FadeManager>
 {
     [SerializeField] private Transform player;
+    private Vector3 playerOffset;
     [SerializeField] private Transform cam; 
     [SerializeField] private LayerMask Layer;
     private ObjectFader[] fadeableObjects;
@@ -12,7 +14,6 @@ public class FadeManager : Singleton<FadeManager>
 
     private void Awake()
     {
-        cam = Camera.main.transform;
         Layer = LayerMask.GetMask("Object");
         fadeableObjects = FindObjectsOfType<ObjectFader>();
     }
@@ -23,25 +24,29 @@ public class FadeManager : Singleton<FadeManager>
 
     private void FadeObject()
     {
-        Vector3 playerPos = player.position;
+        playerOffset = new Vector3(player.position.x, player.position.y, player.position.z - 1f);
 
-        Ray ray = new Ray(Camera.main.transform.position, (player.position - Camera.main.transform.position).normalized);
-        RaycastHit[] hits = Physics.SphereCastAll(ray, 2.0f, Mathf.Infinity, Layer);
+        Ray ray = new Ray(cam.transform.position, (playerOffset - cam.transform.position).normalized);
+        RaycastHit[] hits = Physics.SphereCastAll(ray, 1f, Mathf.Infinity, Layer);
         foreach (ObjectFader fader in fadeableObjects)
             fader.ShouldFade = false;
+
         foreach (RaycastHit aHit in hits)
         {
             var fader = aHit.collider.GetComponent<ObjectFader>();
             if (fader != null)
-            fader.ShouldFade = true;
+            {
+                fader.ShouldFade = true;
+            }
         }
 
         foreach (ObjectFader fader in fadeableObjects)
         {
+
             if (fader.ShouldFade)
                 fader.Fade();
             else
                 fader.ResetFade();
         }
-    }       
+    }
 }

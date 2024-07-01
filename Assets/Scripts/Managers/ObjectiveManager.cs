@@ -88,7 +88,6 @@ public class ObjectiveManager : Singleton<ObjectiveManager>
 
     private void UpdateChallenge2(int amount)
     {
-        Debug.Log($"current objective is" + currentObjective.challenge2.CurrentAmount);
         currentObjective.UpdateChallenge(currentObjective.challenge2, amount);
         ObjectiveEvent.OnUpdateObjective.Invoke();
     }

@@ -7,9 +7,9 @@ public class ObjectFader : MonoBehaviour
 
     [SerializeField] private float fadeSpeed;
 
-    public bool ShouldFade { get; set; }
+    public bool ShouldFade;
     private const float DefaultOpacity = 1f;
-    private const float FadeOpacity = .2f;
+    private const float FadeOpacity = .4f;
     private float _opacity = DefaultOpacity;
     private Material mat;
     Color currentColor;
@@ -47,12 +47,14 @@ public class ObjectFader : MonoBehaviour
     {
         Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b,
             Mathf.Lerp(currentColor.a, FadeOpacity, fadeSpeed * Time.deltaTime));
+     
     }
 
     public void ResetFade()
     {
         Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b,
             Mathf.Lerp(currentColor.a, DefaultOpacity, fadeSpeed * Time.deltaTime));
+
     }
 
 }
