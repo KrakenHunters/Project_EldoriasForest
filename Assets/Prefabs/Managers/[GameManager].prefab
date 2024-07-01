@@ -51,6 +51,7 @@ MonoBehaviour:
   enemyEvent: {fileID: 11400000, guid: dd939cac4925aec4ea5702bbfe960b66, type: 2}
   witch: {fileID: 0}
   witchCinematic: {fileID: 0}
-  BGClip: {fileID: 8300000, guid: 879d44bd624a7bf438058510aac14159, type: 3}
+  BGClip: {fileID: 8300000, guid: e875f6b47ef17494ca0469e289b87c99, type: 3}
   collectClip: {fileID: 8300000, guid: e95c5fe08cf26854f902cb5858bdf31e, type: 3}
   ScreamUI: {fileID: 0}
+  enemyActions: 0
