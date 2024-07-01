@@ -34,4 +34,4 @@ MonoBehaviour:
   templeSoulsDropRateIncrement: 0.25
   runeIncrement: 0.1
   cooldownReductionIncrement: 0.1
-  healthBonusIncrement: 20
+  healthBonusIncrement: 40

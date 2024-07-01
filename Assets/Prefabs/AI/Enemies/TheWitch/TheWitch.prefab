@@ -405,7 +405,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 0}
+      - m_Value: {fileID: 6494185664929094724}
         m_Name: SkinnedMeshRenderer
         m_Overridden: 1
     m_Bool:
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsGlobal: 0
+  m_IsGlobal: 1
   priority: 100
   blendDistance: 15
   weight: 1
@@ -517,7 +517,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.97427964, y: 0.91803575, z: 0.7740313}
   m_Center: {x: 0.06776672, y: 0.15901795, z: 0.04826897}
@@ -711,6 +711,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38209bb6e051c7d4a9e54ebc68332696, type: 3}
+--- !u!137 &6494185664929094724 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137217300413698770, guid: 38209bb6e051c7d4a9e54ebc68332696,
+    type: 3}
+  m_PrefabInstance: {fileID: 6627193208050421398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6623021250137900106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4846237722299100, guid: 38209bb6e051c7d4a9e54ebc68332696,

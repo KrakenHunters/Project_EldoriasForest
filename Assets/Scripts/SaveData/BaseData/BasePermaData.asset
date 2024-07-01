@@ -31,7 +31,7 @@ MonoBehaviour:
   defensiveRuneCost: 50
   soulDropUpgradeCost: 30
   spellCooldownCost: 100
-  templeSoulsDropRateIncrement: 0.25
+  templeSoulsDropRateIncrement: 0.15
   runeIncrement: 0.1
   cooldownReductionIncrement: 0.1
-  healthBonusIncrement: 20
+  healthBonusIncrement: 40

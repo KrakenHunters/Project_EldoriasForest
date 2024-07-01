@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>
         enemyEvent.OnWitchScream.Invoke(witch);
 
         float elapsedTime = 0f;
-        float blinkDuration = 1f;
+        float blinkDuration = 2f;
 
         while (elapsedTime < blinkDuration)
         {
