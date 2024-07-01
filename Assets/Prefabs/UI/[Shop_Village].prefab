@@ -1692,6 +1692,10 @@ MonoBehaviour:
   buttonClickClip: {fileID: 8300000, guid: 47308aa9244860a48abb92013d3e539c, type: 3}
   purchaseClip: {fileID: 8300000, guid: 79e678b136f95744aacc6e4f855eb2f1, type: 3}
   shopBGMusic: {fileID: 8300000, guid: e73ae6b37dc850045bd7165c007573e3, type: 3}
+  shopKeeperAudioShort:
+  - {fileID: 8300000, guid: 41b30abff9089f747a2e41a0ee5ebe08, type: 3}
+  - {fileID: 8300000, guid: 05f49710fc357c64b9181c3294ac84dc, type: 3}
+  shopKeeperAudioLong: {fileID: 8300000, guid: f6b5ca1dc75b11e4a9b1772608334235, type: 3}
   AudioEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
   buttonsInScene: []
 --- !u!114 &6067270543516884622
