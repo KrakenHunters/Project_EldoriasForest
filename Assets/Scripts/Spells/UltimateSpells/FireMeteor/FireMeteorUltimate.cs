@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class FireMeteorUltimate : UltimateSpellBook
 {
     private Vector3 directionToTarget;
+    [SerializeField]
+    private GameObject explosionEffect;
+
+    private bool explosionCalled;
+    private Vector3 targetPos;
 
     protected override void CastSpell(int tier)
     {
@@ -14,7 +20,9 @@ public class FireMeteorUltimate : UltimateSpellBook
     public override void Shoot(Vector3 direction, GameObject attacker)
     {
         base.Shoot(direction, attacker);
+        targetPos = direction;
         directionToTarget = (direction - transform.position).normalized;
+
     }
 
 
@@ -23,6 +31,13 @@ public class FireMeteorUltimate : UltimateSpellBook
         base.Update();
         transform.Translate(directionToTarget * projectileSpeed * Time.deltaTime);
         //Stop when reaching upper limit
+
+        if (transform.position.y <= radius && !explosionCalled)
+        {
+            GameObject explosion = Instantiate(explosionEffect, targetPos, Quaternion.identity);
+            Destroy(explosion, 3f);
+            explosionCalled = true;
+        }
 
         if (transform.position.y <= -20)
         {

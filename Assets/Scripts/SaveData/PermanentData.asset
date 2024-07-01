@@ -24,7 +24,7 @@ MonoBehaviour:
   healthBonus: 0
   IsUltimateSpellSlotUnlocked: 0
   InitializeData: 1
-  tutorialDone: 0
+  tutorialDone: 1
   isObjective1Completed: 0
   baseUpgradeCost: 150
   healthUpgradeCost: 30

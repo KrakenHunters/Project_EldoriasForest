@@ -156,7 +156,6 @@ public class PlayerController : CharacterClass
         {
             spellTarget = AimWorldPosition;
             spellCastManager.CastUltimateSpell();
-            Invoke(nameof(RemoveUltimateSpell),4f);
         }
     }
 
@@ -215,7 +214,7 @@ public class PlayerController : CharacterClass
         }
     }
 
-    private void RemoveUltimateSpell()
+    public void RemoveUltimateSpell()
     {
         //Turn it on later
         tempData.ultimateSpell = null;
