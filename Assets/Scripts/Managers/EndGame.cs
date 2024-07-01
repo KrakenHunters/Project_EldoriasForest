@@ -8,8 +8,15 @@ public class EndGame : MonoBehaviour
     [SerializeField]
     TMPro.TextMeshProUGUI hintText;
 
+    [SerializeField] private AudioClip DeathBGMusic;
+    [SerializeField] private AudioClip[] DeathScreenBGMusic;
+    [SerializeField] private MenuAudioEvent AudioEvent;
+
     private void Awake()
     {
+        AudioEvent.StopAllAudio.Invoke();
+        AudioEvent.PlayBGMusic.Invoke(DeathBGMusic);
+        AudioEvent.ButtonClick.Invoke(DeathScreenBGMusic[Random.Range(0,DeathScreenBGMusic.Length)]);
         Time.timeScale = 0;
         if (GameManager.Instance.pData.tutorialDone)
         {

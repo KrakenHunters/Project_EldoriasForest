@@ -26,12 +26,12 @@ MonoBehaviour:
   InitializeData: 1
   tutorialDone: 1
   isObjective1Completed: 0
-  baseUpgradeCost: 0
-  healthUpgradeCost: 0
-  defensiveRuneCost: 0
-  soulDropUpgradeCost: 0
-  spellCooldownCost: 0
-  templeSoulsDropRateIncrement: 0
-  runeIncrement: 0
-  cooldownReductionIncrement: 0
-  healthBonusIncrement: 0
+  baseUpgradeCost: 150
+  healthUpgradeCost: 30
+  defensiveRuneCost: 50
+  soulDropUpgradeCost: 120
+  spellCooldownCost: 100
+  templeSoulsDropRateIncrement: 0.25
+  runeIncrement: 0.1
+  cooldownReductionIncrement: 0.1
+  healthBonusIncrement: 20

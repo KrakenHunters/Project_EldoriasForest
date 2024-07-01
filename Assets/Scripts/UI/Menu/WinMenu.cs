@@ -1,28 +1,28 @@
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
-public class WinMenu : Menu
+public class WinMenu : MonoBehaviour
 {
-    public UnityEvent OnWin;
+
+    [SerializeField] private AudioClip winBGMusic;
+    [SerializeField] private MenuAudioEvent AudioEvent;
+
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        _startActive = true;
-      //  AudioManager.Instance.PlayMusic(AudioManager.Instance._audioClip.WinBGMusic);
-    }
-    private void Start()
-    {
-        OnWin?.Invoke();
+        AudioEvent.StopAllAudio.Invoke();
+        AudioEvent.PlayBGMusic.Invoke(winBGMusic);
+        Time.timeScale = 0;
     }
 
-    public void OnLoadWinLevel()
+    public void TeleporttoShop()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("02_WinScreen");
-    }
-    public void OnLoadMainMenu()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("00_MainMenu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("01_Shop");
     }
 
+    public void BackToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("00_MainMenu");
+    }
 }
