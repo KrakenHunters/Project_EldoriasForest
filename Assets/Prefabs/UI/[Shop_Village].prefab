@@ -1689,9 +1689,9 @@ MonoBehaviour:
   permData: {fileID: 11400000, guid: ae5670daecf3b3d4388e4faac3b3be3c, type: 2}
   soulAmountText: {fileID: 5366730114603413445}
   shopKeeperManager: {fileID: 0}
-  buttonClickClip: {fileID: 0}
-  purchaseClip: {fileID: 0}
-  shopBGMusic: {fileID: 0}
+  buttonClickClip: {fileID: 8300000, guid: 47308aa9244860a48abb92013d3e539c, type: 3}
+  purchaseClip: {fileID: 8300000, guid: 79e678b136f95744aacc6e4f855eb2f1, type: 3}
+  shopBGMusic: {fileID: 8300000, guid: e73ae6b37dc850045bd7165c007573e3, type: 3}
   AudioEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
   buttonsInScene: []
 --- !u!114 &6067270543516884622
