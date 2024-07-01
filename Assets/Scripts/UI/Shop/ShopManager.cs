@@ -17,6 +17,7 @@ public class ShopManager : Singleton<ShopManager>
     public AudioClip buttonClickClip;
     public AudioClip purchaseClip;
     public AudioClip shopBGMusic;
+    public AudioClip shopKeeperAudio;
     public MenuAudioEvent AudioEvent;
 
     public Button[] buttonsInScene;
