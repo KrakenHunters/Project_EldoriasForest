@@ -7,6 +7,10 @@ public class ObjectiveUI : MonoBehaviour
     public GameObject Challenge1checkMark;
     public GameObject Challenge2checkMark;
 
+    [Header("UI Box")]
+    public GameObject Challenge1Box;
+    public GameObject Challenge2Box;
+
     public TextMeshProUGUI challenge1Text;
     public TextMeshProUGUI challenge2Text;
 
@@ -15,7 +19,6 @@ public class ObjectiveUI : MonoBehaviour
 
     public void UpdateUI()
     {
-
         challenge1Text.text = objective.challenge1.Description;
         challenge2Text.text = objective.challenge2.Description;
 
@@ -31,11 +34,17 @@ public class ObjectiveUI : MonoBehaviour
         objective = obj;
     }
 
+    private void DisableBox()
+    {
+        Challenge2Box.SetActive(false);
+    }
+
     private void OnEnable()
     {
         objectiveEvent.SetObjective.AddListener(SetObjective);
         objectiveEvent.OnUpdateObjective.AddListener(UpdateUI);
         objectiveEvent.OnCompleteObjective.AddListener(UpdateUI);
+        objectiveEvent.OnCompleteTutorialObjectives.AddListener(DisableBox);
     }
 
     private void OnDisable()
@@ -43,5 +52,6 @@ public class ObjectiveUI : MonoBehaviour
         objectiveEvent.SetObjective.RemoveListener(SetObjective);
         objectiveEvent.OnUpdateObjective.RemoveListener(UpdateUI);
         objectiveEvent.OnCompleteObjective.RemoveListener(UpdateUI);
+        objectiveEvent.OnCompleteTutorialObjectives.RemoveListener(DisableBox);
     }
 }

@@ -9,6 +9,7 @@ public class ObjectiveEvent : SOEvent
     public UnityEvent<Objective> SetObjective;
     public UnityEvent OnUpdateObjective;
     public UnityEvent OnCompleteObjective;
+    public UnityEvent OnCompleteTutorialObjectives;
     public UnityEvent<int> OnChallenge1;
     public UnityEvent<int> OnChallenge2;
 }
