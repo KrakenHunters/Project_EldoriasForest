@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a4528efe99b770847b7fa5b589eecc8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2036,6 +2036,7 @@ GameObject:
   - component: {fileID: 1286293630491638609}
   - component: {fileID: 5238206606318397342}
   - component: {fileID: 7104777130798286233}
+  - component: {fileID: 791276937878606351}
   m_Layer: 5
   m_Name: Panel_2
   m_TagString: Untagged
@@ -2100,6 +2101,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &791276937878606351
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465588658711627130}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1545514972279370479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,6 +3003,7 @@ GameObject:
   - component: {fileID: 144596569893475246}
   - component: {fileID: 5079947182444693015}
   - component: {fileID: 4070227227264945755}
+  - component: {fileID: 2786752118048082088}
   m_Layer: 5
   m_Name: Panel_2
   m_TagString: Untagged
@@ -3054,6 +3068,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2786752118048082088
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356183966911598033}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2422079067169777449
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,8 +5043,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -125, y: 5}
-  m_SizeDelta: {x: -350, y: -50}
+  m_AnchoredPosition: {x: -125, y: -5}
+  m_SizeDelta: {x: -350, y: -70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6963244639910246915
 CanvasRenderer:
@@ -5060,8 +5086,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4291414473
+  m_fontColor: {r: 0.78867924, g: 0.78867924, b: 0.78867924, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5078,8 +5104,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5427,6 +5453,7 @@ GameObject:
   - component: {fileID: 1915311039469641917}
   - component: {fileID: 5758829221412387560}
   - component: {fileID: 7975646957648005318}
+  - component: {fileID: 3188027426160681478}
   m_Layer: 5
   m_Name: Panel_1
   m_TagString: Untagged
@@ -5491,6 +5518,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3188027426160681478
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616834422132913132}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4631577136742596872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7273,7 +7312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b26ed82cb5e0f24488ef971c3e6e4810, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7292,7 +7331,7 @@ CanvasGroup:
   m_GameObject: {fileID: 5719015991258866672}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &5809137837100817812
@@ -9005,6 +9044,7 @@ GameObject:
   - component: {fileID: 359889009771295085}
   - component: {fileID: 2329662551583158824}
   - component: {fileID: 1261874878732843136}
+  - component: {fileID: 5563278970430695993}
   m_Layer: 5
   m_Name: Panel_1
   m_TagString: Untagged
@@ -9069,6 +9109,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5563278970430695993
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6931371998726844485}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6987621071327518265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10063,6 +10115,7 @@ GameObject:
   - component: {fileID: 2834551251809272025}
   - component: {fileID: 8245316892206927658}
   - component: {fileID: 3570385263605902683}
+  - component: {fileID: 6394709312139526871}
   m_Layer: 5
   m_Name: ShopKeeper
   m_TagString: Untagged
@@ -10127,6 +10180,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6394709312139526871
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543226930196547359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7567526424632448492
 GameObject:
   m_ObjectHideFlags: 0
@@ -12418,6 +12492,7 @@ GameObject:
   - component: {fileID: 4126040035614097851}
   - component: {fileID: 7909714145814004456}
   - component: {fileID: 2076935316940867538}
+  - component: {fileID: 324685513360970693}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -12482,6 +12557,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &324685513360970693
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8427456375983437262}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8547226066195022528
 GameObject:
   m_ObjectHideFlags: 0
