@@ -11,7 +11,7 @@ public class TextChanger : MonoBehaviour
 
     private string[] IntroTexts = new string[]
    {
-        "In the mystical village of Eldoria, the enchanting souls of forest creatures breathe life into the land.",
+        "In the mystical village of Eldoria, the enchanted souls of forest creatures breathe life into the land.",
         "But on one fateful day, a witch appeared, severing the connection between the animals and Eldoria.",
         "Driven by a dark hunger, the witch corrupted the souls of the forest creatures, gathering their essence and casting Eldoria into despair!",
         "Now the witch feeds on the forest, shaping it as she wishes and making life miserable for the people of Eldoria.",
