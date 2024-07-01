@@ -18,7 +18,6 @@ public class PlayerSpecialAttack : BaseState
         player.animator.Play(AttackHash);
 
         player.spellWeapon.InstantiateIndicator(activeSpell, player);
-        player.RemoveUltimateSpell();
 
 
         //Animate ad change to new state and cast spell after animation is done

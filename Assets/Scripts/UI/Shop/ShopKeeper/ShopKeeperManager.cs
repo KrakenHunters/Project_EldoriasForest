@@ -227,7 +227,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void IntroDialogue()
     {
-        typer.ShowText(introTexts[Random.Range(0, introTexts.Length)]);
+        ShowDialogue(introTexts[Random.Range(0, introTexts.Length)]);
     }
 
     public void ChatDialogue()
@@ -235,14 +235,14 @@ public class ShopKeeperManager : MonoBehaviour
         chatCounter++;
         if (chatCounter > limitToWitch)
         {
-            typer.ShowText(witchStoryConfirmation);
+            ShowDialogue(witchStoryConfirmation);
             YesWitch.SetActive(true);
             NoWitch.SetActive(true);
             limitToWitch = 100000;
         }
         else
         {
-            typer.ShowText(chatTexts[Random.Range(0, introTexts.Length)]);
+            ShowDialogue(chatTexts[Random.Range(0, introTexts.Length)]);
         }
 
     }
@@ -250,6 +250,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void StartDialogue(string[] dialogue)
     {
+
         hoverCheck.SetActive(false);
         currentDialogueIndex = 0;
         currentDialogueArray = dialogue;
@@ -259,29 +260,29 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void ShowNextDialogue(string[] texts)
     {
-        animator.SetTrigger("Talk");
-        if(texts.Length >= 3)
-        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioLong);
-        else
-        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioShort[Random.Range(0, ShopManager.Instance.shopKeeperAudioShort.Length)]);
 
         if (texts == newGameTexts && currentDialogueIndex == texts.Length-1)
         {
-            typer.ShowText(texts[currentDialogueIndex]);
+            ShowDialogue(texts[currentDialogueIndex]);
             BaseSpellExplanation();
 
         }
         else if (currentDialogueIndex < texts.Length)
         {
-            typer.ShowText(texts[currentDialogueIndex]);
-
+            ShowDialogue(texts[currentDialogueIndex]);
         }
         else
         {
-
             EndDialogue();
-
         }
+    }
+
+    private void ShowDialogue(string text)
+    {
+        animator.SetTrigger("Talk");
+        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioShort[Random.Range(0, ShopManager.Instance.shopKeeperAudioShort.Length)]);
+
+        typer.ShowText(text);
     }
 
     public void EndTutorial()
@@ -426,7 +427,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     void EndDialogue()
     {
-        typer.ShowText("");
+        ShowDialogue("");
         ShopManager.Instance.ButtonsInteractability(true);
         if (!shopOpen)
             StartCoroutine(FadeOut());
@@ -491,7 +492,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(upgradeBaseSpell);
+            ShowDialogue(upgradeBaseSpell);
         }
     }
 
@@ -499,7 +500,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(ultimateSpellButton);
+            ShowDialogue(ultimateSpellButton);
         }
     }
 
@@ -507,7 +508,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(healthUpgradeButton);
+            ShowDialogue(healthUpgradeButton);
         }
     }
 
@@ -515,7 +516,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(defenseUpgrade);
+            ShowDialogue(defenseUpgrade);
         }
     }
 
@@ -523,7 +524,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(soulDropUpgrade);
+            ShowDialogue(soulDropUpgrade);
         }
     }
 
@@ -531,7 +532,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(spellCooldownUpgrade);
+            ShowDialogue(spellCooldownUpgrade);
         }
     }
 
@@ -539,7 +540,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(hoverPlayButton[Random.Range(0, hoverPlayButton.Length)]);
+            ShowDialogue(hoverPlayButton[Random.Range(0, hoverPlayButton.Length)]);
         }
     }
 
@@ -547,7 +548,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(rerollText);
+            ShowDialogue(rerollText);
         }
     }
 
@@ -555,7 +556,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(baseSpell1Text);
+            ShowDialogue(baseSpell1Text);
         }
     }
 
@@ -563,7 +564,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(baseSpell2Text);
+            ShowDialogue(baseSpell2Text);
         }
     }
 
@@ -571,7 +572,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(baseSpell3Text);
+            ShowDialogue(baseSpell3Text);
         }
     }
 
@@ -579,7 +580,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(specialSpell1Text);
+            ShowDialogue(specialSpell1Text);
         }
     }
 
@@ -587,7 +588,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(specialSpell2Text);
+            ShowDialogue(specialSpell2Text);
         }
     }
 
@@ -595,7 +596,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         if (buttonInteractable)
         {
-            typer.ShowText(specialSpell3Text);
+            ShowDialogue(specialSpell3Text);
         }
     }
 

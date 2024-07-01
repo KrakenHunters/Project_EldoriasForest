@@ -10,6 +10,7 @@ public class HoverCheck : MonoBehaviour
     public Canvas canvas; // Reference to the canvas
     private bool hasHovered = false; // Flag to track if hover has been detected
     public bool canHoverOverDescription;
+    public float hoverDelay = 0.5f; // Delay before invoking the hover event
 
     void Update()
     {
@@ -42,14 +43,7 @@ public class HoverCheck : MonoBehaviour
                 isHoveringOverButton = true;
                 if (!hasHovered)
                 {
-                    if (result.gameObject.GetComponent<Button>() != null)
-                    {
-                        result.gameObject.GetComponent<OnHover>().OnHoverEvent.Invoke(result.gameObject.GetComponent<Button>().IsInteractable());
-                    }
-                    else
-                    {
-                        result.gameObject.GetComponent<OnHover>().OnHoverEvent.Invoke(canHoverOverDescription);
-                    }
+                    StartCoroutine(HoverCoroutine(result.gameObject));
                     hasHovered = true; // Set the flag to true
                 }
                 break; // Exit the loop once a button is found
@@ -60,6 +54,42 @@ public class HoverCheck : MonoBehaviour
         if (!isHoveringOverButton)
         {
             hasHovered = false;
+            StopAllCoroutines(); // Stop all running hover coroutines
+        }
+    }
+
+    private IEnumerator HoverCoroutine(GameObject hoverObject)
+    {
+        yield return new WaitForSeconds(hoverDelay);
+
+        // Check if the pointer is still over the same UI element
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Mouse.current.position.ReadValue()
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        GraphicRaycaster raycaster = canvas.GetComponent<GraphicRaycaster>();
+        raycaster.Raycast(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == hoverObject)
+            {
+                OnHover onHover = hoverObject.GetComponent<OnHover>();
+                if (onHover != null)
+                {
+                    if (hoverObject.GetComponent<Button>() != null)
+                    {
+                        onHover.OnHoverEvent.Invoke(hoverObject.GetComponent<Button>().IsInteractable());
+                    }
+                    else
+                    {
+                        onHover.OnHoverEvent.Invoke(canHoverOverDescription);
+                    }
+                }
+                break;
+            }
         }
     }
 }
