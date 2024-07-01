@@ -700,3 +700,14 @@ MonoBehaviour:
   menuAudioEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
   collectableAudioEvent: {fileID: 11400000, guid: 11c57949cfffa874aa2d7a02244eb421,
     type: 2}
+  audioMixer: {fileID: 24100000, guid: 0ca9669c75377504280fd821fb36e5b2, type: 2}
+  masterG: {fileID: 24300002, guid: 0ca9669c75377504280fd821fb36e5b2, type: 2}
+  BGMusicG: {fileID: 7726910794701454485, guid: 0ca9669c75377504280fd821fb36e5b2,
+    type: 2}
+  SFXG: {fileID: -9024387411771306912, guid: 0ca9669c75377504280fd821fb36e5b2, type: 2}
+  ShopkeeperG: {fileID: 629035842639930982, guid: 0ca9669c75377504280fd821fb36e5b2,
+    type: 2}
+  spellCastG: {fileID: -6579854633610317266, guid: 0ca9669c75377504280fd821fb36e5b2,
+    type: 2}
+  collectG: {fileID: -6495952805255807155, guid: 0ca9669c75377504280fd821fb36e5b2,
+    type: 2}

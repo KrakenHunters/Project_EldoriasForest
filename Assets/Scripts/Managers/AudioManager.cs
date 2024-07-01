@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -11,8 +11,18 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private MenuAudioEvent menuAudioEvent;
     [SerializeField] private CollectableAudioEvent collectableAudioEvent;
 
+    [Header("Mixer")]
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixerGroup masterG;
+    [SerializeField] private AudioMixerGroup BGMusicG;
+    [SerializeField] private AudioMixerGroup SFXG;
+    [SerializeField] private AudioMixerGroup ShopkeeperG;
+    [SerializeField] private AudioMixerGroup spellCastG;
+    [SerializeField] private AudioMixerGroup collectG;
+
     private Dictionary<SpellBook, AudioSource> spellAudioSources = new Dictionary<SpellBook, AudioSource>();
     private List<AudioSource> unusedSources = new List<AudioSource>();
+    private List<AudioSource> allSources = new List<AudioSource>();
 
     private void OnEnable()
     {
@@ -20,8 +30,10 @@ public class AudioManager : Singleton<AudioManager>
         spellAudioEvent.Looping.AddListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.AddListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.AddListener(PlayButtonClick);
+        menuAudioEvent.StopAllAudio.AddListener(StopAllAudio);
         collectableAudioEvent.ItemCollected.AddListener(PlayItemCollected);
         enemyAudioEvent.OnWitchScream.AddListener(PlayWitchScream);
+
     }
 
     private void OnDisable()
@@ -30,6 +42,7 @@ public class AudioManager : Singleton<AudioManager>
         spellAudioEvent.Looping.RemoveListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.RemoveListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.RemoveListener(PlayButtonClick);
+        menuAudioEvent.StopAllAudio.RemoveListener(StopAllAudio);
         collectableAudioEvent.ItemCollected.RemoveListener(PlayItemCollected);
         enemyAudioEvent.OnWitchScream.RemoveListener(PlayWitchScream);
 
@@ -40,6 +53,7 @@ public class AudioManager : Singleton<AudioManager>
         foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
         {
             unusedSources.Add(source);
+            allSources.Add(source);
         }
     }
 
@@ -58,6 +72,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
         {
+            speaker.outputAudioMixerGroup = collectG;
             speaker.clip = clip;
             speaker.PlayOneShot(clip);
             speaker.clip = null;
@@ -79,6 +94,7 @@ public class AudioManager : Singleton<AudioManager>
         }
         else
         {
+            speaker.outputAudioMixerGroup = BGMusicG;
             speaker.clip = clip;
             speaker.loop = true;
             speaker.Play();
@@ -94,6 +110,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
+        speaker.outputAudioMixerGroup = SFXG;
         speaker.clip = clip;
         speaker.PlayOneShot(clip);
         speaker.clip = null;
@@ -108,6 +125,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
+        speaker.outputAudioMixerGroup = SFXG;
         speaker.clip = witch.screamClip;
         speaker.PlayOneShot(witch.screamClip);
         speaker.clip = null;
@@ -133,7 +151,6 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("Spell audio clip is missing.");
             return;
         }
-        speaker.volume = 0.2f;
         speaker.PlayOneShot(speaker.clip);
         speaker.clip = null;
     }
@@ -146,7 +163,6 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("No Audio Source Available");
             return;
         }
-        speaker.volume = 0.2f;
         speaker.clip = spell.castClip;
         speaker.loop = true;
         speaker.Play();
@@ -175,10 +191,10 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("No Audio Source Available");
             return;
         }
+        speaker.outputAudioMixerGroup = masterG;
         speaker.loop = false;
         speaker.Stop();
         speaker.clip = null;
-        speaker.volume = 0.5f;
     }
 
 
@@ -192,6 +208,7 @@ public class AudioManager : Singleton<AudioManager>
 
         // If not, try to find an unused AudioSource
         AudioSource unusedSource = FindUnusedAudioSource();
+        unusedSource.outputAudioMixerGroup = spellCastG;
 
         // Add the spell and its AudioSource to the dictionary
         spellAudioSources[spell] = unusedSource;
@@ -204,11 +221,34 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (source.clip == null)
             {
-                source.volume = 0.5f;
+                source.outputAudioMixerGroup = SFXG;
                 return source;
             }
         }
         return null;
+    }
+
+    public void StopAllAudio()
+    {
+        foreach (AudioSource source in allSources)
+        {
+            source.Stop();
+            source.outputAudioMixerGroup = null;
+            source.clip = null;
+        }
+    }
+
+    public void StopOnlySounds()
+    {
+        foreach (AudioSource source in allSources)
+        {
+            if (source.outputAudioMixerGroup == BGMusicG)
+            {
+              continue; //skip the looped sounds
+            }
+            source.Stop();
+            source.clip = null;
+        }
     }
 
 }
