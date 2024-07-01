@@ -11,7 +11,7 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
     public List<Transform> villages = new List<Transform>();
 
     [HideInInspector] public bool isFightingWitch = false;
-    [HideInInspector] public bool challengeCompleted = false;
+    [HideInInspector] public bool isChallengeCompleted = false;
     [HideInInspector] public bool isHealthlow = false;
 
     private bool isClose = false;
@@ -79,7 +79,15 @@ public class TrackerUIManager : Singleton<TrackerUIManager>
     private bool ShowTracker()
     {
         return !isFightingWitch && 
-               !isClose && 
-               (challengeCompleted || isHealthlow);
+               !isClose && CheckCondition();
+    }
+
+    private bool CheckCondition()
+    {
+       if(!GameManager.Instance.pData.tutorialDone)
+       {
+           return isChallengeCompleted;
+       } 
+       return (isChallengeCompleted || isHealthlow);
     }
 }

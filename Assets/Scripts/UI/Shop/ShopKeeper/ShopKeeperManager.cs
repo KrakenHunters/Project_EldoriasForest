@@ -75,9 +75,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         "These are your base spells.",
         "You can choose one of the three, but you can't change a base spell inside the forest, only here in the village.",
-        "Use the left mouse click to attack with your base spell",
-        "Bring me more souls, and I can upgrade them for you.",
-        "Please select one of them!"
+        "Please select one!"
     };
 
     private string[] tutorialSpecialSpellTexts = new string[]
@@ -85,19 +83,32 @@ public class ShopKeeperManager : MonoBehaviour
         "These are the special spells.",
         "Once found, you can use these special spells during your run, but you'll lose them when you return to the village due to the witch's curse.",
         "However, you can buy them back here in the shop for a certain amount of souls.",
-        "Please buy the one you got from the forest."
+        "This time I will give you the souls you need to acquire one"
     };
 
     private string[] tutorialPermanentUpgradesTexts = new string[]
     {
         "These are some upgrades for yourself, to grow stronger!",
-        "I highly recommend acquiring them to have a chance on beating the witch.",
-        "Acquire one!"
+        "I highly recommend acquiring them to have a chance on beating the witch!"
+    };
+
+    private string[] explanationBaseSpellTexts = new string[]
+    {
+        "These are your base spells.",
+        "You can choose one of the three, but you can't change a base spell inside the forest, only here in the village.",
+        "Use the left mouse-click to attack with base spells!"
+    };
+
+    private string[] explanationSpecialSpellTexts = new string[]
+    {
+        "These are the special spells.",
+        "Once found, you can use these special spells during your run, but you'll lose them when you return to the village due to the witch's curse.",
+        "They are pretty strong spells but have a longer cooldown than base spells."
     };
 
     private string[] endTutorialTexts = new string[]
     {
-        "You are ready to go! Good luck, magician! We're counting on you to restore peace to Eldoria!"
+        "You are ready to go! Good luck, magician! We're counting on you to restore Eldoria!"
     };
 
 
@@ -187,6 +198,7 @@ public class ShopKeeperManager : MonoBehaviour
 
         if ( pData.tutorialDone )
         {
+            hoverCheck.SetActive( true );
             hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription  = true;
         }
         else
@@ -266,6 +278,7 @@ public class ShopKeeperManager : MonoBehaviour
     public void EndTutorial()
     {
         EndDialogue();
+        DisableHighlight();
         StartDialogue(endTutorialTexts);
         ShopManager.Instance.ButtonsInteractability(true);
 
@@ -293,15 +306,33 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void BaseSpellExplanation()
     {
+        if (blockShop.activeSelf)
+            StartCoroutine(FadeOut());
+
         DisableHighlight();
         highlightAreas[0].SetActive(true);
         StartDialogue(tutorialBaseSpellTexts);
         ShopManager.Instance.ButtonsInteractability(false);
         ActivateButons(baseShopButtonList);
     }
+    public void BaseSpellQuestion()
+    {
+        if (blockShop.activeSelf)
+            StartCoroutine(FadeOut());
+
+        DisableHighlight();
+        highlightAreas[0].SetActive(true);
+        StartDialogue(explanationBaseSpellTexts);
+        ShopManager.Instance.ButtonsInteractability(false);
+        ActivateButons(baseShopButtonList);
+    }
+
 
     public void SpecialSpellExplanation()
     {
+        if (blockShop.activeSelf)
+            StartCoroutine(FadeOut());
+
         DisableHighlight();
 
         highlightAreas[1].SetActive(true);
@@ -310,8 +341,25 @@ public class ShopKeeperManager : MonoBehaviour
         ActivateButons(SpecialShopButtonList);
     }
 
+    public void SpecialSpellQuestion()
+    {
+        if (blockShop.activeSelf)
+            StartCoroutine(FadeOut());
+
+        DisableHighlight();
+
+        highlightAreas[1].SetActive(true);
+        StartDialogue(explanationSpecialSpellTexts);
+        ShopManager.Instance.ButtonsInteractability(false);
+        ActivateButons(SpecialShopButtonList);
+    }
+
+
     public void PermanentUpgradeExplanation()
     {
+        if (blockShop.activeSelf)
+            StartCoroutine(FadeOut());
+
         DisableHighlight();
 
         highlightAreas[2].SetActive(true);
@@ -373,6 +421,20 @@ public class ShopKeeperManager : MonoBehaviour
         ShopManager.Instance.ButtonsInteractability(true);
         if (blockShop.activeSelf)
             StartCoroutine(FadeOut());
+
+        if (currentDialogueArray == tutorialSpecialSpellTexts)
+        {
+            pData.totalSouls += 100;
+            ShopManager.Instance.CostUIUpdate(-100);
+
+        }
+
+        if (pData.tutorialDone)
+        {
+            DisableHighlight();
+            hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription = true;
+
+        }
 
         hoverCheck.SetActive(true);
 

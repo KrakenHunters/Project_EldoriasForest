@@ -224,7 +224,6 @@ public class GridManager : Singleton<GridManager>
                         // If the key does not exist, create a new list, add the spot, and add the list to the dictionary
                         List<AISpot> newList = new List<AISpot> { spawnedObject.GetComponent<AISpot>() };
                         enemySpots.Add(tier, newList);
-                        Debug.Log(tier);
                     }
 
                 }

@@ -9,14 +9,14 @@ public class TutorialObjective : Objective
         challenge1 = new Challenge
         {
             CurrentAmount = 0,
-            Goal = 100,
+            Goal = 30,
             IsCompleted = false,
             Description = ""
         };
         challenge2 = new Challenge
         {
             CurrentAmount = 0,
-            Goal = 2,
+            Goal = 1,
             IsCompleted = false,
             Description = ""
         };
@@ -28,4 +28,14 @@ public class TutorialObjective : Objective
         challenge2.Description = $"Collect {challenge2.CurrentAmount} / {challenge2.Goal} Spells from temples";
     }
 
+    protected override void CheckObjectiveFinished()
+    {
+        if (challenge1.IsCompleted && challenge2.IsCompleted)
+        {
+            challenge1.Description = "Return to Base";
+            challenge2.Description = "";
+            ObjectiveManager.Instance.ObjectiveEvent.OnCompleteObjective.Invoke();
+            TrackerUIManager.Instance.isChallengeCompleted = true;
+        }
+    }
 }

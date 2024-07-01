@@ -243,7 +243,7 @@ MonoBehaviour:
   tier: 1
   cooldown: 1
   castOrigin: 3
-  canUseBaseSpell: 1
+  canUseBaseSpell: 0
   spellData: {fileID: 11400000, guid: ea455c3d8c7ae2b4cada7929634f4ebe, type: 2}
   spellIcon: {fileID: 21300000, guid: e04f361c1f4e6d044a87e1ab54e6f59c, type: 3}
   isAudioLooping: 0
@@ -5205,3 +5205,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c3c8232573f9549a498eb6783f19f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 100

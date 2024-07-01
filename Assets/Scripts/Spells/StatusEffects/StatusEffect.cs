@@ -65,7 +65,7 @@ public class StatusEffect : MonoBehaviour
     private IEnumerator OnStunned(float effectTimer)
     {
         float timer = 0f;
-        _target.Speed = 0f;
+        _target.Speed = _target.initialSpeed * 0.5f;
 
         while (timer < effectTimer && _target.Health > 0)
         {

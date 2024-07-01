@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   health: 32
-  _speed: 3
+  _speed: 2.5
   initialSpeed: 0
   _speedModifier: 0
   isInCombat: 0

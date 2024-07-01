@@ -1,6 +1,5 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
+using UnityEngine;
 
 public class ObjectiveUI : MonoBehaviour
 {
@@ -16,12 +15,12 @@ public class ObjectiveUI : MonoBehaviour
 
     public void UpdateUI()
     {
-       
+
         challenge1Text.text = objective.challenge1.Description;
         challenge2Text.text = objective.challenge2.Description;
 
-        Challenge1checkMark.SetActive(!objective.challenge1.IsCompleted);
-        Challenge2checkMark.SetActive(!objective.challenge2.IsCompleted);
+        Challenge1checkMark.SetActive(objective.challenge1.IsCompleted);
+        Challenge2checkMark.SetActive(objective.challenge2.IsCompleted);
 
         challenge1Text.color = objective.challenge1.IsCompleted ? Color.green : Color.white;
         challenge2Text.color = objective.challenge2.IsCompleted ? Color.green : Color.white;

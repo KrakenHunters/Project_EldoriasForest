@@ -251,6 +251,8 @@ public class ShopSpecials : MonoBehaviour, IShoppable
 
     public void OnBuySpell()
     {
+        ShopManager.Instance.permData.totalSouls -= upgradeCost;
+
         UpdateSoulsCountUI(upgradeCost);
         boughtSpell = selectedSpell;
         shopManager.tempData.specialSpell = boughtSpell;

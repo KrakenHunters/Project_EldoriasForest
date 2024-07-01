@@ -12,14 +12,14 @@ public class MainObjective : Objective
             CurrentAmount = 0,
             Goal = 1,
             IsCompleted = false,
-            Description = $"Kill the Witch",
+            Description = "",
         };
         challenge2 = new Challenge
         {
             CurrentAmount = 0,
             Goal = 100,
             IsCompleted = false,
-            Description = $"Collect {challenge2.CurrentAmount} / {challenge2.Goal} Souls"
+            Description = ""
         };
         UpdateChallengeDescriptions();
     }
@@ -28,4 +28,43 @@ public class MainObjective : Objective
         challenge1.Description = $"Kill the Witch";
         challenge2.Description = $"Collect {challenge2.CurrentAmount} / {challenge2.Goal} Souls";
     }
+
+    protected override void CheckObjectiveFinished()
+    {
+        if(challenge2.IsCompleted)
+        {
+            challenge2.Description = "Completed: 100 souls reward";
+            TrackerUIManager.Instance.isChallengeCompleted = true;
+        }
+        if (challenge1.IsCompleted)
+        {
+            challenge1.Description = "Return to Base";
+            challenge2.Description = "";
+        }
+    }
+
+
+ /*   private Challenge GetRandomChallenge()
+    {
+       private List<Challenge> challenges = new ();
+
+       Challenge c1 = new Challenge
+       {
+           CurrentAmount = 0,
+           Goal = 1,
+           IsCompleted = false,
+           Description = ""
+       };
+    Challenge c2 = new Challenge
+         {
+              CurrentAmount = 0,
+              Goal = 100,
+              IsCompleted = false,
+              Description = ""
+         };
+         challenges.Add(c1);
+        challenges.Add(c2);
+
+       return challenges[Random.Range(0, challenges.Count)]
+    }*/
 }

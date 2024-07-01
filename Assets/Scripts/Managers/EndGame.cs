@@ -18,11 +18,11 @@ public class EndGame : MonoBehaviour
         else
         {
             hintText.enabled = false;
-            SceneManager.LoadScene("02_ForestScene");
         }
     }
 
     public void ReturnToBase()
+
     {
         Time.timeScale = 1f;
         SaveManager.Instance.ResetTemporaryData();
