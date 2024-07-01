@@ -59,7 +59,7 @@ public class EnemyAttackState : EnemyBaseState
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         if (stateInfo.shortNameHash == AttackHash) // Ensure this matches the animation state name
         {
-            if (stateInfo.normalizedTime >= 0.7f && hasAttacked && !enemy.attackTimer.IsRunning)
+            if (stateInfo.normalizedTime >= 0.7f && hasAttacked && !enemy.attackTimer.IsRunning && enemy.attacking)
             {
                 hasAttacked = false;
                 enemy.Attack();

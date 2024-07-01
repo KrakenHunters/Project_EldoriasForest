@@ -12,25 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d690dd4469834b9d4c3c4606bf1dd, type: 3}
   m_Name: PermanentData
   m_EditorClassIdentifier: 
-  totalSouls: 30
-  spellBooksUnlocked:
-  - {fileID: 4574840128260253798, guid: 2ed41d7ed0fcf9949b364199cf1935ae, type: 3}
-  spellBookIDs: 06000000
+  totalSouls: 0
+  spellBooksUnlocked: []
+  spellBookIDs: 00000000
   baseAttackTier: 1
   prefBaseSpell: {fileID: 5214903931515123978, guid: 9088569e7e6692d4a88d8a8b1a39bbee,
     type: 3}
-  templeSoulsDropRate: 0.25
+  templeSoulsDropRate: 0
   rune: 0
   cooldownReduction: 0
-  healthBonus: 20
+  healthBonus: 0
   IsUltimateSpellSlotUnlocked: 0
   InitializeData: 1
   tutorialDone: 0
   isObjective1Completed: 0
   baseUpgradeCost: 150
-  healthUpgradeCost: 120
+  healthUpgradeCost: 30
   defensiveRuneCost: 50
-  soulDropUpgradeCost: 120
+  soulDropUpgradeCost: 30
   spellCooldownCost: 100
   templeSoulsDropRateIncrement: 0.25
   runeIncrement: 0.1
