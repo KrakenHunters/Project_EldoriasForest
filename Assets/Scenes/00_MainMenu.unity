@@ -992,7 +992,7 @@ MonoBehaviour:
   _popupMenu: {fileID: 1376813535}
   _loadGame: {fileID: 2113519371}
   _newGame: {fileID: 258792875}
-  menuClip: {fileID: 8300000, guid: 8beddb52e0b4dcf44b69dd72c2104758, type: 3}
+  menuClip: {fileID: 8300000, guid: 05aa40bfc7824de498d7590934fac592, type: 3}
   buttonClip: {fileID: 8300000, guid: 47308aa9244860a48abb92013d3e539c, type: 3}
   _MasterAudioMixer: {fileID: 24100000, guid: 0ca9669c75377504280fd821fb36e5b2, type: 2}
   MenuEvent: {fileID: 11400000, guid: 077ab8a74fabf8746b7d89cccb907053, type: 2}
