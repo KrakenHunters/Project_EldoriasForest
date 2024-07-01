@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotateProjectile : MonoBehaviour
 {
     // Velocidade de rotação em graus por segundo.
-    public float rotationSpeed = 100f;
+    [SerializeField] private float rotationSpeed = 100f;
 
     void Update()
     {
@@ -14,5 +14,6 @@ public class RotateProjectile : MonoBehaviour
 
         // Aplica a rotação ao objeto.
         transform.Rotate(Vector3.up, rotationAmount);
+        transform.Rotate(Vector3.right, rotationAmount);
     }
 }

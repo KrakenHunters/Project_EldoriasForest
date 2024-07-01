@@ -7,10 +7,17 @@ public class ShopManager : Singleton<ShopManager>
 {
     public TemporaryDataContainer tempData;
     public PermanentDataContainer permData;
+
     public TMPro.TextMeshProUGUI soulAmountText;
 
     [SerializeField]
     private GameObject shopKeeperManager;
+
+    [Header("Audio clips")]
+    public AudioClip buttonClickClip;
+    public AudioClip purchaseClip;
+    public AudioClip shopBGMusic;
+    public MenuAudioEvent AudioEvent;
 
     public Button[] buttonsInScene;
 
@@ -28,6 +35,7 @@ public class ShopManager : Singleton<ShopManager>
         shopCharacterStats = GetComponent<ShopCharacterStats>();
        SaveManager.Instance.TransferTempToPermaData();
        SaveManager.Instance.ResetTemporaryData();
+        AudioEvent.PlayBGMusic.Invoke(shopBGMusic);
     }
     private void Start()
     {
@@ -39,6 +47,14 @@ public class ShopManager : Singleton<ShopManager>
         InvokeRepeating(nameof(AutoSave),3, 20);
     }
 
+    public void OnButtonClick()
+    {
+        AudioEvent.ButtonClick.Invoke(buttonClickClip);
+    }
+    public void OnPurchaseClick()
+    {
+        AudioEvent.ButtonClick.Invoke(purchaseClip);
+    }
 
     public void PlayGame()
     {
