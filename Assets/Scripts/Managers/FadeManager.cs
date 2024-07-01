@@ -32,6 +32,7 @@ public class FadeManager : Singleton<FadeManager>
         foreach (RaycastHit aHit in hits)
         {
             var fader = aHit.collider.GetComponent<ObjectFader>();
+            if (fader != null)
             fader.ShouldFade = true;
         }
 

@@ -6,7 +6,6 @@ public class ObjectFader : MonoBehaviour
     [SerializeField] private Material fadeableMaterial;
 
     [SerializeField] private float fadeSpeed;
-    [SerializeField] private float fadeAmount;
 
     public bool ShouldFade { get; set; }
     private const float DefaultOpacity = 1f;
@@ -47,7 +46,7 @@ public class ObjectFader : MonoBehaviour
     public void Fade()
     {
         Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b,
-            Mathf.Lerp(currentColor.a, fadeAmount, fadeSpeed * Time.deltaTime));
+            Mathf.Lerp(currentColor.a, FadeOpacity, fadeSpeed * Time.deltaTime));
     }
 
     public void ResetFade()
