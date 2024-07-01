@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +45,8 @@ public class ShopKeeperManager : MonoBehaviour
 
     [SerializeField]
     private GameObject hoverCheck;
+
+    private bool shopOpen;
 
 
     private string[] newGameTexts = new string[]
@@ -176,10 +179,11 @@ public class ShopKeeperManager : MonoBehaviour
 
 
     private Typer typer;
+    [SerializeField]
+    private Animator animator;
 
     public void StartShopKeeperManager()
     {
-
         baseSpell1Text = shopBase.fireSpell.spellData.shopkeeperDescription;
         baseSpell2Text = shopBase.iceSpell.spellData.shopkeeperDescription;
         baseSpell3Text = shopBase.lightningSpell.spellData.shopkeeperDescription;
@@ -247,7 +251,6 @@ public class ShopKeeperManager : MonoBehaviour
     private void StartDialogue(string[] dialogue)
     {
         hoverCheck.SetActive(false);
-
         currentDialogueIndex = 0;
         currentDialogueArray = dialogue;
         ShowNextDialogue(dialogue);
@@ -256,6 +259,8 @@ public class ShopKeeperManager : MonoBehaviour
 
     private void ShowNextDialogue(string[] texts)
     {
+        animator.SetTrigger("Talk");
+
         if (texts == newGameTexts && currentDialogueIndex == texts.Length-1)
         {
             typer.ShowText(texts[currentDialogueIndex]);
@@ -306,7 +311,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void BaseSpellExplanation()
     {
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         DisableHighlight();
@@ -317,7 +322,7 @@ public class ShopKeeperManager : MonoBehaviour
     }
     public void BaseSpellQuestion()
     {
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         DisableHighlight();
@@ -330,7 +335,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void SpecialSpellExplanation()
     {
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         DisableHighlight();
@@ -343,7 +348,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void SpecialSpellQuestion()
     {
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         DisableHighlight();
@@ -357,7 +362,7 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void PermanentUpgradeExplanation()
     {
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         DisableHighlight();
@@ -419,7 +424,7 @@ public class ShopKeeperManager : MonoBehaviour
     {
         typer.ShowText("");
         ShopManager.Instance.ButtonsInteractability(true);
-        if (blockShop.activeSelf)
+        if (!shopOpen)
             StartCoroutine(FadeOut());
 
         if (currentDialogueArray == tutorialSpecialSpellTexts)
@@ -444,19 +449,37 @@ public class ShopKeeperManager : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        float duration = 1.0f; // Adjust the duration to your preference
-        float startAlpha = blockShop.GetComponent<CanvasGroup>().alpha;
+        float duration = 1.0f;
+        RectTransform rectTransform = blockShop.GetComponent<RectTransform>();
+        Vector3 startPos = rectTransform.localPosition;
+        Vector3 endPos = startPos + new Vector3(0, 880, 0);
         float time = 0;
 
         while (time < duration)
         {
             time += Time.deltaTime;
-            blockShop.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(startAlpha, 0, time / duration);
+            rectTransform.localPosition = Vector3.Lerp(startPos, endPos, time / duration);
             yield return null;
         }
 
-        blockShop.GetComponent<CanvasGroup>().alpha = 0;
-        blockShop.SetActive(false); // Finally, disable the GameObject
+        rectTransform.localPosition = endPos;
+
+        shopOpen = true;
+        // Ensure it reaches the final position
+        /*        float duration = 1.0f; // Adjust the duration to your preference
+                float startAlpha = blockShop.GetComponent<CanvasGroup>().alpha;
+                float time = 0;
+
+                while (time < duration)
+                {
+                    time += Time.deltaTime;
+                    blockShop.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(startAlpha, 0, time / duration);
+                    yield return null;
+                }
+
+                blockShop.GetComponent<CanvasGroup>().alpha = 0;
+                blockShop.SetActive(false); // Finally, disable the GameObject
+        */
     }
 
     #region HoverFunctions
