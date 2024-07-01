@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 3
   currentTierData:
-    damage: 0
+    damage: 200
     cooldown: 0
-    statusEffectTimer: 0
-    statusEffectDamage: 0
-    statusEffectChance: 0
-    range: 0
+    statusEffectTimer: 5
+    statusEffectDamage: 20
+    statusEffectChance: 1
+    range: 8
     healAmount: 0
-    radius: 0
+    radius: 8
     duration: 0
-    speed: 0
+    speed: 10
   templeDescription: FIRE METEOR! The fire meteor needs to be precise but it is a
     certain kill when it hits!
   shopkeeperDescription: 
@@ -35,7 +35,7 @@ MonoBehaviour:
     statusEffectChance: 1
     range: 8
     healAmount: 0
-    radius: 0
+    radius: 8
     duration: 0
     speed: 10
   tier2:

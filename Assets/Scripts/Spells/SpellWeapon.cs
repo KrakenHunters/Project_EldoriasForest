@@ -9,13 +9,20 @@ public class SpellWeapon : MonoBehaviour
     [SerializeField]
     private Color particleColor;
 
+    private PlayerController playerController;
+
+    private void Start()
+    {
+        if (GetComponent<PlayerController>() != null)
+            playerController = GetComponent<PlayerController>();
+    }
+
     public void InstantiateIndicator(SpellBook spell, CharacterClass caster)
     {
         ParticleSystem particleIndicator = indicator.GetComponentInChildren<ParticleSystem>();
         if (spell.castOrigin == SpellBook.castType.skyToGroundPos || spell.castOrigin == SpellBook.castType.groundPos)
         {
             ParticleSystem.MainModule mainModule = particleIndicator.main;
-            Debug.Log("Spell Tier" + spell.tier);
             switch (spell.tier)
             {
                 case 1:
@@ -32,6 +39,11 @@ public class SpellWeapon : MonoBehaviour
 
             mainModule.startColor = particleColor;
             Instantiate(indicator, caster.spellTarget, Quaternion.identity);
+        }
+
+        if (spell is UltimateSpellBook && playerController != null)
+        {
+            playerController.RemoveUltimateSpell();
         }
     }
 }

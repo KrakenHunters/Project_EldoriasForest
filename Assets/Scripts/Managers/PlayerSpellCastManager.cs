@@ -102,7 +102,6 @@ public class PlayerSpellCastManager : MonoBehaviour
     {
         player.attackType = AttackType.Ultimate;
         player.currentState?.HandleSpecialAttack();
-        player.Invoke("RemoveUltimateSpell", 3f);
     }
 
 }
