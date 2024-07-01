@@ -20,7 +20,7 @@ public class FireRing_SpecialSpell : SpecialSpellBook
         ParticleSystem particle = GetComponentInChildren<ParticleSystem>();
         ParticleSystem.ShapeModule shapeModule = particle.shape;
 
-        shapeModule.radius = radius;
+        shapeModule.radius = radius * 2;
         if(GetComponentInParent<CharacterClass>() != null)
         {
             charAttacker = GetComponentInParent<CharacterClass>().gameObject;

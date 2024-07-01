@@ -25,7 +25,7 @@ public class EnemyChaseState : EnemyBaseState
             isMoving = false;
         }
         
-            TrackerUIManager.Instance.isFightingWitch = true;
+        TrackerUIManager.Instance.isFightingWitch = true;
     }
 
 

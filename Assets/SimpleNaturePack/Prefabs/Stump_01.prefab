@@ -168,8 +168,6 @@ GameObject:
   - component: {fileID: 6260085879979622260}
   - component: {fileID: 6476173587137124530}
   - component: {fileID: 8313632506172493172}
-  - component: {fileID: 3017253793611418416}
-  - component: {fileID: 1853140465276294461}
   m_Layer: 9
   m_Name: Stump_01_LOD0
   m_TagString: Untagged
@@ -242,43 +240,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3017253793611418416
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067936637415105213}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.45, y: 1.2311935, z: 0.45}
-  m_Center: {x: 0, y: 0.6155968, z: 0}
---- !u!208 &1853140465276294461
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7067936637415105213}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.33, y: 0.407, z: 0.28500003}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.041, y: 0.407, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &3765511149004284206
 PrefabInstance:
   m_ObjectHideFlags: 0

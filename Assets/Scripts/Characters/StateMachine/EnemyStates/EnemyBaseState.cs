@@ -10,11 +10,10 @@ public abstract class EnemyBaseState : IState
     protected static readonly int WalkHash = Animator.StringToHash("Walk");
     protected static readonly int AttackHash = Animator.StringToHash("Attack");
 
-    protected static readonly int BossBaseAttackHash = Animator.StringToHash("BaseAttack");
+    protected static readonly int BossBaseAttackHash = Animator.StringToHash("BaseSpell");
     protected static readonly int BossSpecialAttackHash = Animator.StringToHash("SpecialSpell");
     protected static readonly int BossUltimateAttackHash = Animator.StringToHash("UltimateSpell");
 
-    protected static readonly int SwitchPhaseHash = Animator.StringToHash("Attack");
     protected static readonly int ScreamHash = Animator.StringToHash("Scream");
     protected static readonly int DieHash = Animator.StringToHash("Die");
 

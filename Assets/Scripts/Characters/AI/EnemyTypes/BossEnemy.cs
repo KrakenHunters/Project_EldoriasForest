@@ -112,7 +112,7 @@ public class BossEnemy : Enemy
         At(switchPhaseState, chaseState, new FuncPredicate(() => !switchPhase));
         At(screamState, wanderState, new FuncPredicate(() => isAlive && !scream));
         Any(dieState, new FuncPredicate(() => !isAlive));
-        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase));
+        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase && !scream));
         Any(switchPhaseState, new FuncPredicate(() => isAlive && switchPhase));
         Any(screamState, new FuncPredicate(() => isAlive && scream));
 

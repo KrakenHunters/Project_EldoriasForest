@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,8 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void OnEnter()
     {
+        animator.CrossFade(IdleHash, crossFadeDuration);
+
         hasAttacked = false;
         enemy.attacking = true;
         agent.ResetPath();
@@ -57,13 +60,14 @@ public class EnemyAttackState : EnemyBaseState
 
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.shortNameHash == AttackHash) // Ensure this matches the animation state name
+        if (stateInfo.shortNameHash == BossSpecialAttackHash || stateInfo.shortNameHash == BossBaseAttackHash || stateInfo.shortNameHash == BossUltimateAttackHash || stateInfo.shortNameHash == AttackHash) // Ensure this matches the animation state name
         {
-            if (stateInfo.normalizedTime >= 0.7f && hasAttacked && !enemy.attackTimer.IsRunning && enemy.attacking)
+            if (stateInfo.normalizedTime >= 0.6f && hasAttacked && !enemy.attackTimer.IsRunning && enemy.attacking)
             {
                 hasAttacked = false;
                 enemy.Attack();
-                animator.Play(IdleHash);
+                animator.CrossFade(IdleHash, crossFadeDuration);
+
                 if (enemy is not BossEnemy)
                     enemy.attacking = false;
             }
