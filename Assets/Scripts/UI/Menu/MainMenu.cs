@@ -14,6 +14,12 @@ public class MainMenu : Menu
     [SerializeField]
     private Button _newGame;
 
+    [Header("Mute button")]
+    [SerializeField] private Image MuteButtonImage;
+    [SerializeField] private Sprite MuteSprite;
+    [SerializeField] private Sprite UnMuteSprite;
+    
+    [Header("Audio")]
     [SerializeField]
     private AudioClip menuClip;
     [SerializeField]
@@ -94,6 +100,7 @@ public class MainMenu : Menu
     {
         OnButtonClick();
         _isMusted = !_isMusted;
+        MuteButtonImage.sprite = _isMusted ? MuteSprite : UnMuteSprite;
         _MasterAudioMixer.SetFloat("Master", _isMusted ? Mathf.Log10(0.001f) * 20 : Mathf.Log10(_maxVolume) * 20);
     }
 }

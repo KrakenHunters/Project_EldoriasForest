@@ -35,6 +35,7 @@ public class TutorialObjective : Objective
             challenge1.Description = "Return to Base";
             challenge2.Description = "";
             ObjectiveManager.Instance.ObjectiveEvent.OnCompleteObjective.Invoke();
+            ObjectiveManager.Instance.ObjectiveEvent.OnCompleteTutorialObjectives.Invoke();
             TrackerUIManager.Instance.isChallengeCompleted = true;
         }
     }
