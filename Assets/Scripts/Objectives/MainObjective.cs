@@ -34,6 +34,7 @@ public class MainObjective : Objective
         if(challenge2.IsCompleted)
         {
             challenge2.Description = "Completed: 100 souls reward";
+            TrackerUIManager.Instance.isChallengeCompleted = true;
         }
         if (challenge1.IsCompleted)
         {
