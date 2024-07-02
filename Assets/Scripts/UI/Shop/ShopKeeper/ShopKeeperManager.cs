@@ -15,10 +15,6 @@ public class ShopKeeperManager : MonoBehaviour
     public ShopBase shopBase;
     public ShopSpecials shopSpecials;
 
-    private bool fullTutorial = false;
-
-    private int currentTutorialIndex = 0;
-
     [SerializeField]
     private List<Button> baseShopButtonList;
     [SerializeField]
