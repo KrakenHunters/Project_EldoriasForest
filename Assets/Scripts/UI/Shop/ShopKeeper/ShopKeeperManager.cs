@@ -327,7 +327,8 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void OnBuyStuff()
     {
-        ShowDialogue(buyTexts[Random.Range(0, buyTexts.Length)]);
+        if (pData.tutorialDone)
+            ShowDialogue(buyTexts[Random.Range(0, buyTexts.Length)]);
     }
 
 
