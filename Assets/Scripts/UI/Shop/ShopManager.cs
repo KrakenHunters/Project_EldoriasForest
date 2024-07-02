@@ -18,8 +18,11 @@ public class ShopManager : Singleton<ShopManager>
     public AudioClip purchaseClip;
     public AudioClip shopBGMusic;
     public AudioClip[] shopKeeperAudioShort;
-    public AudioClip shopKeeperAudioLong;
     public MenuAudioEvent AudioEvent;
+
+    [Header("Cursor")]
+    public Texture2D cursorTexture;
+
 
     public Button[] buttonsInScene;
 
@@ -32,6 +35,7 @@ public class ShopManager : Singleton<ShopManager>
     private float countingSpeed = 50f;
     private void Awake()
     {
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         shopBase = GetComponent<ShopBase>();
         shopSpecials = GetComponent<ShopSpecials>();
         shopCharacterStats = GetComponent<ShopCharacterStats>();
@@ -42,11 +46,20 @@ public class ShopManager : Singleton<ShopManager>
     private void Start()
     {
         buttonsInScene = FindObjectsOfType<Button>();
+    
         if (permData.totalSouls != 0)
             StartCoroutine(CountToTarget(-permData.totalSouls));
         else
             soulAmountText.text = permData.totalSouls.ToString();
         InvokeRepeating(nameof(AutoSave),3, 20);
+    }
+
+    private void DisableEffect(Button button)
+    {
+      if(button.interactable)
+        {
+          //
+        }
     }
 
     public void OnButtonClick()

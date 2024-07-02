@@ -103,7 +103,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.healthBonus+= permData.healthBonusIncrement;
         healthUpgrade.currentUnlock++;
         UpdateSoulsCountUI(healthUpgrade.cost);
-        permData.healthUpgradeCost += (3 * healthUpgrade.cost);
+        permData.healthUpgradeCost = (3 * healthUpgrade.cost);
         healthUpgrade.cost = permData.healthUpgradeCost;
 
         OnBuyStuff.Raise(new Empty());
@@ -116,7 +116,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.rune += permData.runeIncrement;
         DefenseRune.currentUnlock++;
         UpdateSoulsCountUI(DefenseRune.cost);
-        permData.defensiveRuneCost += (3 * DefenseRune.cost);
+        permData.defensiveRuneCost = (3 * DefenseRune.cost);
         DefenseRune.cost = permData.defensiveRuneCost;
 
         OnBuyStuff.Raise(new Empty());
@@ -140,7 +140,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.cooldownReduction += permData.cooldownReductionIncrement;
         CoolDownReduction.currentUnlock++;
         UpdateSoulsCountUI(CoolDownReduction.cost);
-        permData.spellCooldownCost += (3 * CoolDownReduction.cost);
+        permData.spellCooldownCost = (3 * CoolDownReduction.cost);
         CoolDownReduction.cost = permData.spellCooldownCost;
         OnBuyStuff.Raise(new Empty());
     }

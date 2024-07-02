@@ -11,12 +11,12 @@ public class TextChanger : MonoBehaviour
 
     private string[] IntroTexts = new string[]
    {
-        "In the mystical village of Eldoria, the enchanted souls of forest creatures breathe life into the land.",
-        "But on one fateful day, a witch appeared, severing the connection between the animals and Eldoria.",
-        "Driven by a dark hunger, the witch corrupted the souls of the forest creatures, gathering their essence and casting Eldoria into despair!",
-        "Now the witch feeds on the forest, shaping it as she wishes and making life miserable for the people of Eldoria.",
-        "Legend speaks of a magician capable of defeating the witch and bringing peace back to Eldoria... Maybe you?",
-        "If not... we will just hire a knight or something."
+        "In the mystical village Of EldOria, the enchanted sOuls Of fOrest creatures breathe life intO the land.",
+        "But On One fateful day, a witch appeared, severing the cOnnectiOn between the animals and EldOria.",
+        "Driven by a dark hunger, the witch cOrrupted the sOuls Of the fOrest creatures, gathering their essence and casting EldOria intO despair!",
+        "NOw the witch feeds On the fOrest, shaping it as she wishes and making life miserable fOr the peOple Of EldOria.",
+        "Legend speaks Of a magician capable Of defeating the witch and bringing peace back tO EldOria... Maybe yOu?",
+        "If nOt... we will just hire a knight Or sOmething."
    };
 
     [SerializeField]

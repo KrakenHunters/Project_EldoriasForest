@@ -307,7 +307,7 @@ public class ShopKeeperManager : MonoBehaviour
     private void ShowDialogue(string text)
     {
         animator.SetTrigger("Talk");
-        ShopManager.Instance.AudioEvent.ButtonClick.Invoke(ShopManager.Instance.shopKeeperAudioShort[Random.Range(0, ShopManager.Instance.shopKeeperAudioShort.Length)]);
+        ShopManager.Instance.AudioEvent.ShopKeeper.Invoke(ShopManager.Instance.shopKeeperAudioShort[Random.Range(0, ShopManager.Instance.shopKeeperAudioShort.Length)]);
 
         typer.ShowText(text);
     }

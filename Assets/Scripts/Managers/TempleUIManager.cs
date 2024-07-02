@@ -89,21 +89,21 @@ public class TempleUIManager : Singleton<TempleUIManager>
                 templeHealthText.text = $"{minTempleTier1Health}-{maxTempleTier1Health}";
                 templeSouls = Random.Range(minTempleTier1Souls, maxTempleTier1Souls);
                 templeSoulsText.text = $"{minTempleTier1Souls}-{maxTempleTier1Souls}";
-                templeSpecialSpellText.text = "Tier 1";
+                templeSpecialSpellText.text = "tier 1";
                 break;
             case 2:
                 templeHealth = Random.Range(minTempleTier2Health, maxTempleTier2Health);
                 templeHealthText.text = $"{minTempleTier2Health}-{maxTempleTier2Health}";
                 templeSouls = Random.Range(minTempleTier2Souls, maxTempleTier2Souls);
                 templeSoulsText.text = $"{minTempleTier2Souls}-{maxTempleTier2Souls}";
-                templeSpecialSpellText.text = "Tier 2";
+                templeSpecialSpellText.text = "tier 2";
                 break;
             case 3:
                 templeHealth = Random.Range(minTempleTier3Health, maxTempleTier3Health);
                 templeHealthText.text = $"{minTempleTier3Health}-{maxTempleTier3Health}";
                 templeSouls = Random.Range(minTempleTier3Souls, maxTempleTier3Souls);
                 templeSoulsText.text = $"{minTempleTier3Souls}-{maxTempleTier3Souls}";
-                templeSpecialSpellText.text = "Tier 3";
+                templeSpecialSpellText.text = "tier 3";
                 break;
         }
 

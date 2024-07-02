@@ -30,6 +30,7 @@ public class AudioManager : Singleton<AudioManager>
         spellAudioEvent.Looping.AddListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.AddListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.AddListener(PlayButtonClick);
+        menuAudioEvent.ShopKeeper.AddListener(PlayShopKeeper);
         menuAudioEvent.StopAllAudio.AddListener(StopAllAudio);
         collectableAudioEvent.ItemCollected.AddListener(PlayItemCollected);
         enemyAudioEvent.OnWitchScream.AddListener(PlayWitchScream);
@@ -42,6 +43,7 @@ public class AudioManager : Singleton<AudioManager>
         spellAudioEvent.Looping.RemoveListener(PlaySpellLooping);
         menuAudioEvent.PlayBGMusic.RemoveListener(PlayMenuMusic);
         menuAudioEvent.ButtonClick.RemoveListener(PlayButtonClick);
+        menuAudioEvent.ShopKeeper.RemoveListener(PlayShopKeeper);
         menuAudioEvent.StopAllAudio.RemoveListener(StopAllAudio);
         collectableAudioEvent.ItemCollected.RemoveListener(PlayItemCollected);
         enemyAudioEvent.OnWitchScream.RemoveListener(PlayWitchScream);
@@ -111,6 +113,20 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         speaker.outputAudioMixerGroup = SFXG;
+        speaker.clip = clip;
+        speaker.PlayOneShot(clip);
+        speaker.clip = null;
+    }
+    private void PlayShopKeeper(AudioClip clip)
+    {
+        AudioSource speaker = FindUnusedAudioSource();
+        if (speaker == null)
+        {
+            Debug.Log("No Audio Source Available");
+            return;
+        }
+
+        speaker.outputAudioMixerGroup = ShopkeeperG;
         speaker.clip = clip;
         speaker.PlayOneShot(clip);
         speaker.clip = null;

@@ -5,5 +5,6 @@ public class MenuAudioEvent : SOEvent
 {
     public UnityEvent<AudioClip> PlayBGMusic;
     public UnityEvent<AudioClip> ButtonClick;
+    public UnityEvent<AudioClip> ShopKeeper;
     public UnityEvent StopAllAudio;
 }
