@@ -161,6 +161,33 @@ public class ShopKeeperManager : MonoBehaviour
         "May the stars align in your favor!"
     };
 
+    private string[] buyTexts = new string[]
+    {
+        "Oh yes, I can feel your power growing stronger.",
+        "Maybe we won't need to hire a knight after all.",
+        "Delicious, I mean... great choice!",
+        "Another fine purchase! You have impeccable taste!",
+        "That's a great choice! You'll be unstoppable now!",
+        "Ah, a wise investment! You're on your way to greatness.",
+        "Your power is growing by the minute! Keep it up!",
+        "Excellent choice! Eldoria's future looks bright.",
+        "That's a top-tier purchase! You're making waves!",
+        "Splendid decision! Your enemies won't know what hit them.",
+        "A fine acquisition! You're becoming quite the legend.",
+        "Brilliant choice! Your journey just got a whole lot easier.",
+        "You're on fire today! That'll come in handy for sure.",
+        "Oh, you'll love that one! It’s practically made for you.",
+        "Great pick! That’ll serve you well in your adventures.",
+        "An excellent choice! Your prowess is unmatched.",
+        "A top-notch purchase! You’re truly becoming formidable.",
+        "That’s a gem! You're making some wise decisions today.",
+        "A stellar choice! You’re destined for greatness.",
+        "Great choice! Even a mutated chicken would be scared of you now!",
+        "Nice pick! Now you can handle those pesky mutated squirrels with ease!",
+        "Nice one! Just don't let the witch see you with that!",
+        "Marvelous choice! You’re well on your way to being unstoppable."
+    };
+
     private string upgradeBaseSpell = "Oh yes! Upgrade your base spells to deal more damage and have a bigger chance of applying a status effect.";
     private string ultimateSpellButton = "Oh ultimate spells! They are really strong and you can only get them on the far end of the forest. Remember they are a one-time use only!";
     private string healthUpgradeButton;
@@ -287,13 +314,22 @@ public class ShopKeeperManager : MonoBehaviour
 
     public void EndTutorial()
     {
-        EndDialogue();
-        DisableHighlight();
-        StartDialogue(endTutorialTexts);
-        ShopManager.Instance.ButtonsInteractability(true);
+        if (pData.tutorialDone == false)
+        {
+            EndDialogue();
+            DisableHighlight();
+            StartDialogue(endTutorialTexts);
+            ShopManager.Instance.ButtonsInteractability(true);
 
-        pData.tutorialDone = true;
+            pData.tutorialDone = true;
+        }
     }
+
+    public void OnBuyStuff()
+    {
+        ShowDialogue(buyTexts[Random.Range(0, buyTexts.Length)]);
+    }
+
 
     public void WitchStoryConfirmationButton()
     {
@@ -309,8 +345,6 @@ public class ShopKeeperManager : MonoBehaviour
         YesWitch.SetActive(false);
         NoWitch.SetActive(false);
         ShopManager.Instance.ButtonsInteractability(true);
-
-        StartDialogue(endTutorialTexts);
     }
 
 
