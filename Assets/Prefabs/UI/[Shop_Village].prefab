@@ -877,6 +877,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6999235725087905973}
   - component: {fileID: 695631619732537989}
+  - component: {fileID: 83065563622417050}
   m_Layer: 5
   m_Name: healthUpgrade_image_2
   m_TagString: Untagged
@@ -915,6 +916,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837364384725256412}
   m_CullTransparentMesh: 1
+--- !u!114 &83065563622417050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837364384725256412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: HealthUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &839538872017168710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2910,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SpellCooldownUpgradeDialogue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4847,6 +4875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590459288141048302}
   - component: {fileID: 4588297694453410030}
+  - component: {fileID: 4101629439233938251}
   m_Layer: 5
   m_Name: itemHolder_image_4
   m_TagString: Untagged
@@ -4885,6 +4914,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3681330786788322916}
   m_CullTransparentMesh: 1
+--- !u!114 &4101629439233938251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681330786788322916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: SoulDropUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3879713162244658495
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,7 +5317,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SpecialSpell2
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7379,7 +7435,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SpecialSpell3
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8930,6 +8986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1506725544581784915}
   - component: {fileID: 1564559837219655963}
+  - component: {fileID: 1471457237936325161}
   m_Layer: 5
   m_Name: itemHolder_image_5
   m_TagString: Untagged
@@ -8968,6 +9025,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6472460874291547071}
   m_CullTransparentMesh: 1
+--- !u!114 &1471457237936325161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6472460874291547071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: SpellCooldownUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6487250434786874313
 GameObject:
   m_ObjectHideFlags: 0
@@ -14884,6 +14968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2362545040296926891}
   - component: {fileID: 5212042102385290082}
+  - component: {fileID: 8279695276582148912}
   m_Layer: 5
   m_Name: DefenseRune_image_3
   m_TagString: Untagged
@@ -14922,6 +15007,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8996534070584190962}
   m_CullTransparentMesh: 1
+--- !u!114 &8279695276582148912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8996534070584190962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: DefenseUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9003544570054240368
 GameObject:
   m_ObjectHideFlags: 0
@@ -15294,7 +15406,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: UltimateSpellUpgradeDialogue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

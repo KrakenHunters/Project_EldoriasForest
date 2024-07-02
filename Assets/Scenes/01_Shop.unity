@@ -199,6 +199,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1049693234}
     m_Modifications:
+    - target: {fileID: 83065563622417050, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1363705887}
     - target: {fileID: 266039182202669618, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -234,6 +239,11 @@ PrefabInstance:
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363705887}
+    - target: {fileID: 311121432835367778, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DefenseUpgradeDialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 387440181103945655, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -259,12 +269,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Shop_Village]'
       objectReference: {fileID: 0}
+    - target: {fileID: 1286293630491638609, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.75146484
+      objectReference: {fileID: 0}
     - target: {fileID: 1346531153821223660, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363705887}
     - target: {fileID: 1361464906361147366, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1363705887}
+    - target: {fileID: 1471457237936325161, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -312,7 +332,7 @@ PrefabInstance:
     - target: {fileID: 2210973817859570722, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.7846375
+      value: -3.784668
       objectReference: {fileID: 0}
     - target: {fileID: 2315664751644935313, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
@@ -459,6 +479,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4101629439233938251, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1363705887}
     - target: {fileID: 4792779655455158262, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -472,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 4792779655455158262, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 27.371536
+      value: 27.371582
       objectReference: {fileID: 0}
     - target: {fileID: 4806233503605743681, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
@@ -494,6 +519,11 @@ PrefabInstance:
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363705887}
+    - target: {fileID: 5232970585078081534, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SoulDropUpgradeDialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 5272854830443192235, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -522,12 +552,12 @@ PrefabInstance:
     - target: {fileID: 5460421049318524507, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 84.4
+      value: 84.400024
       objectReference: {fileID: 0}
     - target: {fileID: 5460421049318524507, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -27.001
+      value: -27.000977
       objectReference: {fileID: 0}
     - target: {fileID: 5461627895900784595, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
@@ -679,6 +709,11 @@ PrefabInstance:
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363705887}
+    - target: {fileID: 8279695276582148912, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1363705887}
     - target: {fileID: 8364291814686001979, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -709,6 +744,11 @@ PrefabInstance:
       propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1363705887}
+    - target: {fileID: 8419860177204377616, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      propertyPath: OnHoverEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HealthUpgradeDialogue
+      objectReference: {fileID: 0}
     - target: {fileID: 8860158064622981191, guid: 2e044885a3b0a634fb0d56f9359fd362,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -742,7 +782,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 744756216917726108, guid: 2e044885a3b0a634fb0d56f9359fd362,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 178138310}
   m_SourcePrefab: {fileID: 100100000, guid: 2e044885a3b0a634fb0d56f9359fd362, type: 3}
 --- !u!224 &33514745 stripped
 RectTransform:
@@ -786,6 +830,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &178138307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 744756216917726108, guid: 2e044885a3b0a634fb0d56f9359fd362,
+    type: 3}
+  m_PrefabInstance: {fileID: 33514744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &178138310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178138307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ac618eaca1af0488f07e9a28bb2a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHoverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1363705887}
+        m_TargetAssemblyTypeName: ShopKeeperManager, Assembly-CSharp
+        m_MethodName: UltimateSpellUpgradeDialogue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &353197503
 GameObject:
   m_ObjectHideFlags: 0
