@@ -72,12 +72,12 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
     public void SetTempleOptions(int tier)
     {
-        minTempleTier1Souls = Mathf.RoundToInt(minTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
-        minTempleTier2Souls = Mathf.RoundToInt(minTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
-        minTempleTier3Souls = Mathf.RoundToInt(minTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
-        maxTempleTier1Souls = Mathf.RoundToInt(maxTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
-        maxTempleTier2Souls = Mathf.RoundToInt(maxTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
-        maxTempleTier3Souls = Mathf.RoundToInt(maxTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int minTier1Souls = Mathf.RoundToInt(minTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int minTier2Souls = Mathf.RoundToInt(minTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int minTier3Souls = Mathf.RoundToInt(minTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int maxTier1Souls = Mathf.RoundToInt(maxTempleTier1Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int maxTier2Souls = Mathf.RoundToInt(maxTempleTier2Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
+        int maxTier3Souls = Mathf.RoundToInt(maxTempleTier3Souls * (1 + GameManager.Instance.pData.templeSoulsDropRate));
 
 
         templeTier = tier;
@@ -87,21 +87,21 @@ public class TempleUIManager : Singleton<TempleUIManager>
             case 1:
                 templeHealth = Random.Range(minTempleTier1Health, maxTempleTier1Health);
                 templeHealthText.text = $"{minTempleTier1Health}-{maxTempleTier1Health}";
-                templeSouls = Random.Range(minTempleTier1Souls, maxTempleTier1Souls);
+                templeSouls = Random.Range(minTier1Souls, maxTier1Souls);
                 templeSoulsText.text = $"{minTempleTier1Souls}-{maxTempleTier1Souls}";
                 templeSpecialSpellText.text = "tier 1";
                 break;
             case 2:
                 templeHealth = Random.Range(minTempleTier2Health, maxTempleTier2Health);
                 templeHealthText.text = $"{minTempleTier2Health}-{maxTempleTier2Health}";
-                templeSouls = Random.Range(minTempleTier2Souls, maxTempleTier2Souls);
+                templeSouls = Random.Range(minTier2Souls, maxTier2Souls);
                 templeSoulsText.text = $"{minTempleTier2Souls}-{maxTempleTier2Souls}";
                 templeSpecialSpellText.text = "tier 2";
                 break;
             case 3:
                 templeHealth = Random.Range(minTempleTier3Health, maxTempleTier3Health);
                 templeHealthText.text = $"{minTempleTier3Health}-{maxTempleTier3Health}";
-                templeSouls = Random.Range(minTempleTier3Souls, maxTempleTier3Souls);
+                templeSouls = Random.Range(minTier3Souls, maxTier3Souls);
                 templeSoulsText.text = $"{minTempleTier3Souls}-{maxTempleTier3Souls}";
                 templeSpecialSpellText.text = "tier 3";
                 break;
@@ -109,7 +109,6 @@ public class TempleUIManager : Singleton<TempleUIManager>
 
         templeUI.SetActive(true);
 
-        Time.timeScale = 0.0f;
         //Randomize the values and the objects for the menu
         //Set the values and the objects for the menu
     }

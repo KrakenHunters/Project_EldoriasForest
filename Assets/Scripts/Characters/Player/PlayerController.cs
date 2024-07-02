@@ -204,7 +204,6 @@ public class PlayerController : CharacterClass
     {
         if (other.GetComponent<Interactable>())
         {
-            interactableObj = null;
             other.GetComponent<Interactable>().DeactivateInteractable();
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class LightningBeam_SpecialSpell : SpecialSpellBook
 {
@@ -12,6 +13,8 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
     [SerializeField]
     private LayerMask playerLayer;
 
+    [SerializeField]
+    private VisualEffect thunderEffect;
 
     private LineRenderer lineRenderer;
     private Vector3 castDirection;
@@ -27,8 +30,6 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
         base.Update();
         castDirection = charAttacker.transform.forward;
         startPos = transform.position;
-
-
     }
 
     public override void Shoot(Vector3 direction, GameObject attacker)
@@ -51,7 +52,6 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
             if (Physics.Raycast(startPos, castDirection, out RaycastHit hit, range, combinedLayerMask, QueryTriggerInteraction.Ignore))
             {
                 end = hit.point;
-                Debug.Log(hit.collider);
 
                 int enemyLayer = monsterLayer | playerLayer;
                 // Check if the hit is an enemy
@@ -70,7 +70,10 @@ public class LightningBeam_SpecialSpell : SpecialSpellBook
             // Draw the lightning bolt
             lineRenderer.SetPosition(0, startPos);
             lineRenderer.SetPosition(1, end);
+            thunderEffect.SetVector3("Direction", new Vector3(0, Vector3.Distance(end, startPos), 0f));
 
+            Vector3 newRotation = new Vector3(transform.rotation.x, charAttacker.transform.rotation.eulerAngles.y, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(newRotation);
             yield return null;
         }
         Destroy(gameObject);

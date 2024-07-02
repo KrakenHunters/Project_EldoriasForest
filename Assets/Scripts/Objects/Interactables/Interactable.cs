@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Interactable : BaseObject
 {
-    [HideInInspector]
     public bool canInteract = true;
 
     [SerializeField]
