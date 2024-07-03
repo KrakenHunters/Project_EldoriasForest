@@ -19,7 +19,7 @@ public class EnemyWanderState : EnemyBaseState
     public override void OnEnter()
     {
         TrackerUIManager.Instance.isFightingWitch = false;
-        animator.CrossFade(WalkHash, crossFadeDuration);
+        animator.CrossFade(IdleHash, crossFadeDuration);
 
         enemy.gotHit = false;
         enemy.wanderTimer.Start();
