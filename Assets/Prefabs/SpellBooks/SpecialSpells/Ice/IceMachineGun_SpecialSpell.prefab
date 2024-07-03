@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823d40bfd35e050429b7176cc7f7a2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 3
+  tier: 1
   cooldown: 0
   castOrigin: 3
   canUseBaseSpell: 0
