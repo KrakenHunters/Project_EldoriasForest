@@ -20,8 +20,6 @@ public class ShopManager : Singleton<ShopManager>
     public AudioClip[] shopKeeperAudioShort;
     public MenuAudioEvent AudioEvent;
 
-    [Header("Cursor")]
-    public Texture2D cursorTexture;
 
 
     public Button[] buttonsInScene;
@@ -35,16 +33,15 @@ public class ShopManager : Singleton<ShopManager>
     private float countingSpeed = 50f;
     private void Awake()
     {
-        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
         shopBase = GetComponent<ShopBase>();
         shopSpecials = GetComponent<ShopSpecials>();
         shopCharacterStats = GetComponent<ShopCharacterStats>();
        SaveManager.Instance.TransferTempToPermaData();
        SaveManager.Instance.ResetTemporaryData();
-        AudioEvent.PlayBGMusic.Invoke(shopBGMusic);
     }
     private void Start()
     {
+        AudioEvent.PlayBGMusic.Invoke(shopBGMusic);
         buttonsInScene = FindObjectsOfType<Button>();
     
         if (permData.totalSouls != 0)
