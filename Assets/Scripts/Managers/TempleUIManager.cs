@@ -192,7 +192,7 @@ public class TempleUIManager : Singleton<TempleUIManager>
             }
             else
             {
-                while (currentTempleSpell is not SpecialSpellBook && CheckSpecialSpellOnPlayer() == currentTempleSpell)
+                while (currentTempleSpell is not SpecialSpellBook || CheckSpecialSpellOnPlayer() == currentTempleSpell)
                 {
                     currentTempleSpell = templeSpecialSpellList[Random.Range(0, templeSpecialSpellList.Count)];
                 }
