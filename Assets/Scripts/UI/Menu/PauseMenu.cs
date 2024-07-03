@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     public UnityEvent OnPause;
     public UnityEvent OnResume;
     private bool _isPaused;
-    private bool wasPaused = false;
+    private float _initialTimeScale;
     private void Awake()
     {
         _isPaused = false;
@@ -17,19 +17,21 @@ public class PauseMenu : MonoBehaviour
 
     public void OnTogglePauseMenu()
     {
-        wasPaused = (Time.timeScale == 0f); 
         _isPaused = !_isPaused;
-        _pauseMenu.gameObject.SetActive(_isPaused);
+        _pauseMenu.gameObject.SetActive(_isPaused); 
 
         if (_isPaused)
-            Time.timeScale = 0;
-        else if (!wasPaused)
-            Time.timeScale = 1f;
-
-        if (_isPaused)
-            OnPause.Invoke();
+        {
+            _initialTimeScale = Time.timeScale;
+            Time.timeScale = 0; 
+            OnPause.Invoke(); 
+        }
         else
-            OnResume.Invoke();
+        {
+            Time.timeScale = _initialTimeScale;
+            OnResume.Invoke(); 
+        }
+
     }
 
 
@@ -41,9 +43,12 @@ public class PauseMenu : MonoBehaviour
 
     public void OnReturnToShop()
     {
-
+       if(GameManager.Instance.pData.tutorialDone)
+        {
        Time.timeScale = 1f;
         SceneManager.LoadScene("01_Shop");
+       } else 
+            OnQuitGame();
     }
 
     public void OnQuitGame()
