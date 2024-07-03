@@ -406,6 +406,8 @@ public class ShopKeeperManager : MonoBehaviour
         highlightAreas[2].SetActive(true);
         StartDialogue(tutorialPermanentUpgradesTexts);
         ShopManager.Instance.ButtonsInteractability(false);
+        hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription = true;
+
         ActivateButons(CharacterShopButtonList);
 
     }
@@ -469,15 +471,14 @@ public class ShopKeeperManager : MonoBehaviour
             ShopManager.Instance.CostUIUpdate(-100);
 
         }
+        hoverCheck.SetActive(true);
 
         if (pData.tutorialDone)
         {
             DisableHighlight();
-            hoverCheck.GetComponent<HoverCheck>().canHoverOverDescription = true;
 
         }
 
-        hoverCheck.SetActive(true);
 
         currentDialogueArray = null;
 
