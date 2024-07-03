@@ -70,7 +70,10 @@ public class MainMenu : Menu
 
     public void OnLoadGame()
     {
-        StartGame();
+        if (SaveManager.Instance.permanentData.tutorialDone)
+            StartGame();
+        else
+            SceneManager.LoadScene("02_ForestScene");
     }
     public void StartGame()
     {                                                                                      
