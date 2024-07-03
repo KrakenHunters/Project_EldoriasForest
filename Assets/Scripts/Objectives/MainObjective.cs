@@ -26,7 +26,7 @@ public class MainObjective : Objective
     protected override void UpdateChallengeDescriptions()
     {
         challenge1.Description = $"Main Goal: Kill the Witch";
-        challenge2.Description = $"Challenge: Collect {challenge2.CurrentAmount} / {challenge2.Goal} Souls";
+        challenge2.Description = $"Challenge: Collect {challenge2.CurrentAmount} / {challenge2.Goal} ";
     }
 
     protected override void CheckObjectiveFinished()
@@ -42,29 +42,4 @@ public class MainObjective : Objective
             challenge2.Description = "";
         }
     }
-
-
- /*   private Challenge GetRandomChallenge()
-    {
-       private List<Challenge> challenges = new ();
-
-       Challenge c1 = new Challenge
-       {
-           CurrentAmount = 0,
-           Goal = 1,
-           IsCompleted = false,
-           Description = ""
-       };
-    Challenge c2 = new Challenge
-         {
-              CurrentAmount = 0,
-              Goal = 100,
-              IsCompleted = false,
-              Description = ""
-         };
-         challenges.Add(c1);
-        challenges.Add(c2);
-
-       return challenges[Random.Range(0, challenges.Count)]
-    }*/
 }
