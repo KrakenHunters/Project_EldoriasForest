@@ -98,6 +98,6 @@ MonoBehaviour:
   minDistanceBetweenEnemies: 3
   minDistanceBetweenObjects: 30
   innerBorderSpawnChance: 0.1
-  centerSpawnChance: 0.07
+  centerSpawnChance: 0.08
   gridDone: 0
   fadeManager: {fileID: 0}

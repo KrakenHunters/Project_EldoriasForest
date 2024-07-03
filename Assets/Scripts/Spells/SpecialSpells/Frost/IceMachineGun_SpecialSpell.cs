@@ -36,7 +36,7 @@ public class IceMachineGun_SpecialSpell : SpecialSpellBook
         {
             shotDirection = charAttacker.transform.forward;
 
-            SpellBook bullet = Instantiate(iceBullet, transform.position, transform.rotation); // Instantiate the projectile
+            SpellBook bullet = Instantiate(iceBullet, transform.position, charAttacker.transform.rotation); // Instantiate the projectile
             bullet.tier = this.tier;
             bullet.Shoot(shotDirection, charAttacker);
             yield return new WaitForSeconds(interval);

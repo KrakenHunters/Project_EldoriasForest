@@ -32,7 +32,7 @@ public class TutorialObjective : Objective
     {
         if (challenge1.IsCompleted && challenge2.IsCompleted)
         {
-            challenge1.Description = "Return to Base";
+            challenge1.Description = "Find Portal to Village";
             challenge2.Description = "";
             ObjectiveManager.Instance.ObjectiveEvent.OnCompleteObjective.Invoke();
             ObjectiveManager.Instance.ObjectiveEvent.OnCompleteTutorialObjectives.Invoke();
