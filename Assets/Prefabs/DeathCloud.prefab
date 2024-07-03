@@ -4898,4 +4898,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetXPosition: 180
-  moveSpeed: 0.5
+  moveSpeed: 0.2
