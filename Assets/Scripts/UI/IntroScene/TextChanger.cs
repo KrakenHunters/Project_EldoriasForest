@@ -35,7 +35,7 @@ public class TextChanger : MonoBehaviour
     {
         index++;
         textComponent.text = IntroTexts[index];
-        if (index <= IntroTexts.Length)
+        if (index < images.Length)
             sceneImage.sprite = images[index];
 
     }
