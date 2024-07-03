@@ -86,6 +86,8 @@ public class InputManager : MonoBehaviour
     }
     public void DisableInput()
     {
+        _action.Player.Move.performed += (val) => Movement = Vector2.zero;
+
         _action.Disable();
 
     }

@@ -25,20 +25,20 @@ public class MainObjective : Objective
     }
     protected override void UpdateChallengeDescriptions()
     {
-        challenge1.Description = $"Kill the Witch";
-        challenge2.Description = $"Collect {challenge2.CurrentAmount} / {challenge2.Goal} Souls";
+        challenge1.Description = $"Main Goal: Kill the Witch";
+        challenge2.Description = $"Challenge: Collect {challenge2.CurrentAmount} / {challenge2.Goal} Souls";
     }
 
     protected override void CheckObjectiveFinished()
     {
         if(challenge2.IsCompleted)
         {
-            challenge2.Description = "Completed: 100 souls reward";
+            challenge2.Description = $"Completed: {challenge2.CurrentAmount} / {challenge2.Goal} souls reward";
             TrackerUIManager.Instance.isChallengeCompleted = true;
         }
         if (challenge1.IsCompleted)
         {
-            challenge1.Description = "Return to Base";
+            challenge1.Description = "Return to Village";
             challenge2.Description = "";
         }
     }

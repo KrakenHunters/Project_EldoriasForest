@@ -250,8 +250,8 @@ MonoBehaviour:
   soulAmountMaxTier3: 20
   soulAmountMinTier3: 13
   baseHealth: 40
-  healthMultTier2: 3
-  healthMultTier3: 5
+  healthMultTier2: 2
+  healthMultTier3: 4
   enemyEvent: {fileID: 11400000, guid: dd939cac4925aec4ea5702bbfe960b66, type: 2}
   gotHit: 0
   attacking: 0

@@ -9,10 +9,6 @@ AnimatorOverrideController:
   m_Name: WerewolfAnimator
   m_Controller: {fileID: 9100000, guid: 3d23fbd52be16164dbb1270e0523eccf, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 4dd42343b9bf6354d8ac86a19125be4a,
-      type: 3}
-    m_OverrideClip: {fileID: -203655887218126122, guid: 4e10bbbbd64f70d4fbbfa7f8c40fc187,
-      type: 3}
   - m_OriginalClip: {fileID: -203655887218126122, guid: b89fb19918d5f7a4e987d99185a92523,
       type: 3}
     m_OverrideClip: {fileID: -203655887218126122, guid: ca425f4ce299fc748bf6e8016d044a26,
@@ -21,7 +17,15 @@ AnimatorOverrideController:
       type: 3}
     m_OverrideClip: {fileID: -203655887218126122, guid: fd7ced3549ff6ec41b70d8482b521b82,
       type: 3}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 6b004ac970a54eb4384532be58a3ae59,
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 19c057215b4759b428cbcdb23336dcdd,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 4e10bbbbd64f70d4fbbfa7f8c40fc187,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 7136b2126af04cc468e0ab0a36174dd9,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: f2fcb47d874b24a43b3e51dd94dfd6da,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: a78cb7176bee6ac478f5722c6243f671,
       type: 3}
     m_OverrideClip: {fileID: -203655887218126122, guid: 6b32966c0c59b8144bc250b04b4cbd6d,
       type: 3}

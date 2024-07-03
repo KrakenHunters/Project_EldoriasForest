@@ -128,7 +128,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.templeSoulsDropRate += permData.templeSoulsDropRateIncrement;
         LootDropRate.currentUnlock++;
         UpdateSoulsCountUI(LootDropRate.cost);
-        permData.soulDropUpgradeCost += (2 * LootDropRate.cost);
+        permData.soulDropUpgradeCost = (2 * LootDropRate.cost);
         LootDropRate.cost = permData.soulDropUpgradeCost;
 
         OnBuyStuff.Raise(new Empty());

@@ -28,7 +28,7 @@ public class Objective
     {
         if (challenge1.IsCompleted && challenge2.IsCompleted)
         {
-            challenge1.Description = "Return to Base";
+            challenge1.Description = "Find portal to Village";
             challenge2.Description = "";
             ObjectiveManager.Instance.ObjectiveEvent.OnCompleteObjective.Invoke();
         }
