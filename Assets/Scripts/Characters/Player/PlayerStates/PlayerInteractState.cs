@@ -17,7 +17,6 @@ public class PlayerInteractState : BaseState
     public override void ExitState()
     {
         player.doubleFloatEvent.OnCancelInteract.Invoke();
-        player.interactableObj = null;
     }
 
     public override void StateFixedUpdate()
@@ -27,9 +26,8 @@ public class PlayerInteractState : BaseState
 
         if (timer >= player.interactableObj.waitTime)
         {
-            Debug.Log("Interacting with " + player.interactableObj.name);
-
             player.interactableObj.Interact(); //Call interaction with the interactable obj
+            player.interactableObj = null;
 
             player.ChangeState(new PlayerMoveState());
         }

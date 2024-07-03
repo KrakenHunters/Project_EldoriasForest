@@ -26,7 +26,6 @@ public class InteractLoader : MonoBehaviour
     private void SetLoader(float timer, float waitTime)
     {
         image.gameObject.SetActive(true);
-        Debug.Log("Set Laoder");
         image.fillAmount = timer / waitTime;
 
         if (timer >= waitTime)
