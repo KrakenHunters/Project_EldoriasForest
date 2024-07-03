@@ -64,7 +64,7 @@ public class PlayerController : CharacterClass
     {
         animator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground");
-        health = tempData.startHealth + GameManager.Instance.pData.healthBonus;
+        health = tempData.startHealth;
         maxHealth = health;
         initialSpeed = _speed;
 

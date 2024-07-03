@@ -16,6 +16,8 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void OnEnter()
     {
+        animator.CrossFade(RunHash, crossFadeDuration);
+
         if (agent.velocity.magnitude > 0f )
         {
             isMoving = true;

@@ -127,7 +127,7 @@ public class ShopManager : Singleton<ShopManager>
         }
     }
 
-    private void AutoSave()
+    public void AutoSave()
     {
         SaveManager.Instance.SavePermanentData();
     }

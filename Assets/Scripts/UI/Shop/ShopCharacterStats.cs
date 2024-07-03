@@ -36,15 +36,15 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     private void SetUpValues()
     {
         CoolDownReduction.cost = permData.spellCooldownCost;
-        CoolDownReduction.maxUnlock = 3;
+        CoolDownReduction.maxUnlock = 6;
 
-        LootDropRate.maxUnlock = 5;
+        LootDropRate.maxUnlock = 10;
         LootDropRate.cost = permData.soulDropUpgradeCost;
 
-        DefenseRune.maxUnlock = 3;
+        DefenseRune.maxUnlock = 6;
         DefenseRune.cost = permData.defensiveRuneCost;
 
-        healthUpgrade.maxUnlock = 5;
+        healthUpgrade.maxUnlock = 10;
         healthUpgrade.cost = permData.healthUpgradeCost;
 
         ultimateSpellSlot.maxUnlock = 1;
@@ -100,10 +100,10 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
     public void OnHealthUpgrade()
     {
         permData.totalSouls -= healthUpgrade.cost;
-        permData.healthBonus+= permData.healthBonusIncrement;
+        permData.healthBonus += permData.healthBonusIncrement;
         healthUpgrade.currentUnlock++;
         UpdateSoulsCountUI(healthUpgrade.cost);
-        permData.healthUpgradeCost = (3 * healthUpgrade.cost);
+        permData.healthUpgradeCost = (2 * healthUpgrade.cost);
         healthUpgrade.cost = permData.healthUpgradeCost;
 
         OnBuyStuff.Raise(new Empty());
@@ -116,7 +116,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.rune += permData.runeIncrement;
         DefenseRune.currentUnlock++;
         UpdateSoulsCountUI(DefenseRune.cost);
-        permData.defensiveRuneCost = (3 * DefenseRune.cost);
+        permData.defensiveRuneCost = (2 * DefenseRune.cost);
         DefenseRune.cost = permData.defensiveRuneCost;
 
         OnBuyStuff.Raise(new Empty());
@@ -128,7 +128,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.templeSoulsDropRate += permData.templeSoulsDropRateIncrement;
         LootDropRate.currentUnlock++;
         UpdateSoulsCountUI(LootDropRate.cost);
-        permData.soulDropUpgradeCost += (3 * LootDropRate.cost);
+        permData.soulDropUpgradeCost += (2 * LootDropRate.cost);
         LootDropRate.cost = permData.soulDropUpgradeCost;
 
         OnBuyStuff.Raise(new Empty());
@@ -140,7 +140,7 @@ public class ShopCharacterStats : MonoBehaviour, IShoppable
         permData.cooldownReduction += permData.cooldownReductionIncrement;
         CoolDownReduction.currentUnlock++;
         UpdateSoulsCountUI(CoolDownReduction.cost);
-        permData.spellCooldownCost = (3 * CoolDownReduction.cost);
+        permData.spellCooldownCost = (2 * CoolDownReduction.cost);
         CoolDownReduction.cost = permData.spellCooldownCost;
         OnBuyStuff.Raise(new Empty());
     }

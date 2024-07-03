@@ -70,7 +70,7 @@ public class PlayerGUIManager : MonoBehaviour
 
     public void SetHealthValues(float health)
     {
-        healthBar.maxValue = tempData.startHealth + GameManager.Instance.pData.healthBonus;
+        healthBar.maxValue = tempData.startHealth;
         targetHealth = health;
     }
 
