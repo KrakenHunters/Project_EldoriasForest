@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     public UnityEvent OnPause;
     public UnityEvent OnResume;
     private bool _isPaused;
-
+    private bool wasPaused = false;
     private void Awake()
     {
         _isPaused = false;
@@ -17,9 +17,15 @@ public class PauseMenu : MonoBehaviour
 
     public void OnTogglePauseMenu()
     {
+        wasPaused = (Time.timeScale == 0f); 
         _isPaused = !_isPaused;
         _pauseMenu.gameObject.SetActive(_isPaused);
-        Time.timeScale = _isPaused ? 0 : 1;
+
+        if (_isPaused)
+            Time.timeScale = 0;
+        else if (!wasPaused)
+            Time.timeScale = 1f;
+
         if (_isPaused)
             OnPause.Invoke();
         else
