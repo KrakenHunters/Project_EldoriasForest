@@ -107,12 +107,12 @@ public class BossEnemy : Enemy
         At(patrollingState, chaseState, new FuncPredicate(() => playerDetector.CanDetectPlayer()));
         At(patrollingState, wanderState, new FuncPredicate(() => ArrivedAtLocation()));
         At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
-        At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
-        At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer() && !attacking));
+        At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer() && !scream && !switchPhase));
+        At(attackState, chaseState, new FuncPredicate(() => /*!playerDetector.CanAttackPlayer() && */!attacking));
         At(switchPhaseState, chaseState, new FuncPredicate(() => !switchPhase));
         At(screamState, wanderState, new FuncPredicate(() => isAlive && !scream));
         Any(dieState, new FuncPredicate(() => !isAlive));
-        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase && !scream));
+        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer() && !switchPhase && !scream && !attacking));
         Any(switchPhaseState, new FuncPredicate(() => isAlive && switchPhase));
         Any(screamState, new FuncPredicate(() => isAlive && scream));
 
@@ -222,7 +222,6 @@ public class BossEnemy : Enemy
 
     public void Scream()
     {
-        Debug.Log("Scream");
         scream = true;
     }
 
@@ -288,6 +287,8 @@ public class BossEnemy : Enemy
         }
 
         maxHealth = health;
+        healthBar.SetHealth(health);
+
     }
 
     public override void Attack()

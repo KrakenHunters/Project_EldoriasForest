@@ -32,6 +32,6 @@ MonoBehaviour:
   soulDropUpgradeCost: 30
   spellCooldownCost: 100
   templeSoulsDropRateIncrement: 0.05
-  runeIncrement: 0.05
-  cooldownReductionIncrement: 0.05
-  healthBonusIncrement: 10
+  runeIncrement: 0.1
+  cooldownReductionIncrement: 0.1
+  healthBonusIncrement: 30

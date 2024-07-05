@@ -24,6 +24,8 @@ MonoBehaviour:
     radius: 0
     duration: 0
     speed: 0
+  templeDescription: 
+  shopkeeperDescription: 
   tier1:
     damage: 22
     cooldown: 0
@@ -36,7 +38,7 @@ MonoBehaviour:
     duration: 0
     speed: 10
   tier2:
-    damage: 25
+    damage: 40
     cooldown: 0
     statusEffectTimer: 4
     statusEffectDamage: 1.5
@@ -47,7 +49,7 @@ MonoBehaviour:
     duration: 0
     speed: 10
   tier3:
-    damage: 35
+    damage: 70
     cooldown: 0
     statusEffectTimer: 4
     statusEffectDamage: 1.7

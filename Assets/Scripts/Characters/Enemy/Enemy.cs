@@ -133,9 +133,9 @@ public class Enemy : CharacterClass
         At(patrollingState, wanderState, new FuncPredicate(() => ArrivedAtLocation()));
         At(chaseState, wanderState, new FuncPredicate(() => !playerDetector.CanDetectPlayer()));
         At(chaseState, attackState, new FuncPredicate(() => playerDetector.CanAttackPlayer()));
-        At(attackState, chaseState, new FuncPredicate(() => !playerDetector.CanAttackPlayer() && !attacking));
+        At(attackState, chaseState, new FuncPredicate(() => /*!playerDetector.CanAttackPlayer() &&*/ !attacking));
         Any(dieState, new FuncPredicate(() => !isAlive));
-        Any(chaseState, new FuncPredicate(() => isAlive && gotHit && !playerDetector.CanAttackPlayer()));
+        Any(chaseState, new FuncPredicate(() => !attacking && isAlive && gotHit && !playerDetector.CanAttackPlayer()));
 
         stateMachine.SetState(wanderState);
 

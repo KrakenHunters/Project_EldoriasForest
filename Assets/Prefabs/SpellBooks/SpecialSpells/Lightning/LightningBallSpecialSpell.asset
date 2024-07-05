@@ -51,7 +51,7 @@ MonoBehaviour:
     duration: 10
     speed: 18
   tier3:
-    damage: 80
+    damage: 120
     cooldown: 15
     statusEffectTimer: 6
     statusEffectDamage: 0

@@ -135,7 +135,7 @@ MonoBehaviour:
   detectionRadius: 15
   innerDetectionRadius: 8
   detectionCooldown: 1
-  attackRange: 6
+  attackRange: 10
   controller: {fileID: 0}
 --- !u!95 &3398003951915658533
 Animator:
@@ -203,9 +203,9 @@ MonoBehaviour:
   soulAmountMinTier2: 0
   soulAmountMaxTier3: 30
   soulAmountMinTier3: 20
-  baseHealth: 2000
-  healthMultTier2: 2
-  healthMultTier3: 4
+  baseHealth: 3000
+  healthMultTier2: 1.5
+  healthMultTier3: 2
   enemyEvent: {fileID: 11400000, guid: dd939cac4925aec4ea5702bbfe960b66, type: 2}
   gotHit: 0
   attacking: 0
@@ -214,9 +214,9 @@ MonoBehaviour:
   imageTier3: {fileID: 0}
   TierImageUI: {fileID: 0}
   healthBar: {fileID: 0}
-  phase1Health: 2000
-  phase2Health: 4000
-  phase3Health: 8000
+  phase1Health: 6000
+  phase2Health: 9000
+  phase3Health: 12000
   spawnEnemies:
   - {fileID: 7439797000257662282, guid: 0227bf95004584b45b6da0e36891dd6f, type: 3}
   - {fileID: 7439797000257662282, guid: e1a36f5cd851ccf498a6148b32c4512e, type: 3}
@@ -259,9 +259,9 @@ MonoBehaviour:
   - {fileID: 634136164512254635, guid: 868cf2c14a01b2e44ba934465fe3c28f, type: 3}
   - {fileID: 3090169188342936710, guid: c426d6c331030a74eb6c1de4716e08eb, type: 3}
   currentSpell: {fileID: 0}
-  numEnemiesSpawnPhase1: 3
-  numEnemiesSpawnPhase2: 5
-  numEnemiesSpawnPhase3: 7
+  numEnemiesSpawnPhase1: 5
+  numEnemiesSpawnPhase2: 10
+  numEnemiesSpawnPhase3: 15
   switchPhase: 0
   switchPhaseTime: 2
   spellWeapon: {fileID: 0}

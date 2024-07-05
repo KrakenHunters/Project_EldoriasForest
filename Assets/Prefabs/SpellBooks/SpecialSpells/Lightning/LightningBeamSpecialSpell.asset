@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tierUnlocked: 1
   currentTierData:
-    damage: 60
+    damage: 600
     cooldown: 12
-    statusEffectTimer: 3
+    statusEffectTimer: 4
     statusEffectDamage: 0
-    statusEffectChance: 0.3
+    statusEffectChance: 0.5
     range: 20
     healAmount: 0
     radius: 0
-    duration: 6
+    duration: 8
     speed: 0
   templeDescription: Lightning Beam! A beam of lightning cast forward attacking the
     first thing it sees!
   shopkeeperDescription: Oh the lightning beam! A beam of lightning cast forward
     destroying everything on it's path!
   tier1:
-    damage: 60
+    damage: 150
     cooldown: 12
     statusEffectTimer: 3
     statusEffectDamage: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
     duration: 6
     speed: 0
   tier2:
-    damage: 100
+    damage: 250
     cooldown: 12
     statusEffectTimer: 4
     statusEffectDamage: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     duration: 7
     speed: 0
   tier3:
-    damage: 160
+    damage: 600
     cooldown: 12
     statusEffectTimer: 4
     statusEffectDamage: 0

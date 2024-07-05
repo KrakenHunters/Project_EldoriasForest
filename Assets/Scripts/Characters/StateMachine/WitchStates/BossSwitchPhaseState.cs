@@ -25,7 +25,7 @@ public class BossSwitchPhaseState : EnemyBaseState
         counter = 0;
         timer = 0f;
         agent.ResetPath();
-
+        bossEnemy.enemyEvent.OnWitchScream.Invoke(bossEnemy);
         animator.CrossFade(ScreamHash, crossFadeDuration);
 
     }
@@ -46,7 +46,6 @@ public class BossSwitchPhaseState : EnemyBaseState
             bossEnemy.switchPhase = false;
             bossEnemy.invulnerable = false;
             bossEnemy.SetHealth();
-
         }
     }
 

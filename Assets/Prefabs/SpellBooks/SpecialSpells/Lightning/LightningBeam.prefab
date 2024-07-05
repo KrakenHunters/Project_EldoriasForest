@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907e09e625befc54b9f4b6bf552ad0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
+  tier: 3
   cooldown: 0
   castOrigin: 3
   canUseBaseSpell: 0

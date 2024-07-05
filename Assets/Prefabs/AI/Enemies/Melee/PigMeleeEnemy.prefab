@@ -249,9 +249,9 @@ MonoBehaviour:
   soulAmountMinTier2: 7
   soulAmountMaxTier3: 20
   soulAmountMinTier3: 13
-  baseHealth: 60
-  healthMultTier2: 3
-  healthMultTier3: 5
+  baseHealth: 50
+  healthMultTier2: 2
+  healthMultTier3: 3.5
   enemyEvent: {fileID: 11400000, guid: dd939cac4925aec4ea5702bbfe960b66, type: 2}
   gotHit: 0
   attacking: 0
@@ -261,8 +261,8 @@ MonoBehaviour:
   TierImageUI: {fileID: 6871637233518568087}
   healthBar: {fileID: 1238473911412538695}
   damageTier1: 20
-  damageTier2: 50
-  damageTier3: 80
+  damageTier2: 40
+  damageTier3: 60
 --- !u!114 &4949369657001733455
 MonoBehaviour:
   m_ObjectHideFlags: 0
